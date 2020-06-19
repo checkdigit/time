@@ -20,7 +20,7 @@ new Date(0).toISOString() -> 1970-01-01T00:00:00.000Z
 
 vs
 
-Temporal.now.absolute().toString() -> 1970-01-01T00:00Z
+Temporal.Absolute(0n).toString() -> 1970-01-01T00:00Z
 ```
 
 ### Why not just use the polyfill?
