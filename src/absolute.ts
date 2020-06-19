@@ -1,10 +1,14 @@
 // absolute.ts
 
+/* eslint-disable no-magic-numbers */
+
 export type ComparisonResult = -1 | 0 | 1;
 
 const THOUSAND = 1e3;
 const MILLION = 1e6;
 const BILLION = 1e9;
+
+const extraRegEx = /\.\d\d\d(?<extra>\d+)Z$/u;
 
 /**
  * Partial implementation of Temporal.Absolute, part of the new TC39 Temporal proposal.
@@ -12,7 +16,9 @@ const BILLION = 1e9;
  * See docs here: https://tc39.es/proposal-temporal/docs/absolute.html
  */
 export class Absolute {
-  private readonly epochNanoseconds: bigint;
+  // this eslint rule should be removed, it doesn't understand Typescript constructors
+  // eslint-disable-next-line no-useless-constructor
+  constructor(private readonly epochNanoseconds: bigint) {}
 
   static fromEpochSeconds(epochSeconds: number): Absolute {
     return new Absolute(BigInt(epochSeconds) * BigInt(BILLION));
@@ -31,10 +37,19 @@ export class Absolute {
   }
 
   static from(item: Absolute | string): Absolute {
-    return item as Absolute;
+    if (item instanceof Absolute) {
+      return item;
+    }
+    const extra = extraRegEx.exec(item)?.groups?.extra ?? '';
+    const extraDigits = BigInt(extra) * BigInt(10 ** (6 - extra.length));
+    const nanoseconds = BigInt(new Date(item).getTime()) * BigInt(MILLION) + extraDigits;
+    return new Absolute(nanoseconds);
   }
 
-  static compare(one: Absolute, two: Absolute): ComparisonResult {
+  static compare(
+    one: { getEpochNanoseconds: () => bigint },
+    two: { getEpochNanoseconds: () => bigint }
+  ): ComparisonResult {
     if (one.getEpochNanoseconds() > two.getEpochNanoseconds()) {
       return 1;
     }
@@ -42,10 +57,6 @@ export class Absolute {
       return -1;
     }
     return 0;
-  }
-
-  constructor(epochNanoseconds: bigint) {
-    this.epochNanoseconds = epochNanoseconds;
   }
 
   getEpochSeconds(this: Absolute): number {
@@ -68,11 +79,45 @@ export class Absolute {
     return this.epochNanoseconds === other.getEpochNanoseconds();
   }
 
-  toJSON(this: Absolute): string {
-    return this.epochNanoseconds.toString();
+  toString(this: Absolute): string {
+    let nanoseconds = Number(this.epochNanoseconds % BigInt(BILLION));
+    const epochMilliseconds =
+      Number((this.epochNanoseconds / BigInt(BILLION)) * BigInt(THOUSAND)) + Math.floor(Number(nanoseconds / MILLION));
+    nanoseconds = Number((this.epochNanoseconds < BigInt(0) ? BILLION : 0) + nanoseconds);
+    const millisecond = Math.floor(nanoseconds / MILLION) % THOUSAND;
+    const microsecond = Math.floor(nanoseconds / THOUSAND) % THOUSAND;
+    const nanosecond = Math.floor(nanoseconds) % THOUSAND;
+
+    const item = new Date(epochMilliseconds);
+    const year = item.getUTCFullYear();
+    const month = item.getUTCMonth() + 1;
+    const day = item.getUTCDate();
+    const hour = item.getUTCHours();
+    const minute = item.getUTCMinutes();
+    const second = item.getUTCSeconds();
+
+    let seconds = '';
+    if (second || millisecond || microsecond || nanosecond) {
+      const parts = [];
+      if (nanosecond) {
+        parts.unshift(`${nanosecond.toString().padStart(3, '0')}`);
+      }
+      if (microsecond || parts.length) {
+        parts.unshift(`${microsecond.toString().padStart(3, '0')}`);
+      }
+      if (millisecond || parts.length) {
+        parts.unshift(`${millisecond.toString().padStart(3, '0')}`);
+      }
+      seconds = `${second.toString().padStart(2, '0')}${parts.length ? `.${parts.join('')}` : ''}`;
+    }
+    return `${year.toString().padStart(4, '0')}-${month.toString().padStart(2, '0')}-${day
+      .toString()
+      .padStart(2, '0')}T${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}${
+      seconds ? `:${seconds}` : ''
+    }Z`;
   }
 
-  toString(this: Absolute): string {
-    return this.epochNanoseconds.toString();
+  toJSON(this: Absolute): string {
+    return this.toString();
   }
 }

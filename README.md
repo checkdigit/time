@@ -9,6 +9,20 @@ The Check Digit time library is the officially sanctioned method for Check Digit
 
 Temporal (vs the millisecond precision of standard Date built-in) is useful for webservices recording the time of events, where concurrent activity may occur and millisecond precision does not provide adequate uniqueness and ordering.
 
+### Important note about `Absolute.toString()`
+
+Unlike built-in `new Date().toISOString()`, `Temporal.now.absolute().toString()` will not add seconds, or extra-precision digits if those values are zero. 
+
+E.g.
+
+```
+new Date(0).toISOString() -> 1970-01-01T00:00:00.000Z
+
+vs
+
+Temporal.now.absolute().toString() -> 1970-01-01T00:00Z
+```
+
 ### Why not just use the polyfill?
 
 The polyfill is not production ready.  The implementation is designed to be used in the browser so cannot make use of Node's high-resolution timer to more accurately simulate nano-second precision time.  Crucially, the polyfill does not guarantee always increasing absolute times on subsequent calls, which makes it a non-starter for recording the time of events in production webservices.
