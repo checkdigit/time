@@ -11,7 +11,7 @@ Temporal (vs the millisecond precision of standard Date built-in) is useful for 
 
 ### Important note about `Absolute.toString()`
 
-Unlike built-in `new Date().toISOString()`, `Temporal.now.absolute().toString()` will not add seconds, or extra-precision digits if those values are zero. 
+Unlike built-in `Date.toISOString()`, `Absolute.toString()` will not add seconds, or extra-precision digits if those values are zero. 
 
 E.g.
 
