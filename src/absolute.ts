@@ -6,6 +6,11 @@ const THOUSAND = 1e3;
 const MILLION = 1e6;
 const BILLION = 1e9;
 
+/**
+ * Partial implementation of Temporal.Absolute, part of the new TC39 Temporal proposal.
+ *
+ * See docs here: https://tc39.es/proposal-temporal/docs/absolute.html
+ */
 export class Absolute {
   private readonly epochNanoseconds: bigint;
 
@@ -60,7 +65,7 @@ export class Absolute {
   }
 
   equals(this: Absolute, other: Absolute): boolean {
-    return this.getEpochNanoseconds() === other.getEpochNanoseconds();
+    return this.epochNanoseconds === other.getEpochNanoseconds();
   }
 
   toJSON(this: Absolute): string {

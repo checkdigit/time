@@ -5,6 +5,10 @@
   "typings": "./dist/index.d.ts",
   "main": "./dist/index.js",
   "prettier": "@checkdigit/prettier-config",
+  "engines": {
+    "node": ">=12.18",
+    "npm": ">=6.14"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/checkdigit/time.git"
