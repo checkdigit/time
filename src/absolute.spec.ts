@@ -2,7 +2,6 @@
 
 import assert from 'assert';
 import { Temporal as TemporalPolyfill } from 'proposal-temporal';
-
 import { Temporal } from './index';
 
 describe('absolute', () => {
@@ -22,6 +21,23 @@ describe('absolute', () => {
     ].forEach((dateString) => {
       assert.strictEqual(Temporal.Absolute.from(dateString).toString(), dateString);
     });
+  });
+
+  it('does not allow use of valueOf()', () => {
+    assert.throws(() => Temporal.now.absolute().valueOf());
+    assert.throws(() => ((Temporal.now.absolute() as unknown) as number) + 1);
+  });
+
+  it('compare method works with sort()', () => {
+    // example from documentation
+    const one = Temporal.Absolute.fromEpochSeconds(1.0e9);
+    const two = Temporal.Absolute.fromEpochSeconds(1.1e9);
+    const three = Temporal.Absolute.fromEpochSeconds(1.2e9);
+
+    // this should not be an eslint error.  Temporal.Absolute.compare is a static method.
+    // eslint-disable-next-line @typescript-eslint/unbound-method
+    const sorted = [three, one, two].sort(Temporal.Absolute.compare);
+    assert.strictEqual(sorted.join(' '), '2001-09-09T01:46:40Z 2004-11-09T11:33:20Z 2008-01-10T21:20Z');
   });
 
   it('static methods compatible with current TC39 Temporal polyfill', () => {

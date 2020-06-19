@@ -120,4 +120,9 @@ export class Absolute {
   toJSON(this: Absolute): string {
     return this.toString();
   }
+
+  // eslint-disable-next-line class-methods-use-this
+  valueOf(): never {
+    throw new TypeError('use compare() or equals() to compare Temporal.Absolute');
+  }
 }
