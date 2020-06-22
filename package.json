@@ -1,6 +1,6 @@
 {
   "name": "@checkdigit/time",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Standard time handling",
   "typings": "./dist/index.d.ts",
   "main": "./dist/index.js",
@@ -25,12 +25,12 @@
     "@checkdigit/publish": "^1.0.14",
     "@checkdigit/typescript": "^3.9.3",
     "@types/jest": "^26.0.0",
-    "eslint": "^7.2.0",
+    "eslint": "^7.3.0",
     "jest": "^26.0.1",
     "prettier": "^2.0.5",
     "proposal-temporal": "^0.1.0",
     "rimraf": "^3.0.2",
-    "ts-jest": "^26.1.0",
+    "ts-jest": "^26.1.1",
     "ts-node": "^8.10.2"
   },
   "jest": {
@@ -46,10 +46,10 @@
     "postpublish": "rimraf dist .npmignore",
     "preversion": "npm test",
     "postversion": "git push && git push --tags",
-    "lint": "eslint -f unix --ext .js,.ts src/**",
-    "lint:fix": "eslint -f unix --ext .js,.ts src/** --fix",
-    "prettier": "prettier --list-different src/**/*.ts",
-    "prettier:fix": "prettier --write src/**/*.ts",
+    "lint": "eslint -f unix 'src/**/*.ts'",
+    "lint:fix": "eslint -f unix 'src/**/*.ts' --fix",
+    "prettier": "prettier --list-different 'src/**/*.ts'",
+    "prettier:fix": "prettier --write 'src/**/*.ts'",
     "test": "jest && npm run lint && npm run prettier"
   }
 }
