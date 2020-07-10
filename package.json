@@ -14,21 +14,21 @@
     "url": "git+https://github.com/checkdigit/time.git"
   },
   "author": "Check Digit, LLC",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/checkdigit/time/issues"
   },
   "homepage": "https://github.com/checkdigit/time#readme",
   "devDependencies": {
-    "@checkdigit/eslint-config": "3.3.5",
+    "@checkdigit/eslint-config": "3.3.6",
     "@checkdigit/prettier-config": "^1.0.1",
     "@checkdigit/publish": "^1.0.14",
     "@checkdigit/typescript": "^3.9.3",
-    "@types/jest": "^26.0.0",
-    "eslint": "^7.3.0",
-    "jest": "^26.0.1",
+    "@types/jest": "^26.0.4",
+    "eslint": "^7.4.0",
+    "jest": "^26.1.0",
     "prettier": "^2.0.5",
-    "proposal-temporal": "^0.1.0",
+    "proposal-temporal": "^0.2.0",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.1.1",
     "ts-node": "^8.10.2"

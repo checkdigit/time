@@ -16,8 +16,6 @@ const extraRegEx = /\.\d\d\d(?<extra>\d+)Z$/u;
  * See docs here: https://tc39.es/proposal-temporal/docs/absolute.html
  */
 export class Absolute {
-  // this eslint rule should be removed, it doesn't understand Typescript constructors
-  // eslint-disable-next-line no-useless-constructor
   constructor(private readonly epochNanoseconds: bigint) {}
 
   static fromEpochSeconds(epochSeconds: number): Absolute {
