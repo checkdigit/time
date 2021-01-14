@@ -1,4 +1,4 @@
 // temporal.ts
 
-export * from './absolute';
+export * from './instant';
 export * as now from './now';
