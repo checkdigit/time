@@ -1,9 +1,9 @@
 // now.ts
 
-import { Absolute } from './absolute';
+import { Instant } from './instant';
 
 /**
- * Partial implementation of Temporal.now, part of the new TC39 Temporal proposal.  Currently only absolute() is
+ * Partial implementation of Temporal.now, part of the new TC39 Temporal proposal.  Currently only instant() is
  * supported.
  *
  * See docs here: https://tc39.es/proposal-temporal/docs/now.html
@@ -22,7 +22,7 @@ let priorEpochNanoseconds = BigInt(0);
  * Two invocations within the same millisecond will have an accurate nanosecond difference between them, so
  * this is useful for ensuring unique timestamps in webservices where concurrent execution may be an issue.
  */
-export function absolute(): Absolute {
+export function instant(): Instant {
   const dateTime = BigInt(Date.now());
 
   if (dateTime > baseDateTime) {
@@ -41,5 +41,5 @@ export function absolute(): Absolute {
   }
 
   priorEpochNanoseconds = epochNanoseconds;
-  return new Absolute(epochNanoseconds);
+  return new Instant(epochNanoseconds);
 }
