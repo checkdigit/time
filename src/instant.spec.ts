@@ -1,7 +1,7 @@
 // instant.spec.ts
 
-import assert from 'assert';
-import { Temporal as TemporalPolyfill } from 'proposal-temporal';
+import { strict as assert } from 'node:assert';
+import { Temporal as TemporalPolyfill } from '@js-temporal/polyfill';
 import { Temporal } from './index';
 
 describe('instant', () => {
@@ -19,52 +19,52 @@ describe('instant', () => {
       '2286-11-20T17:46:40Z',
       '2286-11-20T17:46:00Z',
     ].forEach((dateString) => {
-      assert.strictEqual(TemporalPolyfill.Instant.from(dateString).toString(), dateString);
-      assert.strictEqual(Temporal.Instant.from(dateString).toString(), dateString);
+      assert.equal(TemporalPolyfill.Instant.from(dateString).toString(), dateString);
+      assert.equal(Temporal.Instant.from(dateString).toString(), dateString);
     });
   });
 
   it('does not allow use of valueOf()', () => {
-    assert.throws(() => Temporal.now.instant().valueOf());
-    assert.throws(() => ((Temporal.now.instant() as unknown) as number) + 1);
+    assert.throws(() => Temporal.Now.instant().valueOf());
+    assert.throws(() => (Temporal.Now.instant() as unknown as number) + 1);
   });
 
   it('compare method works with sort()', () => {
     // example from documentation
-    const one = Temporal.Instant.fromEpochSeconds(1.0e9);
+    const one = Temporal.Instant.fromEpochSeconds(1e9);
     const two = Temporal.Instant.fromEpochSeconds(1.1e9);
     const three = Temporal.Instant.fromEpochSeconds(1.2e9);
 
     // this should not be an eslint error.  Temporal.Instant.compare is a static method.
     // eslint-disable-next-line @typescript-eslint/unbound-method
     const sorted = [three, one, two].sort(Temporal.Instant.compare);
-    assert.strictEqual(sorted.join(' '), '2001-09-09T01:46:40Z 2004-11-09T11:33:20Z 2008-01-10T21:20:00Z');
+    assert.equal(sorted.join(' '), '2001-09-09T01:46:40Z 2004-11-09T11:33:20Z 2008-01-10T21:20:00Z');
   });
 
   it('static methods compatible with current TC39 Temporal polyfill', () => {
-    const time = TemporalPolyfill.now.instant().epochNanoseconds;
+    const time = TemporalPolyfill.Now.instant().epochNanoseconds;
 
-    assert.strictEqual(
+    assert.equal(
       Temporal.Instant.fromEpochSeconds(Number(time / BigInt(1e9))).toString(),
       TemporalPolyfill.Instant.fromEpochSeconds(Number(time / BigInt(1e9))).toString()
     );
 
-    assert.strictEqual(
+    assert.equal(
       Temporal.Instant.fromEpochMilliseconds(Number(time / BigInt(1e6))).toString(),
       TemporalPolyfill.Instant.fromEpochMilliseconds(Number(time / BigInt(1e6))).toString()
     );
 
-    assert.strictEqual(
+    assert.equal(
       Temporal.Instant.fromEpochMicroseconds(time / BigInt(1e3)).toString(),
       TemporalPolyfill.Instant.fromEpochMicroseconds(time / BigInt(1e3)).toString()
     );
 
-    assert.strictEqual(
+    assert.equal(
       Temporal.Instant.fromEpochNanoseconds(time).toString(),
       TemporalPolyfill.Instant.fromEpochNanoseconds(time).toString()
     );
 
-    assert.strictEqual(
+    assert.equal(
       Temporal.Instant.compare(
         Temporal.Instant.fromEpochNanoseconds(time),
         Temporal.Instant.fromEpochNanoseconds(time)
@@ -75,7 +75,7 @@ describe('instant', () => {
       )
     );
 
-    assert.strictEqual(
+    assert.equal(
       Temporal.Instant.compare(
         Temporal.Instant.fromEpochNanoseconds(time),
         Temporal.Instant.fromEpochNanoseconds(time + BigInt(1))
@@ -86,7 +86,7 @@ describe('instant', () => {
       )
     );
 
-    assert.strictEqual(
+    assert.equal(
       Temporal.Instant.compare(
         Temporal.Instant.fromEpochNanoseconds(time),
         Temporal.Instant.fromEpochNanoseconds(time - BigInt(1))
@@ -97,30 +97,30 @@ describe('instant', () => {
       )
     );
 
-    assert.strictEqual(
+    assert.equal(
       Temporal.Instant.from(Temporal.Instant.fromEpochNanoseconds(time)).toString(),
       TemporalPolyfill.Instant.from(TemporalPolyfill.Instant.fromEpochNanoseconds(time)).toString()
     );
 
-    assert.strictEqual(
+    assert.equal(
       Temporal.Instant.from(Temporal.Instant.fromEpochNanoseconds(time).toString()).epochNanoseconds,
       TemporalPolyfill.Instant.from(TemporalPolyfill.Instant.fromEpochNanoseconds(time).toString()).epochNanoseconds
     );
   });
 
   it('compatible with current TC39 Temporal polyfill', () => {
-    function check(time: bigint = TemporalPolyfill.now.instant().epochNanoseconds) {
+    function check(time: bigint = TemporalPolyfill.Now.instant().epochNanoseconds) {
       const implementation = new Temporal.Instant(time);
       const polyfill = new TemporalPolyfill.Instant(time);
 
-      assert.strictEqual(implementation.epochSeconds, polyfill.epochSeconds);
-      assert.strictEqual(implementation.epochMicroseconds, polyfill.epochMicroseconds);
+      assert.equal(implementation.epochSeconds, polyfill.epochSeconds);
+      assert.equal(implementation.epochMicroseconds, polyfill.epochMicroseconds);
       assert.ok(implementation.equals(implementation));
       assert.ok(polyfill.equals(polyfill));
-      assert.strictEqual(implementation.toJSON(), polyfill.toJSON());
-      assert.strictEqual(implementation.toString(), polyfill.toString());
+      assert.equal(implementation.toJSON(), polyfill.toJSON());
+      assert.equal(implementation.toString(), polyfill.toString());
 
-      assert.strictEqual(
+      assert.equal(
         Temporal.Instant.from(implementation.toString()).epochNanoseconds,
         TemporalPolyfill.Instant.from(polyfill.toString()).epochNanoseconds
       );

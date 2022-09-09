@@ -20,36 +20,28 @@
   },
   "homepage": "https://github.com/checkdigit/time#readme",
   "devDependencies": {
-    "@checkdigit/eslint-config": "3.4.0",
-    "@checkdigit/prettier-config": "^1.0.1",
-    "@checkdigit/publish": "^1.0.18",
+    "@checkdigit/eslint-config": "7.2.2",
+    "@checkdigit/jest-config": "^1.0.1",
+    "@checkdigit/prettier-config": "^3.0.0",
     "@checkdigit/typescript": "^4.0.2",
-    "@types/jest": "^26.0.20",
-    "eslint": "^7.17.0",
-    "jest": "^26.6.3",
-    "prettier": "^2.2.1",
-    "proposal-temporal": "^0.6.0",
+    "@js-temporal/polyfill": "^0.4.2",
     "rimraf": "^3.0.2",
-    "ts-jest": "^26.4.4",
-    "ts-node": "^9.1.1"
+    "ts-node": "^10.9.1"
   },
   "jest": {
-    "collectCoverage": true,
-    "preset": "ts-jest",
-    "testPathIgnorePatterns": [
-      "<rootDir>/build/",
-      "<rootDir>/node_modules/"
-    ]
+    "preset": "@checkdigit/jest-config"
   },
   "scripts": {
-    "prepublishOnly": "publish",
-    "postpublish": "rimraf dist .npmignore",
-    "preversion": "npm test",
     "postversion": "git push && git push --tags",
     "lint": "eslint -f unix 'src/**/*.ts'",
     "lint:fix": "eslint -f unix 'src/**/*.ts' --fix",
-    "prettier": "prettier --list-different 'src/**/*.ts'",
-    "prettier:fix": "prettier --write 'src/**/*.ts'",
-    "test": "tsc && jest && npm run lint && npm run prettier"
+    "prettier": "prettier --list-different .",
+    "prettier:fix": "prettier --write .",
+    "test": "npm run ci:compile && npm run ci:test && npm run ci:lint && npm run ci:style",
+    "ci:compile": "tsc --noEmit",
+    "ci:test": "jest --coverage=false",
+    "ci:coverage": "jest --coverage=true",
+    "ci:lint": "npm run lint",
+    "ci:style": "npm run prettier"
   }
 }
