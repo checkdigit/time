@@ -26,7 +26,8 @@ export function instant(): Instant {
   const dateTime = BigInt(Date.now());
 
   if (dateTime > baseDateTime) {
-    // we're in a new millisecond, so reset the base HR time
+    // We're in a new millisecond, so reset the base HR time.
+    // This makes sure we're always returning a value that is consistent with the built-in millisecond clock.
     baseHighResolutionTime = process.hrtime.bigint();
     baseDateTime = dateTime;
   }

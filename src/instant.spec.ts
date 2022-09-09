@@ -26,7 +26,9 @@ describe('instant', () => {
 
   it('does not allow use of valueOf()', () => {
     assert.throws(() => Temporal.Now.instant().valueOf());
+    assert.throws(() => TemporalPolyfill.Now.instant().valueOf());
     assert.throws(() => (Temporal.Now.instant() as unknown as number) + 1);
+    assert.throws(() => (TemporalPolyfill.Now.instant() as unknown as number) + 1);
   });
 
   it('compare method works with sort()', () => {
@@ -39,6 +41,16 @@ describe('instant', () => {
     // eslint-disable-next-line @typescript-eslint/unbound-method
     const sorted = [three, one, two].sort(Temporal.Instant.compare);
     assert.equal(sorted.join(' '), '2001-09-09T01:46:40Z 2004-11-09T11:33:20Z 2008-01-10T21:20:00Z');
+
+    // example from documentation
+    const onePolyfill = TemporalPolyfill.Instant.fromEpochSeconds(1e9);
+    const twoPolyfill = TemporalPolyfill.Instant.fromEpochSeconds(1.1e9);
+    const threePolyfill = TemporalPolyfill.Instant.fromEpochSeconds(1.2e9);
+
+    // this should not be an eslint error.  Temporal.Instant.compare is a static method.
+    // eslint-disable-next-line @typescript-eslint/unbound-method
+    const sortedPolyfill = [threePolyfill, onePolyfill, twoPolyfill].sort(TemporalPolyfill.Instant.compare);
+    assert.equal(sortedPolyfill.join(' '), '2001-09-09T01:46:40Z 2004-11-09T11:33:20Z 2008-01-10T21:20:00Z');
   });
 
   it('static methods compatible with current TC39 Temporal polyfill', () => {
@@ -129,7 +141,7 @@ describe('instant', () => {
     // current time
     check();
 
-    // we only go to 10^20, the polyfill gets buggy with larger numbers far in the future and the distance past
+    // we only go to 10^20, the polyfill gets buggy with larger numbers far in the future and the distant past
     for (let magnitude = 0; magnitude < 20; magnitude++) {
       check(BigInt(magnitude));
       check(BigInt(-magnitude));
