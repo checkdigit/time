@@ -21,7 +21,7 @@ describe('now', () => {
 
     // make sure we're still within 1ms of built-in Date
     assert.ok(Math.abs(Temporal.Now.instant().epochMilliseconds - Date.now()) <= 1);
-  }, 760_000);
+  });
 
   it('polyfill instant() does not return always-increasing values as a nanosecond-precision Instant', () => {
     let failed = false;
