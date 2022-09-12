@@ -102,11 +102,11 @@ export class Instant {
     if (fraction.length > 0) {
       fraction = `.${fraction}`;
     }
-    return `${year.toString().padStart(YEAR_DIGITS, '0')}-${month
+    return `${year.toString().padStart(YEAR_DIGITS, '0')}-${month.toString().padStart(2, '0')}-${day
       .toString()
-      .padStart(2, '0')}-${day.toString().padStart(2, '0')}T${hour
+      .padStart(2, '0')}T${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second
       .toString()
-      .padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${second.toString().padStart(2, '0')}${fraction}Z`;
+      .padStart(2, '0')}${fraction}Z`;
   }
 
   toJSON(this: Instant): string {
