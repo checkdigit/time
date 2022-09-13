@@ -14,10 +14,10 @@ export default function buildMatchPatternFn<Result>(args: BuildMatchPatternFnArg
 
     const parseResult = string.match(args.parsePattern);
     if (!parseResult) return null;
-    let value = (args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0]) as Result;
+    let value = (args.valueCallback ? args.valueCallback(parseResult[0] as string) : parseResult[0]) as Result;
     value = options.valueCallback ? options.valueCallback(value as any) : value;
 
-    const rest = string.slice(matchedString.length);
+    const rest = string.slice((matchedString as string).length);
 
     return { value, rest };
   };

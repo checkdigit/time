@@ -10,7 +10,7 @@ const DAYS_IN_MONTH_LEAP_YEAR = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 // Day of the month
 export class DateParser extends Parser<number> {
   priority = 90;
-  subPriority = 1;
+  override subPriority = 1;
 
   parse(dateString: string, token: string, match: Match): ParseResult<number> {
     switch (token) {
@@ -23,14 +23,14 @@ export class DateParser extends Parser<number> {
     }
   }
 
-  validate<DateType extends Date>(date: DateType, value: number): boolean {
+  override validate<DateType extends Date>(date: DateType, value: number): boolean {
     const year = date.getFullYear();
     const isLeapYear = isLeapYearIndex(year);
     const month = date.getMonth();
     if (isLeapYear) {
-      return value >= 1 && value <= DAYS_IN_MONTH_LEAP_YEAR[month];
+      return value >= 1 && value <= (DAYS_IN_MONTH_LEAP_YEAR[month] as number);
     } else {
-      return value >= 1 && value <= DAYS_IN_MONTH[month];
+      return value >= 1 && value <= (DAYS_IN_MONTH[month] as number);
     }
   }
 

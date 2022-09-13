@@ -45,7 +45,7 @@ export default function interval<DateType extends Date>(interval: Interval<DateT
     years: differenceInYears(end, start),
   };
 
-  const remainingMonths = add(start, { years: duration.years });
+  const remainingMonths = add(start, { years: duration.years as number });
   duration.months = differenceInMonths(end, remainingMonths);
 
   const remainingDays = add(remainingMonths, { months: duration.months });

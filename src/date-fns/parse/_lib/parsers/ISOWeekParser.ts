@@ -21,7 +21,7 @@ export class ISOWeekParser extends Parser<number> {
     }
   }
 
-  validate<DateType extends Date>(_date: DateType, value: number): boolean {
+  override validate<DateType extends Date>(_date: DateType, value: number): boolean {
     return value >= 1 && value <= 53;
   }
 

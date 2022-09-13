@@ -39,12 +39,12 @@ export default function parseJSON(dateString: string): Date {
     // Group 8 matches the sign
     return new Date(
       Date.UTC(
-        +parts[1],
-        +parts[2] - 1,
-        +parts[3],
-        +parts[4] - (+parts[9] || 0) * (parts[8] == '-' ? -1 : 1),
-        +parts[5] - (+parts[10] || 0) * (parts[8] == '-' ? -1 : 1),
-        +parts[6],
+        +(parts[1] as string),
+        +(parts[2] as string) - 1,
+        +(parts[3] as string),
+        +(parts[4] as string) - (+(parts[9] as string) || 0) * (parts[8] == '-' ? -1 : 1),
+        +(parts[5] as string) - (+(parts[10] as string) || 0) * (parts[8] == '-' ? -1 : 1),
+        +(parts[6] as string),
         +((parts[7] || '0') + '00').substring(0, 3)
       )
     );

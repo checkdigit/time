@@ -1,3 +1,4 @@
+import type { Instant } from '../../instant';
 import isValid from '../isValid/index';
 import toDate from '../toDate/index';
 import type {
@@ -331,7 +332,7 @@ export interface FormatOptions
  */
 
 export default function format<DateType extends Date>(
-  dirtyDate: DateType | number,
+  dirtyDate: Instant | DateType | number,
   formatStr: string,
   options?: FormatOptions
 ): string {
@@ -379,7 +380,7 @@ export default function format<DateType extends Date>(
       const firstCharacter = substring[0];
       if (firstCharacter === 'p' || firstCharacter === 'P') {
         const longFormatter = longFormatters[firstCharacter];
-        return longFormatter(substring, locale.formatLong);
+        return longFormatter?.(substring, locale.formatLong);
       }
       return substring;
     })
@@ -391,7 +392,7 @@ export default function format<DateType extends Date>(
         return "'";
       }
 
-      const firstCharacter = substring[0];
+      const firstCharacter = substring[0] as string;
       if (firstCharacter === "'") {
         return cleanEscapedString(substring);
       }
@@ -425,5 +426,5 @@ function cleanEscapedString(input: string): string {
     return input;
   }
 
-  return matched[1].replace(doubleQuoteRegExp, "'");
+  return matched[1]?.replace(doubleQuoteRegExp, "'") as string;
 }

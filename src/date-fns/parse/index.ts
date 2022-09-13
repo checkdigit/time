@@ -386,10 +386,10 @@ export default function parse<DateType extends Date>(
   const tokens = formatString
     .match(longFormattingTokensRegExp)!
     .map((substring) => {
-      const firstCharacter = substring[0];
+      const firstCharacter = substring[0] as string;
       if (firstCharacter in longFormatters) {
         const longFormatter = longFormatters[firstCharacter];
-        return longFormatter(substring, locale.formatLong);
+        return longFormatter?.(substring, locale.formatLong);
       }
       return substring;
     })
@@ -406,7 +406,7 @@ export default function parse<DateType extends Date>(
       throwProtectedError(token, formatString, dateString);
     }
 
-    const firstCharacter = token[0];
+    const firstCharacter = token[0] as string;
     const parser = parsers[firstCharacter];
     if (parser) {
       const { incompatibleTokens } = parser;
@@ -477,11 +477,11 @@ export default function parse<DateType extends Date>(
 
   const flags: ParseFlags = {};
   for (const setter of uniquePrioritySetters) {
-    if (!setter.validate(date, subFnOptions)) {
+    if (!setter?.validate(date, subFnOptions)) {
       return constructFrom(dirtyReferenceDate, NaN);
     }
 
-    const result = setter.set(date, flags, subFnOptions);
+    const result = setter?.set(date, flags, subFnOptions) as DateType;
     // Result is tuple (date, flags)
     if (Array.isArray(result)) {
       date = result[0];
@@ -495,6 +495,6 @@ export default function parse<DateType extends Date>(
   return constructFrom(dirtyReferenceDate, date);
 }
 
-function cleanEscapedString(input: string) {
-  return input.match(escapedStringRegExp)![1].replace(doubleQuoteRegExp, "'");
+function cleanEscapedString(input: string): string {
+  return input?.match(escapedStringRegExp)![1]?.replace(doubleQuoteRegExp, "'") as string;
 }

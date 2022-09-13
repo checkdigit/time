@@ -33,7 +33,7 @@ Temporal.Instant(0n).toString() -> 1970-01-01T00:00:00.1Z
 
 The polyfill is not production ready. The implementation is designed to be used in the browser so cannot make use of Node's high-resolution timer to more accurately simulate nanosecond precision time. Crucially, the polyfill does not guarantee always increasing nanosecond precision times on subsequent calls, which makes it a non-starter for recording the time of events in production webservices.
 
-### Installing
+### Installing and usage
 
 `npm install @checkdigit/time` then:
 
@@ -42,6 +42,14 @@ import { Temporal } from '@checkdigit/time'; // delete this once Temporal become
 
 // print out nanosecond-precision ISO8601 datetime
 console.log('Current time', Temporal.Now.instant().toString());
+```
+
+For `date-fns` functionality:
+
+```
+import { format } from '@checkdigit/time';
+
+console.log(format(new Date(), 'yyyy-MM-dd'));
 ```
 
 ### Documentation

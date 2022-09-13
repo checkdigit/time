@@ -27,19 +27,26 @@
  * const result = toDate(1392098430000)
  * //=> Tue Feb 11 2014 11:30:30
  */
-export default function toDate<DateType extends Date = Date>(argument: DateType | number): DateType {
-  const argStr = Object.prototype.toString.call(argument);
+import type { Instant } from '../../instant';
+
+export default function toDate<DateType extends Date = Date>(argument: Instant | DateType | number): DateType {
+  let modifiedArgument: Instant | DateType | number | Date = argument;
+  if (typeof (modifiedArgument as Instant)?.epochNanoseconds === 'bigint') {
+    modifiedArgument = new Date(Number((modifiedArgument as Instant).epochNanoseconds / 1000000n));
+  }
+
+  const argStr = Object.prototype.toString.call(modifiedArgument);
 
   // Clone the date
-  if (argument instanceof Date || (typeof argument === 'object' && argStr === '[object Date]')) {
+  if (modifiedArgument instanceof Date || (typeof modifiedArgument === 'object' && argStr === '[object Date]')) {
     // Prevent the date to lose the milliseconds when passed to new Date() in IE10
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore: TODO find a way to make TypeScript happy about this code
-    return new argument.constructor(argument.getTime());
+    return new modifiedArgument.constructor(modifiedArgument.getTime());
     // return new Date(argument.getTime())
-  } else if (typeof argument === 'number' || argStr === '[object Number]') {
+  } else if (typeof modifiedArgument === 'number' || argStr === '[object Number]') {
     // TODO: Can we get rid of as?
-    return new Date(argument) as DateType;
+    return new Date(modifiedArgument as number) as DateType;
   } else {
     // TODO: Can we get rid of as?
     return new Date(NaN) as DateType;

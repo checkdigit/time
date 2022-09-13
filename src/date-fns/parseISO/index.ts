@@ -119,13 +119,13 @@ function splitDateString(dateString: string): DateString {
     return dateStrings;
   }
 
-  if (/:/.test(array[0])) {
+  if (/:/.test(array[0] as string)) {
     timeString = array[0];
   } else {
-    dateStrings.date = array[0];
+    dateStrings.date = array[0] as string;
     timeString = array[1];
     if (patterns.timeZoneDelimiter.test(dateStrings.date)) {
-      dateStrings.date = dateString.split(patterns.timeZoneDelimiter)[0];
+      dateStrings.date = dateString.split(patterns.timeZoneDelimiter)[0] as string;
       timeString = dateString.substr(dateStrings.date.length, dateString.length);
     }
   }
@@ -133,8 +133,8 @@ function splitDateString(dateString: string): DateString {
   if (timeString) {
     const token = patterns.timezone.exec(timeString);
     if (token) {
-      dateStrings.time = timeString.replace(token[1], '');
-      dateStrings.timezone = token[1];
+      dateStrings.time = timeString.replace(token[1] as string, '');
+      dateStrings.timezone = token[1] as string;
     } else {
       dateStrings.time = timeString;
     }
@@ -158,7 +158,7 @@ function parseYear(dateString: string, additionalDigits: number): ParsedYear {
   // either year or century is null, not both
   return {
     year: century === null ? (year as number) : century * 100,
-    restDateString: dateString.slice((captures[1] || captures[2]).length),
+    restDateString: dateString.slice(((captures[1] as string) || (captures[2] as string)).length),
   };
 }
 
@@ -171,11 +171,11 @@ function parseDate(dateString: string, year: number): Date {
   if (!captures) return new Date(NaN);
 
   const isWeekDate = !!captures[4];
-  const dayOfYear = parseDateUnit(captures[1]);
-  const month = parseDateUnit(captures[2]) - 1;
-  const day = parseDateUnit(captures[3]);
-  const week = parseDateUnit(captures[4]);
-  const dayOfWeek = parseDateUnit(captures[5]) - 1;
+  const dayOfYear = parseDateUnit(captures[1] as string);
+  const month = parseDateUnit(captures[2] as string) - 1;
+  const day = parseDateUnit(captures[3] as string);
+  const week = parseDateUnit(captures[4] as string);
+  const dayOfWeek = parseDateUnit(captures[5] as string) - 1;
 
   if (isWeekDate) {
     if (!validateWeekDate(year, week, dayOfWeek)) {
@@ -200,9 +200,9 @@ function parseTime(timeString: string): number {
   const captures = timeString.match(timeRegex);
   if (!captures) return NaN; // Invalid ISO-formatted time
 
-  const hours = parseTimeUnit(captures[1]);
-  const minutes = parseTimeUnit(captures[2]);
-  const seconds = parseTimeUnit(captures[3]);
+  const hours = parseTimeUnit(captures[1] as string);
+  const minutes = parseTimeUnit(captures[2] as string);
+  const seconds = parseTimeUnit(captures[3] as string);
 
   if (!validateTime(hours, minutes, seconds)) {
     return NaN;
@@ -222,7 +222,7 @@ function parseTimezone(timezoneString: string): number {
   if (!captures) return 0;
 
   const sign = captures[1] === '+' ? -1 : 1;
-  const hours = parseInt(captures[2]);
+  const hours = parseInt(captures[2] as string);
   const minutes = (captures[3] && parseInt(captures[3])) || 0;
 
   if (!validateTimezone(hours, minutes)) {

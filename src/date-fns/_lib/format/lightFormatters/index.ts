@@ -53,7 +53,7 @@ const formatters = {
       case 'aaa':
         return dayPeriodEnumValue;
       case 'aaaaa':
-        return dayPeriodEnumValue[0];
+        return dayPeriodEnumValue[0] as string;
       case 'aaaa':
       default:
         return dayPeriodEnumValue === 'am' ? 'a.m.' : 'p.m.';

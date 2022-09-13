@@ -103,7 +103,7 @@ export default function lightFormat<DateType extends Date>(dirtyDate: DateType |
         return formatter(originalDate, substring);
       }
 
-      if (firstCharacter.match(unescapedLatinCharacterRegExp)) {
+      if (firstCharacter?.match(unescapedLatinCharacterRegExp)) {
         throw new RangeError('Format string contains an unescaped latin alphabet character `' + firstCharacter + '`');
       }
 
@@ -114,12 +114,12 @@ export default function lightFormat<DateType extends Date>(dirtyDate: DateType |
   return result;
 }
 
-function cleanEscapedString(input: string) {
+function cleanEscapedString(input: string): string {
   const matches = input.match(escapedStringRegExp);
 
   if (!matches) {
     return input;
   }
 
-  return matches[1].replace(doubleQuoteRegExp, "'");
+  return matches[1]?.replace(doubleQuoteRegExp, "'") as string;
 }

@@ -40,7 +40,7 @@ export class ValueSetter<Value> extends Setter {
     }
   }
 
-  validate<DateType extends Date>(date: DateType, options: ParserOptions): boolean {
+  override validate<DateType extends Date>(date: DateType, options: ParserOptions): boolean {
     return this.validateValue(date, this.value, options);
   }
 
@@ -55,7 +55,7 @@ export class ValueSetter<Value> extends Setter {
 
 export class DateToSystemTimezoneSetter extends Setter {
   priority = TIMEZONE_UNIT_PRIORITY;
-  subPriority = -1;
+  override subPriority = -1;
   set<DateType extends Date>(date: DateType, flags: ParseFlags): DateType {
     if (flags.timestampIsSet) return date;
     return constructFrom(date, transpose(date, Date));

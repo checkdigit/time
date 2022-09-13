@@ -29,7 +29,7 @@ export default function buildMatchFn<
     value = (args.valueCallback ? args.valueCallback(key) : key) as Result;
     value = options.valueCallback ? options.valueCallback(value as any) : value;
 
-    const rest = string.slice(matchedString.length);
+    const rest = string.slice((matchedString as string).length);
 
     return { value, rest };
   };
@@ -40,7 +40,7 @@ function findKey<Value, Obj extends { [key in string | number]: Value }>(
   predicate: (value: Value) => boolean
 ): keyof Obj | undefined {
   for (const key in object) {
-    if (object.hasOwnProperty(key) && predicate(object[key])) {
+    if (object.hasOwnProperty(key) && predicate(object[key] as Value)) {
       return key;
     }
   }
@@ -49,7 +49,7 @@ function findKey<Value, Obj extends { [key in string | number]: Value }>(
 
 function findIndex<Item>(array: Item[], predicate: (item: Item) => boolean): number | undefined {
   for (let key = 0; key < array.length; key++) {
-    if (predicate(array[key])) {
+    if (predicate(array[key] as Item)) {
       return key;
     }
   }

@@ -34,7 +34,7 @@ export default function eachWeekendOfInterval<DateType extends Date>(interval: I
   const weekends = [];
   let index = 0;
   while (index < dateInterval.length) {
-    const date = dateInterval[index++];
+    const date = dateInterval[index++] as DateType;
     if (isWeekend(date)) {
       weekends.push(date);
       if (isSunday(date)) index = index + 5;

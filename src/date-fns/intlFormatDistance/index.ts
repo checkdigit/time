@@ -195,9 +195,9 @@ export default function intlFormatDistance(
   }
 
   const rtf = new Intl.RelativeTimeFormat(options?.locale, {
-    localeMatcher: options?.localeMatcher,
+    localeMatcher: options?.localeMatcher as Intl.RelativeTimeFormatLocaleMatcher,
     numeric: options?.numeric || 'auto',
-    style: options?.style,
+    style: options?.style as Intl.RelativeTimeFormatStyle,
   });
 
   return rtf.format(value, unit);

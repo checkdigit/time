@@ -25,8 +25,8 @@ export function parseNumericPattern(pattern: RegExp, dateString: string): ParseR
   }
 
   return {
-    value: parseInt(matchResult[0], 10),
-    rest: dateString.slice(matchResult[0].length),
+    value: parseInt(matchResult[0] as string, 10),
+    rest: dateString.slice((matchResult[0] as string).length),
   };
 }
 
@@ -52,7 +52,7 @@ export function parseTimezonePattern(pattern: RegExp, dateString: string): Parse
 
   return {
     value: sign * (hours * millisecondsInHour + minutes * millisecondsInMinute + seconds * millisecondsInSecond),
-    rest: dateString.slice(matchResult[0].length),
+    rest: dateString.slice((matchResult[0] as string).length),
   };
 }
 
