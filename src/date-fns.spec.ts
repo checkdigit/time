@@ -11,7 +11,7 @@ describe('date-fns', () => {
 
   it('add works', () => {
     assert.equal(
-      add(new Date(2014, 8, 1, 10, 19, 50), {
+      add(new Date('2014-09-01T14:19:50.000Z'), {
         years: 2,
         months: 9,
         weeks: 1,
