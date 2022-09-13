@@ -46,6 +46,9 @@
   "eslintConfig": {
     "extends": [
       "@checkdigit/eslint-config"
+    ],
+    "ignorePatterns": [
+      "src/date-fns/**"
     ]
   }
 }

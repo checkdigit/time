@@ -1,14 +1,19 @@
 # Check Digit Time Library
 
-The Check Digit time library is the officially sanctioned method for Check Digit services to deal with time. It is a partial implementation of the new TC39 Temporal proposal. Features:
+The Check Digit time library is the officially sanctioned method for Check Digit services to deal with time. It is a partial implementation of the new TC39 Temporal proposal
+and date manipulation functions provided by date-fns. Features:
 
 - Nanosecond precision date times, simulated with Node's built-in high-resolution timer
 - Tests that verify compliance with latest TC39 polyfill
 - Designed to be removed once Temporal is included, by default, within V8.
 - Implements most of Temporal.Instant, except timezone/calendar functionality
 - Implements Temporal.Now.instant()
+- Stripped down `date-fns` functions
 
 Temporal (vs the millisecond precision of standard Date built-in) is useful for webservices recording the time of events, where concurrent activity may occur and millisecond precision does not provide adequate uniqueness and ordering.
+
+In addition, the [`date-fns`](https://date-fns.org) library is included. The only locale currently supported is `en-US`, but otherwise contains all
+available functionality as of v2.29.1.
 
 ### Important note about `Instant.toString()`
 
@@ -44,3 +49,5 @@ console.log('Current time', Temporal.Now.instant().toString());
 The stage 3 proposal can be found here: https://github.com/tc39/proposal-temporal
 
 The reference documentation is here: https://tc39.es/proposal-temporal/docs/
+
+The documentation for `date-fns` is here: https://date-fns.org/
