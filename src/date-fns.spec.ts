@@ -11,6 +11,10 @@ describe('date-fns', () => {
 
   it('format works with temporal', () => {
     assert.equal(format(Temporal.Instant.from('2286-11-20T17:46:40.123456789Z'), 'yyyy-MM-dd'), '2286-11-20');
+    assert.equal(
+      format(Temporal.Instant.from('2286-11-20T17:46:40.123456789Z'), 'yyyy-MM-dd-hh-ss-SSS'),
+      '2286-11-20-12-40-123'
+    );
   });
 
   it('add works', () => {
