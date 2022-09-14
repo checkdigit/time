@@ -2,18 +2,21 @@
 
 import { strict as assert } from 'node:assert';
 
-import { add, format, Temporal } from './index';
+import { add, tzFormat, tzUtcToZonedTime } from './index';
 
 describe('date-fns', () => {
-  it('format works', () => {
-    assert.equal(format(new Date('Tue Sep 13 2022 13:38:00 GMT-0400'), 'yyyy-MM-dd'), '2022-09-13');
-  });
-
-  it('format works with temporal', () => {
-    assert.equal(format(Temporal.Instant.from('2286-11-20T17:46:40.123456789Z'), 'yyyy-MM-dd'), '2286-11-20');
+  it('tzFormat works', () => {
     assert.equal(
-      format(Temporal.Instant.from('2286-11-20T17:46:40.123456789Z'), 'yyyy-MM-dd-hh-ss-SSS'),
-      '2286-11-20-12-40-123'
+      tzFormat(tzUtcToZonedTime(new Date('Tue Sep 13 2022 13:38:00 GMT-0400'), 'UTC'), 'yyyy-MM-dd', {
+        timeZone: 'UTC',
+      }),
+      '2022-09-13'
+    );
+    assert.equal(
+      tzFormat(tzUtcToZonedTime(new Date('Tue Sep 13 2022 13:38:00 GMT-0400'), 'UTC'), 'yyyy-MM-dd-hh-mm-ss', {
+        timeZone: 'UTC',
+      }),
+      '2022-09-13-05-38-00'
     );
   });
 

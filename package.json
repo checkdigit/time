@@ -48,7 +48,8 @@
       "@checkdigit/eslint-config"
     ],
     "ignorePatterns": [
-      "src/date-fns/**"
+      "src/date-fns/**",
+      "src/date-fns-tz/**"
     ]
   }
 }

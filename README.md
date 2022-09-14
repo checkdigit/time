@@ -9,11 +9,15 @@ and date manipulation functions provided by date-fns. Features:
 - Implements most of Temporal.Instant, except timezone/calendar functionality
 - Implements Temporal.Now.instant()
 - Stripped down `date-fns` functions
+- `date-fns-tz` for timezone support
 
 Temporal (vs the millisecond precision of standard Date built-in) is useful for webservices recording the time of events, where concurrent activity may occur and millisecond precision does not provide adequate uniqueness and ordering.
 
-In addition, the [`date-fns`](https://date-fns.org) library is included. The only locale currently supported is `en-US`, but otherwise contains all
+The [`date-fns`](https://date-fns.org) library is included. The only locale currently supported is `en-US`, but otherwise contains all
 available functionality as of v2.29.1.
+
+Additionally, the [`date-fns-tz`](https://github.com/marnusw/date-fns-tz) library is included. The only locale currently supported is `en-US`, but otherwise contains all
+available functionality as of v1.3.7.
 
 ### Important note about `Instant.toString()`
 
@@ -59,3 +63,5 @@ The stage 3 proposal can be found here: https://github.com/tc39/proposal-tempora
 The reference documentation is here: https://tc39.es/proposal-temporal/docs/
 
 The documentation for `date-fns` is here: https://date-fns.org/
+
+The documentation for `date-fns-tz` is here: https://github.com/marnusw/date-fns-tz
