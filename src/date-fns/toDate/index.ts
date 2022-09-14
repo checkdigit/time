@@ -39,11 +39,7 @@ export default function toDate<DateType extends Date = Date>(argument: Instant |
 
   // Clone the date
   if (modifiedArgument instanceof Date || (typeof modifiedArgument === 'object' && argStr === '[object Date]')) {
-    // Prevent the date to lose the milliseconds when passed to new Date() in IE10
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore: TODO find a way to make TypeScript happy about this code
-    return new modifiedArgument.constructor(modifiedArgument.getTime());
-    // return new Date(argument.getTime())
+    return modifiedArgument as DateType;
   } else if (typeof modifiedArgument === 'number' || argStr === '[object Number]') {
     // TODO: Can we get rid of as?
     return new Date(modifiedArgument as number) as DateType;
