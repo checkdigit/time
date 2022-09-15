@@ -9,4 +9,4 @@ export * from './date-fns';
 export * from './date-fns-tz';
 
 // export local date-fns-tz helper functions
-export { default as utcFormat } from './utc-format';
+export { default as formatUtc } from './format-utc';

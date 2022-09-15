@@ -10,6 +10,7 @@ and date manipulation functions provided by date-fns. Features:
 - Implements Temporal.Now.instant()
 - Stripped down `date-fns` functions
 - `date-fns-tz` for timezone support
+- `formatUtc` for formatting UTC dates
 
 Temporal (vs the millisecond precision of standard Date built-in) is useful for webservices recording the time of events, where concurrent activity may occur and millisecond precision does not provide adequate uniqueness and ordering.
 
@@ -18,6 +19,13 @@ available functionality as of v2.29.1.
 
 Additionally, the [`date-fns-tz`](https://github.com/marnusw/date-fns-tz) library is included. The only locale currently supported is `en-US`, but otherwise contains all
 available functionality as of v1.3.7.
+
+### `formatUtc`
+
+The `formatUtc` function is a wrapper around `date-fns-tz`'s `format` function, but with the following differences:
+- The `timezone` argument is not required: is always UTC.
+
+Generally speaking, `formatUtc` should be used in place of `format` or `tzFormat`, unless non-UTC time zones are required.
 
 ### Important note about `Instant.toString()`
 
