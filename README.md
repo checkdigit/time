@@ -60,9 +60,9 @@ console.log('Current time', Temporal.Now.instant().toString());
 For `date-fns` functionality:
 
 ```
-import { format } from '@checkdigit/time';
+import { formatUtc } from '@checkdigit/time';
 
-console.log(format(new Date(), 'yyyy-MM-dd'));
+console.log(formatUtc(new Date(), 'yyyy-MM-dd'));
 ```
 
 ### Documentation
