@@ -23,6 +23,7 @@ available functionality as of v1.3.7.
 ### `formatUtc`
 
 The `formatUtc` function is a wrapper around `date-fns-tz`'s `format` function, but with the following differences:
+
 - The `timezone` argument is not required: is always UTC.
 
 Generally speaking, `formatUtc` should be used in place of `format` or `tzFormat`, unless non-UTC time zones are required.

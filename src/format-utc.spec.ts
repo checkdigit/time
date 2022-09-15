@@ -27,27 +27,4 @@ describe('format-utc', () => {
       assert.equal(formatUtc(new Date(isoString), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"), isoString);
     }
   });
-
-  it('supports options', () => {
-    // only timeZone matters for formatUtc, but want to make sure it doesn't throw
-    assert.equal(
-      formatUtc(new Date('2038-03-14T02:07:44.594Z'), 'yyyy-MM-dd-hh-mm-ss', { roundingMethod: 'ceil' }),
-      '2038-03-14-02-07-44'
-    );
-  });
-
-  it('only supports UTC', () => {
-    assert.throws(
-      () => formatUtc(new Date('Tue Sep 13 2022 13:38:00 GMT-0400'), 'yyyy-MM-dd-hh-mm-ss', { timeZone: 'en-US' }),
-      RangeError
-    );
-    assert.equal(
-      formatUtc(new Date('Tue Sep 13 2022 13:38:00 GMT-0400'), 'yyyy-MM-dd-hh-mm-ss', { timeZone: 'UTC' }),
-      '2022-09-13-05-38-00'
-    );
-    assert.equal(
-      formatUtc(new Date('Tue Sep 13 2022 13:38:00 GMT-0400'), 'yyyy-MM-dd-hh-mm-ss', {}),
-      '2022-09-13-05-38-00'
-    );
-  });
 });
