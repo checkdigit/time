@@ -17,7 +17,7 @@ Temporal (vs the millisecond precision of standard Date built-in) is useful for 
 The [`date-fns`](https://date-fns.org) library is included. The only locale currently supported is `en-US`, but otherwise contains all
 available functionality as of v2.29.1.
 
-Additionally, the [`date-fns-tz`](https://github.com/marnusw/date-fns-tz) library is included. The only locale currently supported is `en-US`, but otherwise contains all
+Additionally, the [`date-fns-tz`](https://github.com/marnusw/date-fns-tz) library is included. Contains all
 available functionality as of v1.3.7.
 
 ### `formatUtc`
