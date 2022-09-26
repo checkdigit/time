@@ -42,7 +42,7 @@ export class Instant {
     if (item instanceof Instant) {
       return item;
     }
-    const extra = extraRegEx.exec(item)?.groups?.extra ?? '';
+    const extra = extraRegEx.exec(item)?.groups?.['extra'] ?? '';
     const extraDigits = BigInt(extra) * BigInt(10 ** (MILLION_DIGITS - extra.length));
     const nanoseconds = BigInt(new Date(item).getTime()) * BigInt(MILLION) + extraDigits;
     return new Instant(nanoseconds);

@@ -6,8 +6,7 @@
   "main": "./dist/index.js",
   "prettier": "@checkdigit/prettier-config",
   "engines": {
-    "node": ">=14.15",
-    "npm": ">=6.14"
+    "node": ">=16"
   },
   "repository": {
     "type": "git",
@@ -20,28 +19,37 @@
   },
   "homepage": "https://github.com/checkdigit/time#readme",
   "devDependencies": {
-    "@checkdigit/eslint-config": "7.2.2",
-    "@checkdigit/jest-config": "^1.0.1",
+    "@checkdigit/eslint-config": "7.2.3",
+    "@checkdigit/jest-config": "^2.0.0",
     "@checkdigit/prettier-config": "^3.0.0",
-    "@checkdigit/typescript": "^4.0.2",
+    "@checkdigit/typescript-config": "^3.1.0",
     "@js-temporal/polyfill": "^0.4.2",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1"
-  },
-  "jest": {
-    "preset": "@checkdigit/jest-config"
   },
   "scripts": {
     "postversion": "git push && git push --tags",
     "lint": "eslint -f unix 'src/**/*.ts'",
     "lint:fix": "eslint -f unix 'src/**/*.ts' --fix",
-    "prettier": "prettier --list-different .",
-    "prettier:fix": "prettier --write .",
+    "prettier": "prettier --ignore-path .gitignore --list-different .",
+    "prettier:fix": "prettier --ignore-path .gitignore --write .",
     "test": "npm run ci:compile && npm run ci:test && npm run ci:lint && npm run ci:style",
     "ci:compile": "tsc --noEmit",
     "ci:test": "jest --coverage=false",
     "ci:coverage": "jest --coverage=true",
     "ci:lint": "npm run lint",
     "ci:style": "npm run prettier"
+  },
+  "jest": {
+    "preset": "@checkdigit/jest-config"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@checkdigit/eslint-config"
+    ],
+    "ignorePatterns": [
+      "src/date-fns/**",
+      "src/date-fns-tz/**"
+    ]
   }
 }
