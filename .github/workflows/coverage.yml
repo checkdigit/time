@@ -39,7 +39,7 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Post Coverage Report
-        uses: romeovs/lcov-reporter-action@v0.3.1
+        uses: checkdigit/github-actions/coverage-reporter@main
         with:
           lcov-file: 'coverage/lcov_head.info'
           lcov-base: 'coverage/lcov.info'
