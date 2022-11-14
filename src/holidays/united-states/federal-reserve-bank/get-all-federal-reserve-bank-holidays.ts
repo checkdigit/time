@@ -1,10 +1,10 @@
-// holidays/united-states/federal-reserve/get-all-federal-reserve-holidays.ts
+// holidays/united-states/federal-reserve-bank/get-all-federal-reserve-bank-holidays.ts
 
 import { formatUtc } from '../../../index';
 
 const YYYY_MM_DD_FORMAT = 'yyyy-MM-dd';
 
-export interface FederalReserveHoliday {
+export interface FederalReserveBankHoliday {
   holiday: string;
   date: string;
 }
@@ -22,10 +22,10 @@ function getNthOccurrenceOfDayOfTheWeek(nth: number, dayOfTheWeek: number, month
   return formatUtc(date, YYYY_MM_DD_FORMAT);
 }
 
-export default function (year: number): FederalReserveHoliday[] {
-  const federalReserveHolidays: FederalReserveHoliday[] = [];
+export default function (year: number): FederalReserveBankHoliday[] {
+  const federalReserveBankHolidays: FederalReserveBankHoliday[] = [];
 
-  federalReserveHolidays.push(
+  federalReserveBankHolidays.push(
     {
       holiday: `New Year's Day`,
       date: formatUtc(new Date(year, 0, 1), YYYY_MM_DD_FORMAT),
@@ -48,14 +48,14 @@ export default function (year: number): FederalReserveHoliday[] {
 
   const YEAR2021 = 2021;
   if (year >= YEAR2021) {
-    federalReserveHolidays.push({
+    federalReserveBankHolidays.push({
       holiday: 'Juneteenth National Independence Day',
       // eslint-disable-next-line no-magic-numbers
       date: formatUtc(new Date(year, 5, 19), YYYY_MM_DD_FORMAT),
     });
   }
 
-  federalReserveHolidays.push(
+  federalReserveBankHolidays.push(
     {
       holiday: 'Independence Day',
       // eslint-disable-next-line no-magic-numbers
@@ -86,5 +86,5 @@ export default function (year: number): FederalReserveHoliday[] {
     }
   );
 
-  return federalReserveHolidays;
+  return federalReserveBankHolidays;
 }

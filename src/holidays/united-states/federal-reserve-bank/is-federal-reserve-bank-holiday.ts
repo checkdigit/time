@@ -1,4 +1,4 @@
-// holidays/united-states/federal-reserve/is-us-federal-reserve-holiday.ts
+// holidays/united-states/federal-reserve-bank/is-federal-reserve-bank-holiday.ts
 
 import { isWeekend } from '../../../date-fns';
 

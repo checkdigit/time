@@ -1,11 +1,10 @@
-// holidays/united-states/federal-reserve/get-all-federal-reserve-holidays.spec.ts
+// holidays/united-states/federal-reserve-bank/get-all-federal-reserve-bank-holidays.spec.ts
 
 import { strict as assert } from 'node:assert';
 
-import getAllFederalReserveHolidays from './get-all-federal-reserve-holidays';
+import getAllFederalReserveHolidays from './get-all-federal-reserve-bank-holidays';
 
-// file.only
-describe('get-all-federal-reserve-holidays', () => {
+describe('get-all-federal-reserve-bank-holidays', () => {
   it('works for 2022 based on the Federal Holidays outlined in https://www.federalreserve.gov/aboutthefed/k8.htm', () => {
     assert.deepEqual(getAllFederalReserveHolidays(2022), [
       { holiday: `New Year's Day`, date: '2022-01-01' },
