@@ -16,7 +16,7 @@ function getLastMondayOfMay(year: number) {
   return formatUtc(new Date(year, 4, lastMondayOfMayDay), YYYY_MM_DD_FORMAT);
 }
 
-function getNthOccurrenceOfDayOfTheWeek(nth: number, dayOfTheWeek: number, month: number, year: number) {
+function getNthOccurrenceOfDayOfTheWeekInMonth(nth: number, dayOfTheWeek: number, month: number, year: number) {
   const date = new Date(year, month, 1); // first day of the month
   date.setDate(1 + ((7 - date.getDay() + dayOfTheWeek) % 7) + (nth - 1) * 7);
   return formatUtc(date, YYYY_MM_DD_FORMAT);
@@ -33,12 +33,12 @@ export default function (year: number): FederalReserveBankHoliday[] {
     {
       holiday: 'Birthday of Martin Luther King, Jr.',
       // eslint-disable-next-line no-magic-numbers
-      date: getNthOccurrenceOfDayOfTheWeek(3, 1, 0, year), // Birthday of Martin Luther King, Jr. is the Third Monday of January
+      date: getNthOccurrenceOfDayOfTheWeekInMonth(3, 1, 0, year), // Birthday of Martin Luther King, Jr. is the Third Monday of January
     },
     {
       holiday: `Washington's Birthday`,
       // eslint-disable-next-line no-magic-numbers
-      date: getNthOccurrenceOfDayOfTheWeek(3, 1, 1, year), // Washington's Birthday is the Third Monday of February
+      date: getNthOccurrenceOfDayOfTheWeekInMonth(3, 1, 1, year), // Washington's Birthday is the Third Monday of February
     },
     {
       holiday: 'Memorial Day',
@@ -63,12 +63,12 @@ export default function (year: number): FederalReserveBankHoliday[] {
     },
     {
       holiday: 'Labor Day',
-      date: getNthOccurrenceOfDayOfTheWeek(1, 1, 8, year), // Labor Day is the First Monday of September
+      date: getNthOccurrenceOfDayOfTheWeekInMonth(1, 1, 8, year), // Labor Day is the First Monday of September
     },
     {
       holiday: 'Columbus Day',
       // eslint-disable-next-line no-magic-numbers
-      date: getNthOccurrenceOfDayOfTheWeek(2, 1, 9, year), // Columbus Day is the Second Monday of October
+      date: getNthOccurrenceOfDayOfTheWeekInMonth(2, 1, 9, year), // Columbus Day is the Second Monday of October
     },
     {
       holiday: 'Veterans Day',
@@ -77,7 +77,7 @@ export default function (year: number): FederalReserveBankHoliday[] {
     },
     {
       holiday: 'Thanksgiving Day',
-      date: getNthOccurrenceOfDayOfTheWeek(4, 4, 10, year), // Thanksgiving Day is the Fourth Thursday of November
+      date: getNthOccurrenceOfDayOfTheWeekInMonth(4, 4, 10, year), // Thanksgiving Day is the Fourth Thursday of November
     },
     {
       holiday: 'Christmas Day',
