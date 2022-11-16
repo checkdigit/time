@@ -1,90 +1,177 @@
 // holidays/united-states/federal-reserve-bank/get-all-federal-reserve-bank-holidays.ts
 
-import { formatUtc } from '../../../index';
+import { format } from '../../../date-fns';
 
 const YYYY_MM_DD_FORMAT = 'yyyy-MM-dd';
+
+const DAY_OF_THE_WEEK_SUNDAY = 0;
+const DAY_OF_THE_WEEK_MONDAY = 1;
+const DAY_OF_THE_WEEK_THURSDAY = 4;
+const DAY_OF_THE_WEEK_SATURDAY = 6;
+
+const MONTH_JANUARY = 0;
+const MONTH_FEBRUARY = 1;
+const MONTH_MAY = 4;
+const MONTH_JUNE = 5;
+const MONTH_JULY = 6;
+const MONTH_SEPTEMBER = 8;
+const MONTH_OCTOBER = 9;
+const MONTH_NOVEMBER = 10;
+const MONTH_DECEMBER = 11;
+
+const DATE_ONE = 1;
+const DATE_TWO = 2;
+const DATE_FOUR = 4;
+const DATE_FIVE = 5;
+const DATE_ELEVEN = 11;
+const DATE_TWELVE = 12;
+const DATE_NINETEEN = 19;
+const DATE_TWENTY = 20;
+const DATE_TWENTY_FIVE = 25;
+const DATE_TWENTY_SIX = 26;
+const DATE_THIRTY_ONE = 31;
+
+const OCCURRENCE_FIRST = 1;
+const OCCURRENCE_SECOND = 2;
+const OCCURRENCE_THIRD = 3;
+const OCCURRENCE_FOURTH = 4;
+
+const YEAR2021 = 2021;
 
 export interface FederalReserveBankHoliday {
   holiday: string;
   date: string;
+  observedOn?: string | undefined;
 }
 
 function getLastMondayOfMay(year: number) {
-  const lastDayOfMay = new Date(year, 4, 31); // last day of may
-  // eslint-disable-next-line no-magic-numbers
-  const lastMondayOfMayDay = lastDayOfMay.getDate() - (lastDayOfMay.getDay() - 1 < 1 ? 6 : lastDayOfMay.getDay() - 1);
-  return formatUtc(new Date(year, 4, lastMondayOfMayDay), YYYY_MM_DD_FORMAT);
+  const lastDayOfMay = new Date(year, MONTH_MAY, DATE_THIRTY_ONE); // last day of may
+  const lastMondayOfMayDay =
+    lastDayOfMay.getDate() - (lastDayOfMay.getDay() - 1 < 1 ? DAY_OF_THE_WEEK_SATURDAY : lastDayOfMay.getDay() - 1);
+  return format(new Date(year, MONTH_MAY, lastMondayOfMayDay), YYYY_MM_DD_FORMAT);
 }
 
 function getNthOccurrenceOfDayOfTheWeekInMonth(nth: number, dayOfTheWeek: number, month: number, year: number) {
-  const date = new Date(year, month, 1); // first day of the month
+  const date = new Date(year, month, DATE_ONE); // first day of the month
   date.setDate(1 + ((7 - date.getDay() + dayOfTheWeek) % 7) + (nth - 1) * 7);
-  return formatUtc(date, YYYY_MM_DD_FORMAT);
+  return format(date, YYYY_MM_DD_FORMAT);
 }
 
 export default function (year: number): FederalReserveBankHoliday[] {
-  const federalReserveBankHolidays: FederalReserveBankHoliday[] = [];
+  const newYearsDay =
+    new Date(year, MONTH_JANUARY, DATE_ONE).getDay() === DAY_OF_THE_WEEK_SUNDAY
+      ? {
+          holiday: `New Year's Day`,
+          date: format(new Date(year, MONTH_JANUARY, DATE_ONE), YYYY_MM_DD_FORMAT),
+          observedOn: format(new Date(year, MONTH_JANUARY, DATE_TWO), YYYY_MM_DD_FORMAT),
+        }
+      : {
+          holiday: `New Year's Day`,
+          date: format(new Date(year, MONTH_JANUARY, DATE_ONE), YYYY_MM_DD_FORMAT),
+        };
 
-  federalReserveBankHolidays.push(
-    {
-      holiday: `New Year's Day`,
-      date: formatUtc(new Date(year, 0, 1), YYYY_MM_DD_FORMAT),
-    },
-    {
-      holiday: 'Birthday of Martin Luther King, Jr.',
-      // eslint-disable-next-line no-magic-numbers
-      date: getNthOccurrenceOfDayOfTheWeekInMonth(3, 1, 0, year), // Birthday of Martin Luther King, Jr. is the Third Monday of January
-    },
-    {
-      holiday: `Washington's Birthday`,
-      // eslint-disable-next-line no-magic-numbers
-      date: getNthOccurrenceOfDayOfTheWeekInMonth(3, 1, 1, year), // Washington's Birthday is the Third Monday of February
-    },
-    {
-      holiday: 'Memorial Day',
-      date: getLastMondayOfMay(year), // Memorial Day is the Last Monday of May
-    }
-  );
+  const martinLutherKingJrDay = {
+    holiday: 'Birthday of Martin Luther King, Jr.',
+    date: getNthOccurrenceOfDayOfTheWeekInMonth(OCCURRENCE_THIRD, DAY_OF_THE_WEEK_MONDAY, MONTH_JANUARY, year), // Birthday of Martin Luther King, Jr. is the Third Monday of January
+  };
 
-  const YEAR2021 = 2021;
-  if (year >= YEAR2021) {
-    federalReserveBankHolidays.push({
-      holiday: 'Juneteenth National Independence Day',
-      // eslint-disable-next-line no-magic-numbers
-      date: formatUtc(new Date(year, 5, 19), YYYY_MM_DD_FORMAT),
-    });
-  }
+  const washingtonsBirthday = {
+    holiday: `Washington's Birthday`,
+    date: getNthOccurrenceOfDayOfTheWeekInMonth(OCCURRENCE_THIRD, DAY_OF_THE_WEEK_MONDAY, MONTH_FEBRUARY, year), // Washington's Birthday is the Third Monday of February
+  };
 
-  federalReserveBankHolidays.push(
-    {
-      holiday: 'Independence Day',
-      // eslint-disable-next-line no-magic-numbers
-      date: formatUtc(new Date(year, 6, 4), YYYY_MM_DD_FORMAT),
-    },
-    {
-      holiday: 'Labor Day',
-      date: getNthOccurrenceOfDayOfTheWeekInMonth(1, 1, 8, year), // Labor Day is the First Monday of September
-    },
-    {
-      holiday: 'Columbus Day',
-      // eslint-disable-next-line no-magic-numbers
-      date: getNthOccurrenceOfDayOfTheWeekInMonth(2, 1, 9, year), // Columbus Day is the Second Monday of October
-    },
-    {
-      holiday: 'Veterans Day',
-      // eslint-disable-next-line no-magic-numbers
-      date: formatUtc(new Date(year, 10, 11), YYYY_MM_DD_FORMAT),
-    },
-    {
-      holiday: 'Thanksgiving Day',
-      date: getNthOccurrenceOfDayOfTheWeekInMonth(4, 4, 10, year), // Thanksgiving Day is the Fourth Thursday of November
-    },
-    {
-      holiday: 'Christmas Day',
-      // eslint-disable-next-line no-magic-numbers
-      date: formatUtc(new Date(year, 11, 25), YYYY_MM_DD_FORMAT),
-    }
-  );
+  const memorialDay = {
+    holiday: 'Memorial Day',
+    date: getLastMondayOfMay(year), // Memorial Day is the Last Monday of May
+  };
 
-  return federalReserveBankHolidays;
+  const juneteenth =
+    new Date(year, MONTH_JUNE, DATE_NINETEEN).getDay() === DAY_OF_THE_WEEK_SUNDAY
+      ? {
+          holiday: 'Juneteenth National Independence Day',
+          date: format(new Date(year, MONTH_JUNE, DATE_NINETEEN), YYYY_MM_DD_FORMAT),
+          observedOn: format(new Date(year, MONTH_JUNE, DATE_TWENTY), YYYY_MM_DD_FORMAT),
+        }
+      : {
+          holiday: 'Juneteenth National Independence Day',
+          date: format(new Date(year, MONTH_JUNE, DATE_NINETEEN), YYYY_MM_DD_FORMAT),
+        };
+
+  const independenceDay =
+    new Date(year, MONTH_JULY, DATE_FOUR).getDay() === DAY_OF_THE_WEEK_SUNDAY
+      ? {
+          holiday: 'Independence Day',
+          date: format(new Date(year, MONTH_JULY, DATE_FOUR), YYYY_MM_DD_FORMAT),
+          observedOn: format(new Date(year, MONTH_JULY, DATE_FIVE), YYYY_MM_DD_FORMAT),
+        }
+      : {
+          holiday: 'Independence Day',
+          date: format(new Date(year, MONTH_JULY, DATE_FOUR), YYYY_MM_DD_FORMAT),
+        };
+
+  const laborDay = {
+    holiday: 'Labor Day',
+    date: getNthOccurrenceOfDayOfTheWeekInMonth(OCCURRENCE_FIRST, DAY_OF_THE_WEEK_MONDAY, MONTH_SEPTEMBER, year), // Labor Day is the First Monday of September
+  };
+
+  const columbusDay = {
+    holiday: 'Columbus Day',
+    date: getNthOccurrenceOfDayOfTheWeekInMonth(OCCURRENCE_SECOND, DAY_OF_THE_WEEK_MONDAY, MONTH_OCTOBER, year), // Columbus Day is the Second Monday of October
+  };
+
+  const veteransDay =
+    new Date(year, MONTH_NOVEMBER, DATE_ELEVEN).getDay() === DAY_OF_THE_WEEK_SUNDAY
+      ? {
+          holiday: 'Veterans Day',
+          date: format(new Date(year, MONTH_NOVEMBER, DATE_ELEVEN), YYYY_MM_DD_FORMAT),
+          observedOn: format(new Date(year, MONTH_NOVEMBER, DATE_TWELVE), YYYY_MM_DD_FORMAT),
+        }
+      : {
+          holiday: 'Veterans Day',
+          date: format(new Date(year, MONTH_NOVEMBER, DATE_ELEVEN), YYYY_MM_DD_FORMAT),
+        };
+
+  const thanksGivingDay = {
+    holiday: 'Thanksgiving Day',
+    date: getNthOccurrenceOfDayOfTheWeekInMonth(OCCURRENCE_FOURTH, DAY_OF_THE_WEEK_THURSDAY, MONTH_NOVEMBER, year), // Thanksgiving Day is the Fourth Thursday of November
+  };
+
+  const christmasDay =
+    new Date(year, MONTH_DECEMBER, DATE_TWENTY_FIVE).getDay() === DAY_OF_THE_WEEK_SUNDAY
+      ? {
+          holiday: 'Christmas Day',
+          date: format(new Date(year, MONTH_DECEMBER, DATE_TWENTY_FIVE), YYYY_MM_DD_FORMAT),
+          observedOn: format(new Date(year, MONTH_DECEMBER, DATE_TWENTY_SIX), YYYY_MM_DD_FORMAT),
+        }
+      : {
+          holiday: 'Christmas Day',
+          date: format(new Date(year, MONTH_DECEMBER, DATE_TWENTY_FIVE), YYYY_MM_DD_FORMAT),
+        };
+
+  return year >= YEAR2021
+    ? [
+        newYearsDay,
+        martinLutherKingJrDay,
+        washingtonsBirthday,
+        memorialDay,
+        juneteenth,
+        independenceDay,
+        laborDay,
+        columbusDay,
+        veteransDay,
+        thanksGivingDay,
+        christmasDay,
+      ]
+    : [
+        newYearsDay,
+        martinLutherKingJrDay,
+        washingtonsBirthday,
+        memorialDay,
+        independenceDay,
+        laborDay,
+        columbusDay,
+        veteransDay,
+        thanksGivingDay,
+        christmasDay,
+      ];
 }
