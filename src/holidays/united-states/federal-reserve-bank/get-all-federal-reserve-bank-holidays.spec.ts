@@ -4,7 +4,6 @@ import { strict as assert } from 'node:assert';
 
 import getAllFederalReserveHolidays from './get-all-federal-reserve-bank-holidays';
 
-// file.only
 describe('get-all-federal-reserve-bank-holidays', () => {
   it('works for 2022 based on the Federal Holidays outlined in https://www.federalreserve.gov/aboutthefed/k8.htm', () => {
     assert.deepEqual(getAllFederalReserveHolidays(2022), [
