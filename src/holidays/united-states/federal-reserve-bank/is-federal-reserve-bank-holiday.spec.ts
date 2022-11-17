@@ -6,207 +6,207 @@ import isFederalReserveBankHoliday from './is-federal-reserve-bank-holiday';
 
 describe('is-us-federal-reserve-bank-holiday', () => {
   it('works for random federal reserve bank business days in 2022', () => {
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-01-10T18:00:00.000Z')), false);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-02-07T18:00:00.000Z')), false);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-03-15T18:00:00.000Z')), false);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-04-12T18:00:00.000Z')), false);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-05-12T18:00:00.000Z')), false);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-06-02T18:00:00.000Z')), false);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-07-13T18:00:00.000Z')), false);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-08-15T18:00:00.000Z')), false);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-09-19T18:00:00.000Z')), false);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-10-20T18:00:00.000Z')), false);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-11-28T18:00:00.000Z')), false);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-12-29T18:00:00.000Z')), false);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 0, 10)), false);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 1, 7)), false);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 2, 15)), false);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 3, 12)), false);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 4, 12)), false);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 5, 6)), false);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 6, 29)), false);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 7, 25)), false);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 8, 20)), false);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 9, 3)), false);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 10, 28)), false);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 11, 30)), false);
   });
 
   it('works for all Saturdays in 2022', () => {
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-01-01T00:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-01-08T01:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-01-15T02:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-01-22T03:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-01-29T04:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-02-05T05:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-02-12T06:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-02-19T07:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-02-26T08:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-03-05T09:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-03-12T10:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-03-19T11:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-03-26T12:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-04-02T13:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-04-09T14:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-04-16T15:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-04-23T16:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-04-30T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-05-07T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-05-14T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-05-21T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-05-28T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-06-04T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-06-11T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-06-18T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-06-25T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-07-02T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-07-09T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-07-16T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-07-23T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-07-30T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-08-06T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-08-13T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-08-20T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-08-27T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-09-03T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-09-10T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-09-17T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-09-24T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-10-01T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-10-08T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-10-15T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-10-22T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-10-29T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-11-05T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-11-12T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-11-19T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-11-26T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-12-03T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-12-10T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-12-17T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-12-24T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-12-31T17:00:00.000Z')), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 0, 1)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 0, 8)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 0, 15)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 0, 22)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 0, 29)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 1, 5)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 1, 12)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 1, 19)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 1, 26)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 2, 5)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 2, 12)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 2, 19)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 2, 26)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 3, 2)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 3, 9)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 3, 16)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 3, 23)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 3, 30)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 4, 7)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 4, 14)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 4, 21)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 4, 28)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 5, 4)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 5, 11)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 5, 18)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 5, 25)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 6, 2)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 6, 9)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 6, 16)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 6, 23)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 6, 30)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 7, 6)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 7, 13)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 7, 20)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 7, 27)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 8, 3)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 8, 10)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 8, 17)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 8, 24)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 9, 1)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 9, 8)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 9, 15)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 9, 22)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 9, 29)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 10, 5)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 10, 12)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 10, 19)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 10, 26)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 11, 3)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 11, 10)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 11, 17)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 11, 24)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 11, 31)), true);
   });
 
   it('works for all Sundays in 2022', () => {
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-01-02T00:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-01-09T01:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-01-16T02:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-01-23T03:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-01-30T04:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-02-06T05:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-02-13T06:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-02-20T07:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-02-27T08:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-03-06T09:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-03-13T10:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-03-20T11:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-03-27T12:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-04-03T13:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-04-10T14:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-04-17T15:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-04-24T16:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-05-01T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-05-08T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-05-15T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-05-22T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-05-29T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-06-05T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-06-12T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-06-19T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-06-26T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-07-03T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-07-10T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-07-17T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-07-24T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-07-31T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-08-07T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-08-14T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-08-21T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-08-28T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-09-04T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-09-11T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-09-18T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-09-25T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-10-02T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-10-09T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-10-16T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-10-23T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-10-30T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-11-06T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-11-13T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-11-20T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-11-27T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-12-04T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-12-11T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-12-18T17:00:00.000Z')), true);
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-12-25T17:00:00.000Z')), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 0, 2)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 0, 9)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 0, 16)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 0, 23)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 0, 30)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 1, 6)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 1, 13)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 1, 20)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 1, 27)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 2, 6)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 2, 13)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 2, 20)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 2, 27)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 3, 3)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 3, 10)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 3, 17)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 3, 24)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 4, 1)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 4, 8)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 4, 15)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 4, 22)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 4, 29)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 5, 5)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 5, 12)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 5, 19)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 5, 26)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 6, 3)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 6, 10)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 6, 17)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 6, 24)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 6, 31)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 7, 7)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 7, 14)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 7, 21)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 7, 28)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 8, 4)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 8, 11)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 8, 18)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 8, 25)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 9, 2)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 9, 9)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 9, 16)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 9, 23)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 9, 30)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 10, 6)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 10, 13)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 10, 20)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 10, 27)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 11, 4)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 11, 11)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 11, 18)), true);
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 11, 25)), true);
   });
 
   it('works for all federal reserve bank holidays in 2022', () => {
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-01-01T20:00:00.000Z')), true); // New Year's Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-01-17T05:00:00.000Z')), true); // Birthday of Martin Luther King, Jr.
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-02-21T07:00:00.000Z')), true); // Washington's Birthday
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-05-30T01:00:00.000Z')), true); // Memorial Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-06-19T03:00:00.000Z')), true); // Juneteenth
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-07-04T02:00:00.000Z')), true); // Independence Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-09-05T03:00:00.000Z')), true); // Labor Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-10-10T09:00:00.000Z')), true); // Columbus Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-11-11T10:00:00.000Z')), true); // Veteran's Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-11-24T11:00:00.000Z')), true); // Thanksgiving Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-12-25T12:00:00.000Z')), true); // Christmas
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 0, 1)), true); // New Year's Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 0, 17)), true); // Birthday of Martin Luther King, Jr.
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 1, 21)), true); // Washington's Birthday
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 4, 30)), true); // Memorial Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 5, 19)), true); // Juneteenth
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 6, 4)), true); // Independence Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 8, 5)), true); // Labor Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 9, 10)), true); // Columbus Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 10, 11)), true); // Veteran's Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 10, 24)), true); // Thanksgiving Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 11, 25)), true); // Christmas
   });
 
   it('works for all federal reserve bank holidays observed in 2022', () => {
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-06-20T01:00:00.000Z')), true); // Juneteenth Observed
-    assert.equal(isFederalReserveBankHoliday(new Date('2022-12-26T01:00:00.000Z')), true); // Christmas Observed
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 5, 20)), true); // Juneteenth Observed
+    assert.equal(isFederalReserveBankHoliday(new Date(2022, 11, 26)), true); // Christmas Observed
   });
 
   it('works for all federal reserve bank holidays in 2023', () => {
-    assert.equal(isFederalReserveBankHoliday(new Date('2023-01-01T20:00:00.000Z')), true); // New Year's Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2023-01-16T05:00:00.000Z')), true); // Birthday of Martin Luther King, Jr.
-    assert.equal(isFederalReserveBankHoliday(new Date('2023-02-20T07:00:00.000Z')), true); // Washington's Birthday
-    assert.equal(isFederalReserveBankHoliday(new Date('2023-05-29T01:00:00.000Z')), true); // Memorial Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2023-06-19T03:00:00.000Z')), true); // Juneteenth
-    assert.equal(isFederalReserveBankHoliday(new Date('2023-07-04T02:00:00.000Z')), true); // Independence Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2023-09-04T03:00:00.000Z')), true); // Labor Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2023-10-09T09:00:00.000Z')), true); // Columbus Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2023-11-11T10:00:00.000Z')), true); // Veteran's Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2023-11-23T11:00:00.000Z')), true); // Thanksgiving Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2023-12-25T12:00:00.000Z')), true); // Christmas
+    assert.equal(isFederalReserveBankHoliday(new Date(2023, 0, 1)), true); // New Year's Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2023, 0, 16)), true); // Birthday of Martin Luther King, Jr.
+    assert.equal(isFederalReserveBankHoliday(new Date(2023, 1, 20)), true); // Washington's Birthday
+    assert.equal(isFederalReserveBankHoliday(new Date(2023, 4, 29)), true); // Memorial Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2023, 5, 19)), true); // Juneteenth
+    assert.equal(isFederalReserveBankHoliday(new Date(2023, 6, 4)), true); // Independence Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2023, 8, 4)), true); // Labor Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2023, 9, 9)), true); // Columbus Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2023, 10, 11)), true); // Veteran's Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2023, 10, 23)), true); // Thanksgiving Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2023, 11, 25)), true); // Christmas
   });
 
   it('works for all federal reserve bank holidays observed in 2023', () => {
-    assert.equal(isFederalReserveBankHoliday(new Date('2023-01-02T20:00:00.000Z')), true); // New Year's Day 2023 Observed
+    assert.equal(isFederalReserveBankHoliday(new Date(2023, 0, 2)), true); // New Year's Day 2023 Observed
   });
 
   it('works for all federal reserve bank holidays in 2024', () => {
-    assert.equal(isFederalReserveBankHoliday(new Date('2024-01-01T20:00:00.000Z')), true); // New Year's Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2024-01-15T05:00:00.000Z')), true); // Birthday of Martin Luther King, Jr.
-    assert.equal(isFederalReserveBankHoliday(new Date('2024-02-19T07:00:00.000Z')), true); // Washington's Birthday
-    assert.equal(isFederalReserveBankHoliday(new Date('2024-05-27T01:00:00.000Z')), true); // Memorial Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2024-06-19T03:00:00.000Z')), true); // Juneteenth
-    assert.equal(isFederalReserveBankHoliday(new Date('2024-07-04T02:00:00.000Z')), true); // Independence Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2024-09-02T03:00:00.000Z')), true); // Labor Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2024-10-14T09:00:00.000Z')), true); // Columbus Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2024-11-11T10:00:00.000Z')), true); // Veteran's Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2024-11-28T11:00:00.000Z')), true); // Thanksgiving Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2024-12-25T12:00:00.000Z')), true); // Christmas
+    assert.equal(isFederalReserveBankHoliday(new Date(2024, 0, 1)), true); // New Year's Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2024, 0, 15)), true); // Birthday of Martin Luther King, Jr.
+    assert.equal(isFederalReserveBankHoliday(new Date(2024, 1, 19)), true); // Washington's Birthday
+    assert.equal(isFederalReserveBankHoliday(new Date(2024, 4, 27)), true); // Memorial Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2024, 5, 19)), true); // Juneteenth
+    assert.equal(isFederalReserveBankHoliday(new Date(2024, 6, 4)), true); // Independence Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2024, 8, 2)), true); // Labor Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2024, 9, 14)), true); // Columbus Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2024, 10, 11)), true); // Veteran's Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2024, 10, 28)), true); // Thanksgiving Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2024, 11, 25)), true); // Christmas
   });
 
   it('works for all federal reserve bank holidays in 2025', () => {
-    assert.equal(isFederalReserveBankHoliday(new Date('2025-01-01T20:00:00.000Z')), true); // New Year's Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2025-01-20T05:00:00.000Z')), true); // Birthday of Martin Luther King, Jr.
-    assert.equal(isFederalReserveBankHoliday(new Date('2025-02-17T07:00:00.000Z')), true); // Washington's Birthday
-    assert.equal(isFederalReserveBankHoliday(new Date('2025-05-26T01:00:00.000Z')), true); // Memorial Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2025-06-19T03:00:00.000Z')), true); // Juneteenth
-    assert.equal(isFederalReserveBankHoliday(new Date('2025-07-04T02:00:00.000Z')), true); // Independence Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2025-09-01T03:00:00.000Z')), true); // Labor Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2025-10-13T09:00:00.000Z')), true); // Columbus Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2025-11-11T10:00:00.000Z')), true); // Veteran's Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2025-11-27T11:00:00.000Z')), true); // Thanksgiving Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2025-12-25T12:00:00.000Z')), true); // Christmas
+    assert.equal(isFederalReserveBankHoliday(new Date(2025, 0, 1)), true); // New Year's Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2025, 0, 20)), true); // Birthday of Martin Luther King, Jr.
+    assert.equal(isFederalReserveBankHoliday(new Date(2025, 1, 17)), true); // Washington's Birthday
+    assert.equal(isFederalReserveBankHoliday(new Date(2025, 4, 26)), true); // Memorial Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2025, 5, 19)), true); // Juneteenth
+    assert.equal(isFederalReserveBankHoliday(new Date(2025, 6, 4)), true); // Independence Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2025, 8, 1)), true); // Labor Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2025, 9, 13)), true); // Columbus Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2025, 10, 11)), true); // Veteran's Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2025, 10, 27)), true); // Thanksgiving Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2025, 11, 25)), true); // Christmas
   });
 
   it('works for all federal reserve bank holidays in 2026', () => {
-    assert.equal(isFederalReserveBankHoliday(new Date('2026-01-01T20:00:00.000Z')), true); // New Year's Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2026-01-19T05:00:00.000Z')), true); // Birthday of Martin Luther King, Jr.
-    assert.equal(isFederalReserveBankHoliday(new Date('2026-02-16T07:00:00.000Z')), true); // Washington's Birthday
-    assert.equal(isFederalReserveBankHoliday(new Date('2026-05-25T01:00:00.000Z')), true); // Memorial Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2026-06-19T03:00:00.000Z')), true); // Juneteenth
-    assert.equal(isFederalReserveBankHoliday(new Date('2026-07-04T02:00:00.000Z')), true); // Independence Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2026-09-07T03:00:00.000Z')), true); // Labor Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2026-10-12T09:00:00.000Z')), true); // Columbus Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2026-11-11T10:00:00.000Z')), true); // Veteran's Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2026-11-26T11:00:00.000Z')), true); // Thanksgiving Day
-    assert.equal(isFederalReserveBankHoliday(new Date('2026-12-25T12:00:00.000Z')), true); // Christmas
+    assert.equal(isFederalReserveBankHoliday(new Date(2026, 0, 1)), true); // New Year's Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2026, 0, 19)), true); // Birthday of Martin Luther King, Jr.
+    assert.equal(isFederalReserveBankHoliday(new Date(2026, 1, 16)), true); // Washington's Birthday
+    assert.equal(isFederalReserveBankHoliday(new Date(2026, 4, 25)), true); // Memorial Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2026, 5, 19)), true); // Juneteenth
+    assert.equal(isFederalReserveBankHoliday(new Date(2026, 6, 4)), true); // Independence Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2026, 8, 7)), true); // Labor Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2026, 9, 12)), true); // Columbus Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2026, 10, 11)), true); // Veteran's Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2026, 10, 26)), true); // Thanksgiving Day
+    assert.equal(isFederalReserveBankHoliday(new Date(2026, 11, 25)), true); // Christmas
   });
 });
