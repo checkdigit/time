@@ -1,33 +1,42 @@
 // holidays/united-states/federal-reserve-bank/add-federal-reserve-bank-business-days.ts
 
-import { addBusinessDays, isWeekend } from '../../../date-fns';
+import { isWeekend } from '../../../date-fns';
+import isSaturday from '../../../date-fns/isSaturday';
+import isSunday from '../../../date-fns/isSunday';
 import isFederalReserveBankHoliday from './is-federal-reserve-bank-holiday';
 
-function getDatesInRange(startDate: Date, endDate: Date) {
-  const dateArray = [];
-  const currentDate = new Date(startDate);
-
-  while (currentDate <= new Date(endDate)) {
-    dateArray.push(new Date(currentDate));
-    currentDate.setUTCDate(currentDate.getUTCDate() + 1);
-  }
-
-  return dateArray;
-}
+const WEEK_DAYS = 5;
 
 export default function (date: Date, amount: number): Date {
-  const currentDate = new Date(date);
-  const datesInRange = getDatesInRange(new Date(date), new Date(addBusinessDays(date, amount)));
-  const federalReserveBankHolidaysInRange = datesInRange.filter(
-    (eachDate) => !isWeekend(eachDate) && isFederalReserveBankHoliday(eachDate)
-  ).length;
-  if (federalReserveBankHolidaysInRange > amount) {
-    return new Date(addBusinessDays(currentDate, federalReserveBankHolidaysInRange));
-  } else if (
-    (!isWeekend(currentDate) && isFederalReserveBankHoliday(currentDate)) ||
-    federalReserveBankHolidaysInRange === amount
-  ) {
-    return new Date(addBusinessDays(currentDate, amount));
+  const startedOnWeekend = isWeekend(date);
+
+  if (Number.isNaN(amount)) {
+    throw new TypeError('Invalid Amount');
   }
-  return new Date(addBusinessDays(currentDate, amount + federalReserveBankHolidaysInRange));
+
+  const hours = date.getHours();
+  const fullWeeks = Math.trunc(amount / WEEK_DAYS);
+
+  date.setDate(date.getDate() + fullWeeks * 7);
+
+  let remainingDays = Math.abs(amount % WEEK_DAYS);
+
+  while (remainingDays > 0) {
+    date.setDate(date.getDate() + 1);
+    if (!isWeekend(date) && !isFederalReserveBankHoliday(date)) {
+      remainingDays -= 1;
+    }
+  }
+
+  if (startedOnWeekend && isWeekend(date) && amount !== 0) {
+    if (isSaturday(date)) {
+      date.setDate(date.getDate() + 2);
+    }
+    if (isSunday(date)) {
+      date.setDate(date.getDate() + 1);
+    }
+  }
+
+  date.setHours(hours);
+  return date;
 }
