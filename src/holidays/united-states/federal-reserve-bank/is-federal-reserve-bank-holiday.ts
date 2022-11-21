@@ -8,8 +8,8 @@ const DAY_OF_THE_WEEK_SUNDAY = 0;
 const DAY_OF_THE_WEEK_SATURDAY = 6;
 
 export default function (date: Date): boolean {
-  const year = date.getUTCFullYear();
-  const day = date.getUTCDay();
+  const year = date.getFullYear();
+  const day = date.getDay();
   const allUsFederalReserveBankHolidays = getAllFederalReserveBankHolidays(year);
 
   return (
