@@ -14,12 +14,10 @@ export default function (date: Date, amount: number): Date {
 
   let count = 0;
   while (count < amount) {
-    console.log(endDate);
     endDate.setDate(endDate.getDate() - 1);
     if (!isWeekend(endDate) && !isFederalReserveBankHoliday(endDate)) {
       count++;
     }
-    console.log(count);
   }
 
   endDate.setHours(hours);
