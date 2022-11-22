@@ -206,4 +206,11 @@ describe('add-federal-reserve-bank-business-days', () => {
       '2023-01-05T19:02:12.721Z'
     );
   });
+
+  it('works for 16 business days with three federal holidays in between', () => {
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T19:02:12.721Z'), 16).toISOString(),
+      '2023-01-17T19:02:12.721Z'
+    );
+  });
 });
