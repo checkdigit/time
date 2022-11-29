@@ -181,12 +181,108 @@ describe('add-federal-reserve-bank-business-days', () => {
     );
   });
 
-  it('works for 16 business days with three federal holidays in between', () => {
+  it('works for 16 business days every hour with three federal holidays in between', () => {
     // We have 4 Saturdays, 4 Sundays and 3 Federal Reserve Bank holidays (2 observed on a Monday and
     // 1 celebrated on a Monday)
     assert.equal(
-      addFederalReserveBankBusinessDays(new Date('2022-12-21T19:02:12.721Z'), 16).toISOString(),
-      '2023-01-17T19:02:12.721Z'
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T00:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T00:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T01:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T01:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T02:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T02:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T03:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T03:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T04:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T04:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T05:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T05:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T06:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T06:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T07:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T07:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T08:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T08:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T09:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T09:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T10:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T10:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T11:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T11:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T12:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T12:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T13:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T13:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T14:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T14:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T15:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T15:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T16:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T16:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T17:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T17:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T18:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T18:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T19:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T19:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T20:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T20:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T21:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T21:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T22:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T22:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-21T23:00:00.000Z'), 16).toISOString(),
+      '2023-01-17T23:00:00.000Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2022-12-22T00:00:00.000Z'), 16).toISOString(),
+      '2023-01-18T00:00:00.000Z'
     );
   });
 });
