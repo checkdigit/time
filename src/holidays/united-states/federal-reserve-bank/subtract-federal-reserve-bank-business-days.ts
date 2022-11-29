@@ -9,15 +9,15 @@ export default function (date: Date, amount: number): Date {
 
   const endDate = new Date(date);
 
-  const hours = date.getHours();
+  const hours = date.getUTCHours();
   let count = 0;
   while (count < amount) {
-    endDate.setDate(endDate.getDate() - 1);
+    endDate.setUTCDate(endDate.getUTCDate() - 1);
     if (!isFederalReserveBankHoliday(endDate)) {
       count++;
     }
   }
 
-  endDate.setHours(hours);
+  endDate.setUTCHours(hours);
   return endDate;
 }
