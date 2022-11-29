@@ -211,6 +211,92 @@ describe('subtract-federal-reserve-bank-business-days', () => {
     );
   });
 
+  it('works for 3 business days in a leap year', () => {
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2024-02-26T01:02:12.721Z'), 3).toISOString(),
+      '2024-02-21T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2024-02-27T01:02:12.721Z'), 3).toISOString(),
+      '2024-02-22T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2024-02-28T01:02:12.721Z'), 3).toISOString(),
+      '2024-02-23T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2024-02-29T01:02:12.721Z'), 3).toISOString(),
+      '2024-02-26T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2024-03-01T01:02:12.721Z'), 3).toISOString(),
+      '2024-02-27T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2024-03-02T01:02:12.721Z'), 3).toISOString(),
+      '2024-02-28T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2024-03-03T01:02:12.721Z'), 3).toISOString(),
+      '2024-02-28T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2024-03-04T01:02:12.721Z'), 3).toISOString(),
+      '2024-02-28T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2024-03-05T01:02:12.721Z'), 3).toISOString(),
+      '2024-02-29T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2024-03-06T01:02:12.721Z'), 3).toISOString(),
+      '2024-03-01T01:02:12.721Z'
+    );
+  });
+
+  it('works for 3 business days in a leap year when February 29th is a Sunday', () => {
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2032-02-26T01:02:12.721Z'), 3).toISOString(),
+      '2032-02-23T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2032-02-27T01:02:12.721Z'), 3).toISOString(),
+      '2032-02-24T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2032-02-28T01:02:12.721Z'), 3).toISOString(),
+      '2032-02-25T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2032-02-29T01:02:12.721Z'), 3).toISOString(),
+      '2032-02-25T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2032-03-01T01:02:12.721Z'), 3).toISOString(),
+      '2032-02-25T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2032-03-02T01:02:12.721Z'), 3).toISOString(),
+      '2032-02-26T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2032-03-03T01:02:12.721Z'), 3).toISOString(),
+      '2032-02-27T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2032-03-04T01:02:12.721Z'), 3).toISOString(),
+      '2032-03-01T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2032-03-05T01:02:12.721Z'), 3).toISOString(),
+      '2032-03-02T01:02:12.721Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2032-03-06T01:02:12.721Z'), 3).toISOString(),
+      '2032-03-03T01:02:12.721Z'
+    );
+  });
+
   it('works for 16 business days every hour with three federal holidays in between', () => {
     // We have 4 Saturdays, 4 Sundays and 3 Federal Reserve Bank holidays (2 observed on a Monday and
     // 1 celebrated on a Monday)
