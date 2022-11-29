@@ -148,7 +148,7 @@ describe('add-federal-reserve-bank-business-days', () => {
     );
   });
 
-  it('works for 2 business days when the daylight savings time begins', () => {
+  it('works for 2 business days when the daylight savings time begins in 2023', () => {
     assert.equal(
       addFederalReserveBankBusinessDays(new Date('2023-03-08T02:25:10.150Z'), 2).toISOString(),
       '2023-03-10T02:25:10.150Z'
@@ -176,6 +176,41 @@ describe('add-federal-reserve-bank-business-days', () => {
     assert.equal(
       addFederalReserveBankBusinessDays(new Date('2023-03-14T08:02:12.721Z'), 2).toISOString(),
       '2023-03-16T08:02:12.721Z'
+    );
+  });
+
+  it('works for 3 business days when the daylight savings time ends in 2023', () => {
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2023-11-01T02:25:10.150Z'), 3).toISOString(),
+      '2023-11-06T02:25:10.150Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2023-11-02T03:25:10.150Z'), 3).toISOString(),
+      '2023-11-07T03:25:10.150Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2023-11-03T04:25:10.150Z'), 3).toISOString(),
+      '2023-11-08T04:25:10.150Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2023-11-04T05:02:12.721Z'), 3).toISOString(),
+      '2023-11-08T05:02:12.721Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2023-11-05T06:02:12.721Z'), 3).toISOString(),
+      '2023-11-08T06:02:12.721Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2023-11-06T07:02:12.721Z'), 3).toISOString(),
+      '2023-11-09T07:02:12.721Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2023-11-07T08:02:12.721Z'), 3).toISOString(),
+      '2023-11-10T08:02:12.721Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2023-11-08T09:02:12.721Z'), 3).toISOString(),
+      '2023-11-13T09:02:12.721Z'
     );
   });
 

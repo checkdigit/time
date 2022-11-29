@@ -164,7 +164,7 @@ describe('subtract-federal-reserve-bank-business-days', () => {
     );
   });
 
-  it('works for 2 business days when the daylight savings time begins', () => {
+  it('works for 2 business days when the daylight savings time begins in 2023', () => {
     assert.equal(
       subtractFederalReserveBankBusinessDays(new Date('2023-03-10T02:25:10.150Z'), 2).toISOString(),
       '2023-03-08T02:25:10.150Z'
@@ -192,6 +192,53 @@ describe('subtract-federal-reserve-bank-business-days', () => {
     assert.equal(
       subtractFederalReserveBankBusinessDays(new Date('2023-03-16T08:25:10.150Z'), 2).toISOString(),
       '2023-03-14T08:25:10.150Z'
+    );
+  });
+
+  it('works for 3 business days when the daylight savings time ends in 2023', () => {
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2023-03-04T02:25:10.150Z'), 3).toISOString(),
+      '2023-03-01T02:25:10.150Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2023-03-05T02:25:10.150Z'), 3).toISOString(),
+      '2023-03-01T02:25:10.150Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2023-03-06T02:25:10.150Z'), 3).toISOString(),
+      '2023-03-01T02:25:10.150Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2023-03-07T02:25:10.150Z'), 3).toISOString(),
+      '2023-03-02T02:25:10.150Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2023-03-08T02:25:10.150Z'), 3).toISOString(),
+      '2023-03-03T02:25:10.150Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2023-03-09T02:25:10.150Z'), 3).toISOString(),
+      '2023-03-06T02:25:10.150Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2023-03-10T02:25:10.150Z'), 3).toISOString(),
+      '2023-03-07T02:25:10.150Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2023-03-11T03:25:10.150Z'), 3).toISOString(),
+      '2023-03-08T03:25:10.150Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2023-03-12T04:25:10.150Z'), 3).toISOString(),
+      '2023-03-08T04:25:10.150Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2023-03-13T05:25:10.150Z'), 3).toISOString(),
+      '2023-03-08T05:25:10.150Z'
+    );
+    assert.equal(
+      subtractFederalReserveBankBusinessDays(new Date('2023-03-14T06:25:10.150Z'), 3).toISOString(),
+      '2023-03-09T06:25:10.150Z'
     );
   });
 
