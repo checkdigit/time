@@ -148,6 +148,37 @@ describe('add-federal-reserve-bank-business-days', () => {
     );
   });
 
+  it('works for 2 business days when the daylight savings time begins', () => {
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2023-03-08T02:25:10.150Z'), 2).toISOString(),
+      '2023-03-10T02:25:10.150Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2023-03-09T03:25:10.150Z'), 2).toISOString(),
+      '2023-03-13T03:25:10.150Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2023-03-10T04:25:10.150Z'), 2).toISOString(),
+      '2023-03-14T04:25:10.150Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2023-03-11T05:02:12.721Z'), 2).toISOString(),
+      '2023-03-14T05:02:12.721Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2023-03-12T06:02:12.721Z'), 2).toISOString(),
+      '2023-03-14T06:02:12.721Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2023-03-13T07:02:12.721Z'), 2).toISOString(),
+      '2023-03-15T07:02:12.721Z'
+    );
+    assert.equal(
+      addFederalReserveBankBusinessDays(new Date('2023-03-14T08:02:12.721Z'), 2).toISOString(),
+      '2023-03-16T08:02:12.721Z'
+    );
+  });
+
   it('works for 3 business days with Christmas Day and New Years observed on a Monday', () => {
     // Sunday --> Thursday (Since 2022-12-26 is a Federal Reserve Holiday (observed) celebrating Christmas Day)
     assert.equal(
