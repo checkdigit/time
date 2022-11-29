@@ -19,11 +19,11 @@
   },
   "homepage": "https://github.com/checkdigit/time#readme",
   "devDependencies": {
-    "@checkdigit/eslint-config": "7.3.0",
-    "@checkdigit/jest-config": "^2.0.0",
-    "@checkdigit/prettier-config": "^3.0.0",
-    "@checkdigit/typescript-config": "^3.1.0",
-    "@js-temporal/polyfill": "^0.4.2",
+    "@checkdigit/eslint-config": "7.4.0",
+    "@checkdigit/jest-config": "^2.1.0",
+    "@checkdigit/prettier-config": "^3.1.0",
+    "@checkdigit/typescript-config": "^3.2.0",
+    "@js-temporal/polyfill": "^0.4.3",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1"
   },
