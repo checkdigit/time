@@ -39,7 +39,7 @@ const OCCURRENCE_FOURTH = 4;
 const YEAR2021 = 2021;
 
 export interface FederalReserveBankHoliday {
-  holiday: string;
+  name: string;
   date: string;
   observedOn?: string | undefined;
 }
@@ -61,90 +61,90 @@ export default function (year: number): FederalReserveBankHoliday[] {
   const newYearsDay =
     new Date(year, MONTH_JANUARY, DATE_ONE).getDay() === DAY_OF_THE_WEEK_SUNDAY
       ? {
-          holiday: `New Year's Day`,
+          name: `New Year's Day`,
           date: formatUtc(new Date(year, MONTH_JANUARY, DATE_ONE), YYYY_MM_DD_FORMAT),
           observedOn: formatUtc(new Date(year, MONTH_JANUARY, DATE_TWO), YYYY_MM_DD_FORMAT),
         }
       : {
-          holiday: `New Year's Day`,
+          name: `New Year's Day`,
           date: formatUtc(new Date(year, MONTH_JANUARY, DATE_ONE), YYYY_MM_DD_FORMAT),
         };
 
   const martinLutherKingJrDay = {
-    holiday: 'Birthday of Martin Luther King, Jr.',
+    name: 'Birthday of Martin Luther King, Jr.',
     date: getNthOccurrenceOfDayOfTheWeekInMonth(OCCURRENCE_THIRD, DAY_OF_THE_WEEK_MONDAY, MONTH_JANUARY, year), // Birthday of Martin Luther King, Jr. is the Third Monday of January
   };
 
   const washingtonsBirthday = {
-    holiday: `Washington's Birthday`,
+    name: `Washington's Birthday`,
     date: getNthOccurrenceOfDayOfTheWeekInMonth(OCCURRENCE_THIRD, DAY_OF_THE_WEEK_MONDAY, MONTH_FEBRUARY, year), // Washington's Birthday is the Third Monday of February
   };
 
   const memorialDay = {
-    holiday: 'Memorial Day',
+    name: 'Memorial Day',
     date: getLastMondayOfMay(year), // Memorial Day is the Last Monday of May
   };
 
   const juneteenth =
     new Date(year, MONTH_JUNE, DATE_NINETEEN).getDay() === DAY_OF_THE_WEEK_SUNDAY
       ? {
-          holiday: 'Juneteenth National Independence Day',
+          name: 'Juneteenth National Independence Day',
           date: formatUtc(new Date(year, MONTH_JUNE, DATE_NINETEEN), YYYY_MM_DD_FORMAT),
           observedOn: formatUtc(new Date(year, MONTH_JUNE, DATE_TWENTY), YYYY_MM_DD_FORMAT),
         }
       : {
-          holiday: 'Juneteenth National Independence Day',
+          name: 'Juneteenth National Independence Day',
           date: formatUtc(new Date(year, MONTH_JUNE, DATE_NINETEEN), YYYY_MM_DD_FORMAT),
         };
 
   const independenceDay =
     new Date(year, MONTH_JULY, DATE_FOUR).getDay() === DAY_OF_THE_WEEK_SUNDAY
       ? {
-          holiday: 'Independence Day',
+          name: 'Independence Day',
           date: formatUtc(new Date(year, MONTH_JULY, DATE_FOUR), YYYY_MM_DD_FORMAT),
           observedOn: formatUtc(new Date(year, MONTH_JULY, DATE_FIVE), YYYY_MM_DD_FORMAT),
         }
       : {
-          holiday: 'Independence Day',
+          name: 'Independence Day',
           date: formatUtc(new Date(year, MONTH_JULY, DATE_FOUR), YYYY_MM_DD_FORMAT),
         };
 
   const laborDay = {
-    holiday: 'Labor Day',
+    name: 'Labor Day',
     date: getNthOccurrenceOfDayOfTheWeekInMonth(OCCURRENCE_FIRST, DAY_OF_THE_WEEK_MONDAY, MONTH_SEPTEMBER, year), // Labor Day is the First Monday of September
   };
 
   const columbusDay = {
-    holiday: 'Columbus Day',
+    name: 'Columbus Day',
     date: getNthOccurrenceOfDayOfTheWeekInMonth(OCCURRENCE_SECOND, DAY_OF_THE_WEEK_MONDAY, MONTH_OCTOBER, year), // Columbus Day is the Second Monday of October
   };
 
   const veteransDay =
     new Date(year, MONTH_NOVEMBER, DATE_ELEVEN).getDay() === DAY_OF_THE_WEEK_SUNDAY
       ? {
-          holiday: 'Veterans Day',
+          name: 'Veterans Day',
           date: formatUtc(new Date(year, MONTH_NOVEMBER, DATE_ELEVEN), YYYY_MM_DD_FORMAT),
           observedOn: formatUtc(new Date(year, MONTH_NOVEMBER, DATE_TWELVE), YYYY_MM_DD_FORMAT),
         }
       : {
-          holiday: 'Veterans Day',
+          name: 'Veterans Day',
           date: formatUtc(new Date(year, MONTH_NOVEMBER, DATE_ELEVEN), YYYY_MM_DD_FORMAT),
         };
 
   const thanksGivingDay = {
-    holiday: 'Thanksgiving Day',
+    name: 'Thanksgiving Day',
     date: getNthOccurrenceOfDayOfTheWeekInMonth(OCCURRENCE_FOURTH, DAY_OF_THE_WEEK_THURSDAY, MONTH_NOVEMBER, year), // Thanksgiving Day is the Fourth Thursday of November
   };
 
   const christmasDay =
     new Date(year, MONTH_DECEMBER, DATE_TWENTY_FIVE).getDay() === DAY_OF_THE_WEEK_SUNDAY
       ? {
-          holiday: 'Christmas Day',
+          name: 'Christmas Day',
           date: formatUtc(new Date(year, MONTH_DECEMBER, DATE_TWENTY_FIVE), YYYY_MM_DD_FORMAT),
           observedOn: formatUtc(new Date(year, MONTH_DECEMBER, DATE_TWENTY_SIX), YYYY_MM_DD_FORMAT),
         }
       : {
-          holiday: 'Christmas Day',
+          name: 'Christmas Day',
           date: formatUtc(new Date(year, MONTH_DECEMBER, DATE_TWENTY_FIVE), YYYY_MM_DD_FORMAT),
         };
 
