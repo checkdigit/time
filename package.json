@@ -18,6 +18,9 @@
     "url": "https://github.com/checkdigit/time/issues"
   },
   "homepage": "https://github.com/checkdigit/time#readme",
+  "files": [
+    "dist"
+  ],
   "devDependencies": {
     "@checkdigit/eslint-config": "7.4.0",
     "@checkdigit/jest-config": "^2.1.0",
