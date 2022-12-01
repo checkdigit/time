@@ -11,11 +11,6 @@ function addMomentBusinessDays(date: string, numberOfDays: number): string {
 }
 
 describe('add-federal-reserve-bank-business-days', () => {
-  it('shows current date', () => {
-    // eslint-disable-next-line no-console
-    console.log('>>>>>>>>', new Date(), '     ', new Date().toLocaleString());
-  });
-
   it('throws error when amount is NaN', () => {
     assert.throws(() => addFederalReserveBankBusinessDays('2022-11-13T19:02:12.721Z', Number.NaN), TypeError);
   });
