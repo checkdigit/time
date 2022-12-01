@@ -2,22 +2,20 @@
 
 import isFederalReserveBankHoliday from './is-federal-reserve-bank-holiday';
 
-export default function (date: Date, amount: number): Date {
+export default function (date: string, amount: number): Date {
   if (Number.isNaN(amount)) {
     throw new TypeError('Invalid Amount');
   }
 
   const endDate = new Date(date);
-  const hours = date.getUTCHours();
 
   let count = 0;
   while (count < amount) {
-    endDate.setUTCDate(endDate.getUTCDate() + 1);
+    endDate.setDate(endDate.getDate() + 1);
     if (!isFederalReserveBankHoliday(endDate)) {
       count++;
     }
   }
 
-  endDate.setUTCHours(hours);
   return endDate;
 }
