@@ -3,6 +3,7 @@
 import { strict as assert } from 'node:assert';
 import momentBusiness from 'moment-business-days';
 
+import isFederalReserveBankHoliday from './is-federal-reserve-bank-holiday';
 import subtractFederalReserveBankBusinessDays from './subtract-federal-reserve-bank-business-days';
 
 function subtractMomentBusinessDays(date: string, numberOfDays: number): string {
@@ -485,5 +486,20 @@ describe('subtract-federal-reserve-bank-business-days', () => {
       subtractFederalReserveBankBusinessDays('2023-01-24T00:00:00.000Z', 20).toISOString(),
       subtractMomentBusinessDays('2023-01-24T00:00:00.000Z', 23)
     );
+  });
+
+  it('works for 10000 random dates', () => {
+    // try 10k random date-times
+    for (let index = 0; index < 10_000; index++) {
+      const isoString = new Date(Math.floor(Math.random() * 10_000_000_000_000)).toISOString();
+      let expected = subtractMomentBusinessDays(isoString, 2);
+      if (
+        isFederalReserveBankHoliday(new Date(subtractMomentBusinessDays(isoString, 1))) ||
+        isFederalReserveBankHoliday(new Date(subtractMomentBusinessDays(isoString, 2)))
+      ) {
+        expected = subtractMomentBusinessDays(isoString, 3);
+      }
+      assert.equal(subtractFederalReserveBankBusinessDays(isoString, 2).toISOString(), expected);
+    }
   });
 });

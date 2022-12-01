@@ -4,6 +4,7 @@ import { strict as assert } from 'node:assert';
 import momentBusiness from 'moment-business-days';
 
 import addFederalReserveBankBusinessDays from './add-federal-reserve-bank-business-days';
+import isFederalReserveBankHoliday from './is-federal-reserve-bank-holiday';
 
 function addMomentBusinessDays(date: string, numberOfDays: number): string {
   return momentBusiness(date).businessAdd(numberOfDays, 'days').toISOString();
@@ -401,5 +402,20 @@ describe('add-federal-reserve-bank-business-days', () => {
       addFederalReserveBankBusinessDays('2022-12-22T00:00:00.000Z', 20).toISOString(),
       addMomentBusinessDays('2022-12-21T00:00:00.000Z', 24)
     );
+  });
+
+  it('works for 10000 random dates', () => {
+    // try 10k random date-times
+    for (let index = 0; index < 10_000; index++) {
+      const isoString = new Date(Math.floor(Math.random() * 10_000_000_000_000)).toISOString();
+      let expected = addMomentBusinessDays(isoString, 2);
+      if (
+        isFederalReserveBankHoliday(new Date(addMomentBusinessDays(isoString, 1))) ||
+        isFederalReserveBankHoliday(new Date(addMomentBusinessDays(isoString, 2)))
+      ) {
+        expected = addMomentBusinessDays(isoString, 3);
+      }
+      assert.equal(addFederalReserveBankBusinessDays(isoString, 2).toISOString(), expected);
+    }
   });
 });
