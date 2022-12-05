@@ -1,6 +1,6 @@
 // holidays/united-states/federal-reserve-bank/get-all-federal-reserve-bank-holidays.ts
 
-import { format } from '../../../index';
+import { formatUtc } from '../../../index';
 
 const YYYY_MM_DD_FORMAT = 'yyyy-MM-dd';
 
@@ -47,27 +47,28 @@ export interface FederalReserveBankHoliday {
 function getLastMondayOfMay(year: number) {
   const lastDayOfMay = new Date(year, MONTH_MAY, DATE_THIRTY_ONE); // last day of may
   const lastMondayOfMayDay =
-    lastDayOfMay.getDate() - (lastDayOfMay.getDay() - 1 < 1 ? DAY_OF_THE_WEEK_SATURDAY : lastDayOfMay.getDay() - 1);
-  return format(new Date(year, MONTH_MAY, lastMondayOfMayDay), YYYY_MM_DD_FORMAT);
+    lastDayOfMay.getUTCDate() -
+    (lastDayOfMay.getUTCDay() - 1 < 1 ? DAY_OF_THE_WEEK_SATURDAY : lastDayOfMay.getUTCDay() - 1);
+  return formatUtc(new Date(year, MONTH_MAY, lastMondayOfMayDay), YYYY_MM_DD_FORMAT);
 }
 
 function getNthOccurrenceOfDayOfTheWeekInMonth(nth: number, dayOfTheWeek: number, month: number, year: number) {
   const date = new Date(year, month, DATE_ONE); // first day of the month
-  date.setDate(1 + ((7 - date.getDay() + dayOfTheWeek) % 7) + (nth - 1) * 7);
-  return format(date, YYYY_MM_DD_FORMAT);
+  date.setUTCDate(1 + ((7 - date.getUTCDay() + dayOfTheWeek) % 7) + (nth - 1) * 7);
+  return formatUtc(date, YYYY_MM_DD_FORMAT);
 }
 
 export default function (year: number): FederalReserveBankHoliday[] {
   const newYearsDay =
-    new Date(year, MONTH_JANUARY, DATE_ONE).getDay() === DAY_OF_THE_WEEK_SUNDAY
+    new Date(year, MONTH_JANUARY, DATE_ONE).getUTCDay() === DAY_OF_THE_WEEK_SUNDAY
       ? {
           name: `New Year's Day`,
-          date: format(new Date(year, MONTH_JANUARY, DATE_ONE), YYYY_MM_DD_FORMAT),
-          observedOn: format(new Date(year, MONTH_JANUARY, DATE_TWO), YYYY_MM_DD_FORMAT),
+          date: formatUtc(new Date(year, MONTH_JANUARY, DATE_ONE), YYYY_MM_DD_FORMAT),
+          observedOn: formatUtc(new Date(year, MONTH_JANUARY, DATE_TWO), YYYY_MM_DD_FORMAT),
         }
       : {
           name: `New Year's Day`,
-          date: format(new Date(year, MONTH_JANUARY, DATE_ONE), YYYY_MM_DD_FORMAT),
+          date: formatUtc(new Date(year, MONTH_JANUARY, DATE_ONE), YYYY_MM_DD_FORMAT),
         };
 
   const martinLutherKingJrDay = {
@@ -86,27 +87,27 @@ export default function (year: number): FederalReserveBankHoliday[] {
   };
 
   const juneteenth =
-    new Date(year, MONTH_JUNE, DATE_NINETEEN).getDay() === DAY_OF_THE_WEEK_SUNDAY
+    new Date(year, MONTH_JUNE, DATE_NINETEEN).getUTCDay() === DAY_OF_THE_WEEK_SUNDAY
       ? {
           name: 'Juneteenth National Independence Day',
-          date: format(new Date(year, MONTH_JUNE, DATE_NINETEEN), YYYY_MM_DD_FORMAT),
-          observedOn: format(new Date(year, MONTH_JUNE, DATE_TWENTY), YYYY_MM_DD_FORMAT),
+          date: formatUtc(new Date(year, MONTH_JUNE, DATE_NINETEEN), YYYY_MM_DD_FORMAT),
+          observedOn: formatUtc(new Date(year, MONTH_JUNE, DATE_TWENTY), YYYY_MM_DD_FORMAT),
         }
       : {
           name: 'Juneteenth National Independence Day',
-          date: format(new Date(year, MONTH_JUNE, DATE_NINETEEN), YYYY_MM_DD_FORMAT),
+          date: formatUtc(new Date(year, MONTH_JUNE, DATE_NINETEEN), YYYY_MM_DD_FORMAT),
         };
 
   const independenceDay =
-    new Date(year, MONTH_JULY, DATE_FOUR).getDay() === DAY_OF_THE_WEEK_SUNDAY
+    new Date(year, MONTH_JULY, DATE_FOUR).getUTCDay() === DAY_OF_THE_WEEK_SUNDAY
       ? {
           name: 'Independence Day',
-          date: format(new Date(year, MONTH_JULY, DATE_FOUR), YYYY_MM_DD_FORMAT),
-          observedOn: format(new Date(year, MONTH_JULY, DATE_FIVE), YYYY_MM_DD_FORMAT),
+          date: formatUtc(new Date(year, MONTH_JULY, DATE_FOUR), YYYY_MM_DD_FORMAT),
+          observedOn: formatUtc(new Date(year, MONTH_JULY, DATE_FIVE), YYYY_MM_DD_FORMAT),
         }
       : {
           name: 'Independence Day',
-          date: format(new Date(year, MONTH_JULY, DATE_FOUR), YYYY_MM_DD_FORMAT),
+          date: formatUtc(new Date(year, MONTH_JULY, DATE_FOUR), YYYY_MM_DD_FORMAT),
         };
 
   const laborDay = {
@@ -120,15 +121,15 @@ export default function (year: number): FederalReserveBankHoliday[] {
   };
 
   const veteransDay =
-    new Date(year, MONTH_NOVEMBER, DATE_ELEVEN).getDay() === DAY_OF_THE_WEEK_SUNDAY
+    new Date(year, MONTH_NOVEMBER, DATE_ELEVEN).getUTCDay() === DAY_OF_THE_WEEK_SUNDAY
       ? {
           name: 'Veterans Day',
-          date: format(new Date(year, MONTH_NOVEMBER, DATE_ELEVEN), YYYY_MM_DD_FORMAT),
-          observedOn: format(new Date(year, MONTH_NOVEMBER, DATE_TWELVE), YYYY_MM_DD_FORMAT),
+          date: formatUtc(new Date(year, MONTH_NOVEMBER, DATE_ELEVEN), YYYY_MM_DD_FORMAT),
+          observedOn: formatUtc(new Date(year, MONTH_NOVEMBER, DATE_TWELVE), YYYY_MM_DD_FORMAT),
         }
       : {
           name: 'Veterans Day',
-          date: format(new Date(year, MONTH_NOVEMBER, DATE_ELEVEN), YYYY_MM_DD_FORMAT),
+          date: formatUtc(new Date(year, MONTH_NOVEMBER, DATE_ELEVEN), YYYY_MM_DD_FORMAT),
         };
 
   const thanksGivingDay = {
@@ -137,15 +138,15 @@ export default function (year: number): FederalReserveBankHoliday[] {
   };
 
   const christmasDay =
-    new Date(year, MONTH_DECEMBER, DATE_TWENTY_FIVE).getDay() === DAY_OF_THE_WEEK_SUNDAY
+    new Date(year, MONTH_DECEMBER, DATE_TWENTY_FIVE).getUTCDay() === DAY_OF_THE_WEEK_SUNDAY
       ? {
           name: 'Christmas Day',
-          date: format(new Date(year, MONTH_DECEMBER, DATE_TWENTY_FIVE), YYYY_MM_DD_FORMAT),
-          observedOn: format(new Date(year, MONTH_DECEMBER, DATE_TWENTY_SIX), YYYY_MM_DD_FORMAT),
+          date: formatUtc(new Date(year, MONTH_DECEMBER, DATE_TWENTY_FIVE), YYYY_MM_DD_FORMAT),
+          observedOn: formatUtc(new Date(year, MONTH_DECEMBER, DATE_TWENTY_SIX), YYYY_MM_DD_FORMAT),
         }
       : {
           name: 'Christmas Day',
-          date: format(new Date(year, MONTH_DECEMBER, DATE_TWENTY_FIVE), YYYY_MM_DD_FORMAT),
+          date: formatUtc(new Date(year, MONTH_DECEMBER, DATE_TWENTY_FIVE), YYYY_MM_DD_FORMAT),
         };
 
   return year >= YEAR2021
