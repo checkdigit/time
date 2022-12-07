@@ -27,7 +27,6 @@
     "@checkdigit/prettier-config": "^3.1.0",
     "@checkdigit/typescript-config": "^3.2.0",
     "@js-temporal/polyfill": "^0.4.3",
-    "moment-business-days": "^1.2.0",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1"
   },

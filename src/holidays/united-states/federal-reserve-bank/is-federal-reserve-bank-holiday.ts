@@ -3,11 +3,13 @@
 import { formatUtc } from '../../../index';
 
 import getAllFederalReserveBankHolidays from './get-all-federal-reserve-bank-holidays';
+import type { PlainDate } from './plain-date';
 
 const DAY_OF_THE_WEEK_SUNDAY = 0;
 const DAY_OF_THE_WEEK_SATURDAY = 6;
 
-export default function (date: Date): boolean {
+export default function (plainDate: PlainDate): boolean {
+  const date = new Date(plainDate.year, plainDate.month, plainDate.date);
   const year = date.getUTCFullYear();
   const day = date.getUTCDay();
   const allUsFederalReserveBankHolidays = getAllFederalReserveBankHolidays(year);
