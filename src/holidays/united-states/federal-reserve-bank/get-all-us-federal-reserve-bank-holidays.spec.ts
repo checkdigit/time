@@ -1,12 +1,12 @@
-// holidays/united-states/federal-reserve-bank/get-all-federal-reserve-bank-holidays.spec.ts
+// holidays/united-states/federal-reserve-bank/get-all-us-federal-reserve-bank-holidays.spec.ts
 
 import { strict as assert } from 'node:assert';
 
-import getAllFederalReserveHolidays from './get-all-federal-reserve-bank-holidays';
+import { getAllUSFederalReserveBankHolidays } from './index';
 
 describe('get-all-federal-reserve-bank-holidays', () => {
   it('works for 2022 based on the Federal Holidays outlined in https://www.federalreserve.gov/aboutthefed/k8.htm', () => {
-    assert.deepEqual(getAllFederalReserveHolidays(2022), [
+    assert.deepEqual(getAllUSFederalReserveBankHolidays(2022), [
       { name: `New Year's Day`, date: '2022-01-01' },
       { name: 'Birthday of Martin Luther King, Jr.', date: '2022-01-17' },
       { name: `Washington's Birthday`, date: '2022-02-21' },
@@ -22,7 +22,7 @@ describe('get-all-federal-reserve-bank-holidays', () => {
   });
 
   it('works for 2023 based on the Federal Holidays outlined in https://www.federalreserve.gov/aboutthefed/k8.htm', () => {
-    assert.deepEqual(getAllFederalReserveHolidays(2023), [
+    assert.deepEqual(getAllUSFederalReserveBankHolidays(2023), [
       { name: `New Year's Day`, date: '2023-01-01', observedOn: '2023-01-02' },
       { name: 'Birthday of Martin Luther King, Jr.', date: '2023-01-16' },
       { name: `Washington's Birthday`, date: '2023-02-20' },
@@ -38,7 +38,7 @@ describe('get-all-federal-reserve-bank-holidays', () => {
   });
 
   it('works for 2024 based on the Federal Holidays outlined in https://www.federalreserve.gov/aboutthefed/k8.htm', () => {
-    assert.deepEqual(getAllFederalReserveHolidays(2024), [
+    assert.deepEqual(getAllUSFederalReserveBankHolidays(2024), [
       { name: `New Year's Day`, date: '2024-01-01' },
       { name: 'Birthday of Martin Luther King, Jr.', date: '2024-01-15' },
       { name: `Washington's Birthday`, date: '2024-02-19' },
@@ -54,7 +54,7 @@ describe('get-all-federal-reserve-bank-holidays', () => {
   });
 
   it('works for 2025 based on the Federal Holidays outlined in https://www.federalreserve.gov/aboutthefed/k8.htm', () => {
-    assert.deepEqual(getAllFederalReserveHolidays(2025), [
+    assert.deepEqual(getAllUSFederalReserveBankHolidays(2025), [
       { name: `New Year's Day`, date: '2025-01-01' },
       { name: 'Birthday of Martin Luther King, Jr.', date: '2025-01-20' },
       { name: `Washington's Birthday`, date: '2025-02-17' },
@@ -70,7 +70,7 @@ describe('get-all-federal-reserve-bank-holidays', () => {
   });
 
   it('works for 2026 based on the Federal Holidays outlined in https://www.federalreserve.gov/aboutthefed/k8.htm', () => {
-    assert.deepEqual(getAllFederalReserveHolidays(2026), [
+    assert.deepEqual(getAllUSFederalReserveBankHolidays(2026), [
       { name: `New Year's Day`, date: '2026-01-01' },
       { name: 'Birthday of Martin Luther King, Jr.', date: '2026-01-19' },
       { name: `Washington's Birthday`, date: '2026-02-16' },

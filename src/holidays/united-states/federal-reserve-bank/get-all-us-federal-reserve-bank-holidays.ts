@@ -1,4 +1,4 @@
-// holidays/united-states/federal-reserve-bank/get-all-federal-reserve-bank-holidays.ts
+// holidays/united-states/federal-reserve-bank/get-all-us-federal-reserve-bank-holidays.ts
 
 import { formatUtc } from '../../../index';
 
@@ -58,6 +58,18 @@ function getNthOccurrenceOfDayOfTheWeekInMonth(nth: number, dayOfTheWeek: number
   return formatUtc(date, YYYY_MM_DD_FORMAT);
 }
 
+/**
+ * @name getAllUSFederalReserveBankHolidays
+ * @summary Get all US Federal Rserve Bank Holidays for the year
+ *
+ * @description
+ * US Federal Reserve Bank is closed on the holidays outlined in https://www.federalreserve.gov/aboutthefed/k8.htm.
+ * If a holiday falls on a Sunday, it's observed the following Monday.
+ * This function calculates all the US Federal Reserve Bank holidays for a given year.
+ *
+ * @param year - the year for which US Federal Bank Holidays should be calculated for
+ * @returns list of holiday name and actual or observed date of US Federal Reserve Bank holidays for the given year
+ */
 export default function (year: number): FederalReserveBankHoliday[] {
   const newYearsDay =
     new Date(year, MONTH_JANUARY, DATE_ONE).getUTCDay() === DAY_OF_THE_WEEK_SUNDAY
