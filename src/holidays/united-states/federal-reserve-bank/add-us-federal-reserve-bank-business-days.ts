@@ -19,18 +19,18 @@ export default function (plainDate: PlainDate, amount: number): PlainDate {
     throw new TypeError('Invalid Amount');
   }
 
-  const endDate = new Date(plainDate.year, plainDate.month, plainDate.date);
-  endDate.setUTCHours(0, 0, 0, 0);
+  const result = new Date(plainDate.year, plainDate.month, plainDate.date);
+  result.setUTCHours(0, 0, 0, 0);
 
   let count = 0;
   if (amount < 0) {
     while (count < -amount) {
-      endDate.setUTCDate(endDate.getUTCDate() - 1);
+      result.setUTCDate(result.getUTCDate() - 1);
       if (
         !isUSFederalReserveBankClosed({
-          year: endDate.getUTCFullYear(),
-          month: endDate.getUTCMonth(),
-          date: endDate.getUTCDate(),
+          year: result.getUTCFullYear(),
+          month: result.getUTCMonth(),
+          date: result.getUTCDate(),
         })
       ) {
         count++;
@@ -38,12 +38,12 @@ export default function (plainDate: PlainDate, amount: number): PlainDate {
     }
   } else {
     while (count < amount) {
-      endDate.setUTCDate(endDate.getUTCDate() + 1);
+      result.setUTCDate(result.getUTCDate() + 1);
       if (
         !isUSFederalReserveBankClosed({
-          year: endDate.getUTCFullYear(),
-          month: endDate.getUTCMonth(),
-          date: endDate.getUTCDate(),
+          year: result.getUTCFullYear(),
+          month: result.getUTCMonth(),
+          date: result.getUTCDate(),
         })
       ) {
         count++;
@@ -52,8 +52,8 @@ export default function (plainDate: PlainDate, amount: number): PlainDate {
   }
 
   return {
-    year: endDate.getUTCFullYear(),
-    month: endDate.getUTCMonth(),
-    date: endDate.getUTCDate(),
+    year: result.getUTCFullYear(),
+    month: result.getUTCMonth(),
+    date: result.getUTCDate(),
   };
 }

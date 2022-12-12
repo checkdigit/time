@@ -23,14 +23,14 @@ export default function (plainDate: PlainDate): boolean {
   const date = new Date(plainDate.year, plainDate.month, plainDate.date);
   const year = date.getUTCFullYear();
   const day = date.getUTCDay();
-  const allUsFederalReserveBankHolidays = getAllUSFederalReserveBankHolidays(year);
+  const formattedDate = formatUtc(date, 'yyyy-MM-dd');
+  const allUSFederalReserveBankHolidays = getAllUSFederalReserveBankHolidays(year);
 
   return (
     day === DAY_OF_THE_WEEK_SATURDAY ||
     day === DAY_OF_THE_WEEK_SUNDAY ||
-    allUsFederalReserveBankHolidays.some(
-      (holiday) =>
-        holiday.date === formatUtc(date, 'yyyy-MM-dd') || holiday.observedOn === formatUtc(date, 'yyyy-MM-dd')
+    allUSFederalReserveBankHolidays.some(
+      (holiday) => holiday.date === formattedDate || holiday.observedOn === formattedDate
     )
   );
 }
