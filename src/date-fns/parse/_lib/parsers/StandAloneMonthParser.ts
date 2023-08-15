@@ -23,7 +23,7 @@ export class StandAloneMonthParser extends Parser<number> {
           match.ordinalNumber(dateString, {
             unit: 'month',
           }),
-          valueCallback
+          valueCallback,
         );
       // Jan, Feb, ..., Dec
       case 'LLL':

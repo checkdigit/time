@@ -12,7 +12,7 @@ export default function newDateUTC(
   hour: number,
   minute: number,
   second: number,
-  millisecond: number
+  millisecond: number,
 ) {
   const utcDate = new Date(0);
   utcDate.setUTCFullYear(fullYear, month, day);

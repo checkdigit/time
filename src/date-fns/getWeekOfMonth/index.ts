@@ -28,7 +28,7 @@ export interface GetWeekOfMonthOptions extends LocaleOptions, WeekStartOptions {
  */
 export default function getWeekOfMonth<DateType extends Date>(
   date: DateType | number,
-  options?: GetWeekOfMonthOptions
+  options?: GetWeekOfMonthOptions,
 ): number {
   const defaultOptions = getDefaultOptions();
   const weekStartsOn =

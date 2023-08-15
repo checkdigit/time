@@ -29,7 +29,7 @@ import type { Interval } from '../types';
  */
 export default function clamp<DateType extends Date>(
   date: DateType | number,
-  { start, end }: Interval
+  { start, end }: Interval,
 ): DateType | Date {
   return min([max([date, start]), end]);
 }

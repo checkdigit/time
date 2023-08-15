@@ -64,7 +64,7 @@ export interface AreIntervalsOverlappingOptions {
 export default function areIntervalsOverlapping(
   intervalLeft: Interval,
   intervalRight: Interval,
-  options?: AreIntervalsOverlappingOptions
+  options?: AreIntervalsOverlappingOptions,
 ): boolean {
   const leftStartTime = toDate(intervalLeft.start).getTime();
   const leftEndTime = toDate(intervalLeft.end).getTime();

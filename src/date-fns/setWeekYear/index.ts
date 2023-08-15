@@ -48,7 +48,7 @@ export interface SetWeekYearOptions extends LocaleOptions, WeekStartOptions, Fir
 export default function setWeekYear<DateType extends Date>(
   dirtyDate: DateType | number,
   weekYear: number,
-  options?: SetWeekYearOptions
+  options?: SetWeekYearOptions,
 ): DateType {
   const defaultOptions = getDefaultOptions();
   const firstWeekContainsDate =

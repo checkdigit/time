@@ -41,7 +41,7 @@ export interface EachWeekOfIntervalOptions extends WeekStartOptions, LocaleOptio
  */
 export default function eachWeekOfInterval<DateType extends Date>(
   interval: Interval<DateType>,
-  options?: EachWeekOfIntervalOptions
+  options?: EachWeekOfIntervalOptions,
 ): DateType[] {
   const startDate = toDate(interval.start);
   const endDate = toDate(interval.end);

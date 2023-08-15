@@ -24,7 +24,7 @@ import getISOWeekYear from '../getISOWeekYear/index';
  */
 export default function differenceInCalendarISOWeekYears<DateType extends Date>(
   dirtyDateLeft: DateType | number,
-  dirtyDateRight: DateType | number
+  dirtyDateRight: DateType | number,
 ): number {
   return getISOWeekYear(dirtyDateLeft) - getISOWeekYear(dirtyDateRight);
 }

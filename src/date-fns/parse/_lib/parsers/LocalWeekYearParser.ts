@@ -24,7 +24,7 @@ export class LocalWeekYearParser extends Parser<YearParserValue> {
           match.ordinalNumber(dateString, {
             unit: 'year',
           }),
-          valueCallback
+          valueCallback,
         );
       default:
         return mapValue(parseNDigits(token.length, dateString), valueCallback);
@@ -39,7 +39,7 @@ export class LocalWeekYearParser extends Parser<YearParserValue> {
     date: DateType,
     flags: ParseFlags,
     value: YearParserValue,
-    options: ParserOptions
+    options: ParserOptions,
   ): DateType {
     const currentYear = getWeekYear(date, options);
 

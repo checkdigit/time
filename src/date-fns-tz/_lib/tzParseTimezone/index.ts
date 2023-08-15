@@ -78,7 +78,7 @@ function toUtcDate(date: Date) {
     date.getHours(),
     date.getMinutes(),
     date.getSeconds(),
-    date.getMilliseconds()
+    date.getMilliseconds(),
   );
 }
 
@@ -93,7 +93,7 @@ function calcOffset(date: Date, timezoneString: string) {
     (tokens[3] as number) % 24,
     tokens[4] as number,
     tokens[5] as number,
-    0
+    0,
   ).getTime();
 
   let asTS = date.getTime();

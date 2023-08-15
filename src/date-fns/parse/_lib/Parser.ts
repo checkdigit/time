@@ -11,7 +11,7 @@ export abstract class Parser<Value> {
     dateString: string,
     token: string,
     match: Match,
-    options: ParserOptions
+    options: ParserOptions,
   ): { setter: ValueSetter<Value>; rest: string } | null {
     const result = this.parse(dateString, token, match, options);
     if (!result) {
@@ -34,6 +34,6 @@ export abstract class Parser<Value> {
     date: DateType,
     flags: ParseFlags,
     value: Value,
-    options: ParserOptions
+    options: ParserOptions,
   ): DateType | [DateType, ParseFlags];
 }

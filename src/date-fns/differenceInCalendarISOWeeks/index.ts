@@ -26,7 +26,7 @@ import getTimezoneOffsetInMilliseconds from '../_lib/getTimezoneOffsetInMillisec
  */
 export default function differenceInCalendarISOWeeks<DateType extends Date>(
   dirtyDateLeft: DateType | number,
-  dirtyDateRight: DateType | number
+  dirtyDateRight: DateType | number,
 ): number {
   const startOfISOWeekLeft = startOfISOWeek(dirtyDateLeft);
   const startOfISOWeekRight = startOfISOWeek(dirtyDateRight);

@@ -76,7 +76,7 @@ export interface FormatDistanceToNowStrictOptions extends FormatDistanceStrictOp
  */
 export default function formatDistanceToNowStrict<DateType extends Date>(
   dirtyDate: DateType | number,
-  options?: FormatDistanceToNowStrictOptions
+  options?: FormatDistanceToNowStrictOptions,
 ): string {
   return formatDistanceStrict(dirtyDate, Date.now(), options);
 }

@@ -16,7 +16,7 @@ describe('date-fns', () => {
         minutes: 9,
         seconds: 30,
       }).toISOString(),
-      '2017-06-15T19:29:20.000Z'
+      '2017-06-15T19:29:20.000Z',
     );
   });
 });

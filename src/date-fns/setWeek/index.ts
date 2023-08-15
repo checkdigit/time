@@ -44,7 +44,7 @@ export interface SetWeekOptions extends LocaleOptions, WeekStartOptions, FirstWe
 export default function setWeek<DateType extends Date>(
   dirtyDate: DateType | number,
   week: number,
-  options?: SetWeekOptions
+  options?: SetWeekOptions,
 ): DateType {
   const date = toDate(dirtyDate);
   const diff = getWeek(date, options) - week;

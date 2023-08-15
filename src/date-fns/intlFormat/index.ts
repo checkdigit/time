@@ -11,7 +11,7 @@ export default function intlFormat<DateType extends Date>(date: DateType, format
 export default function intlFormat<DateType extends Date>(
   date: DateType,
   formatOptions: FormatOptions,
-  localeOptions: LocaleOptions
+  localeOptions: LocaleOptions,
 ): string;
 
 /**
@@ -86,7 +86,7 @@ export default function intlFormat<DateType extends Date>(
 export default function intlFormat<DateType extends Date>(
   date: DateType,
   formatOrLocale?: FormatOptions | LocaleOptions,
-  localeOptions?: LocaleOptions
+  localeOptions?: LocaleOptions,
 ): string {
   let formatOptions: FormatOptions | undefined;
 

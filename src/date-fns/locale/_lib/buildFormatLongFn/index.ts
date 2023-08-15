@@ -6,7 +6,7 @@ export interface BuildFormatLongFnArgs<DefaultMatchWidth extends FormatLongWidth
 }
 
 export default function buildFormatLongFn<DefaultMatchWidth extends FormatLongWidth>(
-  args: BuildFormatLongFnArgs<DefaultMatchWidth>
+  args: BuildFormatLongFnArgs<DefaultMatchWidth>,
 ): FormatLongFn {
   return (options = {}) => {
     // TODO: Remove String()

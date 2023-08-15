@@ -30,7 +30,7 @@ export default function (plainDate: PlainDate): boolean {
     day === DAY_OF_THE_WEEK_SATURDAY ||
     day === DAY_OF_THE_WEEK_SUNDAY ||
     allUSFederalReserveBankHolidays.some(
-      (holiday) => holiday.date === formattedDate || holiday.observedOn === formattedDate
+      (holiday) => holiday.date === formattedDate || holiday.observedOn === formattedDate,
     )
   );
 }

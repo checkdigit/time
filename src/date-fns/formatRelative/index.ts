@@ -46,7 +46,7 @@ export interface FormatRelativeOptions extends LocaleOptions, WeekStartOptions {
 export default function formatRelative<DateType extends Date>(
   dirtyDate: DateType | number,
   dirtyBaseDate: DateType | number,
-  options?: FormatRelativeOptions
+  options?: FormatRelativeOptions,
 ): string {
   const date = toDate(dirtyDate);
   const baseDate = toDate(dirtyBaseDate);

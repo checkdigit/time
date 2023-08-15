@@ -12,7 +12,7 @@ export interface GenericDateConstructor<DateType> {
     hours?: number,
     minutes?: number,
     seconds?: number,
-    ms?: number
+    ms?: number,
   ): DateType;
 }
 

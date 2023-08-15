@@ -39,7 +39,7 @@ export class ISODayParser extends Parser<number> {
               width: 'narrow',
               context: 'formatting',
             }),
-          valueCallback
+          valueCallback,
         );
       // T
       case 'iiiii':
@@ -48,7 +48,7 @@ export class ISODayParser extends Parser<number> {
             width: 'narrow',
             context: 'formatting',
           }),
-          valueCallback
+          valueCallback,
         );
       // Tu
       case 'iiiiii':
@@ -61,7 +61,7 @@ export class ISODayParser extends Parser<number> {
               width: 'narrow',
               context: 'formatting',
             }),
-          valueCallback
+          valueCallback,
         );
       // Tuesday
       case 'iiii':
@@ -83,7 +83,7 @@ export class ISODayParser extends Parser<number> {
               width: 'narrow',
               context: 'formatting',
             }),
-          valueCallback
+          valueCallback,
         );
     }
   }

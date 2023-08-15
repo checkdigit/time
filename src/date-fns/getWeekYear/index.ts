@@ -44,7 +44,7 @@ export interface GetWeekYearOptions extends LocaleOptions, WeekStartOptions, Fir
  */
 export default function getWeekYear<DateType extends Date>(
   dirtyDate: DateType | number,
-  options?: GetWeekYearOptions
+  options?: GetWeekYearOptions,
 ): number {
   const date = toDate(dirtyDate);
   const year = date.getFullYear();

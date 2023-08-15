@@ -33,7 +33,7 @@ import getTimezoneOffsetInMilliseconds from '../_lib/getTimezoneOffsetInMillisec
  */
 export default function differenceInCalendarDays<DateType extends Date>(
   dirtyDateLeft: DateType | number,
-  dirtyDateRight: DateType | number
+  dirtyDateRight: DateType | number,
 ): number {
   const startOfDayLeft = startOfDay(dirtyDateLeft);
   const startOfDayRight = startOfDay(dirtyDateRight);

@@ -8,7 +8,7 @@ import type { Locale } from '../../../date-fns/locale/types';
 export default function tzIntlTimeZoneName(
   length: 'short' | 'long' | 'shortOffset' | 'longOffset' | 'shortGeneric' | 'longGeneric',
   date: Date,
-  options: { timeZone: string; locale?: Locale }
+  options: { timeZone: string; locale?: Locale },
 ) {
   const dtf = getDTF(length, options.timeZone, options.locale);
   return partsTimeZone(dtf, date);
@@ -29,11 +29,11 @@ function partsTimeZone(dtf: Intl.DateTimeFormat, date: Date) {
 function getDTF(
   length: 'short' | 'long' | 'shortOffset' | 'longOffset' | 'shortGeneric' | 'longGeneric',
   timeZone: string,
-  locale?: Locale
+  locale?: Locale,
 ): Intl.DateTimeFormat {
   if (locale && !locale.code) {
     throw new Error(
-      "date-fns-tz error: Please set a language code on the locale object imported from date-fns, e.g. `locale.code = 'en-US'`"
+      "date-fns-tz error: Please set a language code on the locale object imported from date-fns, e.g. `locale.code = 'en-US'`",
     );
   }
   return new Intl.DateTimeFormat(locale ? [locale.code, 'en-US'] : undefined, {

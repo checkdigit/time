@@ -25,7 +25,7 @@ import toDate from '../toDate/index';
  */
 export default function closestIndexTo<DateType extends Date>(
   dirtyDateToCompare: DateType | number,
-  datesArray: Array<DateType | number>
+  datesArray: Array<DateType | number>,
 ): number | undefined {
   const dateToCompare = toDate(dirtyDateToCompare);
 

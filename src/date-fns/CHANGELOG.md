@@ -1028,7 +1028,7 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
     new Date(2014, 0, 10),
     new Date(2014, 0, 20),
     new Date(2014, 0, 17),
-    new Date(2014, 0, 21)
+    new Date(2014, 0, 21),
   );
 
   isWithinRange(new Date(2014, 0, 3), new Date(2014, 0, 1), new Date(2014, 0, 7));
@@ -1037,7 +1037,7 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
 
   areIntervalsOverlapping(
     { start: new Date(2014, 0, 10), end: new Date(2014, 0, 20) },
-    { start: new Date(2014, 0, 17), end: new Date(2014, 0, 21) }
+    { start: new Date(2014, 0, 17), end: new Date(2014, 0, 21) },
   );
 
   eachDayOfInterval({
@@ -1047,7 +1047,7 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
 
   getOverlappingDaysInIntervals(
     { start: new Date(2014, 0, 10), end: new Date(2014, 0, 20) },
-    { start: new Date(2014, 0, 17), end: new Date(2014, 0, 21) }
+    { start: new Date(2014, 0, 17), end: new Date(2014, 0, 21) },
   );
 
   isWithinInterval(new Date(2014, 0, 3), {

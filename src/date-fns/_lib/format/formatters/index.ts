@@ -33,7 +33,7 @@ type Formatter = (
   localize: Localize,
   options: Required<LocaleOptions & WeekStartOptions & FirstWeekContainsDateOptions> & {
     _originalDate: Date;
-  }
+  },
 ) => string;
 
 /*

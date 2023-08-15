@@ -75,7 +75,7 @@ function compareLocalAsc<DateType extends Date>(dateLeft: DateType, dateRight: D
  */
 export default function differenceInDays<DateType extends Date>(
   dirtyDateLeft: DateType | number,
-  dirtyDateRight: DateType | number
+  dirtyDateRight: DateType | number,
 ): number {
   const dateLeft = toDate(dirtyDateLeft);
   const dateRight = toDate(dirtyDateRight);

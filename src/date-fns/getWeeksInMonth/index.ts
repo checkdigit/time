@@ -33,7 +33,7 @@ export interface GetWeeksInMonthOptions extends LocaleOptions, WeekStartOptions 
  */
 export default function getWeeksInMonth<DateType extends Date>(
   date: DateType | number,
-  options?: GetWeeksInMonthOptions
+  options?: GetWeeksInMonthOptions,
 ): number {
   return differenceInCalendarWeeks(lastDayOfMonth(date), startOfMonth(date), options) + 1;
 }

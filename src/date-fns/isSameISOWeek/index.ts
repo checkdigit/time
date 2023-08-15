@@ -26,7 +26,7 @@ import isSameWeek from '../isSameWeek/index';
  */
 export default function isSameISOWeek<DateType extends Date>(
   dirtyDateLeft: DateType | number,
-  dirtyDateRight: DateType | number
+  dirtyDateRight: DateType | number,
 ): boolean {
   return isSameWeek(dirtyDateLeft, dirtyDateRight, { weekStartsOn: 1 });
 }

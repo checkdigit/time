@@ -59,14 +59,23 @@ export class Instant {
   }
 
   get epochSeconds(): number {
+    if (this.nanoseconds < 0 && this.nanoseconds % BigInt(BILLION) !== 0n) {
+      return Number(this.nanoseconds / BigInt(BILLION)) - 1;
+    }
     return Number(this.nanoseconds / BigInt(BILLION));
   }
 
   get epochMilliseconds(): number {
+    if (this.nanoseconds < 0 && this.nanoseconds % BigInt(MILLION) !== 0n) {
+      return Number(this.nanoseconds / BigInt(MILLION)) - 1;
+    }
     return Number(this.nanoseconds / BigInt(MILLION));
   }
 
   get epochMicroseconds(): bigint {
+    if (this.nanoseconds < 0 && this.nanoseconds % BigInt(THOUSAND) !== 0n) {
+      return this.nanoseconds / BigInt(THOUSAND) - 1n;
+    }
     return this.nanoseconds / BigInt(THOUSAND);
   }
 
@@ -96,7 +105,7 @@ export class Instant {
     const second = item.getUTCSeconds();
 
     let fraction = `${millisecond * MILLION + microsecond * THOUSAND + nanosecond}`.padStart(BILLION_DIGITS, '0');
-    while (fraction[fraction.length - 1] === '0') {
+    while (fraction.endsWith('0')) {
       fraction = fraction.slice(0, -1);
     }
     if (fraction.length > 0) {

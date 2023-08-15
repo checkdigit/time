@@ -30,7 +30,7 @@ import startOfMinute from '../startOfMinute/index';
  */
 export default function isSameMinute<DateType extends Date>(
   dirtyDateLeft: DateType | number,
-  dirtyDateRight: DateType | number
+  dirtyDateRight: DateType | number,
 ): boolean {
   const dateLeftStartOfMinute = startOfMinute(dirtyDateLeft);
   const dateRightStartOfMinute = startOfMinute(dirtyDateRight);

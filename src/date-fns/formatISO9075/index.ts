@@ -43,7 +43,7 @@ export interface FormatISO9075Options extends FormatOptions, RepresentationOptio
  */
 export default function formatISO9075<DateType extends Date>(
   dirtyDate: DateType | number,
-  options?: FormatISO9075Options
+  options?: FormatISO9075Options,
 ): string {
   const originalDate = toDate(dirtyDate);
 

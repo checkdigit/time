@@ -29,7 +29,7 @@ import startOfDay from '../startOfDay/index';
  */
 export default function isSameDay<DateType extends Date>(
   dirtyDateLeft: DateType | number,
-  dirtyDateRight: DateType | number
+  dirtyDateRight: DateType | number,
 ): boolean {
   const dateLeftStartOfDay = startOfDay(dirtyDateLeft);
   const dateRightStartOfDay = startOfDay(dirtyDateRight);

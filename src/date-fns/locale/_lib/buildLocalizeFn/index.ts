@@ -19,7 +19,7 @@ type LocalizeMonthValues = readonly [
   string,
   string,
   string,
-  string
+  string,
 ];
 
 export type LocalizeUnitValuesIndex<Values extends LocalizeUnitValues<any>> = Values extends Record<
@@ -54,12 +54,12 @@ export type LocalizePeriodValuesMap<Unit extends LocaleUnit> = {
 };
 
 export type BuildLocalizeFnArgCallback<Result extends LocaleUnit | number> = (
-  value: Result
+  value: Result,
 ) => LocalizeUnitIndex<Result>;
 
 export type BuildLocalizeFnArgs<
   Result extends LocaleUnit,
-  ArgCallback extends BuildLocalizeFnArgCallback<Result> | undefined
+  ArgCallback extends BuildLocalizeFnArgCallback<Result> | undefined,
 > = {
   values: LocalizePeriodValuesMap<Result>;
   defaultWidth: LocalePatternWidth;
@@ -71,7 +71,7 @@ export type BuildLocalizeFnArgs<
 
 export default function buildLocalizeFn<
   Result extends LocaleUnit,
-  ArgCallback extends BuildLocalizeFnArgCallback<Result> | undefined
+  ArgCallback extends BuildLocalizeFnArgCallback<Result> | undefined,
 >(args: BuildLocalizeFnArgs<Result, ArgCallback>): LocalizeFn<Result, ArgCallback> {
   return (dirtyIndex, options) => {
     const context = options?.context ? String(options.context) : 'standalone';

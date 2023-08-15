@@ -39,7 +39,7 @@ export interface FormatRFC3339Options {
  */
 export default function formatRFC3339<DateType extends Date>(
   dirtyDate: DateType | number,
-  options?: FormatRFC3339Options
+  options?: FormatRFC3339Options,
 ): string {
   const originalDate = toDate(dirtyDate);
 

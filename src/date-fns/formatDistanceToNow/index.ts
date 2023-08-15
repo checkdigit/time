@@ -89,7 +89,7 @@ export interface FormatDistanceToNowOptions extends FormatDistanceOptions {}
  */
 export default function formatDistanceToNow<DateType extends Date>(
   dirtyDate: DateType | number,
-  options?: FormatDistanceToNowOptions
+  options?: FormatDistanceToNowOptions,
 ): string {
   return distanceInWords(dirtyDate, Date.now(), options);
 }

@@ -9,7 +9,7 @@ const formatters = {
     date: Date,
     token: string,
     _localize: boolean | null,
-    options: { timeZone: string; _originalDate?: Date }
+    options: { timeZone: string; _originalDate?: Date },
   ) {
     const timezoneOffset = getTimeZoneOffset(options.timeZone, options._originalDate || date);
 
@@ -44,7 +44,7 @@ const formatters = {
     date: Date,
     token: string,
     _localize: boolean | null,
-    options: { timeZone: string; _originalDate?: Date }
+    options: { timeZone: string; _originalDate?: Date },
   ) {
     const timezoneOffset = getTimeZoneOffset(options.timeZone, options._originalDate || date);
 
@@ -75,7 +75,7 @@ const formatters = {
     date: Date,
     token: string,
     _localize: boolean | null,
-    options: { timeZone: string; _originalDate?: Date }
+    options: { timeZone: string; _originalDate?: Date },
   ) {
     const timezoneOffset = getTimeZoneOffset(options.timeZone, options._originalDate || date);
 
@@ -97,7 +97,7 @@ const formatters = {
     date: Date,
     token: string,
     _localize: boolean | null,
-    options: { timeZone: string; _originalDate?: Date }
+    options: { timeZone: string; _originalDate?: Date },
   ) {
     const originalDate = options._originalDate || date;
 

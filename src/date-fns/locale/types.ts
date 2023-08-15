@@ -57,7 +57,7 @@ export type FormatDistanceFn = (token: FormatDistanceToken, count: number, optio
 export type FormatRelativeTokenFn = <DateType extends Date>(
   date: DateType | number,
   baseDate: DateType | number,
-  options?: { weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6 }
+  options?: { weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6 },
 ) => string;
 
 export type FormatRelativeToken = 'lastWeek' | 'yesterday' | 'today' | 'tomorrow' | 'nextWeek' | 'other';
@@ -71,7 +71,7 @@ export type FormatRelativeFn = <DateType extends Date>(
   token: FormatRelativeToken,
   date: DateType,
   baseDate: DateType,
-  options?: FormatRelativeFnOptions
+  options?: FormatRelativeFnOptions,
 ) => string;
 
 // TODO: You're real champion if you're actually get back to it. Proud of you!
@@ -83,14 +83,14 @@ export type LocalizeUnitIndex<Unit extends LocaleUnit | number> = Unit extends L
 
 export type LocalizeFn<
   Result extends LocaleUnit | number,
-  ArgCallback extends BuildLocalizeFnArgCallback<Result> | undefined = undefined
+  ArgCallback extends BuildLocalizeFnArgCallback<Result> | undefined = undefined,
 > = (
   value: ArgCallback extends undefined ? Result : Result extends Quarter ? Quarter : LocalizeUnitIndex<Result>,
   options?: {
     width?: LocalePatternWidth;
     context?: 'formatting' | 'standalone';
     unit?: Unit;
-  }
+  },
 ) => string;
 
 export interface Localize {
@@ -105,7 +105,7 @@ export interface Localize {
 export interface BuildMatchFnArgs<
   Result extends LocaleUnit,
   DefaultMatchWidth extends LocalePatternWidth,
-  DefaultParseWidth extends LocalePatternWidth
+  DefaultParseWidth extends LocalePatternWidth,
 > {
   matchPatterns: MatchPatterns<DefaultMatchWidth>;
   defaultMatchWidth: DefaultMatchWidth;
@@ -137,7 +137,7 @@ export type ParsePattern<Result extends LocaleUnit> = Result extends LocaleDayPe
 export type BuildMatchFn<
   Result extends LocaleUnit,
   DefaultMatchWidth extends LocalePatternWidth,
-  DefaultParseWidth extends LocalePatternWidth
+  DefaultParseWidth extends LocalePatternWidth,
 > = (args: BuildMatchFnArgs<Result, DefaultMatchWidth, DefaultParseWidth>) => MatchFn<Result>;
 
 export type MatchFn<Result, ExtraOptions = Record<string, unknown>> = (
@@ -153,7 +153,7 @@ export type MatchFn<Result, ExtraOptions = Record<string, unknown>> = (
      * }
      */
     valueCallback?: MatchValueCallback<string, Result>;
-  } & ExtraOptions
+  } & ExtraOptions,
 ) => { value: Result; rest: string } | null;
 
 export type MatchValueCallback<Arg, Result> = (value: Arg) => Result;

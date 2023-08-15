@@ -44,7 +44,7 @@ export interface StartOfWeekYearOptions extends LocaleOptions, FirstWeekContains
  */
 export default function startOfWeekYear<DateType extends Date>(
   dirtyDate: DateType | number,
-  options?: StartOfWeekYearOptions
+  options?: StartOfWeekYearOptions,
 ): DateType {
   const defaultOptions = getDefaultOptions();
   const firstWeekContainsDate =

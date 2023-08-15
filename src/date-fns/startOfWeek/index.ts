@@ -32,7 +32,7 @@ export interface StartOfWeekOptions extends LocaleOptions, WeekStartOptions {}
  */
 export default function startOfWeek<DateType extends Date>(
   dirtyDate: DateType | number,
-  options?: StartOfWeekOptions
+  options?: StartOfWeekOptions,
 ): DateType {
   const defaultOptions = getDefaultOptions();
   const weekStartsOn =

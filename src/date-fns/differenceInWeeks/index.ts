@@ -49,7 +49,7 @@ export interface DifferenceInWeeksOptions extends RoundingOptions {}
 export default function differenceInWeeks<DateType extends Date>(
   dateLeft: DateType | number,
   dateRight: DateType | number,
-  options?: DifferenceInWeeksOptions
+  options?: DifferenceInWeeksOptions,
 ): number {
   const diff = differenceInDays(dateLeft, dateRight) / 7;
   return getRoundingMethod(options?.roundingMethod)(diff);

@@ -32,7 +32,7 @@ export interface DifferenceInHoursOptions extends RoundingOptions {}
 export default function differenceInHours<DateType extends Date>(
   dateLeft: DateType | number,
   dateRight: DateType | number,
-  options?: DifferenceInHoursOptions
+  options?: DifferenceInHoursOptions,
 ): number {
   const diff = differenceInMilliseconds(dateLeft, dateRight) / millisecondsInHour;
   return getRoundingMethod(options?.roundingMethod)(diff);

@@ -127,7 +127,7 @@ export interface IntlFormatDistanceOptions {
 export default function intlFormatDistance(
   date: Date | number,
   baseDate: Date | number,
-  options?: IntlFormatDistanceOptions
+  options?: IntlFormatDistanceOptions,
 ): string {
   let value: number = 0;
   let unit: Intl.RelativeTimeFormatUnit;

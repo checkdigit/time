@@ -10,13 +10,13 @@ describe('date-fns-tz', () => {
       tzFormat(tzUtcToZonedTime(new Date('Tue Sep 13 2022 13:38:00 GMT-0400'), 'UTC'), 'yyyy-MM-dd', {
         timeZone: 'UTC',
       }),
-      '2022-09-13'
+      '2022-09-13',
     );
     assert.equal(
       tzFormat(tzUtcToZonedTime(new Date('Tue Sep 13 2022 13:38:00 GMT-0400'), 'UTC'), 'yyyy-MM-dd-hh-mm-ss', {
         timeZone: 'UTC',
       }),
-      '2022-09-13-05-38-00'
+      '2022-09-13-05-38-00',
     );
   });
 });

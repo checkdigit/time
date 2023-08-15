@@ -38,7 +38,7 @@ export interface EachMinuteOfIntervalOptions extends StepOptions {}
  */
 export default function eachMinuteOfInterval<DateType extends Date>(
   interval: Interval<DateType>,
-  options?: EachMinuteOfIntervalOptions
+  options?: EachMinuteOfIntervalOptions,
 ): DateType[] {
   const startDate = startOfMinute(toDate(interval.start));
   const endDate = toDate(interval.end);

@@ -34,7 +34,7 @@ export class YearParser extends Parser<YearParserValue> {
           match.ordinalNumber(dateString, {
             unit: 'year',
           }),
-          valueCallback
+          valueCallback,
         );
       default:
         return mapValue(parseNDigits(token.length, dateString), valueCallback);

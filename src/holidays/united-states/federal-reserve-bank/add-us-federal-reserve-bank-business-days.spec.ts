@@ -8,7 +8,7 @@ describe('add-federal-reserve-bank-business-days', () => {
   it('throws error when amount is NaN', () => {
     assert.throws(
       () => addUSFederalReserveBankBusinessDays({ year: 2022, month: 10, date: 13 }, Number.NaN),
-      TypeError
+      TypeError,
     );
   });
 
