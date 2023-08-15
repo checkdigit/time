@@ -15,7 +15,7 @@ export abstract class Setter {
   public abstract set<DateType extends Date>(
     utcDate: DateType,
     flags: ParseFlags,
-    options: ParserOptions
+    options: ParserOptions,
   ): DateType | [DateType, ParseFlags];
 }
 
@@ -29,10 +29,10 @@ export class ValueSetter<Value> extends Setter {
       utcDate: DateType,
       flags: ParseFlags,
       value: Value,
-      options: ParserOptions
+      options: ParserOptions,
     ) => DateType | [DateType, ParseFlags],
     public priority: number,
-    subPriority?: number
+    subPriority?: number,
   ) {
     super();
     if (subPriority) {
@@ -47,7 +47,7 @@ export class ValueSetter<Value> extends Setter {
   set<DateType extends Date>(
     date: DateType,
     flags: ParseFlags,
-    options: ParserOptions
+    options: ParserOptions,
   ): DateType | [DateType, ParseFlags] {
     return this.setValue(date, flags, this.value, options);
   }

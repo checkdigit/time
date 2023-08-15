@@ -37,7 +37,7 @@ export interface EachHourOfIntervalOptions extends StepOptions {}
  */
 export default function eachHourOfInterval<DateType extends Date>(
   interval: Interval<DateType>,
-  options?: EachHourOfIntervalOptions
+  options?: EachHourOfIntervalOptions,
 ): DateType[] {
   const startDate = toDate(interval.start);
   const endDate = toDate(interval.end);

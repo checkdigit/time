@@ -29,7 +29,7 @@ import type { OptionsWithTZ } from '../types';
 export default function utcToZonedTime(
   dirtyDate: Date | string | number,
   timeZone: string,
-  options?: OptionsWithTZ
+  options?: OptionsWithTZ,
 ): Date {
   const date = toDate(dirtyDate, options);
 

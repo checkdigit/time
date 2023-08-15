@@ -97,7 +97,7 @@ export interface FormatDistanceStrictOptions extends LocaleOptions {
 export default function formatDistanceStrict<DateType extends Date>(
   dirtyDate: DateType | number,
   dirtyBaseDate: DateType | number,
-  options?: FormatDistanceStrictOptions
+  options?: FormatDistanceStrictOptions,
 ): string {
   const defaultOptions = getDefaultOptions();
   const locale = options?.locale ?? defaultOptions.locale ?? defaultLocale;

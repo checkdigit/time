@@ -37,7 +37,7 @@ export interface EachDayOfIntervalOptions extends StepOptions {}
  */
 export default function eachDayOfInterval<DateType extends Date>(
   interval: Interval<DateType>,
-  options?: EachDayOfIntervalOptions
+  options?: EachDayOfIntervalOptions,
 ): DateType[] {
   const startDate = toDate(interval.start);
   const endDate = toDate(interval.end);

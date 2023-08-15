@@ -34,7 +34,7 @@ export interface SetDayOptions extends LocaleOptions, WeekStartOptions {}
 export default function setDay<DateType extends Date>(
   dirtyDate: DateType | number,
   day: number,
-  options?: SetDayOptions
+  options?: SetDayOptions,
 ): DateType {
   const defaultOptions = getDefaultOptions();
   const weekStartsOn =

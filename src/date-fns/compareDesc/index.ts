@@ -33,7 +33,7 @@ import toDate from '../toDate/index';
  */
 export default function compareDesc<DateType extends Date>(
   dirtyDateLeft: DateType | number,
-  dirtyDateRight: DateType | number
+  dirtyDateRight: DateType | number,
 ): number {
   const dateLeft = toDate(dirtyDateLeft);
   const dateRight = toDate(dirtyDateRight);

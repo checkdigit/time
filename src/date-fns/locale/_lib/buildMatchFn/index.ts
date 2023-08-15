@@ -3,7 +3,7 @@ import type { BuildMatchFnArgs, LocaleDayPeriod, LocaleUnit, LocalePatternWidth,
 export default function buildMatchFn<
   Result extends LocaleUnit,
   DefaultMatchWidth extends LocalePatternWidth,
-  DefaultParseWidth extends LocalePatternWidth
+  DefaultParseWidth extends LocalePatternWidth,
 >(args: BuildMatchFnArgs<Result, DefaultMatchWidth, DefaultParseWidth>): MatchFn<Result> {
   return (string, options = {}) => {
     const width = options.width;
@@ -37,7 +37,7 @@ export default function buildMatchFn<
 
 function findKey<Value, Obj extends { [key in string | number]: Value }>(
   object: Obj,
-  predicate: (value: Value) => boolean
+  predicate: (value: Value) => boolean,
 ): keyof Obj | undefined {
   for (const key in object) {
     if (object.hasOwnProperty(key) && predicate(object[key] as Value)) {

@@ -343,7 +343,7 @@ export default function parse<DateType extends Date>(
   dateString: string,
   formatString: string,
   dirtyReferenceDate: DateType | number,
-  options?: ParseOptions
+  options?: ParseOptions,
 ): DateType {
   const defaultOptions = getDefaultOptions();
   const locale = options?.locale ?? defaultOptions.locale ?? defaultLocale;
@@ -412,11 +412,11 @@ export default function parse<DateType extends Date>(
       const { incompatibleTokens } = parser;
       if (Array.isArray(incompatibleTokens)) {
         const incompatibleToken = usedTokens.find(
-          (usedToken) => incompatibleTokens.includes(usedToken.token) || usedToken.token === firstCharacter
+          (usedToken) => incompatibleTokens.includes(usedToken.token) || usedToken.token === firstCharacter,
         );
         if (incompatibleToken) {
           throw new RangeError(
-            `The format string mustn't contain \`${incompatibleToken.fullToken}\` and \`${token}\` at the same time`
+            `The format string mustn't contain \`${incompatibleToken.fullToken}\` and \`${token}\` at the same time`,
           );
         }
       } else if (parser.incompatibleTokens === '*' && usedTokens.length > 0) {
@@ -465,7 +465,7 @@ export default function parse<DateType extends Date>(
     .sort((a, b) => b - a)
     .filter((priority, index, array) => array.indexOf(priority) === index)
     .map((priority) =>
-      setters.filter((setter) => setter.priority === priority).sort((a, b) => b.subPriority - a.subPriority)
+      setters.filter((setter) => setter.priority === priority).sort((a, b) => b.subPriority - a.subPriority),
     )
     .map((setterArray) => setterArray[0]);
 

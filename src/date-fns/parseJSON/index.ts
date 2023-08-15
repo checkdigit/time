@@ -33,7 +33,7 @@
  */
 export default function parseJSON(dateString: string): Date {
   const parts = dateString.match(
-    /(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2}):(\d{2})(?:\.(\d{0,7}))?(?:Z|(.)(\d{2}):?(\d{2})?)?/
+    /(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2}):(\d{2})(?:\.(\d{0,7}))?(?:Z|(.)(\d{2}):?(\d{2})?)?/,
   );
   if (parts) {
     // Group 8 matches the sign
@@ -45,8 +45,8 @@ export default function parseJSON(dateString: string): Date {
         +(parts[4] as string) - (+(parts[9] as string) || 0) * (parts[8] == '-' ? -1 : 1),
         +(parts[5] as string) - (+(parts[10] as string) || 0) * (parts[8] == '-' ? -1 : 1),
         +(parts[6] as string),
-        +((parts[7] || '0') + '00').substring(0, 3)
-      )
+        +((parts[7] || '0') + '00').substring(0, 3),
+      ),
     );
   }
   return new Date(NaN);

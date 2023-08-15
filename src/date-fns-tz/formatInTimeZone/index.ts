@@ -29,7 +29,7 @@ export default function formatInTimeZone(
   date: Date | string | number,
   timeZone: string,
   formatStr: string,
-  options?: OptionsWithTZ
+  options?: OptionsWithTZ,
 ): string {
   const extendedOptions = cloneObject(options) as OptionsWithTZ;
   extendedOptions.timeZone = timeZone;

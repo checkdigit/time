@@ -19,7 +19,7 @@ import toDate from '../toDate/index';
  */
 export default function isAfter<DateType extends Date>(
   dirtyDate: DateType | number,
-  dirtyDateToCompare: DateType | number
+  dirtyDateToCompare: DateType | number,
 ): boolean {
   const date = toDate(dirtyDate);
   const dateToCompare = toDate(dirtyDateToCompare);

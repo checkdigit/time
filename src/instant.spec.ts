@@ -58,65 +58,65 @@ describe('instant', () => {
 
     assert.equal(
       Temporal.Instant.fromEpochSeconds(Number(time / BigInt(1e9))).toString(),
-      TemporalPolyfill.Instant.fromEpochSeconds(Number(time / BigInt(1e9))).toString()
+      TemporalPolyfill.Instant.fromEpochSeconds(Number(time / BigInt(1e9))).toString(),
     );
 
     assert.equal(
       Temporal.Instant.fromEpochMilliseconds(Number(time / BigInt(1e6))).toString(),
-      TemporalPolyfill.Instant.fromEpochMilliseconds(Number(time / BigInt(1e6))).toString()
+      TemporalPolyfill.Instant.fromEpochMilliseconds(Number(time / BigInt(1e6))).toString(),
     );
 
     assert.equal(
       Temporal.Instant.fromEpochMicroseconds(time / BigInt(1e3)).toString(),
-      TemporalPolyfill.Instant.fromEpochMicroseconds(time / BigInt(1e3)).toString()
+      TemporalPolyfill.Instant.fromEpochMicroseconds(time / BigInt(1e3)).toString(),
     );
 
     assert.equal(
       Temporal.Instant.fromEpochNanoseconds(time).toString(),
-      TemporalPolyfill.Instant.fromEpochNanoseconds(time).toString()
+      TemporalPolyfill.Instant.fromEpochNanoseconds(time).toString(),
     );
 
     assert.equal(
       Temporal.Instant.compare(
         Temporal.Instant.fromEpochNanoseconds(time),
-        Temporal.Instant.fromEpochNanoseconds(time)
+        Temporal.Instant.fromEpochNanoseconds(time),
       ),
       TemporalPolyfill.Instant.compare(
         TemporalPolyfill.Instant.fromEpochNanoseconds(time),
-        TemporalPolyfill.Instant.fromEpochNanoseconds(time)
-      )
+        TemporalPolyfill.Instant.fromEpochNanoseconds(time),
+      ),
     );
 
     assert.equal(
       Temporal.Instant.compare(
         Temporal.Instant.fromEpochNanoseconds(time),
-        Temporal.Instant.fromEpochNanoseconds(time + BigInt(1))
+        Temporal.Instant.fromEpochNanoseconds(time + BigInt(1)),
       ),
       TemporalPolyfill.Instant.compare(
         TemporalPolyfill.Instant.fromEpochNanoseconds(time),
-        TemporalPolyfill.Instant.fromEpochNanoseconds(time + BigInt(1))
-      )
+        TemporalPolyfill.Instant.fromEpochNanoseconds(time + BigInt(1)),
+      ),
     );
 
     assert.equal(
       Temporal.Instant.compare(
         Temporal.Instant.fromEpochNanoseconds(time),
-        Temporal.Instant.fromEpochNanoseconds(time - BigInt(1))
+        Temporal.Instant.fromEpochNanoseconds(time - BigInt(1)),
       ),
       TemporalPolyfill.Instant.compare(
         TemporalPolyfill.Instant.fromEpochNanoseconds(time),
-        TemporalPolyfill.Instant.fromEpochNanoseconds(time - BigInt(1))
-      )
+        TemporalPolyfill.Instant.fromEpochNanoseconds(time - BigInt(1)),
+      ),
     );
 
     assert.equal(
       Temporal.Instant.from(Temporal.Instant.fromEpochNanoseconds(time)).toString(),
-      TemporalPolyfill.Instant.from(TemporalPolyfill.Instant.fromEpochNanoseconds(time)).toString()
+      TemporalPolyfill.Instant.from(TemporalPolyfill.Instant.fromEpochNanoseconds(time)).toString(),
     );
 
     assert.equal(
       Temporal.Instant.from(Temporal.Instant.fromEpochNanoseconds(time).toString()).epochNanoseconds,
-      TemporalPolyfill.Instant.from(TemporalPolyfill.Instant.fromEpochNanoseconds(time).toString()).epochNanoseconds
+      TemporalPolyfill.Instant.from(TemporalPolyfill.Instant.fromEpochNanoseconds(time).toString()).epochNanoseconds,
     );
   });
 
@@ -127,6 +127,7 @@ describe('instant', () => {
 
       assert.equal(implementation.epochSeconds, polyfill.epochSeconds);
       assert.equal(implementation.epochMicroseconds, polyfill.epochMicroseconds);
+      assert.equal(implementation.epochMilliseconds, polyfill.epochMilliseconds);
       assert.ok(implementation.equals(implementation));
       assert.ok(polyfill.equals(polyfill));
       assert.equal(implementation.toJSON(), polyfill.toJSON());
@@ -134,7 +135,7 @@ describe('instant', () => {
 
       assert.equal(
         Temporal.Instant.from(implementation.toString()).epochNanoseconds,
-        TemporalPolyfill.Instant.from(polyfill.toString()).epochNanoseconds
+        TemporalPolyfill.Instant.from(polyfill.toString()).epochNanoseconds,
       );
     }
 

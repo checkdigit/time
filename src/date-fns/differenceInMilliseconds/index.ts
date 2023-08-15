@@ -23,7 +23,7 @@ import toDate from '../toDate/index';
  */
 export default function differenceInMilliseconds<DateType extends Date>(
   dateLeft: DateType | number,
-  dateRight: DateType | number
+  dateRight: DateType | number,
 ): number {
   return toDate(dateLeft).getTime() - toDate(dateRight).getTime();
 }

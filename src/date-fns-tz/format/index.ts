@@ -318,7 +318,7 @@ var tzFormattingTokensRegExp = /([xXOz]+)|''|'(''|[^'])+('|$)/g;
 export default function format(
   dirtyDate: Date | string | number,
   dirtyFormatStr: string,
-  dirtyOptions?: OptionsWithTZ
+  dirtyOptions?: OptionsWithTZ,
 ): string {
   var formatStr = String(dirtyFormatStr);
   var options = dirtyOptions || ({} as OptionsWithTZ);
@@ -336,7 +336,7 @@ export default function format(
       var precededByQuotedSection = result[pos - 1] === "'";
       var replaced = result.replace(
         token,
-        "'" + formatters[token[0] as keyof typeof formatters](date, token, null, options) + "'"
+        "'" + formatters[token[0] as keyof typeof formatters](date, token, null, options) + "'",
       );
       // If the replacement results in two adjoining quoted strings, the back to back quotes
       // are removed, so it doesn't look like an escaped quote.

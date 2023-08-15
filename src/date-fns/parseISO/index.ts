@@ -79,7 +79,7 @@ export default function parseISO(argument: string, options?: ParseISOOptions): D
       dirtyDate.getUTCHours(),
       dirtyDate.getUTCMinutes(),
       dirtyDate.getUTCSeconds(),
-      dirtyDate.getUTCMilliseconds()
+      dirtyDate.getUTCMilliseconds(),
     );
     return result;
   }
@@ -145,7 +145,7 @@ function splitDateString(dateString: string): DateString {
 
 function parseYear(dateString: string, additionalDigits: number): ParsedYear {
   const regex = new RegExp(
-    '^(?:(\\d{4}|[+-]\\d{' + (4 + additionalDigits) + '})|(\\d{2}|[+-]\\d{' + (2 + additionalDigits) + '})$)'
+    '^(?:(\\d{4}|[+-]\\d{' + (4 + additionalDigits) + '})|(\\d{2}|[+-]\\d{' + (2 + additionalDigits) + '})$)',
   );
 
   const captures = dateString.match(regex);

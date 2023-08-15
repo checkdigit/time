@@ -42,7 +42,7 @@ export interface DifferenceInCalendarWeeksOptions extends LocaleOptions, WeekSta
 export default function differenceInCalendarWeeks<DateType extends Date>(
   dirtyDateLeft: DateType | number,
   dirtyDateRight: DateType | number,
-  options?: DifferenceInCalendarWeeksOptions
+  options?: DifferenceInCalendarWeeksOptions,
 ): number {
   const startOfWeekLeft = startOfWeek(dirtyDateLeft, options);
   const startOfWeekRight = startOfWeek(dirtyDateRight, options);

@@ -37,7 +37,7 @@ export interface RoundToNearestMinutesOptions extends RoundingOptions {
  */
 export default function roundToNearestMinutes<DateType extends Date>(
   dirtyDate: DateType | number,
-  options?: RoundToNearestMinutesOptions
+  options?: RoundToNearestMinutesOptions,
 ): DateType {
   const nearestTo = options?.nearestTo ?? 1;
 

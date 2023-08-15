@@ -5,7 +5,7 @@ import { numericPatterns } from './constants';
 
 export function mapValue<TInput, TResult>(
   parseFnResult: ParseResult<TInput>,
-  mapFn: (value: TInput) => TResult
+  mapFn: (value: TInput) => TResult,
 ): ParseResult<TResult> {
   if (!parseFnResult) {
     return parseFnResult;

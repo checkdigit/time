@@ -26,7 +26,7 @@ import constructFrom from '../constructFrom/index';
  */
 export default function transpose<DateInputType extends Date, DateOutputType extends Date>(
   fromDate: DateInputType,
-  constructor: DateOutputType | GenericDateConstructor<DateOutputType>
+  constructor: DateOutputType | GenericDateConstructor<DateOutputType>,
 ): DateOutputType {
   const date = constructor instanceof Date ? constructFrom(constructor, 0) : new constructor(0);
   date.setFullYear(fromDate.getFullYear(), fromDate.getMonth(), fromDate.getDate());

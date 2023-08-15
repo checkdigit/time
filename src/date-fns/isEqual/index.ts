@@ -22,7 +22,7 @@ import toDate from '../toDate/index';
  */
 export default function isEqual<DateType extends Date>(
   dirtyLeftDate: DateType | number,
-  dirtyRightDate: DateType | number
+  dirtyRightDate: DateType | number,
 ): boolean {
   const dateLeft = toDate(dirtyLeftDate);
   const dateRight = toDate(dirtyRightDate);

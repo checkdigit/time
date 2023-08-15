@@ -25,7 +25,7 @@ import toDate from '../toDate/index';
  */
 export default function setISOWeekYear<DateType extends Date>(
   dirtyDate: DateType | number,
-  isoWeekYear: number
+  isoWeekYear: number,
 ): DateType {
   let date = toDate(dirtyDate);
   const diff = differenceInCalendarDays(date, startOfISOWeekYear(date));

@@ -334,7 +334,7 @@ export interface FormatOptions
 export default function format<DateType extends Date>(
   dirtyDate: Instant | DateType | number,
   formatStr: string,
-  options?: FormatOptions
+  options?: FormatOptions,
 ): string {
   const defaultOptions = getDefaultOptions();
   const locale = options?.locale ?? defaultOptions.locale ?? defaultLocale;

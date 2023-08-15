@@ -24,7 +24,7 @@ export class LocalDayParser extends Parser<number> {
           match.ordinalNumber(dateString, {
             unit: 'day',
           }),
-          valueCallback
+          valueCallback,
         );
       // Tue
       case 'eee':

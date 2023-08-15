@@ -19,7 +19,7 @@ import toDate from '../toDate/index';
  */
 export default function setMilliseconds<DateType extends Date>(
   dirtyDate: DateType | number,
-  milliseconds: number
+  milliseconds: number,
 ): DateType {
   const date = toDate(dirtyDate);
   date.setMilliseconds(milliseconds);
