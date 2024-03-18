@@ -1,5 +1,5 @@
 import assign from '../_lib/assign/index';
-import { DefaultOptions, getDefaultOptions as getInternalDefaultOptions } from '../_lib/defaultOptions/index';
+import { type DefaultOptions, getDefaultOptions as getInternalDefaultOptions } from '../_lib/defaultOptions/index';
 
 /**
  * @name getDefaultOptions

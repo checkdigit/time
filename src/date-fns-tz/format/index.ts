@@ -1,4 +1,4 @@
-import dateFnsFormat, { FormatOptions } from '../../date-fns/format';
+import dateFnsFormat, { type FormatOptions } from '../../date-fns/format';
 import type { OptionsWithTZ } from '../types';
 import formatters from './formatters';
 import toDate from '../toDate';

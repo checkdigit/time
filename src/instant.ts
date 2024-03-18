@@ -12,7 +12,7 @@ const THOUSAND = 10 ** THOUSAND_DIGITS;
 const MILLION = 10 ** MILLION_DIGITS;
 const BILLION = 10 ** BILLION_DIGITS;
 
-const extraRegEx = /\.\d\d\d(?<extra>\d+)Z$/u;
+const extraRegEx = /\.\d\d\d(?<extra>\d+)Z$/u; // matches the extra digits (after millisecond) in a string like 2021-01-01T00:00:00.123456789Z
 
 /**
  * Partial implementation of Temporal.Instant, part of the new TC39 Temporal proposal.

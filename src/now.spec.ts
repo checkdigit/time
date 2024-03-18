@@ -2,6 +2,7 @@
 
 import { strict as assert } from 'node:assert';
 
+import { describe, it } from '@jest/globals';
 import { Temporal as TemporalPolyfill } from '@js-temporal/polyfill';
 
 import { Temporal } from './index';

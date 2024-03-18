@@ -22,32 +22,30 @@ type LocalizeMonthValues = readonly [
   string,
 ];
 
-export type LocalizeUnitValuesIndex<Values extends LocalizeUnitValues<any>> = Values extends Record<
-  LocaleDayPeriod,
-  string
->
-  ? string
-  : Values extends LocalizeEraValues
-  ? Era
-  : Values extends LocalizeQuarterValues
-  ? Quarter
-  : Values extends LocalizeDayValues
-  ? Day
-  : Values extends LocalizeMonthValues
-  ? Month
-  : never;
+export type LocalizeUnitValuesIndex<Values extends LocalizeUnitValues<any>> =
+  Values extends Record<LocaleDayPeriod, string>
+    ? string
+    : Values extends LocalizeEraValues
+      ? Era
+      : Values extends LocalizeQuarterValues
+        ? Quarter
+        : Values extends LocalizeDayValues
+          ? Day
+          : Values extends LocalizeMonthValues
+            ? Month
+            : never;
 
 export type LocalizeUnitValues<Unit extends LocaleUnit> = Unit extends LocaleDayPeriod
   ? Record<LocaleDayPeriod, string>
   : Unit extends Era
-  ? LocalizeEraValues
-  : Unit extends Quarter
-  ? LocalizeQuarterValues
-  : Unit extends Day
-  ? LocalizeDayValues
-  : Unit extends Month
-  ? LocalizeMonthValues
-  : never;
+    ? LocalizeEraValues
+    : Unit extends Quarter
+      ? LocalizeQuarterValues
+      : Unit extends Day
+        ? LocalizeDayValues
+        : Unit extends Month
+          ? LocalizeMonthValues
+          : never;
 
 export type LocalizePeriodValuesMap<Unit extends LocaleUnit> = {
   [pattern in LocalePatternWidth]?: LocalizeUnitValues<Unit>;

@@ -2,7 +2,7 @@
 
 import { formatUtc } from '../../../index';
 
-import { getAllUSFederalReserveBankHolidays, PlainDate } from './index';
+import { getAllUSFederalReserveBankHolidays, type PlainDate } from './index';
 
 const DAY_OF_THE_WEEK_SUNDAY = 0;
 const DAY_OF_THE_WEEK_SATURDAY = 6;

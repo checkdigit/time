@@ -23,7 +23,7 @@ import type { IntlOptionsUnit } from '../types';
  */
 export interface IntlFormatDistanceOptions {
   unit?: IntlOptionsUnit;
-  locale?: Intl.BCP47LanguageTag;
+  locale?: string; // original type is Intl.BCP47LanguageTag, changeed to string due to compilation error Namespace 'Intl' has no exported member 'BCP47LanguageTag'.;
   localeMatcher?: Intl.RelativeTimeFormatLocaleMatcher;
   numeric?: Intl.RelativeTimeFormatNumeric;
   style?: Intl.RelativeTimeFormatStyle;

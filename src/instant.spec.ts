@@ -1,7 +1,10 @@
 // instant.spec.ts
 
 import { strict as assert } from 'node:assert';
+
+import { describe, it } from '@jest/globals';
 import { Temporal as TemporalPolyfill } from '@js-temporal/polyfill';
+
 import { Temporal } from './index';
 
 describe('instant', () => {
@@ -38,7 +41,6 @@ describe('instant', () => {
     const three = Temporal.Instant.fromEpochSeconds(1.2e9);
 
     // this should not be an eslint error.  Temporal.Instant.compare is a static method.
-    // eslint-disable-next-line @typescript-eslint/unbound-method
     const sorted = [three, one, two].sort(Temporal.Instant.compare);
     assert.equal(sorted.join(' '), '2001-09-09T01:46:40Z 2004-11-09T11:33:20Z 2008-01-10T21:20:00Z');
 
@@ -48,7 +50,7 @@ describe('instant', () => {
     const threePolyfill = TemporalPolyfill.Instant.fromEpochSeconds(1.2e9);
 
     // this should not be an eslint error.  Temporal.Instant.compare is a static method.
-    // eslint-disable-next-line @typescript-eslint/unbound-method
+
     const sortedPolyfill = [threePolyfill, onePolyfill, twoPolyfill].sort(TemporalPolyfill.Instant.compare);
     assert.equal(sortedPolyfill.join(' '), '2001-09-09T01:46:40Z 2004-11-09T11:33:20Z 2008-01-10T21:20:00Z');
   });

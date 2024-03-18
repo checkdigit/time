@@ -1,7 +1,7 @@
 import {
   getDefaultOptions,
   setDefaultOptions as setInternalDefaultOptions,
-  DefaultOptions,
+  type DefaultOptions,
 } from '../_lib/defaultOptions/index';
 
 /**
