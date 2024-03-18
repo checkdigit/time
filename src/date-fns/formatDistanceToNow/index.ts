@@ -1,4 +1,4 @@
-import distanceInWords, { FormatDistanceOptions } from '../formatDistance/index';
+import distanceInWords, { type FormatDistanceOptions } from '../formatDistance/index';
 
 /**
  * The {@link formatDistanceToNow} function options.

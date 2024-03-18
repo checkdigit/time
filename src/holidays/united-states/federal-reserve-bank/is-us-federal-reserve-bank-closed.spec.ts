@@ -2,6 +2,8 @@
 
 import { strict as assert } from 'node:assert';
 
+import { describe, it } from '@jest/globals';
+
 import { isUSFederalReserveBankClosed } from './index';
 
 describe('is-us-federal-reserve-bank-holiday', () => {

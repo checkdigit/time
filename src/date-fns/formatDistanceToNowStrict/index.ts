@@ -1,4 +1,4 @@
-import formatDistanceStrict, { FormatDistanceStrictOptions } from '../formatDistanceStrict/index';
+import formatDistanceStrict, { type FormatDistanceStrictOptions } from '../formatDistanceStrict/index';
 
 /**
  * The {@link formatDistanceToNowStrict} function options.

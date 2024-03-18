@@ -2,6 +2,8 @@
 
 import { strict as assert } from 'node:assert';
 
+import { describe, it } from '@jest/globals';
+
 import { tzFormat, tzUtcToZonedTime } from './index';
 
 describe('date-fns-tz', () => {

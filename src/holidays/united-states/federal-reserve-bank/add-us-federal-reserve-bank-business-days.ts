@@ -1,6 +1,6 @@
 // holidays/united-states/federal-reserve-bank/add-us-federal-reserve-bank-business-days.ts
 
-import { isUSFederalReserveBankClosed, PlainDate } from './index';
+import { isUSFederalReserveBankClosed, type PlainDate } from './index';
 
 /**
  * @name addUSFederalReserveBankBusinessDays

@@ -125,14 +125,14 @@ export type ParsePatterns<Result extends LocaleUnit, DefaultWidth extends Locale
 export type ParsePattern<Result extends LocaleUnit> = Result extends LocaleDayPeriod
   ? Record<LocaleDayPeriod, RegExp>
   : Result extends Quarter
-  ? readonly [RegExp, RegExp, RegExp, RegExp]
-  : Result extends Era
-  ? readonly [RegExp, RegExp]
-  : Result extends Day
-  ? readonly [RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp]
-  : Result extends Month
-  ? readonly [RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp]
-  : never;
+    ? readonly [RegExp, RegExp, RegExp, RegExp]
+    : Result extends Era
+      ? readonly [RegExp, RegExp]
+      : Result extends Day
+        ? readonly [RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp]
+        : Result extends Month
+          ? readonly [RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp]
+          : never;
 
 export type BuildMatchFn<
   Result extends LocaleUnit,
