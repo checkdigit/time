@@ -23,7 +23,7 @@ import type { IntlOptionsUnit } from '../types';
  */
 export interface IntlFormatDistanceOptions {
   unit?: IntlOptionsUnit;
-  locale?: string; // original type is Intl.BCP47LanguageTag, changeed to string due to compilation error Namespace 'Intl' has no exported member 'BCP47LanguageTag'.;
+  locale?: string; // [TODO:} the original type is Intl.BCP47LanguageTag, it's changed to string due to compilation error (Namespace 'Intl' has no exported member 'BCP47LanguageTag'.). hopefully this workaround won't be necessary once https://github.com/checkdigit/time/issues/15 is addressed
   localeMatcher?: Intl.RelativeTimeFormatLocaleMatcher;
   numeric?: Intl.RelativeTimeFormatNumeric;
   style?: Intl.RelativeTimeFormatStyle;
