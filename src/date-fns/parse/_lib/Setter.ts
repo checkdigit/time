@@ -1,6 +1,6 @@
-import transpose from '../../transpose/index';
-import constructFrom from '../../constructFrom/index';
-import type { ParseFlags, ParserOptions } from './types';
+import { transpose } from "../../transpose/index.js";
+import { constructFrom } from "../../constructFrom/index.js";
+import type { ParseFlags, ParserOptions } from "./types.js";
 
 const TIMEZONE_UNIT_PRIORITY = 10;
 
@@ -8,7 +8,10 @@ export abstract class Setter {
   public abstract priority: number;
   public subPriority = 0;
 
-  public validate<DateType extends Date>(_utcDate: DateType, _options?: ParserOptions): boolean {
+  public validate<DateType extends Date>(
+    _utcDate: DateType,
+    _options?: ParserOptions,
+  ): boolean {
     return true;
   }
 
@@ -23,7 +26,11 @@ export class ValueSetter<Value> extends Setter {
   constructor(
     private value: Value,
 
-    private validateValue: <DateType extends Date>(utcDate: DateType, value: Value, options: ParserOptions) => boolean,
+    private validateValue: <DateType extends Date>(
+      utcDate: DateType,
+      value: Value,
+      options: ParserOptions,
+    ) => boolean,
 
     private setValue: <DateType extends Date>(
       utcDate: DateType,
@@ -40,7 +47,10 @@ export class ValueSetter<Value> extends Setter {
     }
   }
 
-  override validate<DateType extends Date>(date: DateType, options: ParserOptions): boolean {
+  override validate<DateType extends Date>(
+    date: DateType,
+    options: ParserOptions,
+  ): boolean {
     return this.validateValue(date, this.value, options);
   }
 

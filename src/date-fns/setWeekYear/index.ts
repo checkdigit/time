@@ -1,14 +1,21 @@
-import constructFrom from '../constructFrom/index';
-import differenceInCalendarDays from '../differenceInCalendarDays/index';
-import startOfWeekYear from '../startOfWeekYear/index';
-import toDate from '../toDate/index';
-import type { FirstWeekContainsDateOptions, LocaleOptions, WeekStartOptions } from '../types';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
+import { constructFrom } from "../constructFrom/index.js";
+import { differenceInCalendarDays } from "../differenceInCalendarDays/index.js";
+import { startOfWeekYear } from "../startOfWeekYear/index.js";
+import { toDate } from "../toDate/index.js";
+import type {
+  FirstWeekContainsDateOptions,
+  LocalizedOptions,
+  WeekOptions,
+} from "../types.js";
+import { getDefaultOptions } from "../_lib/defaultOptions/index.js";
 
 /**
  * The {@link setWeekYear} function options.
  */
-export interface SetWeekYearOptions extends LocaleOptions, WeekStartOptions, FirstWeekContainsDateOptions {}
+export interface SetWeekYearOptions
+  extends LocalizedOptions<"options">,
+    WeekOptions,
+    FirstWeekContainsDateOptions {}
 
 /**
  * @name setWeekYear
@@ -23,12 +30,15 @@ export interface SetWeekYearOptions extends LocaleOptions, WeekStartOptions, Fir
  * and `options.firstWeekContainsDate` (which is the day of January, which is always in
  * the first week of the week-numbering year)
  *
- * Week numbering: https://en.wikipedia.org/wiki/Week#Week_numbering
+ * Week numbering: https://en.wikipedia.org/wiki/Week#The_ISO_week_date_system
  *
- * @param date - the date to be changed
- * @param weekYear - the local week-numbering year of the new date
- * @param options - an object with options.
- * @returns the new date with the local week-numbering year set
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The date to be changed
+ * @param weekYear - The local week-numbering year of the new date
+ * @param options - An object with options
+ *
+ * @returns The new date with the local week-numbering year set
  *
  * @example
  * // Set the local week-numbering year 2004 to 2 January 2010 with default options:
@@ -45,8 +55,8 @@ export interface SetWeekYearOptions extends LocaleOptions, WeekStartOptions, Fir
  * })
  * //=> Sat Jan 01 2005 00:00:00
  */
-export default function setWeekYear<DateType extends Date>(
-  dirtyDate: DateType | number,
+export function setWeekYear<DateType extends Date>(
+  date: DateType | number | string,
   weekYear: number,
   options?: SetWeekYearOptions,
 ): DateType {
@@ -58,12 +68,12 @@ export default function setWeekYear<DateType extends Date>(
     defaultOptions.locale?.options?.firstWeekContainsDate ??
     1;
 
-  let date = toDate(dirtyDate);
-  const diff = differenceInCalendarDays(date, startOfWeekYear(date, options));
-  const firstWeek = constructFrom(dirtyDate, 0);
+  let _date = toDate(date);
+  const diff = differenceInCalendarDays(_date, startOfWeekYear(_date, options));
+  const firstWeek = constructFrom(date, 0);
   firstWeek.setFullYear(weekYear, 0, firstWeekContainsDate);
   firstWeek.setHours(0, 0, 0, 0);
-  date = startOfWeekYear(firstWeek, options);
-  date.setDate(date.getDate() + diff);
-  return date;
+  _date = startOfWeekYear(firstWeek, options);
+  _date.setDate(_date.getDate() + diff);
+  return _date;
 }

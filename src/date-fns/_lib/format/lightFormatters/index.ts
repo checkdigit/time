@@ -1,4 +1,4 @@
-import addLeadingZeros from '../../addLeadingZeros/index';
+import { addLeadingZeros } from "../../addLeadingZeros/index.js";
 
 /*
  * |     | Unit                           |     | Unit                           |
@@ -13,7 +13,7 @@ import addLeadingZeros from '../../addLeadingZeros/index';
  * Letters marked by * are not implemented but reserved by Unicode standard.
  */
 
-const formatters = {
+export const lightFormatters = {
   // Year
   y(date: Date, token: string): string {
     // From http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_tokens
@@ -28,13 +28,13 @@ const formatters = {
     const signedYear = date.getFullYear();
     // Returns 1 for 1 BC (which is year 0 in JavaScript)
     const year = signedYear > 0 ? signedYear : 1 - signedYear;
-    return addLeadingZeros(token === 'yy' ? year % 100 : year, token.length);
+    return addLeadingZeros(token === "yy" ? year % 100 : year, token.length);
   },
 
   // Month
   M(date: Date, token: string): string {
     const month = date.getMonth();
-    return token === 'M' ? String(month + 1) : addLeadingZeros(month + 1, 2);
+    return token === "M" ? String(month + 1) : addLeadingZeros(month + 1, 2);
   },
 
   // Day of the month
@@ -44,33 +44,30 @@ const formatters = {
 
   // AM or PM
   a(date: Date, token: string): string {
-    // this hack is required because setHours doesn't work for hours that are spring-forward
-    const dayPeriodEnumValue = ((date as any)[Symbol.for('UTCHours')] ?? date.getHours()) / 12 >= 1 ? 'pm' : 'am';
+    const dayPeriodEnumValue = date.getHours() / 12 >= 1 ? "pm" : "am";
 
     switch (token) {
-      case 'a':
-      case 'aa':
+      case "a":
+      case "aa":
         return dayPeriodEnumValue.toUpperCase();
-      case 'aaa':
+      case "aaa":
         return dayPeriodEnumValue;
-      case 'aaaaa':
-        return dayPeriodEnumValue[0] as string;
-      case 'aaaa':
+      case "aaaaa":
+        return dayPeriodEnumValue[0]!;
+      case "aaaa":
       default:
-        return dayPeriodEnumValue === 'am' ? 'a.m.' : 'p.m.';
+        return dayPeriodEnumValue === "am" ? "a.m." : "p.m.";
     }
   },
 
   // Hour [1-12]
   h(date: Date, token: string): string {
-    // this hack is required because setHours doesn't work for hours that are spring-forward
-    return addLeadingZeros(((date as any)[Symbol.for('UTCHours')] ?? date.getHours()) % 12 || 12, token.length);
+    return addLeadingZeros(date.getHours() % 12 || 12, token.length);
   },
 
   // Hour [0-23]
   H(date: Date, token: string): string {
-    // this hack is required because setHours doesn't work for hours that are spring-forward
-    return addLeadingZeros((date as any)[Symbol.for('UTCHours')] ?? date.getHours(), token.length);
+    return addLeadingZeros(date.getHours(), token.length);
   },
 
   // Minute
@@ -87,9 +84,9 @@ const formatters = {
   S(date: Date, token: string): string {
     const numberOfDigits = token.length;
     const milliseconds = date.getMilliseconds();
-    const fractionalSeconds = Math.floor(milliseconds * Math.pow(10, numberOfDigits - 3));
+    const fractionalSeconds = Math.trunc(
+      milliseconds * Math.pow(10, numberOfDigits - 3),
+    );
     return addLeadingZeros(fractionalSeconds, token.length);
   },
 };
-
-export default formatters;

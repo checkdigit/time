@@ -1,18 +1,18 @@
-import type { Match } from '../../../locale/types';
-import { numericPatterns } from '../constants';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { parseNDigits, parseNumericPattern } from '../utils';
+import type { Match } from "../../../locale/types.js";
+import { numericPatterns } from "../constants.js";
+import { Parser } from "../Parser.js";
+import type { ParseFlags, ParseResult } from "../types.js";
+import { parseNDigits, parseNumericPattern } from "../utils.js";
 
 export class MinuteParser extends Parser<number> {
   priority = 60;
 
   parse(dateString: string, token: string, match: Match): ParseResult<number> {
     switch (token) {
-      case 'm':
+      case "m":
         return parseNumericPattern(numericPatterns.minute, dateString);
-      case 'mo':
-        return match.ordinalNumber(dateString, { unit: 'minute' });
+      case "mo":
+        return match.ordinalNumber(dateString, { unit: "minute" });
       default:
         return parseNDigits(token.length, dateString);
     }
@@ -22,10 +22,14 @@ export class MinuteParser extends Parser<number> {
     return value >= 0 && value <= 59;
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: number,
+  ): DateType {
     date.setMinutes(value, 0, 0);
     return date;
   }
 
-  incompatibleTokens = ['t', 'T'];
+  incompatibleTokens = ["t", "T"];
 }

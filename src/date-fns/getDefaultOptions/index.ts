@@ -1,5 +1,8 @@
-import assign from '../_lib/assign/index';
-import { type DefaultOptions, getDefaultOptions as getInternalDefaultOptions } from '../_lib/defaultOptions/index';
+import type {
+  DefaultOptions} from "../_lib/defaultOptions/index.js";
+import {
+  getDefaultOptions as getInternalDefaultOptions,
+} from "../_lib/defaultOptions/index.js";
 
 /**
  * @name getDefaultOptions
@@ -12,9 +15,9 @@ import { type DefaultOptions, getDefaultOptions as getInternalDefaultOptions } f
  * `options.locale`, `options.weekStartsOn` and `options.firstWeekContainsDate`
  * arguments for all functions.
  *
- * You can change these with [setDefaultOptions]{@link https://date-fns.org/docs/setDefaultOptions}.
+ * You can change these with [setDefaultOptions](https://date-fns.org/docs/setDefaultOptions).
  *
- * @returns default options
+ * @returns The default options
  *
  * @example
  * const result = getDefaultOptions()
@@ -25,6 +28,6 @@ import { type DefaultOptions, getDefaultOptions as getInternalDefaultOptions } f
  * const result = getDefaultOptions()
  * //=> { weekStarsOn: 1, firstWeekContainsDate: 4 }
  */
-export default function getDefaultOptions(): DefaultOptions {
-  return assign({}, getInternalDefaultOptions());
+export function getDefaultOptions(): DefaultOptions {
+  return Object.assign({}, getInternalDefaultOptions());
 }

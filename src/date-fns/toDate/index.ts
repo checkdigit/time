@@ -1,3 +1,5 @@
+import type { GenericDateConstructor } from "../types.js";
+
 /**
  * @name toDate
  * @category Common Helpers
@@ -14,8 +16,11 @@
  *
  * **Note**: *all* Date arguments passed to any *date-fns* function is processed by `toDate`.
  *
- * @param argument - the value to convert
- * @returns the parsed date in the local time zone
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param argument - The value to convert
+ *
+ * @returns The parsed date in the local time zone
  *
  * @example
  * // Clone the date:
@@ -27,22 +32,28 @@
  * const result = toDate(1392098430000)
  * //=> Tue Feb 11 2014 11:30:30
  */
-import type { Instant } from '../../instant';
-
-export default function toDate<DateType extends Date = Date>(argument: Instant | DateType | number): DateType {
-  let modifiedArgument: Instant | DateType | number | Date = argument;
-  if (typeof (modifiedArgument as Instant)?.epochNanoseconds === 'bigint') {
-    modifiedArgument = new Date(Number((modifiedArgument as Instant).epochNanoseconds / 1000000n));
-  }
-
-  const argStr = Object.prototype.toString.call(modifiedArgument);
+export function toDate<DateType extends Date>(
+  argument: DateType | number | string,
+): DateType {
+  const argStr = Object.prototype.toString.call(argument);
 
   // Clone the date
-  if (modifiedArgument instanceof Date || (typeof modifiedArgument === 'object' && argStr === '[object Date]')) {
-    return modifiedArgument as DateType;
-  } else if (typeof modifiedArgument === 'number' || argStr === '[object Number]') {
+  if (
+    argument instanceof Date ||
+    (typeof argument === "object" && argStr === "[object Date]")
+  ) {
+    // Prevent the date to lose the milliseconds when passed to new Date() in IE10
+    return new (argument.constructor as GenericDateConstructor<DateType>)(
+      +argument,
+    );
+  } else if (
+    typeof argument === "number" ||
+    argStr === "[object Number]" ||
+    typeof argument === "string" ||
+    argStr === "[object String]"
+  ) {
     // TODO: Can we get rid of as?
-    return new Date(modifiedArgument as number) as DateType;
+    return new Date(argument) as DateType;
   } else {
     // TODO: Can we get rid of as?
     return new Date(NaN) as DateType;

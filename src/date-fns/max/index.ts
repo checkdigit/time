@@ -1,4 +1,4 @@
-import toDate from '../toDate/index';
+import { toDate } from "../toDate/index.js";
 
 /**
  * @name max
@@ -8,8 +8,11 @@ import toDate from '../toDate/index';
  * @description
  * Return the latest of the given dates.
  *
- * @param datesArray - the dates to compare
- * @returns the latest of the dates
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param dates - The dates to compare
+ *
+ * @returns The latest of the dates
  *
  * @example
  * // Which of these dates is the latest?
@@ -21,12 +24,18 @@ import toDate from '../toDate/index';
  * ])
  * //=> Sun Jul 02 1995 00:00:00
  */
-export default function max<DateType extends Date>(datesArray: Array<DateType | number>): DateType | Date {
+export function max<DateType extends Date>(
+  dates: Array<DateType | number | string>,
+): DateType | Date {
   let result: Date | undefined;
-  datesArray.forEach(function (dirtyDate) {
+  dates.forEach(function (dirtyDate) {
     const currentDate = toDate(dirtyDate);
 
-    if (result === undefined || result < currentDate || isNaN(Number(currentDate))) {
+    if (
+      result === undefined ||
+      result < currentDate ||
+      isNaN(Number(currentDate))
+    ) {
       result = currentDate;
     }
   });
