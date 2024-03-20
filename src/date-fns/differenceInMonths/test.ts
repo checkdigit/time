@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { differenceInMonths } from "./index.js";
+import { differenceInMonths } from "./index";
 
 describe("differenceInMonths", () => {
   it("returns the number of full months between the given dates", () => {

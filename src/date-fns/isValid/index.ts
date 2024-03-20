@@ -1,5 +1,5 @@
-import { isDate } from "../isDate/index.js";
-import { toDate } from "../toDate/index.js";
+import { isDate } from "../isDate/index";
+import { toDate } from "../toDate/index";
 
 /**
  * @name isValid

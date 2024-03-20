@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { eachYearOfInterval } from "./index.js";
+import { eachYearOfInterval } from "./index";
 
 describe("eachYearOfInterval", () => {
   it("returns an array with starts of days from the day of the start date to the day of the end date", () => {

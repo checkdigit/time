@@ -1,6 +1,6 @@
-import { isValid } from "../isValid/index.js";
-import { toDate } from "../toDate/index.js";
-import { addLeadingZeros } from "../_lib/addLeadingZeros/index.js";
+import { isValid } from "../isValid/index";
+import { toDate } from "../toDate/index";
+import { addLeadingZeros } from "../_lib/addLeadingZeros/index";
 
 /**
  * The {@link formatRFC3339} function options.

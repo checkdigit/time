@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { parseJSON } from "./index.js";
-import { format } from "../format/index.js";
+import { parseJSON } from "./index";
+import { format } from "../format/index";
 
 describe("parseJSON", () => {
   it("parses a formatted new Date() back to UTC - issue 2149", () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { eachWeekendOfInterval } from "./index.js";
+import { eachWeekendOfInterval } from "./index";
 
 describe("eachWeekendOfInterval", () => {
   it("returns all weekends within the interval", () => {

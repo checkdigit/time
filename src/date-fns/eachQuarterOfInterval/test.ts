@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { eachQuarterOfInterval } from "./index.js";
+import { eachQuarterOfInterval } from "./index";
 
 describe("eachQuarterOfInterval", () => {
   it("returns an array with starts of quarters from the quarter of the start date to the quarter of the end date", () => {

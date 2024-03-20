@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getISOWeek } from "./index.js";
+import { getISOWeek } from "./index";
 
 describe("getISOWeek", () => {
   it("returns the ISO week of the given date", () => {

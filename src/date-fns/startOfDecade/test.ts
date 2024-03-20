@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { startOfDecade } from "./index.js";
+import { startOfDecade } from "./index";
 
 describe("startOfDecade", () => {
   it("returns the date with the time set to 00:00:00 and the date set to the first day of a year", () => {

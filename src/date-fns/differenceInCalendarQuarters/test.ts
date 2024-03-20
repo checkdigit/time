@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { differenceInCalendarQuarters } from "./index.js";
+import { differenceInCalendarQuarters } from "./index";
 
 describe("differenceInCalendarQuarters", () => {
   it("returns the number of calendar quarters between the given dates", () => {

@@ -1,6 +1,6 @@
-import { constructFrom } from "../constructFrom/index.js";
-import { getDaysInMonth } from "../getDaysInMonth/index.js";
-import { toDate } from "../toDate/index.js";
+import { constructFrom } from "../constructFrom/index";
+import { getDaysInMonth } from "../getDaysInMonth/index";
+import { toDate } from "../toDate/index";
 
 /**
  * @name setMonth

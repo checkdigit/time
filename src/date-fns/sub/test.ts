@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { sub } from "./index.js";
+import { sub } from "./index";
 
 describe("sub", () => {
   it("subtracts the duration from the given date", () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatISO9075 } from "./index.js";
+import { formatISO9075 } from "./index";
 
 describe("formatISO9075", () => {
   it("formats ISO-9075 extended date format", () => {

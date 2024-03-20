@@ -1,7 +1,7 @@
 import {
   millisecondsInHour,
   millisecondsInMinute,
-} from "../constants/index.js";
+} from "../constants/index";
 
 /**
  * The {@link parseISO} function options.

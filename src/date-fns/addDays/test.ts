@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { addDays } from "./index.js";
-import { getDstTransitions } from "../../test/dst/tzOffsetTransitions.js";
+import { addDays } from "./index";
+import { getDstTransitions } from "../../test/dst/tzOffsetTransitions";
 
 describe("addDays", () => {
   it("adds the given number of days", () => {

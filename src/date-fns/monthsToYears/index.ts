@@ -1,4 +1,4 @@
-import { monthsInYear } from "../constants/index.js";
+import { monthsInYear } from "../constants/index";
 
 /**
  * @name monthsToYears

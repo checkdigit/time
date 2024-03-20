@@ -1,4 +1,4 @@
-import { constructFrom } from "../constructFrom/index.js";
+import { constructFrom } from "../constructFrom/index";
 
 /**
  * @name constructNow

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isSameISOWeek } from "./index.js";
+import { isSameISOWeek } from "./index";
 
 describe("isSameISOWeek", () => {
   it("returns true if the given dates have the same ISO week", () => {

@@ -1,7 +1,7 @@
-import { getRoundingMethod } from "../_lib/getRoundingMethod/index.js";
-import { millisecondsInMinute } from "../constants/index.js";
-import { differenceInMilliseconds } from "../differenceInMilliseconds/index.js";
-import type { RoundingOptions } from "../types.js";
+import { getRoundingMethod } from "../_lib/getRoundingMethod/index";
+import { millisecondsInMinute } from "../constants/index";
+import { differenceInMilliseconds } from "../differenceInMilliseconds/index";
+import type { RoundingOptions } from "../types";
 
 /**
  * The {@link differenceInMinutes} function options.

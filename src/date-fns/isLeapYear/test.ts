@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isLeapYear } from "./index.js";
+import { isLeapYear } from "./index";
 
 describe("isLeapYear", () => {
   it("returns true if the given date is in the leap year", () => {

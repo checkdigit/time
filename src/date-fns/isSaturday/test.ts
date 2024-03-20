@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isSaturday } from "./index.js";
+import { isSaturday } from "./index";
 
 describe("isSaturday", () => {
   it("returns true if the given date is Saturday", () => {

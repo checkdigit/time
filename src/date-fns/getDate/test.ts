@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getDate } from "./index.js";
+import { getDate } from "./index";
 
 describe("getDate", () => {
   it("returns the day of the month of the given date", () => {

@@ -1,5 +1,5 @@
-import type { GenericDateConstructor } from "../types.js";
-import { constructFrom } from "../constructFrom/index.js";
+import type { GenericDateConstructor } from "../types";
+import { constructFrom } from "../constructFrom/index";
 
 /**
  * @name transpose

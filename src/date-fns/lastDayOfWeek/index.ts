@@ -1,6 +1,6 @@
-import { toDate } from "../toDate/index.js";
-import type { LocalizedOptions, WeekOptions } from "../types.js";
-import { getDefaultOptions } from "../_lib/defaultOptions/index.js";
+import { toDate } from "../toDate/index";
+import type { LocalizedOptions, WeekOptions } from "../types";
+import { getDefaultOptions } from "../_lib/defaultOptions/index";
 
 /**
  * The {@link lastDayOfWeek} function options.

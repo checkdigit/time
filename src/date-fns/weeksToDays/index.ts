@@ -1,4 +1,4 @@
-import { daysInWeek } from "../constants/index.js";
+import { daysInWeek } from "../constants/index";
 
 /**
  * @name weeksToDays

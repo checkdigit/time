@@ -1,5 +1,5 @@
-import { constructNow } from "../constructNow/index.js";
-import { isSameISOWeek } from "../isSameISOWeek/index.js";
+import { constructNow } from "../constructNow/index";
+import { isSameISOWeek } from "../isSameISOWeek/index";
 
 /**
  * @name isThisISOWeek

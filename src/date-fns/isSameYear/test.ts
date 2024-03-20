@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isSameYear } from "./index.js";
+import { isSameYear } from "./index";
 
 describe("isSameYear", () => {
   it("returns true if the given dates have the same year", () => {

@@ -1,5 +1,5 @@
-import { constructNow } from "../constructNow/index.js";
-import { isSameMonth } from "../isSameMonth/index.js";
+import { constructNow } from "../constructNow/index";
+import { isSameMonth } from "../isSameMonth/index";
 
 /**
  * @name isThisMonth

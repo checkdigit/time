@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getQuarter } from "./index.js";
+import { getQuarter } from "./index";
 
 describe("getQuarter", () => {
   it("returns the quarter of the given date", () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { differenceInQuarters } from "./index.js";
+import { differenceInQuarters } from "./index";
 
 describe("differenceInQuarters", () => {
   it("returns the number of full quarters between the given dates  with `trunc` as a default rounding method", () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addMilliseconds } from "./index.js";
+import { addMilliseconds } from "./index";
 
 describe("addMilliseconds", () => {
   it("adds the given number of milliseconds", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { eachMinuteOfInterval } from "./index.js";
+import { eachMinuteOfInterval } from "./index";
 
 describe("eachMinuteOfInterval", () => {
   it("should return an array of Date objects containing a Date for each minute between the interval", () => {

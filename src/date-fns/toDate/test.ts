@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { toDate } from "./index.js";
+import { toDate } from "./index";
 
 describe("toDate", () => {
   describe("date argument", () => {

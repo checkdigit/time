@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { clamp } from "./index.js";
+import { clamp } from "./index";
 
 describe("clamp", () => {
   it("accepts timestamps", () => {

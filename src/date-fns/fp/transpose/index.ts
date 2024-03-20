@@ -1,6 +1,6 @@
 // This file is generated automatically by `scripts/build/fp.ts`. Please, don't change it.
 
-import { transpose as fn } from "../../transpose/index.js";
-import { convertToFP } from "../_lib/convertToFP/index.js";
+import { transpose as fn } from "../../transpose/index";
+import { convertToFP } from "../_lib/convertToFP/index";
 
 export const transpose = convertToFP(fn, 2);

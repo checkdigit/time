@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { lastDayOfDecade } from "./index.js";
+import { lastDayOfDecade } from "./index";
 
 describe("lastDayOfDecade", () => {
   it("returns the date with the time set to 00:00:00 and the date set to the last day of a decade", () => {

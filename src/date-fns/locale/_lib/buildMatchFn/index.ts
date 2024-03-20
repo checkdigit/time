@@ -1,11 +1,11 @@
-import type { Quarter, Era, Day, Month } from "../../../types.js";
+import type { Quarter, Era, Day, Month } from "../../../types";
 import type {
   LocaleUnitValue,
   LocaleWidth,
   LocaleDayPeriod,
   MatchFn,
   MatchValueCallback,
-} from "../../types.js";
+} from "../../types";
 
 export interface BuildMatchFnArgs<
   Result extends LocaleUnitValue,

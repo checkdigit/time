@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { endOfWeek } from "./index.js";
+import { endOfWeek } from "./index";
 
 describe("endOfWeek", () => {
   it("returns the date with the time set to 23:59:59:999 and the date set to the last day of a week", () => {

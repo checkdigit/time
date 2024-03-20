@@ -1,6 +1,6 @@
-import { isValid } from "../isValid/index.js";
-import { toDate } from "../toDate/index.js";
-import { lightFormatters } from "../_lib/format/lightFormatters/index.js";
+import { isValid } from "../isValid/index";
+import { toDate } from "../toDate/index";
+import { lightFormatters } from "../_lib/format/lightFormatters/index";
 
 // Rexports of internal for libraries to use.
 // See: https://github.com/date-fns/date-fns/issues/3638#issuecomment-1877082874

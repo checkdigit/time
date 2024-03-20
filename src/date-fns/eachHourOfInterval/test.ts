@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { eachHourOfInterval } from "./index.js";
+import { eachHourOfInterval } from "./index";
 
 describe("eachHourOfInterval", () => {
   it("returns an array with starts of hours from the hour of the start date to the hour of the end date", () => {

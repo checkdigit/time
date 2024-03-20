@@ -8,8 +8,8 @@ import {
   vi,
 } from "vitest";
 import sinon from "sinon";
-import type { FormatPart } from "../types.js";
-import { format, formatDate } from "./index.js";
+import type { FormatPart } from "../types";
+import { format, formatDate } from "./index";
 
 describe("format", () => {
   const date = new Date(1986, 3 /* Apr */, 4, 10, 32, 55, 123);

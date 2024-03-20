@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { subSeconds } from "./index.js";
+import { subSeconds } from "./index";
 
 describe("subSeconds", () => {
   it("subtracts the given number of seconds", () => {

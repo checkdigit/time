@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getWeekOfMonth } from "./index.js";
+import { getWeekOfMonth } from "./index";
 
 describe("getWeekOfMonth", () => {
   it("returns the week of the month of the given date", () => {

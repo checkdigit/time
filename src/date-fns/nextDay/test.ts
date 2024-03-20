@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { nextDay } from "./index.js";
+import { nextDay } from "./index";
 
 describe("nextDay", () => {
   it("returns the following Monday given various dates before the same", () => {

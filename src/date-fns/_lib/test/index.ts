@@ -1,5 +1,5 @@
-import { addLeadingZeros } from "../addLeadingZeros/index.js";
-import { setDefaultOptions } from "../defaultOptions/index.js";
+import { addLeadingZeros } from "../addLeadingZeros/index";
+import { setDefaultOptions } from "../defaultOptions/index";
 
 export function assertType<T>(_: T): void {}
 

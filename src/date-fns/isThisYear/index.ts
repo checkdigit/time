@@ -1,5 +1,5 @@
-import { constructNow } from "../constructNow/index.js";
-import { isSameYear } from "../isSameYear/index.js";
+import { constructNow } from "../constructNow/index";
+import { isSameYear } from "../isSameYear/index";
 
 /**
  * @name isThisYear

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { quartersToMonths } from "./index.js";
+import { quartersToMonths } from "./index";
 
 describe("quartersToMonths", () => {
   it("converts quarters to months", () => {

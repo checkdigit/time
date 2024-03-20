@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getDaysInYear } from "./index.js";
+import { getDaysInYear } from "./index";
 
 describe("getDaysInYear", () => {
   it("returns the number of days in the year of the given date", () => {

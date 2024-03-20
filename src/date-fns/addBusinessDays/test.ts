@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addBusinessDays } from "./index.js";
+import { addBusinessDays } from "./index";
 
 describe("addBusinessDays", () => {
   it("adds the given number of business days", () => {

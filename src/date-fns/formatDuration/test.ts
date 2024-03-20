@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatDuration } from "./index.js";
+import { formatDuration } from "./index";
 
 describe("formatDuration", () => {
   it("formats full duration", () => {

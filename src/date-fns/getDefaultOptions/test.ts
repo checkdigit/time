@@ -1,13 +1,13 @@
 import { afterEach, describe, expect, it } from "vitest";
-import { getDefaultOptions } from "./index.js";
-import { setDefaultOptions } from "../setDefaultOptions/index.js";
-import { startOfWeek } from "../startOfWeek/index.js";
+import { getDefaultOptions } from "./index";
+import { setDefaultOptions } from "../setDefaultOptions/index";
+import { startOfWeek } from "../startOfWeek/index";
 import {
   getDefaultOptions as getInternalDefaultOptions,
   setDefaultOptions as setInternalDefaultOptions,
-} from "../_lib/defaultOptions/index.js";
-import { eo } from "../locale/eo/index.js";
-import { resetDefaultOptions } from "../_lib/test/index.js";
+} from "../_lib/defaultOptions/index";
+import { eo } from "../locale/eo/index";
+import { resetDefaultOptions } from "../_lib/test/index";
 
 describe("getDefaultOptions", () => {
   afterEach(resetDefaultOptions);

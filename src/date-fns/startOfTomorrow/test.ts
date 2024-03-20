@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import sinon from "sinon";
-import { startOfTomorrow } from "./index.js";
+import { startOfTomorrow } from "./index";
 
 describe("startOfTomorrow", () => {
   it("returns the start of tomorrow", () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { differenceInCalendarISOWeekYears } from "./index.js";
+import { differenceInCalendarISOWeekYears } from "./index";
 
 describe("differenceInCalendarISOWeekYears", () => {
   it("returns the number of calendar ISO week-numbering years between the given dates", () => {

@@ -1,16 +1,16 @@
-import { defaultLocale } from "../_lib/defaultLocale/index.js";
-import { getDefaultOptions } from "../_lib/defaultOptions/index.js";
-import { getRoundingMethod } from "../_lib/getRoundingMethod/index.js";
-import { getTimezoneOffsetInMilliseconds } from "../_lib/getTimezoneOffsetInMilliseconds/index.js";
-import { compareAsc } from "../compareAsc/index.js";
+import { defaultLocale } from "../_lib/defaultLocale/index";
+import { getDefaultOptions } from "../_lib/defaultOptions/index";
+import { getRoundingMethod } from "../_lib/getRoundingMethod/index";
+import { getTimezoneOffsetInMilliseconds } from "../_lib/getTimezoneOffsetInMilliseconds/index";
+import { compareAsc } from "../compareAsc/index";
 import {
   millisecondsInMinute,
   minutesInDay,
   minutesInMonth,
   minutesInYear,
-} from "../constants/index.js";
-import { toDate } from "../toDate/index.js";
-import type { LocalizedOptions, RoundingOptions } from "../types.js";
+} from "../constants/index";
+import { toDate } from "../toDate/index";
+import type { LocalizedOptions, RoundingOptions } from "../types";
 
 /**
  * The {@link formatDistanceStrict} function options.

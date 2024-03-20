@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   roundToNearestHours,
   type RoundToNearestHoursOptions,
-} from "./index.js";
+} from "./index";
 
 describe("roundToNearestHours", () => {
   it("rounds given date to the nearest hour by default", () => {

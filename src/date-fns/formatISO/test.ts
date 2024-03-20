@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import sinon from "sinon";
-import { formatISO } from "./index.js";
-import { generateOffset } from "../_lib/test/index.js";
+import { formatISO } from "./index";
+import { generateOffset } from "../_lib/test/index";
 
 describe("formatISO", () => {
   it("formats ISO-8601 extended format", () => {

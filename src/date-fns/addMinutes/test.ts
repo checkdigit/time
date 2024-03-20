@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addMinutes } from "./index.js";
+import { addMinutes } from "./index";
 
 describe("addMinutes", () => {
   it("adds the given number of minutes", () => {

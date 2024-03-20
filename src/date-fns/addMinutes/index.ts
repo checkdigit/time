@@ -1,5 +1,5 @@
-import { addMilliseconds } from "../addMilliseconds/index.js";
-import { millisecondsInMinute } from "../constants/index.js";
+import { addMilliseconds } from "../addMilliseconds/index";
+import { millisecondsInMinute } from "../constants/index";
 
 /**
  * @name addMinutes

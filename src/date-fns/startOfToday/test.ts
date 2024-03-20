@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import sinon from "sinon";
-import { startOfToday } from "./index.js";
+import { startOfToday } from "./index";
 
 describe("startOfToday", () => {
   let clock: sinon.SinonFakeTimers;

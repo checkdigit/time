@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { max } from "./index.js";
+import { max } from "./index";
 
 describe("max", () => {
   it("returns the latest date", () => {

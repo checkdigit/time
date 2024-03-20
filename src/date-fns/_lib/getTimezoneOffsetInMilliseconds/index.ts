@@ -1,4 +1,4 @@
-import { toDate } from "../../toDate/index.js";
+import { toDate } from "../../toDate/index";
 
 /**
  * Google Chrome as of 67.0.3396.87 introduced timezones with offset that includes seconds.

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { setMonth } from "./index.js";
+import { setMonth } from "./index";
 
 describe("setMonth", () => {
   it("sets the month", () => {

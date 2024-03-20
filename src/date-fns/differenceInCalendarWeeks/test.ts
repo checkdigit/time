@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { differenceInCalendarWeeks } from "./index.js";
+import { differenceInCalendarWeeks } from "./index";
 
 describe("differenceInCalendarWeeks", () => {
   it("returns the number of calendar weeks between the given dates", () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { subDays } from "./index.js";
+import { subDays } from "./index";
 
 describe("subDays", () => {
   it("subtracts the given number of days", () => {

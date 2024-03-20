@@ -1,9 +1,9 @@
 import type {
-  DefaultOptions} from "../_lib/defaultOptions/index.js";
+  DefaultOptions} from "../_lib/defaultOptions/index";
 import {
   getDefaultOptions,
   setDefaultOptions as setInternalDefaultOptions
-} from "../_lib/defaultOptions/index.js";
+} from "../_lib/defaultOptions/index";
 
 /**
  * @name setDefaultOptions

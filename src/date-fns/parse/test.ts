@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parse } from "./index.js";
+import { parse } from "./index";
 
 describe("parse", () => {
   const referenceDate = new Date(1986, 3 /* Apr */, 4, 10, 32, 0, 900);

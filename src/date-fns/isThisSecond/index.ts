@@ -1,5 +1,5 @@
-import { constructNow } from "../constructNow/index.js";
-import { isSameSecond } from "../isSameSecond/index.js";
+import { constructNow } from "../constructNow/index";
+import { isSameSecond } from "../isSameSecond/index";
 
 /**
  * @name isThisSecond

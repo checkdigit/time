@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { add } from "./index.js";
-import { getDstTransitions } from "../../test/dst/tzOffsetTransitions.js";
+import { add } from "./index";
+import { getDstTransitions } from "../../test/dst/tzOffsetTransitions";
 
 describe("add", () => {
   it("adds the values from the given object", () => {

@@ -1,5 +1,5 @@
-import { daysInYear } from "../constants/index.js";
-import type { Duration } from "../types.js";
+import { daysInYear } from "../constants/index";
+import type { Duration } from "../types";
 
 /**
  * @name milliseconds

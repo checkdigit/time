@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { eachMonthOfInterval } from "./index.js";
+import { eachMonthOfInterval } from "./index";
 
 describe("eachMonthOfInterval", () => {
   it("returns an array with starts of months from the month of the start date to the month of the end date", () => {

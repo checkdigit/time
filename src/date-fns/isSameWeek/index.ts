@@ -1,5 +1,5 @@
-import { startOfWeek } from "../startOfWeek/index.js";
-import type { LocalizedOptions, WeekOptions } from "../types.js";
+import { startOfWeek } from "../startOfWeek/index";
+import type { LocalizedOptions, WeekOptions } from "../types";
 
 /**
  * The {@link isSameWeek} function options.

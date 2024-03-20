@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { differenceInCalendarYears } from "./index.js";
+import { differenceInCalendarYears } from "./index";
 
 describe("differenceInCalendarYears", () => {
   it("returns the number of calendar years between the given dates", () => {

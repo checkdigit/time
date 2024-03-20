@@ -1,5 +1,5 @@
-import { constructNow } from "../constructNow/index.js";
-import { isSameMinute } from "../isSameMinute/index.js";
+import { constructNow } from "../constructNow/index";
+import { isSameMinute } from "../isSameMinute/index";
 
 /**
  * @name isThisMinute

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { startOfMinute } from "./index.js";
+import { startOfMinute } from "./index";
 
 describe("startOfMinute", () => {
   it("returns the date with the time set to the first millisecond of a minute", () => {

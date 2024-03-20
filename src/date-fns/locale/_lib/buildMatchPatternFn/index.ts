@@ -1,4 +1,4 @@
-import type { MatchFn, MatchValueCallback } from "../../types.js";
+import type { MatchFn, MatchValueCallback } from "../../types";
 
 export interface BuildMatchPatternFnArgs<Result> {
   matchPattern: RegExp;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatRelative } from "./index.js";
+import { formatRelative } from "./index";
 
 describe("formatRelative", () => {
   const baseDate = new Date(1986, 3 /* Apr */, 4, 10, 32, 0, 900);

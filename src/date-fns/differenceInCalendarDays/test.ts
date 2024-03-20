@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { differenceInCalendarDays } from "./index.js";
-import { getDstTransitions } from "../../test/dst/tzOffsetTransitions.js";
+import { differenceInCalendarDays } from "./index";
+import { getDstTransitions } from "../../test/dst/tzOffsetTransitions";
 
 describe("differenceInCalendarDays", () => {
   it("returns the number of calendar days between the given dates", () => {

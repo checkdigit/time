@@ -1,4 +1,4 @@
-import { nextDay } from "../nextDay/index.js";
+import { nextDay } from "../nextDay/index";
 
 /**
  * @name nextTuesday

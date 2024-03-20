@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { interval } from "./index.js";
+import { interval } from "./index";
 
 describe("Interval", () => {
   it("exposes start and end", () => {

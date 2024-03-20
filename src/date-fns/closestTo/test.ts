@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { closestTo } from "./index.js";
+import { closestTo } from "./index";
 
 describe("closestTo", () => {
   it("returns the date from the given array closest to the given date", () => {

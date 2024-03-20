@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { setISOWeekYear } from "./index.js";
+import { setISOWeekYear } from "./index";
 
 describe("setISOWeekYear", () => {
   it("sets the ISO week-numbering year, saving the ISO week and the day of the week", () => {

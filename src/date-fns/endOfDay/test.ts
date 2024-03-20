@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { endOfDay } from "./index.js";
+import { endOfDay } from "./index";
 
 describe("endOfDay", () => {
   it("returns the date with the time set to 23:59:59.999", () => {

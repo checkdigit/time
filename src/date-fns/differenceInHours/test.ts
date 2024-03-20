@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { differenceInHours } from "./index.js";
+import { differenceInHours } from "./index";
 
 describe("differenceInHours", () => {
   it("returns the number of hours between the given dates with `trunc` as a default rounding method", () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isLastDayOfMonth } from "./index.js";
+import { isLastDayOfMonth } from "./index";
 
 describe("isLastDayOfMonth", () => {
   it("returns true if the given date is in the last day of month", () => {

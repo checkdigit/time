@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { intlFormatDistance } from "./index.js";
+import { intlFormatDistance } from "./index";
 
 describe("intlFormatDistance", () => {
   describe("with default values", () => {

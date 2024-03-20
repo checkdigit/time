@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { min } from "./index.js";
+import { min } from "./index";
 
 describe("min", () => {
   it("returns the earliest date", () => {

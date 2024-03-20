@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { setWeek } from "./index.js";
+import { setWeek } from "./index";
 
 describe("setWeek", () => {
   it("sets the local week", () => {

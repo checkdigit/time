@@ -1,6 +1,6 @@
-import { eachDayOfInterval } from "../eachDayOfInterval/index.js";
-import { isWeekend } from "../isWeekend/index.js";
-import type { Interval } from "../types.js";
+import { eachDayOfInterval } from "../eachDayOfInterval/index";
+import { isWeekend } from "../isWeekend/index";
+import type { Interval } from "../types";
 
 /**
  * @name eachWeekendOfInterval

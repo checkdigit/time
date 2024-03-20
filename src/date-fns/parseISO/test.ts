@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseISO } from "./index.js";
+import { parseISO } from "./index";
 
 describe("parseISO", () => {
   describe("string argument", () => {

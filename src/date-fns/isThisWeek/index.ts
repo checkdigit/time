@@ -1,6 +1,6 @@
-import { constructNow } from "../constructNow/index.js";
-import { isSameWeek } from "../isSameWeek/index.js";
-import type { LocalizedOptions, WeekOptions } from "../types.js";
+import { constructNow } from "../constructNow/index";
+import { isSameWeek } from "../isSameWeek/index";
+import type { LocalizedOptions, WeekOptions } from "../types";
 
 /**
  * The {@link isThisWeek} function options.

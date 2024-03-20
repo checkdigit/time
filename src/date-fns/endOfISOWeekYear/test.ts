@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { endOfISOWeekYear } from "./index.js";
+import { endOfISOWeekYear } from "./index";
 
 describe("endOfISOWeekYear", () => {
   it("returns the date with the time set to 23:59:59.999 and the date set to the last day of an ISO year", () => {

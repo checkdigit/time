@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { eachWeekOfInterval } from "./index.js";
+import { eachWeekOfInterval } from "./index";
 
 describe("eachWeekOfInterval", () => {
   it("returns an array with starts of weeks from the week of the start date to the week of the end date", () => {

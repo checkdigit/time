@@ -1,5 +1,5 @@
-import { constructNow } from "../constructNow/index.js";
-import { isSameQuarter } from "../isSameQuarter/index.js";
+import { constructNow } from "../constructNow/index";
+import { isSameQuarter } from "../isSameQuarter/index";
 
 /**
  * @name isThisQuarter

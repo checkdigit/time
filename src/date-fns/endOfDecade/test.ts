@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { endOfDecade } from "./index.js";
+import { endOfDecade } from "./index";
 
 describe("endOfDecade", () => {
   it("returns the date with the time set to 23:59:59.999 and the date set to the last millisecond of a decade", () => {

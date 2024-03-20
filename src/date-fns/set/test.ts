@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { set } from "./index.js";
+import { set } from "./index";
 
 describe("set", () => {
   it("sets all values", () => {

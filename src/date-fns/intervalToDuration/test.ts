@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { intervalToDuration } from "./index.js";
-import { addMonths } from "../addMonths/index.js";
+import { intervalToDuration } from "./index";
+import { addMonths } from "../addMonths/index";
 
 describe("intervalToDuration", () => {
   it("returns correct duration for arbitrary dates", () => {

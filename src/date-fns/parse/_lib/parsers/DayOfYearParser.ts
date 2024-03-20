@@ -1,12 +1,12 @@
-import type { Match } from "../../../locale/types.js";
-import { numericPatterns } from "../constants.js";
-import { Parser } from "../Parser.js";
-import type { ParseFlags, ParseResult } from "../types.js";
+import type { Match } from "../../../locale/types";
+import { numericPatterns } from "../constants";
+import { Parser } from "../Parser";
+import type { ParseFlags, ParseResult } from "../types";
 import {
   isLeapYearIndex,
   parseNDigits,
   parseNumericPattern,
-} from "../utils.js";
+} from "../utils";
 
 export class DayOfYearParser extends Parser<number> {
   priority = 90;

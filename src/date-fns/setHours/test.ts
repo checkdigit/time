@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { setHours } from "./index.js";
+import { setHours } from "./index";
 
 describe("setHours", () => {
   it("sets the amount of hours", () => {

@@ -1,7 +1,7 @@
 import { UTCDate } from "@date-fns/utc";
 import sinon from "sinon";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { isThisSecond } from "./index.js";
+import { isThisSecond } from "./index";
 
 describe("isThisSecond", () => {
   let clock: sinon.SinonFakeTimers;

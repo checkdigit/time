@@ -1,4 +1,4 @@
-import { millisecondsInSecond } from "../constants/index.js";
+import { millisecondsInSecond } from "../constants/index";
 
 /**
  * @name millisecondsToSeconds

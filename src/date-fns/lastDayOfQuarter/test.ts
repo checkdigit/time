@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { lastDayOfQuarter } from "./index.js";
+import { lastDayOfQuarter } from "./index";
 
 describe("lastDayOfQuarter", () => {
   it("returns the date with the time set to 00:00:00 and the date set to the last day of a quarter", () => {

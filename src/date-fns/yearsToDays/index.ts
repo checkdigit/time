@@ -1,4 +1,4 @@
-import { daysInYear } from "../constants/index.js";
+import { daysInYear } from "../constants/index";
 
 /**
  * @name yearsToDays

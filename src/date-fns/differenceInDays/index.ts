@@ -1,5 +1,5 @@
-import { differenceInCalendarDays } from "../differenceInCalendarDays/index.js";
-import { toDate } from "../toDate/index.js";
+import { differenceInCalendarDays } from "../differenceInCalendarDays/index";
+import { toDate } from "../toDate/index";
 
 /**
  * @name differenceInDays

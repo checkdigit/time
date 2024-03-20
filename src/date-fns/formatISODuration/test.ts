@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { formatISODuration } from "./index.js";
-import { intervalToDuration } from "../intervalToDuration/index.js";
+import { formatISODuration } from "./index";
+import { intervalToDuration } from "../intervalToDuration/index";
 
 describe("formatISODuration", () => {
   it("Everything returns correct duration for arbitrary dates", () => {

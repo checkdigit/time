@@ -1,21 +1,21 @@
-import { defaultLocale } from "../_lib/defaultLocale/index.js";
-import { getDefaultOptions } from "../_lib/defaultOptions/index.js";
-import { formatters } from "../_lib/format/formatters/index.js";
-import { longFormatters } from "../_lib/format/longFormatters/index.js";
+import { defaultLocale } from "../_lib/defaultLocale/index";
+import { getDefaultOptions } from "../_lib/defaultOptions/index";
+import { formatters } from "../_lib/format/formatters/index";
+import { longFormatters } from "../_lib/format/longFormatters/index";
 import {
   isProtectedDayOfYearToken,
   isProtectedWeekYearToken,
   warnOrThrowProtectedError,
-} from "../_lib/protectedTokens/index.js";
-import { isValid } from "../isValid/index.js";
-import { toDate } from "../toDate/index.js";
+} from "../_lib/protectedTokens/index";
+import { isValid } from "../isValid/index";
+import { toDate } from "../toDate/index";
 import type {
   AdditionalTokensOptions,
   FirstWeekContainsDateOptions,
   FormatPart,
   LocalizedOptions,
   WeekOptions,
-} from "../types.js";
+} from "../types";
 
 // Rexports of internal for libraries to use.
 // See: https://github.com/date-fns/date-fns/issues/3638#issuecomment-1877082874

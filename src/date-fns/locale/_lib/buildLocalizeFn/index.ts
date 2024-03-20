@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 
-import type { Day, Era, Month, Quarter } from "../../../types.js";
+import type { Day, Era, Month, Quarter } from "../../../types";
 import type {
   LocaleDayPeriod,
   LocaleUnitValue,
   LocaleWidth,
   LocalizeFn,
-} from "../../types.js";
+} from "../../types";
 
 export type BuildLocalizeFnArgs<
   Value extends LocaleUnitValue,

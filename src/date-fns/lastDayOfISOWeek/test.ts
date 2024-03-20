@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { lastDayOfISOWeek } from "./index.js";
+import { lastDayOfISOWeek } from "./index";
 
 describe("lastDayOfISOWeek", () => {
   it("returns the date with the time set to 00:00:00 and the date set to the last day of an ISO week", () => {

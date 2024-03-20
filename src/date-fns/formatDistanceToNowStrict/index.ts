@@ -1,6 +1,6 @@
-import type { FormatDistanceStrictOptions } from "../formatDistanceStrict/index.js";
-import { formatDistanceStrict } from "../formatDistanceStrict/index.js";
-import { constructNow } from "../constructNow/index.js";
+import type { FormatDistanceStrictOptions } from "../formatDistanceStrict/index";
+import { formatDistanceStrict } from "../formatDistanceStrict/index";
+import { constructNow } from "../constructNow/index";
 
 /**
  * The {@link formatDistanceToNowStrict} function options.

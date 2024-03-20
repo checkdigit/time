@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import type { FormatDistanceFn } from "../locale/types.js";
-import { formatDistanceStrict } from "./index.js";
+import type { FormatDistanceFn } from "../locale/types";
+import { formatDistanceStrict } from "./index";
 
 describe("formatDistanceStrict", () => {
   describe("seconds", () => {

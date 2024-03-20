@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { startOfMonth } from "./index.js";
+import { startOfMonth } from "./index";
 
 describe("startOfMonth", () => {
   it("returns the date with the time set to 00:00:00 and the date set to the first day of a month", () => {

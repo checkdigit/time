@@ -1,6 +1,6 @@
-import { constructNow } from "../constructNow/index.js";
-import { isSameDay } from "../isSameDay/index.js";
-import { subDays } from "../subDays/index.js";
+import { constructNow } from "../constructNow/index";
+import { isSameDay } from "../isSameDay/index";
+import { subDays } from "../subDays/index";
 
 /**
  * @name isYesterday

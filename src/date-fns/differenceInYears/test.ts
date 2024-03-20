@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { differenceInYears } from "./index.js";
+import { differenceInYears } from "./index";
 
 describe("differenceInYears", () => {
   it("returns the number of full years between the given dates", () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isWithinInterval } from "./index.js";
+import { isWithinInterval } from "./index";
 
 describe("isWithinInterval", () => {
   it("returns true if the given date in within the given interval", () => {

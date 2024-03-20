@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isEqual } from "./index.js";
+import { isEqual } from "./index";
 
 describe("isEqual", () => {
   it("returns true if the given dates are equal", () => {

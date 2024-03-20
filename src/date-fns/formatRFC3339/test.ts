@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import sinon from "sinon";
-import { formatRFC3339 } from "./index.js";
-import { generateOffset } from "../_lib/test/index.js";
+import { formatRFC3339 } from "./index";
+import { generateOffset } from "../_lib/test/index";
 
 describe("formatRFC3339", () => {
   it("formats RFC-3339 date string", () => {

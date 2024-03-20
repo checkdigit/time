@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { subYears } from "./index.js";
+import { subYears } from "./index";
 
 describe("subYears", () => {
   it("subtracts the given number of years", () => {

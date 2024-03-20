@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { subBusinessDays } from "./index.js";
+import { subBusinessDays } from "./index";
 
 describe("subBusinessDays", () => {
   it("substract the given number of business days", () => {

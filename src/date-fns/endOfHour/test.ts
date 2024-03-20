@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { endOfHour } from "./index.js";
+import { endOfHour } from "./index";
 
 describe("endOfHour", () => {
   it("returns the date with the time set to the last millisecond before an hour ends", () => {

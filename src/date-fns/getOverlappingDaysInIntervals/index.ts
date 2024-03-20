@@ -1,7 +1,7 @@
-import { getTimezoneOffsetInMilliseconds } from "../_lib/getTimezoneOffsetInMilliseconds/index.js";
-import { millisecondsInDay } from "../constants/index.js";
-import { toDate } from "../toDate/index.js";
-import type { Interval } from "../types.js";
+import { getTimezoneOffsetInMilliseconds } from "../_lib/getTimezoneOffsetInMilliseconds/index";
+import { millisecondsInDay } from "../constants/index";
+import { toDate } from "../toDate/index";
+import type { Interval } from "../types";
 
 /**
  * @name getOverlappingDaysInIntervals

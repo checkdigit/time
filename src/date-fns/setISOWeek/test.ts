@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { setISOWeek } from "./index.js";
+import { setISOWeek } from "./index";
 
 describe("setISOWeek", () => {
   it("sets the ISO week", () => {

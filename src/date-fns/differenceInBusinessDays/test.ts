@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { differenceInBusinessDays } from "./index.js";
+import { differenceInBusinessDays } from "./index";
 
 describe("differenceInBusinessDays", () => {
   it("returns the number of business days between the given dates, excluding weekends", () => {

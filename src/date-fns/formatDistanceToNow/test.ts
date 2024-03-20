@@ -1,8 +1,8 @@
 import { UTCDate } from "@date-fns/utc";
 import sinon from "sinon";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import type { FormatDistanceFn } from "../locale/types.js";
-import { formatDistanceToNow } from "./index.js";
+import type { FormatDistanceFn } from "../locale/types";
+import { formatDistanceToNow } from "./index";
 
 describe("formatDistanceToNow", () => {
   let clock: sinon.SinonFakeTimers;
