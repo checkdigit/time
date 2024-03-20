@@ -1,4 +1,4 @@
 {
   "extends": "@checkdigit/typescript-config",
-  "exclude": ["src/date-fns/**/test.ts"]
+  "exclude": ["src/date-fns/**/test.mts"]
 }

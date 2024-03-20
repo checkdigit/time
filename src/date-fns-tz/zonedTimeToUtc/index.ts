@@ -1,4 +1,4 @@
-import cloneObject from '../../date-fns/_lib/cloneObject';
+import cloneObject from '../date-fns-v2-lib/cloneObject';
 import toDate from '../toDate';
 import tzPattern from '../_lib/tzPattern';
 import tzParseTimezone from '../_lib/tzParseTimezone';
