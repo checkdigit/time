@@ -1,4 +1,4 @@
-import type { GenericDateConstructor } from "../types";
+import type { Instant } from "../../instant";
 
 /**
  * @name toDate
@@ -35,17 +35,25 @@ import type { GenericDateConstructor } from "../types";
 export function toDate<DateType extends Date>(
   argument: DateType | number | string,
 ): DateType {
-  const argStr = Object.prototype.toString.call(argument);
+  let modifiedArgument = argument;
+  // this hack is required to support nano seconds
+  if (typeof (modifiedArgument as unknown as Instant)?.epochNanoseconds === 'bigint') {
+    modifiedArgument = new Date(Number((modifiedArgument as unknown as Instant).epochNanoseconds / 1000000n)) as DateType;
+  }
+  const argStr = Object.prototype.toString.call(modifiedArgument);
 
-  // Clone the date
   if (
     argument instanceof Date ||
     (typeof argument === "object" && argStr === "[object Date]")
   ) {
-    // Prevent the date to lose the milliseconds when passed to new Date() in IE10
-    return new (argument.constructor as GenericDateConstructor<DateType>)(
-      +argument,
-    );
+    // this hack is required because setHours doesn't work for hours that are spring-forward
+    return modifiedArgument as DateType;
+    // original:
+    // // Prevent the date to lose the milliseconds when passed to new Date() in IE10
+    // return new (argument.constructor as GenericDateConstructor<DateType>)(
+    //   +argument,
+    // );
+
   } else if (
     typeof argument === "number" ||
     argStr === "[object Number]" ||

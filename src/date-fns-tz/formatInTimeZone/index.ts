@@ -1,4 +1,4 @@
-import cloneObject from '../../date-fns-v2-lib/cloneObject';
+import cloneObject from '../../date-fns/_lib/cloneObject';
 import format from '../format';
 import type { OptionsWithTZ } from '../types';
 import utcToZonedTime from '../utcToZonedTime';
