@@ -43,7 +43,7 @@ export default function utcToZonedTime(
 
   resultDate.setHours(d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds(), d.getUTCMilliseconds());
 
-  // this hack is required because setHours doesn't work for hours that are spring-forward
+  // [PATCH:] this hack is required because setHours doesn't work for hours that are spring-forward
   (resultDate as any)[Symbol.for('UTCHours')] = d.getUTCHours();
   return resultDate;
 }

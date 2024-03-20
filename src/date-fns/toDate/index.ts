@@ -1,3 +1,4 @@
+import type { GenericDateConstructor } from "..";
 import type { Instant } from "../../instant";
 
 /**
@@ -35,25 +36,26 @@ import type { Instant } from "../../instant";
 export function toDate<DateType extends Date>(
   argument: DateType | number | string,
 ): DateType {
-  let modifiedArgument = argument;
-  // this hack is required to support nano seconds
-  if (typeof (modifiedArgument as unknown as Instant)?.epochNanoseconds === 'bigint') {
-    modifiedArgument = new Date(Number((modifiedArgument as unknown as Instant).epochNanoseconds / 1000000n)) as DateType;
-  }
-  const argStr = Object.prototype.toString.call(modifiedArgument);
+  const argStr = Object.prototype.toString.call(argument);
 
   if (
     argument instanceof Date ||
     (typeof argument === "object" && argStr === "[object Date]")
   ) {
-    // this hack is required because setHours doesn't work for hours that are spring-forward
-    return modifiedArgument as DateType;
-    // original:
-    // // Prevent the date to lose the milliseconds when passed to new Date() in IE10
-    // return new (argument.constructor as GenericDateConstructor<DateType>)(
-    //   +argument,
-    // );
-
+    // [PATCH:] this hack is required to support nano seconds
+    let modifiedArgument = argument;
+    if (typeof (modifiedArgument as unknown as Instant)?.epochNanoseconds === 'bigint') {
+      modifiedArgument = new Date(Number((modifiedArgument as unknown as Instant).epochNanoseconds / 1000000n)) as DateType;
+    }
+    // Prevent the date to lose the milliseconds when passed to new Date() in IE10
+    const dateToReturn = new (argument.constructor as GenericDateConstructor<DateType>)(
+      +argument,
+    );
+    // [PATCH:] this hack is required because setHours doesn't work for hours that are spring-forward
+    if ((argument as any)[Symbol.for('UTCHours')]!==undefined) {
+      (dateToReturn as any)[Symbol.for('UTCHours')] = (argument as any)[Symbol.for('UTCHours')];
+    }
+    return dateToReturn
   } else if (
     typeof argument === "number" ||
     argStr === "[object Number]" ||

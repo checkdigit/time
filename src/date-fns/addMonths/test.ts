@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { addMonths } from "./index";
-import { getDstTransitions } from "../../test/dst/tzOffsetTransitions";
+import { getDstTransitions } from "../_test/dst/tzOffsetTransitions";
 
 describe("addMonths", () => {
   it("adds the given number of months", () => {

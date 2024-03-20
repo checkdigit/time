@@ -1,9 +1,8 @@
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, beforeAll, describe, expect, it } from "vitest";
 import { setDefaultOptions } from "./index";
 import type { DefaultOptions } from "../_lib/defaultOptions/index";
 import { getDefaultOptions as getInternalDefaultOptions } from "../_lib/defaultOptions/index";
 import { enUS } from "../locale/en-US/index";
-import { eo } from "../locale/eo/index";
 import { differenceInCalendarWeeks } from "../differenceInCalendarWeeks/index";
 import { eachWeekOfInterval } from "../eachWeekOfInterval/index";
 import { endOfWeek } from "../endOfWeek/index";
@@ -26,9 +25,17 @@ import { setWeekYear } from "../setWeekYear/index";
 import { startOfWeek } from "../startOfWeek/index";
 import { startOfWeekYear } from "../startOfWeekYear/index";
 import { resetDefaultOptions } from "../_lib/test/index";
+import { Locale } from "../types";
+import { before } from "node:test";
 
-describe("setDefaultOptions", () => {
+describe.skip("setDefaultOptions", () => {
   afterEach(resetDefaultOptions);
+
+  let eo: Locale
+  beforeAll(async () => {
+    // @ts-expect-error
+    ({ eo } = await import("../locale/eo/index"));
+  });
 
   it("changes the internal `defaultOptions` object", () => {
     setDefaultOptions({

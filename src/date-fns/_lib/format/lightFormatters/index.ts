@@ -44,7 +44,7 @@ export const lightFormatters = {
 
   // AM or PM
   a(date: Date, token: string): string {
-    // this hack is required because setHours doesn't work for hours that are spring-forward
+    // [PATCH:] this hack is required because setHours doesn't work for hours that are spring-forward
     const dayPeriodEnumValue = ((date as any)[Symbol.for('UTCHours')] ?? date.getHours()) / 12 >= 1 ? 'pm' : 'am';
     // original:
     // const dayPeriodEnumValue = date.getHours() / 12 >= 1 ? "pm" : "am";
@@ -65,7 +65,7 @@ export const lightFormatters = {
 
   // Hour [1-12]
   h(date: Date, token: string): string {
-    // this hack is required because setHours doesn't work for hours that are spring-forward
+    // [PATCH:] this hack is required because setHours doesn't work for hours that are spring-forward
     return addLeadingZeros(((date as any)[Symbol.for('UTCHours')] ?? date.getHours()) % 12 || 12, token.length);
     // original:
     // return addLeadingZeros(date.getHours() % 12 || 12, token.length);
@@ -73,7 +73,7 @@ export const lightFormatters = {
 
   // Hour [0-23]
   H(date: Date, token: string): string {
-    // this hack is required because setHours doesn't work for hours that are spring-forward
+    // [PATCH:] this hack is required because setHours doesn't work for hours that are spring-forward
     return addLeadingZeros((date as any)[Symbol.for('UTCHours')] ?? date.getHours(), token.length);
     // original:
     // return addLeadingZeros(date.getHours(), token.length);
