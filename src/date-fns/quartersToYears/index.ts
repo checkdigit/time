@@ -1,4 +1,4 @@
-import { quartersInYear } from "../constants/index";
+import { quartersInYear } from '../constants/index';
 
 /**
  * @name quartersToYears

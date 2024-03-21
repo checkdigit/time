@@ -1,12 +1,8 @@
-import type { Match } from "../../../locale/types";
-import { numericPatterns } from "../constants";
-import { Parser } from "../Parser";
-import type { ParseFlags, ParseResult } from "../types";
-import {
-  isLeapYearIndex,
-  parseNDigits,
-  parseNumericPattern,
-} from "../utils";
+import type { Match } from '../../../locale/types';
+import { numericPatterns } from '../constants';
+import { Parser } from '../Parser';
+import type { ParseFlags, ParseResult } from '../types';
+import { isLeapYearIndex, parseNDigits, parseNumericPattern } from '../utils';
 
 export class DayOfYearParser extends Parser<number> {
   priority = 90;
@@ -15,11 +11,11 @@ export class DayOfYearParser extends Parser<number> {
 
   parse(dateString: string, token: string, match: Match): ParseResult<number> {
     switch (token) {
-      case "D":
-      case "DD":
+      case 'D':
+      case 'DD':
         return parseNumericPattern(numericPatterns.dayOfYear, dateString);
-      case "Do":
-        return match.ordinalNumber(dateString, { unit: "date" });
+      case 'Do':
+        return match.ordinalNumber(dateString, { unit: 'date' });
       default:
         return parseNDigits(token.length, dateString);
     }
@@ -35,31 +31,11 @@ export class DayOfYearParser extends Parser<number> {
     }
   }
 
-  set<DateType extends Date>(
-    date: DateType,
-    _flags: ParseFlags,
-    value: number,
-  ): DateType {
+  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
     date.setMonth(0, value);
     date.setHours(0, 0, 0, 0);
     return date;
   }
 
-  incompatibleTokens = [
-    "Y",
-    "R",
-    "q",
-    "Q",
-    "M",
-    "L",
-    "w",
-    "I",
-    "d",
-    "E",
-    "i",
-    "e",
-    "c",
-    "t",
-    "T",
-  ];
+  incompatibleTokens = ['Y', 'R', 'q', 'Q', 'M', 'L', 'w', 'I', 'd', 'E', 'i', 'e', 'c', 't', 'T'];
 }

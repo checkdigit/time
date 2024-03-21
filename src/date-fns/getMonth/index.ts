@@ -1,4 +1,4 @@
-import { toDate } from "../toDate/index";
+import { toDate } from '../toDate/index';
 
 /**
  * @name getMonth
@@ -19,9 +19,7 @@ import { toDate } from "../toDate/index";
  * const result = getMonth(new Date(2012, 1, 29))
  * //=> 1
  */
-export function getMonth<DateType extends Date>(
-  date: DateType | number | string,
-): number {
+export function getMonth<DateType extends Date>(date: DateType | number | string): number {
   const _date = toDate(date);
   const month = _date.getMonth();
   return month;

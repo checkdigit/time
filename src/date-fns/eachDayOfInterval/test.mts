@@ -1,8 +1,8 @@
-import { describe, expect, it } from "vitest";
-import { eachDayOfInterval } from "./index";
+import { describe, expect, it } from 'vitest';
+import { eachDayOfInterval } from './index';
 
-describe("eachDayOfInterval", () => {
-  it("returns an array with starts of days from the day of the start date to the day of the end date", () => {
+describe('eachDayOfInterval', () => {
+  it('returns an array with starts of days from the day of the start date to the day of the end date', () => {
     const result = eachDayOfInterval({
       start: new Date(2014, 9 /* Oct */, 6),
       end: new Date(2014, 9 /* Oct */, 12),
@@ -18,7 +18,7 @@ describe("eachDayOfInterval", () => {
     ]);
   });
 
-  it("accepts timestamps", () => {
+  it('accepts timestamps', () => {
     const result = eachDayOfInterval({
       start: new Date(2014, 9 /* Oct */, 6).getTime(),
       end: new Date(2014, 9 /* Oct */, 12).getTime(),
@@ -34,7 +34,7 @@ describe("eachDayOfInterval", () => {
     ]);
   });
 
-  it("handles the dates that are not starts of days", () => {
+  it('handles the dates that are not starts of days', () => {
     const result = eachDayOfInterval({
       start: new Date(2014, 9 /* Oct */, 6, 6, 35),
       end: new Date(2014, 9 /* Oct */, 12, 22, 15),
@@ -50,7 +50,7 @@ describe("eachDayOfInterval", () => {
     ]);
   });
 
-  it("returns one day if the both arguments are on the same day", () => {
+  it('returns one day if the both arguments are on the same day', () => {
     const result = eachDayOfInterval({
       start: new Date(2014, 9 /* Oct */, 6, 14),
       end: new Date(2014, 9 /* Oct */, 6, 15),
@@ -58,7 +58,7 @@ describe("eachDayOfInterval", () => {
     expect(result).toEqual([new Date(2014, 9 /* Oct */, 6)]);
   });
 
-  it("returns one day if the both arguments are the same", () => {
+  it('returns one day if the both arguments are the same', () => {
     const result = eachDayOfInterval({
       start: new Date(2014, 9 /* Oct */, 6, 14),
       end: new Date(2014, 9 /* Oct */, 6, 14),
@@ -66,7 +66,7 @@ describe("eachDayOfInterval", () => {
     expect(result).toEqual([new Date(2014, 9 /* Oct */, 6)]);
   });
 
-  it("returns reversed array if the start date is after the end date", () => {
+  it('returns reversed array if the start date is after the end date', () => {
     const result = eachDayOfInterval({
       start: new Date(2014, 9 /* Oct */, 12),
       end: new Date(2014, 9 /* Oct */, 6),
@@ -82,7 +82,7 @@ describe("eachDayOfInterval", () => {
     ]);
   });
 
-  it("returns an empty array if the start date is `Invalid Date`", () => {
+  it('returns an empty array if the start date is `Invalid Date`', () => {
     const result = eachDayOfInterval({
       start: new Date(NaN),
       end: new Date(2014, 9 /* Oct */, 6),
@@ -90,7 +90,7 @@ describe("eachDayOfInterval", () => {
     expect(result).toEqual([]);
   });
 
-  it("returns an empty array if the end date is `Invalid Date`", () => {
+  it('returns an empty array if the end date is `Invalid Date`', () => {
     const result = eachDayOfInterval({
       start: new Date(2014, 9 /* Oct */, 12),
       end: new Date(NaN),
@@ -98,7 +98,7 @@ describe("eachDayOfInterval", () => {
     expect(result).toEqual([]);
   });
 
-  it("returns an empty array if both of the properties are `Invalid Date`", () => {
+  it('returns an empty array if both of the properties are `Invalid Date`', () => {
     const result = eachDayOfInterval({
       start: new Date(NaN),
       end: new Date(NaN),
@@ -106,13 +106,13 @@ describe("eachDayOfInterval", () => {
     expect(result).toEqual([]);
   });
 
-  describe("options.step", () => {
+  describe('options.step', () => {
     const interval = {
       start: new Date(2014, 9 /* Oct */, 6),
       end: new Date(2014, 9 /* Oct */, 13),
     };
 
-    it("returns an array with starts of days from the day of the start date to the day of the end date with the given step", () => {
+    it('returns an array with starts of days from the day of the start date to the day of the end date with the given step', () => {
       const result = eachDayOfInterval(interval, { step: 3 });
       expect(result).toEqual([
         new Date(2014, 9 /* Oct */, 6),
@@ -121,7 +121,7 @@ describe("eachDayOfInterval", () => {
       ]);
     });
 
-    it("returns reversed array if `options.step` is negative", () => {
+    it('returns reversed array if `options.step` is negative', () => {
       const result = eachDayOfInterval(
         {
           start: new Date(2014, 9 /* Oct */, 10),
@@ -136,7 +136,7 @@ describe("eachDayOfInterval", () => {
       ]);
     });
 
-    it("reverses array twice if `options.step` is negative and the interval is negative too", () => {
+    it('reverses array twice if `options.step` is negative and the interval is negative too', () => {
       const result = eachDayOfInterval(
         {
           start: new Date(2014, 9 /* Oct */, 12),
@@ -151,12 +151,12 @@ describe("eachDayOfInterval", () => {
       ]);
     });
 
-    it("returns empty array if `options.step` is less than 1", () => {
+    it('returns empty array if `options.step` is less than 1', () => {
       const result = eachDayOfInterval(interval, { step: 0 });
       expect(result).toEqual([]);
     });
 
-    it("returns empty array if `options.step` is NaN", () => {
+    it('returns empty array if `options.step` is NaN', () => {
       const result = eachDayOfInterval(interval, { step: NaN });
       expect(result).toEqual([]);
     });

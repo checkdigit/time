@@ -1,6 +1,6 @@
-import { addHours } from "../addHours/index";
-import { toDate } from "../toDate/index";
-import type { Interval, StepOptions } from "../types";
+import { addHours } from '../addHours/index';
+import { toDate } from '../toDate/index';
+import type { Interval, StepOptions } from '../types';
 
 /**
  * The {@link eachHourOfInterval} function options.

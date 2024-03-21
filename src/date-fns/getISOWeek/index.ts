@@ -1,7 +1,7 @@
-import { millisecondsInWeek } from "../constants/index";
-import { startOfISOWeek } from "../startOfISOWeek/index";
-import { startOfISOWeekYear } from "../startOfISOWeekYear/index";
-import { toDate } from "../toDate/index";
+import { millisecondsInWeek } from '../constants/index';
+import { startOfISOWeek } from '../startOfISOWeek/index';
+import { startOfISOWeekYear } from '../startOfISOWeekYear/index';
+import { toDate } from '../toDate/index';
 
 /**
  * @name getISOWeek
@@ -24,9 +24,7 @@ import { toDate } from "../toDate/index";
  * const result = getISOWeek(new Date(2005, 0, 2))
  * //=> 53
  */
-export function getISOWeek<DateType extends Date>(
-  date: DateType | number | string,
-): number {
+export function getISOWeek<DateType extends Date>(date: DateType | number | string): number {
   const _date = toDate(date);
   const diff = +startOfISOWeek(_date) - +startOfISOWeekYear(_date);
 

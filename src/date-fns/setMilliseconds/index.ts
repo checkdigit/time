@@ -1,4 +1,4 @@
-import { toDate } from "../toDate/index";
+import { toDate } from '../toDate/index';
 
 /**
  * @name setMilliseconds

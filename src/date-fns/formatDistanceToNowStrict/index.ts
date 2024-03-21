@@ -1,12 +1,11 @@
-import type { FormatDistanceStrictOptions } from "../formatDistanceStrict/index";
-import { formatDistanceStrict } from "../formatDistanceStrict/index";
-import { constructNow } from "../constructNow/index";
+import type { FormatDistanceStrictOptions } from '../formatDistanceStrict/index';
+import { formatDistanceStrict } from '../formatDistanceStrict/index';
+import { constructNow } from '../constructNow/index';
 
 /**
  * The {@link formatDistanceToNowStrict} function options.
  */
-export interface FormatDistanceToNowStrictOptions
-  extends FormatDistanceStrictOptions {}
+export interface FormatDistanceToNowStrictOptions extends FormatDistanceStrictOptions {}
 
 /**
  * @name formatDistanceToNowStrict

@@ -1,6 +1,6 @@
-import { constructFrom } from "../constructFrom/index";
-import { startOfISOWeek } from "../startOfISOWeek/index";
-import { toDate } from "../toDate/index";
+import { constructFrom } from '../constructFrom/index';
+import { startOfISOWeek } from '../startOfISOWeek/index';
+import { toDate } from '../toDate/index';
 
 /**
  * @name getISOWeekYear
@@ -24,9 +24,7 @@ import { toDate } from "../toDate/index";
  * const result = getISOWeekYear(new Date(2005, 0, 2))
  * //=> 2004
  */
-export function getISOWeekYear<DateType extends Date>(
-  date: DateType | number | string,
-): number {
+export function getISOWeekYear<DateType extends Date>(date: DateType | number | string): number {
   const _date = toDate(date);
   const year = _date.getFullYear();
 

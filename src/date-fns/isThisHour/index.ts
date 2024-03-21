@@ -1,5 +1,5 @@
-import { constructNow } from "../constructNow/index";
-import { isSameHour } from "../isSameHour/index";
+import { constructNow } from '../constructNow/index';
+import { isSameHour } from '../isSameHour/index';
 
 /**
  * @name isThisHour
@@ -22,8 +22,6 @@ import { isSameHour } from "../isSameHour/index";
  * const result = isThisHour(new Date(2014, 8, 25, 18))
  * //=> true
  */
-export function isThisHour<DateType extends Date>(
-  date: DateType | number | string,
-): boolean {
+export function isThisHour<DateType extends Date>(date: DateType | number | string): boolean {
   return isSameHour(date, constructNow(date));
 }

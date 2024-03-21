@@ -1,6 +1,6 @@
-import { getISOWeekYear } from "../getISOWeekYear/index";
-import { startOfISOWeek } from "../startOfISOWeek/index";
-import { constructFrom } from "../constructFrom/index";
+import { getISOWeekYear } from '../getISOWeekYear/index';
+import { startOfISOWeek } from '../startOfISOWeek/index';
+import { constructFrom } from '../constructFrom/index';
 
 /**
  * @name endOfISOWeekYear
@@ -25,9 +25,7 @@ import { constructFrom } from "../constructFrom/index";
  * const result = endOfISOWeekYear(new Date(2005, 6, 2))
  * //=> Sun Jan 01 2006 23:59:59.999
  */
-export function endOfISOWeekYear<DateType extends Date>(
-  date: DateType | number | string,
-): DateType {
+export function endOfISOWeekYear<DateType extends Date>(date: DateType | number | string): DateType {
   const year = getISOWeekYear(date);
   const fourthOfJanuaryOfNextYear = constructFrom(date, 0);
   fourthOfJanuaryOfNextYear.setFullYear(year + 1, 0, 4);

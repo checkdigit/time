@@ -998,10 +998,10 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
 
   ```javascript
   // Before v2.0.0
-  addDays("2016-01-01", 1);
+  addDays('2016-01-01', 1);
 
   // v2.0.0 onward
-  addDays(parseISO("2016-01-01"), 1);
+  addDays(parseISO('2016-01-01'), 1);
   ```
 
 - **BREAKING**: new format string API for `format` function
@@ -1168,7 +1168,7 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   you should set `useAdditionalWeekYearTokens` option:
 
   ```javascript
-  format(Date.now(), "YY", { useAdditionalWeekYearTokens: true });
+  format(Date.now(), 'YY', { useAdditionalWeekYearTokens: true });
   //=> '86'
   ```
 
@@ -1176,7 +1176,7 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   set `useAdditionalDayOfYearTokens` option:
 
   ```javascript
-  format(Date.now(), "D", { useAdditionalDayOfYearTokens: true });
+  format(Date.now(), 'D', { useAdditionalDayOfYearTokens: true });
   //=> '364'
   ```
 
@@ -1184,10 +1184,10 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
 
   ```javascript
   // Before v2.0.0
-  import differenceInCalendarISOYears from "date-fns/difference_in_calendar_iso_years";
+  import differenceInCalendarISOYears from 'date-fns/difference_in_calendar_iso_years';
 
   // v2.0.0 onward
-  import differenceInCalendarISOYears from "date-fns/differenceInCalendarISOYears";
+  import differenceInCalendarISOYears from 'date-fns/differenceInCalendarISOYears';
   ```
 
 - **BREAKING**: min and max functions now accept an array of dates
@@ -1202,10 +1202,7 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   var maxDate = max(date1, date2);
 
   // v2.0.0 onward:
-  var dates = [
-    new Date(1989, 6 /* Jul */, 10),
-    new Date(1987, 1 /* Feb */, 11),
-  ];
+  var dates = [new Date(1989, 6 /* Jul */, 10), new Date(1987, 1 /* Feb */, 11)];
 
   var minDate = min(dates);
   var maxDate = max(dates);
@@ -1261,12 +1258,7 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   ```javascript
   // Before v2.0.0
 
-  areRangesOverlapping(
-    new Date(2014, 0, 10),
-    new Date(2014, 0, 20),
-    new Date(2014, 0, 17),
-    new Date(2014, 0, 21),
-  );
+  areRangesOverlapping(new Date(2014, 0, 10), new Date(2014, 0, 20), new Date(2014, 0, 17), new Date(2014, 0, 21));
 
   eachDay(new Date(2014, 0, 10), new Date(2014, 0, 20));
 
@@ -1277,11 +1269,7 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
     new Date(2014, 0, 21),
   );
 
-  isWithinRange(
-    new Date(2014, 0, 3),
-    new Date(2014, 0, 1),
-    new Date(2014, 0, 7),
-  );
+  isWithinRange(new Date(2014, 0, 3), new Date(2014, 0, 1), new Date(2014, 0, 7));
 
   // v2.0.0 onward
 
@@ -1320,19 +1308,11 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   ```javascript
   // Before v2.0.0
 
-  distanceInWords(
-    new Date(1986, 3, 4, 10, 32, 0),
-    new Date(1986, 3, 4, 11, 32, 0),
-    { addSuffix: true },
-  ); //=> 'in about 1 hour'
+  distanceInWords(new Date(1986, 3, 4, 10, 32, 0), new Date(1986, 3, 4, 11, 32, 0), { addSuffix: true }); //=> 'in about 1 hour'
 
   // v2.0.0 onward
 
-  formatDistance(
-    new Date(1986, 3, 4, 11, 32, 0),
-    new Date(1986, 3, 4, 10, 32, 0),
-    { addSuffix: true },
-  ); //=> 'in about 1 hour'
+  formatDistance(new Date(1986, 3, 4, 11, 32, 0), new Date(1986, 3, 4, 10, 32, 0), { addSuffix: true }); //=> 'in about 1 hour'
   ```
 
 - **BREAKING**: `partialMethod` option in `formatDistanceStrict` is renamed to `roundingMethod`.
@@ -1340,19 +1320,11 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   ```javascript
   // Before v2.0.0
 
-  distanceInWordsStrict(
-    new Date(1986, 3, 4, 10, 32, 0),
-    new Date(1986, 3, 4, 10, 33, 1),
-    { partialMethod: "ceil" },
-  ); //=> '2 minutes'
+  distanceInWordsStrict(new Date(1986, 3, 4, 10, 32, 0), new Date(1986, 3, 4, 10, 33, 1), { partialMethod: 'ceil' }); //=> '2 minutes'
 
   // v2.0.0 onward
 
-  formatDistanceStrict(
-    new Date(1986, 3, 4, 10, 33, 1),
-    new Date(1986, 3, 4, 10, 32, 0),
-    { roundingMethod: "ceil" },
-  ); //=> '2 minutes'
+  formatDistanceStrict(new Date(1986, 3, 4, 10, 33, 1), new Date(1986, 3, 4, 10, 32, 0), { roundingMethod: 'ceil' }); //=> '2 minutes'
   ```
 
 - **BREAKING**: in `formatDistanceStrict`, if `roundingMethod` is not specified,
@@ -1364,19 +1336,11 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   ```javascript
   // Before v2.0.0
 
-  distanceInWordsStrict(
-    new Date(1986, 3, 4, 10, 32, 0),
-    new Date(1986, 3, 4, 10, 33, 1),
-    { unit: "m" },
-  );
+  distanceInWordsStrict(new Date(1986, 3, 4, 10, 32, 0), new Date(1986, 3, 4, 10, 33, 1), { unit: 'm' });
 
   // v2.0.0 onward
 
-  formatDistanceStrict(
-    new Date(1986, 3, 4, 10, 33, 1),
-    new Date(1986, 3, 4, 10, 32, 0),
-    { unit: "minute" },
-  );
+  formatDistanceStrict(new Date(1986, 3, 4, 10, 33, 1), new Date(1986, 3, 4, 10, 32, 0), { unit: 'minute' });
   ```
 
 - **BREAKING**: `parse` that previously used to convert strings and
@@ -1386,13 +1350,13 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
 
   ```javascript
   // Before v2.0.0
-  parse("2016-01-01");
+  parse('2016-01-01');
   parse(1547005581366);
   parse(new Date()); // Clone the date
 
   // v2.0.0 onward
-  parse("2016-01-01", "yyyy-MM-dd", new Date());
-  parseISO("2016-01-01");
+  parse('2016-01-01', 'yyyy-MM-dd', new Date());
+  parseISO('2016-01-01');
   toDate(1547005581366);
   toDate(new Date()); // Clone the date
   ```
@@ -1411,10 +1375,10 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
 
   ```javascript
   // Before v2.0.0
-  import locale from "date-fns/locale/zh_cn";
+  import locale from 'date-fns/locale/zh_cn';
 
   // v2.0.0 onward
-  import locale from "date-fns/locale/zh-CN";
+  import locale from 'date-fns/locale/zh-CN';
   ```
 
 - **BREAKING**: now `closestTo` and `closestIndexTo` don't throw an exception
@@ -1521,21 +1485,17 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   See [FP Guide](https://date-fns.org/docs/FP-Guide) for more information.
 
   ```javascript
-  import addYears from "date-fns/fp/addYears";
-  import formatWithOptions from "date-fns/fp/formatWithOptions";
-  import eo from "date-fns/locale/eo";
+  import addYears from 'date-fns/fp/addYears';
+  import formatWithOptions from 'date-fns/fp/formatWithOptions';
+  import eo from 'date-fns/locale/eo';
 
   // If FP function has not received enough arguments, it returns another function
   const addFiveYears = addYears(5);
 
   // Several arguments can be curried at once
-  const dateToString = formatWithOptions({ locale: eo }, "d MMMM yyyy");
+  const dateToString = formatWithOptions({ locale: eo }, 'd MMMM yyyy');
 
-  const dates = [
-    new Date(2017, 0 /* Jan */, 1),
-    new Date(2017, 1 /* Feb */, 11),
-    new Date(2017, 6 /* Jul */, 2),
-  ];
+  const dates = [new Date(2017, 0 /* Jan */, 1), new Date(2017, 1 /* Feb */, 11), new Date(2017, 6 /* Jul */, 2)];
 
   const formattedDates = dates.map((date) => dateToString(addFiveYears(date)));
   //=> ['1 januaro 2022', '11 februaro 2022', '2 julio 2022']
@@ -1548,11 +1508,11 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
 
   ```javascript
   // Without tree-shaking:
-  import format from "date-fns/format";
-  import parse from "date-fns/parse";
+  import format from 'date-fns/format';
+  import parse from 'date-fns/parse';
 
   // With tree-shaking:
-  import { format, parse } from "date-fns";
+  import { format, parse } from 'date-fns';
   ```
 
   Also, ESM functions provide default export, they can be used with TypeScript
@@ -1560,10 +1520,10 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
 
   ```typescript
   // Before
-  import * as format from "date-fns/format";
+  import * as format from 'date-fns/format';
 
   // Now
-  import format from "date-fns/format";
+  import format from 'date-fns/format';
   ```
 
 - `formatRelative` function. See [formatRelative](https://date-fns.org/docs/formatRelative)
@@ -2049,7 +2009,7 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
 - `parse` now can parse dates that are ISO 8601 centuries (e.g., `19` and `+0019`).
 
   ```javascript
-  var result = parse("19");
+  var result = parse('19');
   //=> Mon Jan 01 1900 00:00:00
   ```
 
@@ -2057,9 +2017,9 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   for extended year or century format (possible values are 0, 1 or 2; default is 2).
 
   ```javascript
-  parse("+002016-11-01");
-  parse("+02016-11-01", { additionalDigits: 1 });
-  parse("+2016-11-01", { additionalDigits: 0 });
+  parse('+002016-11-01');
+  parse('+02016-11-01', { additionalDigits: 1 });
+  parse('+2016-11-01', { additionalDigits: 0 });
   ```
 
 ## [1.9.0] - 2016-10-25
@@ -2184,10 +2144,10 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
 
   ```javascript
   // Before v1.0.0
-  var addMonths = require("date-fns/src/add_months");
+  var addMonths = require('date-fns/src/add_months');
 
   // v1.0.0 onward
-  var addMonths = require("date-fns/add_months");
+  var addMonths = require('date-fns/add_months');
   ```
 
 - **BREAKING**: functions that had the last optional argument `weekStartsAt`

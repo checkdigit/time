@@ -1,8 +1,8 @@
-import { describe, expect, it } from "vitest";
-import { nextFriday } from "./index";
+import { describe, expect, it } from 'vitest';
+import { nextFriday } from './index';
 
-describe("nextFriday", () => {
-  it("returns the following Friday given various dates before the same", () => {
+describe('nextFriday', () => {
+  it('returns the following Friday given various dates before the same', () => {
     expect(nextFriday(new Date(2020, 4 /* May */, 23))).toEqual(new Date(2020, 4 /* May */, 29));
 
     expect(nextFriday(new Date(2020, 4 /* May */, 22))).toEqual(new Date(2020, 4 /* May */, 29));
@@ -18,7 +18,7 @@ describe("nextFriday", () => {
     expect(nextFriday(new Date(2020, 4 /* May */, 17))).toEqual(new Date(2020, 4 /* May */, 22));
   });
 
-  it("returns `Invalid Date` if the given date is invalid", () => {
+  it('returns `Invalid Date` if the given date is invalid', () => {
     expect(nextFriday(new Date(NaN)) instanceof Date).toBe(true);
   });
 });

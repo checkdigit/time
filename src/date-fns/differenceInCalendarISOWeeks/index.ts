@@ -1,6 +1,6 @@
-import { millisecondsInWeek } from "../constants/index";
-import { startOfISOWeek } from "../startOfISOWeek/index";
-import { getTimezoneOffsetInMilliseconds } from "../_lib/getTimezoneOffsetInMilliseconds/index";
+import { millisecondsInWeek } from '../constants/index';
+import { startOfISOWeek } from '../startOfISOWeek/index';
+import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index';
 
 /**
  * @name differenceInCalendarISOWeeks
@@ -34,10 +34,8 @@ export function differenceInCalendarISOWeeks<DateType extends Date>(
   const startOfISOWeekLeft = startOfISOWeek(dateLeft);
   const startOfISOWeekRight = startOfISOWeek(dateRight);
 
-  const timestampLeft =
-    +startOfISOWeekLeft - getTimezoneOffsetInMilliseconds(startOfISOWeekLeft);
-  const timestampRight =
-    +startOfISOWeekRight - getTimezoneOffsetInMilliseconds(startOfISOWeekRight);
+  const timestampLeft = +startOfISOWeekLeft - getTimezoneOffsetInMilliseconds(startOfISOWeekLeft);
+  const timestampRight = +startOfISOWeekRight - getTimezoneOffsetInMilliseconds(startOfISOWeekRight);
 
   // Round the number of weeks to the nearest integer because the number of
   // milliseconds in a week is not constant (e.g. it's different in the week of

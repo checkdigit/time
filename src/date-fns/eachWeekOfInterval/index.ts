@@ -1,20 +1,12 @@
-import { addWeeks } from "../addWeeks/index";
-import { startOfWeek } from "../startOfWeek/index";
-import { toDate } from "../toDate/index";
-import type {
-  Interval,
-  LocalizedOptions,
-  StepOptions,
-  WeekOptions,
-} from "../types";
+import { addWeeks } from '../addWeeks/index';
+import { startOfWeek } from '../startOfWeek/index';
+import { toDate } from '../toDate/index';
+import type { Interval, LocalizedOptions, StepOptions, WeekOptions } from '../types';
 
 /**
  * The {@link eachWeekOfInterval} function options.
  */
-export interface EachWeekOfIntervalOptions
-  extends StepOptions,
-    WeekOptions,
-    LocalizedOptions<"options"> {}
+export interface EachWeekOfIntervalOptions extends StepOptions, WeekOptions, LocalizedOptions<'options'> {}
 
 /**
  * @name eachWeekOfInterval
@@ -56,12 +48,8 @@ export function eachWeekOfInterval<DateType extends Date>(
   const endDate = toDate(interval.end);
 
   let reversed = +startDate > +endDate;
-  const startDateWeek = reversed
-    ? startOfWeek(endDate, options)
-    : startOfWeek(startDate, options);
-  const endDateWeek = reversed
-    ? startOfWeek(startDate, options)
-    : startOfWeek(endDate, options);
+  const startDateWeek = reversed ? startOfWeek(endDate, options) : startOfWeek(startDate, options);
+  const endDateWeek = reversed ? startOfWeek(startDate, options) : startOfWeek(endDate, options);
 
   // Some timezones switch DST at midnight, making start of day unreliable in these timezones, 3pm is a safe bet
   startDateWeek.setHours(15);

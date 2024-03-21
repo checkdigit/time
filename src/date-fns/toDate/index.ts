@@ -1,5 +1,5 @@
-import type { GenericDateConstructor } from "..";
-import type { Instant } from "../../instant";
+import type { GenericDateConstructor } from '..';
+import type { Instant } from '../../instant';
 
 /**
  * @name toDate
@@ -33,34 +33,29 @@ import type { Instant } from "../../instant";
  * const result = toDate(1392098430000)
  * //=> Tue Feb 11 2014 11:30:30
  */
-export function toDate<DateType extends Date>(
-  argument: DateType | number | string,
-): DateType {
+export function toDate<DateType extends Date>(argument: DateType | number | string): DateType {
   const argStr = Object.prototype.toString.call(argument);
 
-  if (
-    argument instanceof Date ||
-    (typeof argument === "object" && argStr === "[object Date]")
-  ) {
+  if (argument instanceof Date || (typeof argument === 'object' && argStr === '[object Date]')) {
     // [PATCH:] this hack is required to support nano seconds
     let modifiedArgument = argument;
     if (typeof (modifiedArgument as unknown as Instant)?.epochNanoseconds === 'bigint') {
-      modifiedArgument = new Date(Number((modifiedArgument as unknown as Instant).epochNanoseconds / 1000000n)) as DateType;
+      modifiedArgument = new Date(
+        Number((modifiedArgument as unknown as Instant).epochNanoseconds / 1000000n),
+      ) as DateType;
     }
     // Prevent the date to lose the milliseconds when passed to new Date() in IE10
-    const dateToReturn = new (argument.constructor as GenericDateConstructor<DateType>)(
-      +argument,
-    );
+    const dateToReturn = new (argument.constructor as GenericDateConstructor<DateType>)(+argument);
     // [PATCH:] this hack is required because setHours doesn't work for hours that are spring-forward
-    if ((argument as any)[Symbol.for('UTCHours')]!==undefined) {
+    if ((argument as any)[Symbol.for('UTCHours')] !== undefined) {
       (dateToReturn as any)[Symbol.for('UTCHours')] = (argument as any)[Symbol.for('UTCHours')];
     }
-    return dateToReturn
+    return dateToReturn;
   } else if (
-    typeof argument === "number" ||
-    argStr === "[object Number]" ||
-    typeof argument === "string" ||
-    argStr === "[object String]"
+    typeof argument === 'number' ||
+    argStr === '[object Number]' ||
+    typeof argument === 'string' ||
+    argStr === '[object String]'
   ) {
     // TODO: Can we get rid of as?
     return new Date(argument) as DateType;

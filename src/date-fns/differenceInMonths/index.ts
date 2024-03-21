@@ -1,7 +1,7 @@
-import { compareAsc } from "../compareAsc/index";
-import { differenceInCalendarMonths } from "../differenceInCalendarMonths/index";
-import { isLastDayOfMonth } from "../isLastDayOfMonth/index";
-import { toDate } from "../toDate/index";
+import { compareAsc } from '../compareAsc/index';
+import { differenceInCalendarMonths } from '../differenceInCalendarMonths/index';
+import { isLastDayOfMonth } from '../isLastDayOfMonth/index';
+import { toDate } from '../toDate/index';
 
 /**
  * @name differenceInMonths
@@ -31,9 +31,7 @@ export function differenceInMonths<DateType extends Date>(
   const _dateRight = toDate(dateRight);
 
   const sign = compareAsc(_dateLeft, _dateRight);
-  const difference = Math.abs(
-    differenceInCalendarMonths(_dateLeft, _dateRight),
-  );
+  const difference = Math.abs(differenceInCalendarMonths(_dateLeft, _dateRight));
   let result;
 
   // Check for the difference of less than month
@@ -53,11 +51,7 @@ export function differenceInMonths<DateType extends Date>(
     let isLastMonthNotFull = compareAsc(_dateLeft, _dateRight) === -sign;
 
     // Check for cases of one full calendar month
-    if (
-      isLastDayOfMonth(toDate(dateLeft)) &&
-      difference === 1 &&
-      compareAsc(dateLeft, _dateRight) === 1
-    ) {
+    if (isLastDayOfMonth(toDate(dateLeft)) && difference === 1 && compareAsc(dateLeft, _dateRight) === 1) {
       isLastMonthNotFull = false;
     }
 

@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 
-import type { Locale } from "./locale/types";
+import type { Locale } from './locale/types';
 
-export type * from "./locale/types";
-export type * from "./fp/types";
+export type * from './locale/types';
+export type * from './fp/types';
 
 /**
  * The generic date constructor. Replicates the Date constructor. Used to build
@@ -160,7 +160,7 @@ export interface DateValues {
 /**
  * The number rounding method.
  */
-export type RoundingMethod = "ceil" | "floor" | "round" | "trunc";
+export type RoundingMethod = 'ceil' | 'floor' | 'round' | 'trunc';
 
 /**
  * The ISO string format.
@@ -168,13 +168,13 @@ export type RoundingMethod = "ceil" | "floor" | "round" | "trunc";
  * - basic: Minimal number of separators
  * - extended: With separators added to enhance human readability
  */
-export type ISOStringFormat = "extended" | "basic";
+export type ISOStringFormat = 'extended' | 'basic';
 
 /**
  * The ISO date representation. Represents which component the string includes,
  * date, time or both.
  */
-export type ISOStringRepresentation = "complete" | "date" | "time";
+export type ISOStringRepresentation = 'complete' | 'date' | 'time';
 
 /// Function options types
 

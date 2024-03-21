@@ -6,16 +6,16 @@ import {
   secondsInQuarter,
   secondsInWeek,
   secondsInYear,
-} from "../constants/index";
-import { differenceInCalendarDays } from "../differenceInCalendarDays/index";
-import { differenceInCalendarMonths } from "../differenceInCalendarMonths/index";
-import { differenceInCalendarQuarters } from "../differenceInCalendarQuarters/index";
-import { differenceInCalendarWeeks } from "../differenceInCalendarWeeks/index";
-import { differenceInCalendarYears } from "../differenceInCalendarYears/index";
-import { differenceInHours } from "../differenceInHours/index";
-import { differenceInMinutes } from "../differenceInMinutes/index";
-import { differenceInSeconds } from "../differenceInSeconds/index";
-import { toDate } from "../toDate/index";
+} from '../constants/index';
+import { differenceInCalendarDays } from '../differenceInCalendarDays/index';
+import { differenceInCalendarMonths } from '../differenceInCalendarMonths/index';
+import { differenceInCalendarQuarters } from '../differenceInCalendarQuarters/index';
+import { differenceInCalendarWeeks } from '../differenceInCalendarWeeks/index';
+import { differenceInCalendarYears } from '../differenceInCalendarYears/index';
+import { differenceInHours } from '../differenceInHours/index';
+import { differenceInMinutes } from '../differenceInMinutes/index';
+import { differenceInSeconds } from '../differenceInSeconds/index';
+import { toDate } from '../toDate/index';
 
 /**
  * The {@link intlFormatDistance} function options.
@@ -36,15 +36,7 @@ export interface IntlFormatDistanceOptions {
 /**
  * The unit used to format the distance in {@link intlFormatDistance}.
  */
-export type IntlFormatDistanceUnit =
-  | "year"
-  | "quarter"
-  | "month"
-  | "week"
-  | "day"
-  | "hour"
-  | "minute"
-  | "second";
+export type IntlFormatDistanceUnit = 'year' | 'quarter' | 'month' | 'week' | 'day' | 'hour' | 'minute' | 'second';
 
 /**
  * @name intlFormatDistance
@@ -161,66 +153,63 @@ export function intlFormatDistance<DateType extends Date>(
 
     if (Math.abs(diffInSeconds) < secondsInMinute) {
       value = differenceInSeconds(dateLeft, dateRight);
-      unit = "second";
+      unit = 'second';
     } else if (Math.abs(diffInSeconds) < secondsInHour) {
       value = differenceInMinutes(dateLeft, dateRight);
-      unit = "minute";
-    } else if (
-      Math.abs(diffInSeconds) < secondsInDay &&
-      Math.abs(differenceInCalendarDays(dateLeft, dateRight)) < 1
-    ) {
+      unit = 'minute';
+    } else if (Math.abs(diffInSeconds) < secondsInDay && Math.abs(differenceInCalendarDays(dateLeft, dateRight)) < 1) {
       value = differenceInHours(dateLeft, dateRight);
-      unit = "hour";
+      unit = 'hour';
     } else if (
       Math.abs(diffInSeconds) < secondsInWeek &&
       (value = differenceInCalendarDays(dateLeft, dateRight)) &&
       Math.abs(value) < 7
     ) {
-      unit = "day";
+      unit = 'day';
     } else if (Math.abs(diffInSeconds) < secondsInMonth) {
       value = differenceInCalendarWeeks(dateLeft, dateRight);
-      unit = "week";
+      unit = 'week';
     } else if (Math.abs(diffInSeconds) < secondsInQuarter) {
       value = differenceInCalendarMonths(dateLeft, dateRight);
-      unit = "month";
+      unit = 'month';
     } else if (Math.abs(diffInSeconds) < secondsInYear) {
       if (differenceInCalendarQuarters(dateLeft, dateRight) < 4) {
         // To filter out cases that are less than a year but match 4 quarters
         value = differenceInCalendarQuarters(dateLeft, dateRight);
-        unit = "quarter";
+        unit = 'quarter';
       } else {
         value = differenceInCalendarYears(dateLeft, dateRight);
-        unit = "year";
+        unit = 'year';
       }
     } else {
       value = differenceInCalendarYears(dateLeft, dateRight);
-      unit = "year";
+      unit = 'year';
     }
   } else {
     // Get the value if unit is specified
     unit = options?.unit;
-    if (unit === "second") {
+    if (unit === 'second') {
       value = differenceInSeconds(dateLeft, dateRight);
-    } else if (unit === "minute") {
+    } else if (unit === 'minute') {
       value = differenceInMinutes(dateLeft, dateRight);
-    } else if (unit === "hour") {
+    } else if (unit === 'hour') {
       value = differenceInHours(dateLeft, dateRight);
-    } else if (unit === "day") {
+    } else if (unit === 'day') {
       value = differenceInCalendarDays(dateLeft, dateRight);
-    } else if (unit === "week") {
+    } else if (unit === 'week') {
       value = differenceInCalendarWeeks(dateLeft, dateRight);
-    } else if (unit === "month") {
+    } else if (unit === 'month') {
       value = differenceInCalendarMonths(dateLeft, dateRight);
-    } else if (unit === "quarter") {
+    } else if (unit === 'quarter') {
       value = differenceInCalendarQuarters(dateLeft, dateRight);
-    } else if (unit === "year") {
+    } else if (unit === 'year') {
       value = differenceInCalendarYears(dateLeft, dateRight);
     }
   }
 
   const rtf = new Intl.RelativeTimeFormat(options?.locale, {
     ...(options?.localeMatcher === undefined ? {} : { localeMatcher: options?.localeMatcher }),
-    numeric: options?.numeric || "auto",
+    numeric: options?.numeric || 'auto',
     ...(options?.style === undefined ? {} : { style: options?.style }),
   });
 

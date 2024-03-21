@@ -1,4 +1,4 @@
-import { getISOWeekYear } from "../getISOWeekYear/index";
+import { getISOWeekYear } from '../getISOWeekYear/index';
 
 /**
  * @name differenceInCalendarISOWeekYears

@@ -1,8 +1,8 @@
-import { describe, expect, it } from "vitest";
-import { differenceInCalendarWeeks } from "./index";
+import { describe, expect, it } from 'vitest';
+import { differenceInCalendarWeeks } from './index';
 
-describe("differenceInCalendarWeeks", () => {
-  it("returns the number of calendar weeks between the given dates", () => {
+describe('differenceInCalendarWeeks', () => {
+  it('returns the number of calendar weeks between the given dates', () => {
     const result = differenceInCalendarWeeks(
       new Date(2014, 6 /* Jul */, 8, 18, 0),
       new Date(2014, 5 /* Jun */, 29, 6, 0),
@@ -10,7 +10,7 @@ describe("differenceInCalendarWeeks", () => {
     expect(result).toBe(1);
   });
 
-  it("allows to specify which day is the first day of the week", () => {
+  it('allows to specify which day is the first day of the week', () => {
     const result = differenceInCalendarWeeks(
       new Date(2014, 6 /* Jul */, 8, 18, 0),
       new Date(2014, 5 /* Jun */, 29, 6, 0),
@@ -19,7 +19,7 @@ describe("differenceInCalendarWeeks", () => {
     expect(result).toBe(2);
   });
 
-  it("allows to specify which day is the first day of the week in locale", () => {
+  it('allows to specify which day is the first day of the week in locale', () => {
     const result = differenceInCalendarWeeks(
       new Date(2014, 6 /* Jul */, 8, 18, 0),
       new Date(2014, 5 /* Jun */, 29, 6, 0),
@@ -32,7 +32,7 @@ describe("differenceInCalendarWeeks", () => {
     expect(result).toBe(2);
   });
 
-  it("`options.weekStartsOn` overwrites the first day of the week specified in locale", () => {
+  it('`options.weekStartsOn` overwrites the first day of the week specified in locale', () => {
     const result = differenceInCalendarWeeks(
       new Date(2014, 6 /* Jul */, 8, 18, 0),
       new Date(2014, 5 /* Jun */, 29, 6, 0),
@@ -46,7 +46,7 @@ describe("differenceInCalendarWeeks", () => {
     expect(result).toBe(2);
   });
 
-  it("returns a positive number if the time value of the second date is smaller", () => {
+  it('returns a positive number if the time value of the second date is smaller', () => {
     const result = differenceInCalendarWeeks(
       new Date(2014, 6 /* Jul */, 8, 18, 0),
       new Date(2014, 5 /* Jun */, 29, 6, 0),
@@ -57,7 +57,7 @@ describe("differenceInCalendarWeeks", () => {
     expect(result).toBe(2);
   });
 
-  it("returns a negative number if the time value of the first date is smaller", () => {
+  it('returns a negative number if the time value of the first date is smaller', () => {
     const result = differenceInCalendarWeeks(
       new Date(2014, 5 /* Jun */, 29, 6, 0),
       new Date(2014, 6 /* Jul */, 8, 18, 0),
@@ -65,7 +65,7 @@ describe("differenceInCalendarWeeks", () => {
     expect(result).toBe(-1);
   });
 
-  it("accepts timestamps", () => {
+  it('accepts timestamps', () => {
     const result = differenceInCalendarWeeks(
       new Date(2014, 6 /* Jul */, 12).getTime(),
       new Date(2014, 6 /* Jul */, 2).getTime(),
@@ -73,32 +73,23 @@ describe("differenceInCalendarWeeks", () => {
     expect(result).toBe(1);
   });
 
-  describe("edge cases", () => {
-    it("the difference is less than a week, but the given dates are in different calendar weeks", () => {
-      const result = differenceInCalendarWeeks(
-        new Date(2014, 6 /* Jul */, 6),
-        new Date(2014, 6 /* Jul */, 5),
-      );
+  describe('edge cases', () => {
+    it('the difference is less than a week, but the given dates are in different calendar weeks', () => {
+      const result = differenceInCalendarWeeks(new Date(2014, 6 /* Jul */, 6), new Date(2014, 6 /* Jul */, 5));
       expect(result).toBe(1);
     });
 
-    it("the same for the swapped dates", () => {
-      const result = differenceInCalendarWeeks(
-        new Date(2014, 6 /* Jul */, 5),
-        new Date(2014, 6 /* Jul */, 6),
-      );
+    it('the same for the swapped dates', () => {
+      const result = differenceInCalendarWeeks(new Date(2014, 6 /* Jul */, 5), new Date(2014, 6 /* Jul */, 6));
       expect(result).toBe(-1);
     });
 
-    it("the days of weeks of the given dates are the same", () => {
-      const result = differenceInCalendarWeeks(
-        new Date(2014, 6 /* Jul */, 9),
-        new Date(2014, 6 /* Jul */, 2),
-      );
+    it('the days of weeks of the given dates are the same', () => {
+      const result = differenceInCalendarWeeks(new Date(2014, 6 /* Jul */, 9), new Date(2014, 6 /* Jul */, 2));
       expect(result).toBe(1);
     });
 
-    it("the given dates are the same", () => {
+    it('the given dates are the same', () => {
       const result = differenceInCalendarWeeks(
         new Date(2014, 8 /* Sep */, 5, 0, 0),
         new Date(2014, 8 /* Sep */, 5, 0, 0),
@@ -106,7 +97,7 @@ describe("differenceInCalendarWeeks", () => {
       expect(result).toBe(0);
     });
 
-    it("does not return -0 when the given dates are the same", () => {
+    it('does not return -0 when the given dates are the same', () => {
       function isNegativeZero(x: number): boolean {
         return x === 0 && 1 / x < 0;
       }
@@ -120,7 +111,7 @@ describe("differenceInCalendarWeeks", () => {
       expect(resultIsNegative).toBe(false);
     });
 
-    it("properly works with negative numbers", () => {
+    it('properly works with negative numbers', () => {
       const a = new Date(2014, 6 /* Jul */, 9);
       const b = new Date(2014, 6 /* Jul */, 19);
       expect(differenceInCalendarWeeks(b, a)).toBe(1);
@@ -128,23 +119,17 @@ describe("differenceInCalendarWeeks", () => {
     });
   });
 
-  it("returns NaN if the first date is `Invalid Date`", () => {
-    const result = differenceInCalendarWeeks(
-      new Date(NaN),
-      new Date(2017, 0 /* Jan */, 1),
-    );
+  it('returns NaN if the first date is `Invalid Date`', () => {
+    const result = differenceInCalendarWeeks(new Date(NaN), new Date(2017, 0 /* Jan */, 1));
     expect(isNaN(result)).toBe(true);
   });
 
-  it("returns NaN if the second date is `Invalid Date`", () => {
-    const result = differenceInCalendarWeeks(
-      new Date(2017, 0 /* Jan */, 1),
-      new Date(NaN),
-    );
+  it('returns NaN if the second date is `Invalid Date`', () => {
+    const result = differenceInCalendarWeeks(new Date(2017, 0 /* Jan */, 1), new Date(NaN));
     expect(isNaN(result)).toBe(true);
   });
 
-  it("returns NaN if the both dates are `Invalid Date`", () => {
+  it('returns NaN if the both dates are `Invalid Date`', () => {
     const result = differenceInCalendarWeeks(new Date(NaN), new Date(NaN));
     expect(isNaN(result)).toBe(true);
   });

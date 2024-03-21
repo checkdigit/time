@@ -1,6 +1,6 @@
-import { getRoundingMethod } from "../_lib/getRoundingMethod/index";
-import { differenceInDays } from "../differenceInDays/index";
-import type { RoundingOptions } from "../types";
+import { getRoundingMethod } from '../_lib/getRoundingMethod/index';
+import { differenceInDays } from '../differenceInDays/index';
+import type { RoundingOptions } from '../types';
 
 /**
  * The {@link differenceInWeeks} function options.

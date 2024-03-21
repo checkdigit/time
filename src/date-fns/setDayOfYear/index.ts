@@ -1,4 +1,4 @@
-import { toDate } from "../toDate/index";
+import { toDate } from '../toDate/index';
 
 /**
  * @name setDayOfYear
@@ -20,10 +20,7 @@ import { toDate } from "../toDate/index";
  * const result = setDayOfYear(new Date(2014, 6, 2), 2)
  * //=> Thu Jan 02 2014 00:00:00
  */
-export function setDayOfYear<DateType extends Date>(
-  date: DateType | number | string,
-  dayOfYear: number,
-): DateType {
+export function setDayOfYear<DateType extends Date>(date: DateType | number | string, dayOfYear: number): DateType {
   const _date = toDate(date);
   _date.setMonth(0);
   _date.setDate(dayOfYear);

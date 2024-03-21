@@ -1,18 +1,18 @@
-import { describe, expect, it } from "vitest";
-import { getWeek } from "./index";
+import { describe, expect, it } from 'vitest';
+import { getWeek } from './index';
 
-describe("getWeek", () => {
-  it("returns the local week of year of the given date", () => {
+describe('getWeek', () => {
+  it('returns the local week of year of the given date', () => {
     const result = getWeek(new Date(2005, 0 /* Jan */, 2));
     expect(result).toBe(2);
   });
 
-  it("accepts a timestamp", () => {
+  it('accepts a timestamp', () => {
     const result = getWeek(new Date(2008, 11 /* Dec */, 29).getTime());
     expect(result).toBe(1);
   });
 
-  it("handles dates before 100 AD", () => {
+  it('handles dates before 100 AD', () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(7, 11 /* Dec */, 30);
     initialDate.setHours(0, 0, 0, 0);
@@ -20,19 +20,19 @@ describe("getWeek", () => {
     expect(result).toBe(1);
   });
 
-  it("properly works with negative numbers", () => {
+  it('properly works with negative numbers', () => {
     expect(getWeek(new Date(2005, 0 /* Jan */, 4))).toBe(2);
     // Calendars repeat every 400 years
     expect(getWeek(new Date(395, 0 /* Jan */, 4))).toBe(1);
     expect(getWeek(new Date(-2005, 0 /* Jan */, 4))).toBe(1);
   });
 
-  it("returns NaN if the given date is invalid", () => {
+  it('returns NaN if the given date is invalid', () => {
     const result = getWeek(new Date(NaN));
     expect(isNaN(result)).toBe(true);
   });
 
-  it("allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale", () => {
+  it('allows to specify `weekStartsOn` and `firstWeekContainsDate` in locale', () => {
     const date = new Date(2005, 0 /* Jan */, 2);
     const result = getWeek(date, {
       locale: {
@@ -42,7 +42,7 @@ describe("getWeek", () => {
     expect(result).toBe(53);
   });
 
-  it("`options.weekStartsOn` overwrites the first day of the week specified in locale", () => {
+  it('`options.weekStartsOn` overwrites the first day of the week specified in locale', () => {
     const date = new Date(2005, 0 /* Jan */, 2);
     const result = getWeek(date, {
       weekStartsOn: 1,

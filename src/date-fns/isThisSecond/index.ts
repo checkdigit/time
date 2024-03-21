@@ -1,5 +1,5 @@
-import { constructNow } from "../constructNow/index";
-import { isSameSecond } from "../isSameSecond/index";
+import { constructNow } from '../constructNow/index';
+import { isSameSecond } from '../isSameSecond/index';
 
 /**
  * @name isThisSecond
@@ -22,8 +22,6 @@ import { isSameSecond } from "../isSameSecond/index";
  * const result = isThisSecond(new Date(2014, 8, 25, 18, 30, 15))
  * //=> true
  */
-export function isThisSecond<DateType extends Date>(
-  date: DateType | number | string,
-): boolean {
+export function isThisSecond<DateType extends Date>(date: DateType | number | string): boolean {
   return isSameSecond(date, constructNow(date));
 }

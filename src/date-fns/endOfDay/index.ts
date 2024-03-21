@@ -1,4 +1,4 @@
-import { toDate } from "../toDate/index";
+import { toDate } from '../toDate/index';
 
 /**
  * @name endOfDay
@@ -20,9 +20,7 @@ import { toDate } from "../toDate/index";
  * const result = endOfDay(new Date(2014, 8, 2, 11, 55, 0))
  * //=> Tue Sep 02 2014 23:59:59.999
  */
-export function endOfDay<DateType extends Date>(
-  date: DateType | number | string,
-): DateType {
+export function endOfDay<DateType extends Date>(date: DateType | number | string): DateType {
   const _date = toDate(date);
   _date.setHours(23, 59, 59, 999);
   return _date;

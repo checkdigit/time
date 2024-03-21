@@ -1,14 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import type {
-  Day,
-  Era,
-  FirstWeekContainsDateOptions,
-  LocalizedOptions,
-  Month,
-  Quarter,
-  WeekOptions,
-} from "../types";
+import type { Day, Era, FirstWeekContainsDateOptions, LocalizedOptions, Month, Quarter, WeekOptions } from '../types';
 
 /**
  * The locale object with all functions and data needed to parse and format
@@ -34,9 +26,7 @@ export interface Locale {
 /**
  * The locale options.
  */
-export interface LocaleOptions
-  extends WeekOptions,
-    FirstWeekContainsDateOptions {}
+export interface LocaleOptions extends WeekOptions, FirstWeekContainsDateOptions {}
 
 /// Format distance types
 
@@ -50,11 +40,7 @@ export interface LocaleOptions
  *
  * @returns The localized distance in words
  */
-export type FormatDistanceFn = (
-  token: FormatDistanceToken,
-  count: number,
-  options?: FormatDistanceFnOptions,
-) => string;
+export type FormatDistanceFn = (token: FormatDistanceToken, count: number, options?: FormatDistanceFnOptions) => string;
 
 /**
  * The {@link FormatDistanceFn} function options.
@@ -99,22 +85,22 @@ export type FormatDistanceLocale<Template> = {
  * with prespecified precision.
  */
 export type FormatDistanceToken =
-  | "lessThanXSeconds"
-  | "xSeconds"
-  | "halfAMinute"
-  | "lessThanXMinutes"
-  | "xMinutes"
-  | "aboutXHours"
-  | "xHours"
-  | "xDays"
-  | "aboutXWeeks"
-  | "xWeeks"
-  | "aboutXMonths"
-  | "xMonths"
-  | "aboutXYears"
-  | "xYears"
-  | "overXYears"
-  | "almostXYears";
+  | 'lessThanXSeconds'
+  | 'xSeconds'
+  | 'halfAMinute'
+  | 'lessThanXMinutes'
+  | 'xMinutes'
+  | 'aboutXHours'
+  | 'xHours'
+  | 'xDays'
+  | 'aboutXWeeks'
+  | 'xWeeks'
+  | 'aboutXMonths'
+  | 'xMonths'
+  | 'aboutXYears'
+  | 'xYears'
+  | 'overXYears'
+  | 'almostXYears';
 
 /// Format relative types
 
@@ -140,9 +126,7 @@ export type FormatRelativeFn = <DateType extends Date>(
 /**
  * The {@link FormatRelativeFn} function options.
  */
-export interface FormatRelativeFnOptions
-  extends WeekOptions,
-    LocalizedOptions<"options" | "formatRelative"> {}
+export interface FormatRelativeFnOptions extends WeekOptions, LocalizedOptions<'options' | 'formatRelative'> {}
 
 /**
  * The locale function used inside the {@link FormatRelativeFn} function
@@ -168,13 +152,7 @@ export interface FormatRelativeTokenFnOptions extends WeekOptions {}
 /**
  * The token used in format relative function. Represents the time unit.
  */
-export type FormatRelativeToken =
-  | "lastWeek"
-  | "yesterday"
-  | "today"
-  | "tomorrow"
-  | "nextWeek"
-  | "other";
+export type FormatRelativeToken = 'lastWeek' | 'yesterday' | 'today' | 'tomorrow' | 'nextWeek' | 'other';
 
 /**
  * A format part that represents a token or string literal, used by format parser/tokenizer
@@ -183,8 +161,8 @@ export interface FormatPart {
   /** If the part is a format token. */
   isToken: boolean;
   /** The format part value (i.e. `"do"`). */
-  value: string
-};
+  value: string;
+}
 
 /// Localize types
 
@@ -207,10 +185,7 @@ export interface Localize {
   dayPeriod: LocalizeFn<LocaleDayPeriod>;
 
   /** The function that can preprocess parts/tokens **/
-  preprocessor?: <DateType extends Date>(
-    date: DateType,
-    parts: FormatPart[],
-  ) => FormatPart[];
+  preprocessor?: <DateType extends Date>(date: DateType, parts: FormatPart[]) => FormatPart[];
 }
 
 /**
@@ -223,10 +198,7 @@ export interface Localize {
  *
  * @returns The localized string
  */
-export type LocalizeFn<Value extends LocaleUnitValue | number> = (
-  value: Value,
-  options?: LocalizeFnOptions,
-) => string;
+export type LocalizeFn<Value extends LocaleUnitValue | number> = (value: Value, options?: LocalizeFnOptions) => string;
 
 /**
  * The {@link LocalizeFn} function options.
@@ -238,7 +210,7 @@ export interface LocalizeFnOptions {
   /** The context where the formatted value is used - standalone: the result
    * should make grammatical sense as is and formatting: the result is a part
    * of the formatted string. See: https://date-fns.org/docs/I18n-Contribution-Guide */
-  context?: "formatting" | "standalone";
+  context?: 'formatting' | 'standalone';
   /** The unit to format */
   unit?: LocaleUnit;
 }
@@ -361,7 +333,7 @@ export interface FormatLongFnOptions {
  * The format long width token, defines how short or long the formnatted value
  * might be. The actual result length is defined by the locale.
  */
-export type FormatLongWidth = "full" | "long" | "medium" | "short" | "any";
+export type FormatLongWidth = 'full' | 'long' | 'medium' | 'short' | 'any';
 
 /// Common types
 
@@ -374,32 +346,24 @@ export type LocaleUnitValue = Era | Quarter | Month | Day | LocaleDayPeriod;
  * The format width. Defines how short or long the formatted string might be.
  * The actaul result length depends on the locale.
  */
-export type LocaleWidth = "narrow" | "short" | "abbreviated" | "wide" | "any";
+export type LocaleWidth = 'narrow' | 'short' | 'abbreviated' | 'wide' | 'any';
 
 /**
  * Token representing particular period of the day.
  */
-export type LocaleDayPeriod =
-  | "am"
-  | "pm"
-  | "midnight"
-  | "noon"
-  | "morning"
-  | "afternoon"
-  | "evening"
-  | "night";
+export type LocaleDayPeriod = 'am' | 'pm' | 'midnight' | 'noon' | 'morning' | 'afternoon' | 'evening' | 'night';
 
 /**
  * The units commonly used in the date formatting or parsing.
  */
 export type LocaleUnit =
-  | "second"
-  | "minute"
-  | "hour"
-  | "day"
-  | "dayOfYear"
-  | "date"
-  | "week"
-  | "month"
-  | "quarter"
-  | "year";
+  | 'second'
+  | 'minute'
+  | 'hour'
+  | 'day'
+  | 'dayOfYear'
+  | 'date'
+  | 'week'
+  | 'month'
+  | 'quarter'
+  | 'year';

@@ -1,5 +1,5 @@
-import { toDate } from "../toDate/index";
-import { constructFrom } from "../constructFrom/index";
+import { toDate } from '../toDate/index';
+import { constructFrom } from '../constructFrom/index';
 
 /**
  * @name addMonths
@@ -25,10 +25,7 @@ import { constructFrom } from "../constructFrom/index";
  * const result = addMonths(new Date(2023, 0, 30), 1)
  * //=> Tue Feb 28 2023 00:00:00
  */
-export function addMonths<DateType extends Date>(
-  date: DateType | number | string,
-  amount: number,
-): DateType {
+export function addMonths<DateType extends Date>(date: DateType | number | string, amount: number): DateType {
   const _date = toDate(date);
   if (isNaN(amount)) return constructFrom(date, NaN);
   if (!amount) {
@@ -60,11 +57,7 @@ export function addMonths<DateType extends Date>(
     // the last day of the month and its local time was in the hour skipped or
     // repeated next to a DST transition.  So we use `date` instead which is
     // guaranteed to still have the original time.
-    _date.setFullYear(
-      endOfDesiredMonth.getFullYear(),
-      endOfDesiredMonth.getMonth(),
-      dayOfMonth,
-    );
+    _date.setFullYear(endOfDesiredMonth.getFullYear(), endOfDesiredMonth.getMonth(), dayOfMonth);
     return _date;
   }
 }

@@ -1,4 +1,4 @@
-import { constructFrom } from "../constructFrom/index";
+import { constructFrom } from '../constructFrom/index';
 
 /**
  * @name constructNow
@@ -30,8 +30,6 @@ import { constructFrom } from "../constructFrom/index";
  *   return isSameDay(date, constructNow(date));
  * }
  */
-export function constructNow<DateType extends Date>(
-  date: DateType | number | string,
-): DateType {
+export function constructNow<DateType extends Date>(date: DateType | number | string): DateType {
   return constructFrom(date, Date.now());
 }

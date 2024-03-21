@@ -1,7 +1,7 @@
-import { constructFrom } from "../constructFrom/index";
-import { setMonth } from "../setMonth/index";
-import { toDate } from "../toDate/index";
-import type { DateValues } from "../types";
+import { constructFrom } from '../constructFrom/index';
+import { setMonth } from '../setMonth/index';
+import { toDate } from '../toDate/index';
+import type { DateValues } from '../types';
 
 /**
  * @name set
@@ -36,10 +36,7 @@ import type { DateValues } from "../types";
  * //=> Mon Sep 01 2014 12:23:45
  */
 
-export function set<DateType extends Date>(
-  date: DateType | number | string,
-  values: DateValues,
-): DateType {
+export function set<DateType extends Date>(date: DateType | number | string, values: DateValues): DateType {
   let _date = toDate(date);
 
   // Check if date is Invalid Date because Date.prototype.setFullYear ignores the value of Invalid Date

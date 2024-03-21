@@ -79,11 +79,11 @@ The documentation for `date-fns-tz` is here: https://github.com/marnusw/date-fns
 
 ### Maintenance notes:
 
-When update the latest code from the original repositories, except making all the necessary changes to make them fully typescript compatible, please remember to carry over the patches to overcoming the following issues:
+When updating the latest code from the original repositories, except making all the necessary changes to make them fully typescript compatible, please remember to carry over the patches to overcome the following issues:
 
 - spring-forward support
 - nanosecond support
 
-please search for `[PATCH:]` in the existing codebase.
+Please search for `[PATCH:]` in the existing codebase.
 
-The date-fns tests files are renamed from `test.ts` to `test.mts` so that they can be excluded from being processed by builder bundling. It's a workaround until better approach is available to have a unified control over both regular compilation and bundling.
+The date-fns tests files are renamed from `test.ts` to `test.mts` so that they can be excluded from being processed by builder bundling. It's a workaround until a better approach is available to have unified control over both regular compilation and bundling.

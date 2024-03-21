@@ -1,5 +1,5 @@
-import { constructNow } from "../constructNow/index";
-import { isSameYear } from "../isSameYear/index";
+import { constructNow } from '../constructNow/index';
+import { isSameYear } from '../isSameYear/index';
 
 /**
  * @name isThisYear
@@ -21,8 +21,6 @@ import { isSameYear } from "../isSameYear/index";
  * const result = isThisYear(new Date(2014, 6, 2))
  * //=> true
  */
-export function isThisYear<DateType extends Date>(
-  date: DateType | number | string,
-): boolean {
+export function isThisYear<DateType extends Date>(date: DateType | number | string): boolean {
   return isSameYear(date, constructNow(date));
 }

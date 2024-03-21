@@ -1,5 +1,5 @@
-import { daysInYear } from "../constants/index";
-import type { Duration } from "../types";
+import { daysInYear } from '../constants/index';
+import type { Duration } from '../types';
 
 /**
  * @name milliseconds
@@ -30,15 +30,7 @@ import type { Duration } from "../types";
  * milliseconds({ months: 3 })
  * //=> 7889238000
  */
-export function milliseconds({
-  years,
-  months,
-  weeks,
-  days,
-  hours,
-  minutes,
-  seconds,
-}: Duration): number {
+export function milliseconds({ years, months, weeks, days, hours, minutes, seconds }: Duration): number {
   let totalDays = 0;
 
   if (years) totalDays += years * daysInYear;

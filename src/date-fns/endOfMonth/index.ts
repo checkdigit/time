@@ -1,4 +1,4 @@
-import { toDate } from "../toDate/index";
+import { toDate } from '../toDate/index';
 
 /**
  * @name endOfMonth
@@ -20,9 +20,7 @@ import { toDate } from "../toDate/index";
  * const result = endOfMonth(new Date(2014, 8, 2, 11, 55, 0))
  * //=> Tue Sep 30 2014 23:59:59.999
  */
-export function endOfMonth<DateType extends Date>(
-  date: DateType | number | string,
-): DateType {
+export function endOfMonth<DateType extends Date>(date: DateType | number | string): DateType {
   const _date = toDate(date);
   const month = _date.getMonth();
   _date.setFullYear(_date.getFullYear(), month + 1, 0);

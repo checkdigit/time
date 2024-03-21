@@ -1,5 +1,5 @@
-import { toDate } from "../toDate/index";
-import type { Interval, StepOptions } from "../types";
+import { toDate } from '../toDate/index';
+import type { Interval, StepOptions } from '../types';
 
 /**
  * The {@link eachMonthOfInterval} function options.

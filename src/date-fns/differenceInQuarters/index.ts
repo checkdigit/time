@@ -1,6 +1,6 @@
-import { getRoundingMethod } from "../_lib/getRoundingMethod/index";
-import { differenceInMonths } from "../differenceInMonths/index";
-import type { RoundingOptions } from "../types";
+import { getRoundingMethod } from '../_lib/getRoundingMethod/index';
+import { differenceInMonths } from '../differenceInMonths/index';
+import type { RoundingOptions } from '../types';
 
 /**
  * The {@link differenceInQuarters} function options.

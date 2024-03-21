@@ -1,4 +1,4 @@
-import { toDate } from "../toDate/index";
+import { toDate } from '../toDate/index';
 
 /**
  * @name lastDayOfDecade
@@ -19,9 +19,7 @@ import { toDate } from "../toDate/index";
  * const result = lastDayOfDecade(new Date(2012, 11, 21, 21, 12, 00))
  * //=> Wed Dec 31 2019 00:00:00
  */
-export function lastDayOfDecade<DateType extends Date>(
-  date: DateType | number | string,
-): DateType {
+export function lastDayOfDecade<DateType extends Date>(date: DateType | number | string): DateType {
   // TODO: Switch to more technical definition in of decades that start with 1
   // end with 0. I.e. 2001-2010 instead of current 2000-2009. It's a breaking
   // change, so it can only be done in 4.0.

@@ -1,7 +1,7 @@
-import { addQuarters } from "../addQuarters/index";
-import { startOfQuarter } from "../startOfQuarter/index";
-import { toDate } from "../toDate/index";
-import type { Interval, StepOptions } from "../types";
+import { addQuarters } from '../addQuarters/index';
+import { startOfQuarter } from '../startOfQuarter/index';
+import { toDate } from '../toDate/index';
+import type { Interval, StepOptions } from '../types';
 
 /**
  * The {@link eachQuarterOfInterval} function options.
@@ -42,12 +42,8 @@ export function eachQuarterOfInterval<DateType extends Date>(
   const endDate = toDate(interval.end);
 
   let reversed = +startDate > +endDate;
-  const endTime = reversed
-    ? +startOfQuarter(startDate)
-    : +startOfQuarter(endDate);
-  let currentDate = reversed
-    ? startOfQuarter(endDate)
-    : startOfQuarter(startDate);
+  const endTime = reversed ? +startOfQuarter(startDate) : +startOfQuarter(endDate);
+  let currentDate = reversed ? startOfQuarter(endDate) : startOfQuarter(startDate);
 
   let step = options?.step ?? 1;
   if (!step) return [];

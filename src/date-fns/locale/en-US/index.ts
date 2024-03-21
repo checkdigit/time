@@ -1,9 +1,9 @@
-import { formatDistance } from "./_lib/formatDistance/index";
-import { formatLong } from "./_lib/formatLong/index";
-import { formatRelative } from "./_lib/formatRelative/index";
-import { localize } from "./_lib/localize/index";
-import { match } from "./_lib/match/index";
-import type { Locale } from "../types";
+import { formatDistance } from './_lib/formatDistance/index';
+import { formatLong } from './_lib/formatLong/index';
+import { formatRelative } from './_lib/formatRelative/index';
+import { localize } from './_lib/localize/index';
+import { match } from './_lib/match/index';
+import type { Locale } from '../types';
 
 /**
  * @category Locales
@@ -14,7 +14,7 @@ import type { Locale } from "../types";
  * @author Lesha Koss [@leshakoss](https://github.com/leshakoss)
  */
 export const enUS: Locale = {
-  code: "en-US",
+  code: 'en-US',
   formatDistance: formatDistance,
   formatLong: formatLong,
   formatRelative: formatRelative,

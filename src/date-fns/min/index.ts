@@ -1,4 +1,4 @@
-import { toDate } from "../toDate/index";
+import { toDate } from '../toDate/index';
 
 /**
  * @name min
@@ -24,9 +24,7 @@ import { toDate } from "../toDate/index";
  * ])
  * //=> Wed Feb 11 1987 00:00:00
  */
-export function min<DateType extends Date>(
-  dates: Array<DateType | number | string>,
-): DateType | Date {
+export function min<DateType extends Date>(dates: Array<DateType | number | string>): DateType | Date {
   let result: Date | undefined;
 
   dates.forEach((dirtyDate) => {

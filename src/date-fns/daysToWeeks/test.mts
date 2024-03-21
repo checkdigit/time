@@ -1,23 +1,23 @@
-import { describe, expect, it } from "vitest";
-import { daysToWeeks } from "./index";
+import { describe, expect, it } from 'vitest';
+import { daysToWeeks } from './index';
 
-describe("daysToWeeks", () => {
-  it("converts days to weeks", () => {
+describe('daysToWeeks', () => {
+  it('converts days to weeks', () => {
     expect(daysToWeeks(7)).toBe(1);
     expect(daysToWeeks(14)).toBe(2);
   });
 
-  it("uses trunc rounding", () => {
+  it('uses trunc rounding', () => {
     expect(daysToWeeks(8)).toBe(1);
     expect(daysToWeeks(6)).toBe(0);
   });
 
-  it("handles border values", () => {
+  it('handles border values', () => {
     expect(daysToWeeks(7.5)).toBe(1);
     expect(daysToWeeks(0)).toBe(0);
   });
 
-  it("properly works with negative numbers", () => {
+  it('properly works with negative numbers', () => {
     expect(daysToWeeks(7)).toBe(1);
     expect(daysToWeeks(-7)).toBe(-1);
 

@@ -1,18 +1,12 @@
-import { getRoundingMethod } from "../_lib/getRoundingMethod/index";
-import { constructFrom } from "../constructFrom/index";
-import { toDate } from "../toDate/index";
-import type {
-  NearestHours,
-  NearestToUnitOptions,
-  RoundingOptions,
-} from "../types";
+import { getRoundingMethod } from '../_lib/getRoundingMethod/index';
+import { constructFrom } from '../constructFrom/index';
+import { toDate } from '../toDate/index';
+import type { NearestHours, NearestToUnitOptions, RoundingOptions } from '../types';
 
 /**
  * The {@link roundToNearestHours} function options.
  */
-export interface RoundToNearestHoursOptions
-  extends NearestToUnitOptions<NearestHours>,
-    RoundingOptions {}
+export interface RoundToNearestHoursOptions extends NearestToUnitOptions<NearestHours>, RoundingOptions {}
 
 /**
  * @name roundToNearestHours
@@ -67,14 +61,10 @@ export function roundToNearestHours<DateType extends Date>(
   const fractionalMinutes = _date.getMinutes() / 60;
   const fractionalSeconds = _date.getSeconds() / 60 / 60;
   const fractionalMilliseconds = _date.getMilliseconds() / 1000 / 60 / 60;
-  const hours =
-    _date.getHours() +
-    fractionalMinutes +
-    fractionalSeconds +
-    fractionalMilliseconds;
+  const hours = _date.getHours() + fractionalMinutes + fractionalSeconds + fractionalMilliseconds;
 
   // Unlike the `differenceIn*` functions, the default rounding behavior is `round` and not 'trunc'
-  const method = options?.roundingMethod ?? "round";
+  const method = options?.roundingMethod ?? 'round';
   const roundingMethod = getRoundingMethod(method);
 
   // nearestTo option does not care daylight savings time

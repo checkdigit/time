@@ -43,10 +43,10 @@ export function parseJSON(dateStr: string): Date {
         +parts[1]!,
         +parts[2]! - 1,
         +parts[3]!,
-        +parts[4]! - (+parts[9]! || 0) * (parts[8] == "-" ? -1 : 1),
-        +parts[5]! - (+parts[10]! || 0) * (parts[8] == "-" ? -1 : 1),
+        +parts[4]! - (+parts[9]! || 0) * (parts[8] == '-' ? -1 : 1),
+        +parts[5]! - (+parts[10]! || 0) * (parts[8] == '-' ? -1 : 1),
         +parts[6]!,
-        +((parts[7] || "0") + "00").substring(0, 3),
+        +((parts[7] || '0') + '00').substring(0, 3),
       ),
     );
   }

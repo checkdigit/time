@@ -1,4 +1,4 @@
-import { previousDay } from "../previousDay/index";
+import { previousDay } from '../previousDay/index';
 
 /**
  * @name previousSunday
@@ -19,8 +19,6 @@ import { previousDay } from "../previousDay/index";
  * const result = previousSunday(new Date(2021, 5, 21))
  * //=> Sun June 20 2021 00:00:00
  */
-export function previousSunday<DateType extends Date>(
-  date: DateType | number | string,
-): DateType {
+export function previousSunday<DateType extends Date>(date: DateType | number | string): DateType {
   return previousDay(date, 0);
 }

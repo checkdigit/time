@@ -1,4 +1,4 @@
-import { toDate } from "../../toDate/index";
+import { toDate } from '../../toDate/index';
 
 /**
  * Google Chrome as of 67.0.3396.87 introduced timezones with offset that includes seconds.
@@ -11,9 +11,7 @@ import { toDate } from "../../toDate/index";
  *
  * This function returns the timezone offset in milliseconds that takes seconds in account.
  */
-export function getTimezoneOffsetInMilliseconds(
-  date: Date | number | string,
-): number {
+export function getTimezoneOffsetInMilliseconds(date: Date | number | string): number {
   const _date = toDate(date);
   const utcDate = new Date(
     Date.UTC(

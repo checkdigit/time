@@ -1,8 +1,8 @@
-import type { Match } from "../../../locale/types";
-import { setISODay } from "../../../setISODay/index";
-import { Parser } from "../Parser";
-import type { ParseFlags, ParseResult } from "../types";
-import { mapValue, parseNDigits } from "../utils";
+import type { Match } from '../../../locale/types';
+import { setISODay } from '../../../setISODay/index';
+import { Parser } from '../Parser';
+import type { ParseFlags, ParseResult } from '../types';
+import { mapValue, parseNDigits } from '../utils';
 
 // ISO day of week
 export class ISODayParser extends Parser<number> {
@@ -18,70 +18,70 @@ export class ISODayParser extends Parser<number> {
 
     switch (token) {
       // 2
-      case "i":
-      case "ii": // 02
+      case 'i':
+      case 'ii': // 02
         return parseNDigits(token.length, dateString);
       // 2nd
-      case "io":
-        return match.ordinalNumber(dateString, { unit: "day" });
+      case 'io':
+        return match.ordinalNumber(dateString, { unit: 'day' });
       // Tue
-      case "iii":
+      case 'iii':
         return mapValue(
           match.day(dateString, {
-            width: "abbreviated",
-            context: "formatting",
+            width: 'abbreviated',
+            context: 'formatting',
           }) ||
             match.day(dateString, {
-              width: "short",
-              context: "formatting",
+              width: 'short',
+              context: 'formatting',
             }) ||
             match.day(dateString, {
-              width: "narrow",
-              context: "formatting",
+              width: 'narrow',
+              context: 'formatting',
             }),
           valueCallback,
         );
       // T
-      case "iiiii":
+      case 'iiiii':
         return mapValue(
           match.day(dateString, {
-            width: "narrow",
-            context: "formatting",
+            width: 'narrow',
+            context: 'formatting',
           }),
           valueCallback,
         );
       // Tu
-      case "iiiiii":
+      case 'iiiiii':
         return mapValue(
           match.day(dateString, {
-            width: "short",
-            context: "formatting",
+            width: 'short',
+            context: 'formatting',
           }) ||
             match.day(dateString, {
-              width: "narrow",
-              context: "formatting",
+              width: 'narrow',
+              context: 'formatting',
             }),
           valueCallback,
         );
       // Tuesday
-      case "iiii":
+      case 'iiii':
       default:
         return mapValue(
           match.day(dateString, {
-            width: "wide",
-            context: "formatting",
+            width: 'wide',
+            context: 'formatting',
           }) ||
             match.day(dateString, {
-              width: "abbreviated",
-              context: "formatting",
+              width: 'abbreviated',
+              context: 'formatting',
             }) ||
             match.day(dateString, {
-              width: "short",
-              context: "formatting",
+              width: 'short',
+              context: 'formatting',
             }) ||
             match.day(dateString, {
-              width: "narrow",
-              context: "formatting",
+              width: 'narrow',
+              context: 'formatting',
             }),
           valueCallback,
         );
@@ -92,31 +92,11 @@ export class ISODayParser extends Parser<number> {
     return value >= 1 && value <= 7;
   }
 
-  set<DateType extends Date>(
-    date: DateType,
-    _flags: ParseFlags,
-    value: number,
-  ): DateType {
+  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
     date = setISODay(date, value);
     date.setHours(0, 0, 0, 0);
     return date;
   }
 
-  incompatibleTokens = [
-    "y",
-    "Y",
-    "u",
-    "q",
-    "Q",
-    "M",
-    "L",
-    "w",
-    "d",
-    "D",
-    "E",
-    "e",
-    "c",
-    "t",
-    "T",
-  ];
+  incompatibleTokens = ['y', 'Y', 'u', 'q', 'Q', 'M', 'L', 'w', 'd', 'D', 'E', 'e', 'c', 't', 'T'];
 }

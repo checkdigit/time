@@ -1,9 +1,9 @@
-import { toDate } from "../toDate/index";
+import { toDate } from '../toDate/index';
 
 /**
  * The locale string (see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument).
  */
-export type IntlFormatLocale = Intl.ResolvedDateTimeFormatOptions["locale"];
+export type IntlFormatLocale = Intl.ResolvedDateTimeFormatOptions['locale'];
 
 /**
  * The format options (see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat#options)
@@ -43,9 +43,7 @@ export interface IntlFormatLocaleOptions {
  * const result = intlFormat(new Date(2019, 9, 4, 12, 30, 13, 456))
  * //=> 10/4/2019
  */
-export function intlFormat<DateType extends Date>(
-  date: DateType | number | string,
-): string;
+export function intlFormat<DateType extends Date>(date: DateType | number | string): string;
 
 /**
  * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
@@ -139,13 +137,11 @@ export function intlFormat<DateType extends Date>(
     localeOptions = formatOrLocale;
   }
 
-  return new Intl.DateTimeFormat(localeOptions?.locale, formatOptions).format(
-    toDate(date),
-  );
+  return new Intl.DateTimeFormat(localeOptions?.locale, formatOptions).format(toDate(date));
 }
 
 function isFormatOptions(
   opts: IntlFormatLocaleOptions | IntlFormatFormatOptions | undefined,
 ): opts is IntlFormatFormatOptions {
-  return opts !== undefined && !("locale" in opts);
+  return opts !== undefined && !('locale' in opts);
 }

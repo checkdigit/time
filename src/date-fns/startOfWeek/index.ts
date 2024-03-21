@@ -1,13 +1,11 @@
-import { toDate } from "../toDate/index";
-import type { LocalizedOptions, WeekOptions } from "../types";
-import { getDefaultOptions } from "../_lib/defaultOptions/index";
+import { toDate } from '../toDate/index';
+import type { LocalizedOptions, WeekOptions } from '../types';
+import { getDefaultOptions } from '../_lib/defaultOptions/index';
 
 /**
  * The {@link startOfWeek} function options.
  */
-export interface StartOfWeekOptions
-  extends LocalizedOptions<"options">,
-    WeekOptions {}
+export interface StartOfWeekOptions extends LocalizedOptions<'options'>, WeekOptions {}
 
 /**
  * @name startOfWeek

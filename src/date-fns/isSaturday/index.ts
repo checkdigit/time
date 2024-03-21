@@ -1,4 +1,4 @@
-import { toDate } from "../toDate/index";
+import { toDate } from '../toDate/index';
 
 /**
  * @name isSaturday
@@ -19,8 +19,6 @@ import { toDate } from "../toDate/index";
  * const result = isSaturday(new Date(2014, 8, 27))
  * //=> true
  */
-export function isSaturday<DateType extends Date>(
-  date: DateType | number | string,
-): boolean {
+export function isSaturday<DateType extends Date>(date: DateType | number | string): boolean {
   return toDate(date).getDay() === 6;
 }

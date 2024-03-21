@@ -1,18 +1,16 @@
-import { differenceInCalendarDays } from "../differenceInCalendarDays/index";
-import { format } from "../format/index";
-import type { FormatRelativeToken } from "../locale/types";
-import { toDate } from "../toDate/index";
-import type { LocalizedOptions, WeekOptions } from "../types";
-import { defaultLocale } from "../_lib/defaultLocale/index";
-import { getDefaultOptions } from "../_lib/defaultOptions/index";
+import { differenceInCalendarDays } from '../differenceInCalendarDays/index';
+import { format } from '../format/index';
+import type { FormatRelativeToken } from '../locale/types';
+import { toDate } from '../toDate/index';
+import type { LocalizedOptions, WeekOptions } from '../types';
+import { defaultLocale } from '../_lib/defaultLocale/index';
+import { getDefaultOptions } from '../_lib/defaultOptions/index';
 
 /**
  * The {@link formatRelative} function options.
  */
 export interface FormatRelativeOptions
-  extends LocalizedOptions<
-      "options" | "localize" | "formatLong" | "formatRelative"
-    >,
+  extends LocalizedOptions<'options' | 'localize' | 'formatLong' | 'formatRelative'>,
     WeekOptions {}
 
 /**
@@ -71,24 +69,24 @@ export function formatRelative<DateType extends Date>(
   const diff = differenceInCalendarDays(_date, _baseDate);
 
   if (isNaN(diff)) {
-    throw new RangeError("Invalid time value");
+    throw new RangeError('Invalid time value');
   }
 
   let token: FormatRelativeToken;
   if (diff < -6) {
-    token = "other";
+    token = 'other';
   } else if (diff < -1) {
-    token = "lastWeek";
+    token = 'lastWeek';
   } else if (diff < 0) {
-    token = "yesterday";
+    token = 'yesterday';
   } else if (diff < 1) {
-    token = "today";
+    token = 'today';
   } else if (diff < 2) {
-    token = "tomorrow";
+    token = 'tomorrow';
   } else if (diff < 7) {
-    token = "nextWeek";
+    token = 'nextWeek';
   } else {
-    token = "other";
+    token = 'other';
   }
 
   const formatStr = locale.formatRelative(token, _date, _baseDate, {

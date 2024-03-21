@@ -1,4 +1,4 @@
-import { toDate } from "../toDate/index";
+import { toDate } from '../toDate/index';
 
 /**
  * @name getQuarter
@@ -19,9 +19,7 @@ import { toDate } from "../toDate/index";
  * const result = getQuarter(new Date(2014, 6, 2))
  * //=> 3
  */
-export function getQuarter<DateType extends Date>(
-  date: DateType | number | string,
-): number {
+export function getQuarter<DateType extends Date>(date: DateType | number | string): number {
   const _date = toDate(date);
   const quarter = Math.trunc(_date.getMonth() / 3) + 1;
   return quarter;

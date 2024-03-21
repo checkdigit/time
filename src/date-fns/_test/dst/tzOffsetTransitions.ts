@@ -28,8 +28,8 @@ export function getDstTransitions(year: number): PartialInterval {
     const t = transitions[i]!;
     const month = t.date.getMonth();
     if (month > 0 && month < 11) {
-      if (t.type === "forward") result.start = t.date;
-      if (t.type === "back" && !result.end) result.end = t.date;
+      if (t.type === 'forward') result.start = t.date;
+      if (t.type === 'back' && !result.end) result.end = t.date;
     }
   }
   return result;
@@ -92,7 +92,7 @@ export function getTzOffsetTransitions(year: number) {
   // start at the end of the previous day
   let date = firstTickInLocalDay(new Date(year, 0, 1));
   if (!isValidDate(date)) {
-    throw new Error("Invalid Date");
+    throw new Error('Invalid Date');
   }
   let baseTzOffset = previousTickTimezoneOffset(date);
   const transitions = [];
@@ -103,7 +103,7 @@ export function getTzOffsetTransitions(year: number) {
         // Transition is the first tick of a local day.
         transitions.push({
           date: date,
-          type: tzOffset < baseTzOffset ? "forward" : "back",
+          type: tzOffset < baseTzOffset ? 'forward' : 'back',
           before: -baseTzOffset,
           after: -tzOffset,
         });
@@ -118,15 +118,12 @@ export function getTzOffsetTransitions(year: number) {
         // TODO: this could be optimized to search hours then minutes or by or
         // by using a binary search.
         const dayNumber = transitionDate.getDate();
-        while (
-          isValidDate(transitionDate) &&
-          transitionDate.getDate() === dayNumber
-        ) {
+        while (isValidDate(transitionDate) && transitionDate.getDate() === dayNumber) {
           tzOffset = transitionDate.getTimezoneOffset();
           if (baseTzOffset !== tzOffset) {
             transitions.push({
               date: transitionDate,
-              type: tzOffset < baseTzOffset ? "forward" : "back",
+              type: tzOffset < baseTzOffset ? 'forward' : 'back',
               before: -baseTzOffset,
               after: -tzOffset,
             });

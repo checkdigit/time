@@ -1,14 +1,12 @@
-import { addDays } from "../addDays/index";
-import { toDate } from "../toDate/index";
-import type { LocalizedOptions, WeekOptions } from "../types";
-import { getDefaultOptions } from "../_lib/defaultOptions/index";
+import { addDays } from '../addDays/index';
+import { toDate } from '../toDate/index';
+import type { LocalizedOptions, WeekOptions } from '../types';
+import { getDefaultOptions } from '../_lib/defaultOptions/index';
 
 /**
  * The {@link setDay} function options.
  */
-export interface SetDayOptions
-  extends LocalizedOptions<"options">,
-    WeekOptions {}
+export interface SetDayOptions extends LocalizedOptions<'options'>, WeekOptions {}
 
 /**
  * @name setDay
@@ -57,8 +55,6 @@ export function setDay<DateType extends Date>(
 
   const delta = 7 - weekStartsOn;
   const diff =
-    day < 0 || day > 6
-      ? day - ((currentDay + delta) % 7)
-      : ((dayIndex + delta) % 7) - ((currentDay + delta) % 7);
+    day < 0 || day > 6 ? day - ((currentDay + delta) % 7) : ((dayIndex + delta) % 7) - ((currentDay + delta) % 7);
   return addDays(_date, diff);
 }

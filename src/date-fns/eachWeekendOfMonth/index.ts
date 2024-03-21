@@ -1,6 +1,6 @@
-import { eachWeekendOfInterval } from "../eachWeekendOfInterval/index";
-import { endOfMonth } from "../endOfMonth/index";
-import { startOfMonth } from "../startOfMonth/index";
+import { eachWeekendOfInterval } from '../eachWeekendOfInterval/index';
+import { endOfMonth } from '../endOfMonth/index';
+import { startOfMonth } from '../startOfMonth/index';
 
 /**
  * @name eachWeekendOfMonth
@@ -30,9 +30,7 @@ import { startOfMonth } from "../startOfMonth/index";
  * //   Sun Feb 27 2022 00:00:00
  * // ]
  */
-export function eachWeekendOfMonth<DateType extends Date>(
-  date: DateType,
-): DateType[] {
+export function eachWeekendOfMonth<DateType extends Date>(date: DateType): DateType[] {
   const start = startOfMonth(date);
   const end = endOfMonth(date);
   return eachWeekendOfInterval({ start, end });

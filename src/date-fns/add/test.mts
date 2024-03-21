@@ -1,9 +1,9 @@
-import { describe, expect, it } from "vitest";
-import { add } from "./index";
-import { getDstTransitions } from "../_test/dst/tzOffsetTransitions";
+import { describe, expect, it } from 'vitest';
+import { add } from './index';
+import { getDstTransitions } from '../_test/dst/tzOffsetTransitions';
 
-describe("add", () => {
-  it("adds the values from the given object", () => {
+describe('add', () => {
+  it('adds the values from the given object', () => {
     const result = add(new Date(2014, 8 /* Sep */, 1, 10, 19, 50), {
       years: 2,
       months: 9,
@@ -16,7 +16,7 @@ describe("add", () => {
     expect(result).toEqual(new Date(2017, 5 /* June */, 15, 15, 29, 20));
   });
 
-  it("supports an undefined value in the duration object", () => {
+  it('supports an undefined value in the duration object', () => {
     const result = add(new Date(2014, 8 /* Sep */, 1, 10, 19, 50), {
       years: undefined,
       months: 9,
@@ -29,7 +29,7 @@ describe("add", () => {
     expect(result).toEqual(new Date(2015, 5 /* June */, 15, 15, 29, 20));
   });
 
-  it("returns same date object when passed empty duration values", () => {
+  it('returns same date object when passed empty duration values', () => {
     const result = add(new Date(2014, 8 /* Sep */, 1, 10).getTime(), {
       years: undefined,
       months: undefined,
@@ -42,25 +42,25 @@ describe("add", () => {
     expect(result).toEqual(new Date(2014, 8 /* Sep */, 1, 10));
   });
 
-  it("returns same date object when passed undefined duration values", () => {
+  it('returns same date object when passed undefined duration values', () => {
     const result = add(new Date(2014, 8 /* Sep */, 1, 10).getTime(), {});
     expect(result).toEqual(new Date(2014, 8 /* Sep */, 1, 10));
   });
 
-  it("accepts a timestamp", () => {
+  it('accepts a timestamp', () => {
     const result = add(new Date(2014, 8 /* Sep */, 1, 10).getTime(), {
       hours: 4,
     });
     expect(result).toEqual(new Date(2014, 8 /* Sep */, 1, 14));
   });
 
-  it("does not mutate the original date", () => {
+  it('does not mutate the original date', () => {
     const date = new Date(2014, 8 /* Sep */, 1, 10);
     add(date, { hours: 4 });
     expect(date).toEqual(new Date(2014, 8 /* Sep */, 1, 10));
   });
 
-  it("works well if the desired month has fewer days and the provided date is in the last day of a month", () => {
+  it('works well if the desired month has fewer days and the provided date is in the last day of a month', () => {
     const date = new Date(2014, 11 /* Dec */, 31);
     const result = add(date, { months: 9 });
     expect(result).toEqual(new Date(2015, 8 /* Sep */, 30));
@@ -71,16 +71,13 @@ describe("add", () => {
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || process.env.tz;
   const HOUR = 1000 * 60 * 60;
 
-  dstOnly(
-    `works at DST-end boundary in local timezone: ${tz || "(unknown)"}`,
-    () => {
-      const date = dstTransitions.end;
-      const result = add(date!, { hours: 1 });
-      expect(result).toEqual(new Date(date!.getTime() + HOUR));
-    },
-  );
+  dstOnly(`works at DST-end boundary in local timezone: ${tz || '(unknown)'}`, () => {
+    const date = dstTransitions.end;
+    const result = add(date!, { hours: 1 });
+    expect(result).toEqual(new Date(date!.getTime() + HOUR));
+  });
 
-  it("handles dates before 100 AD", () => {
+  it('handles dates before 100 AD', () => {
     const initialDate = new Date(0);
     initialDate.setFullYear(-1, 10 /* Nov */, 30);
     initialDate.setHours(0, 0, 0, 0);
@@ -91,7 +88,7 @@ describe("add", () => {
     expect(result).toEqual(expectedResult);
   });
 
-  it("returns `Invalid Date` if the given date is invalid", () => {
+  it('returns `Invalid Date` if the given date is invalid', () => {
     const result = add(new Date(NaN), { hours: 5 });
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });

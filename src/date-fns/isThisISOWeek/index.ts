@@ -1,5 +1,5 @@
-import { constructNow } from "../constructNow/index";
-import { isSameISOWeek } from "../isSameISOWeek/index";
+import { constructNow } from '../constructNow/index';
+import { isSameISOWeek } from '../isSameISOWeek/index';
 
 /**
  * @name isThisISOWeek
@@ -24,8 +24,6 @@ import { isSameISOWeek } from "../isSameISOWeek/index";
  * //=> true
  */
 
-export function isThisISOWeek<DateType extends Date>(
-  date: DateType | number | string,
-): boolean {
+export function isThisISOWeek<DateType extends Date>(date: DateType | number | string): boolean {
   return isSameISOWeek(date, constructNow(date));
 }

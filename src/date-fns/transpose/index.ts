@@ -1,5 +1,5 @@
-import type { GenericDateConstructor } from "../types";
-import { constructFrom } from "../constructFrom/index";
+import type { GenericDateConstructor } from '../types';
+import { constructFrom } from '../constructFrom/index';
 
 /**
  * @name transpose
@@ -29,27 +29,12 @@ import { constructFrom } from "../constructFrom/index";
  * transpose(date, UTCDate)
  * //=> 'Sun Jul 10 2022 00:00:00 GMT+0000 (Coordinated Universal Time)'
  */
-export function transpose<
-  DateInputType extends Date,
-  DateOutputType extends Date,
->(
+export function transpose<DateInputType extends Date, DateOutputType extends Date>(
   fromDate: DateInputType,
   constructor: DateOutputType | GenericDateConstructor<DateOutputType>,
 ): DateOutputType {
-  const date =
-    constructor instanceof Date
-      ? constructFrom(constructor, 0)
-      : new constructor(0);
-  date.setFullYear(
-    fromDate.getFullYear(),
-    fromDate.getMonth(),
-    fromDate.getDate(),
-  );
-  date.setHours(
-    fromDate.getHours(),
-    fromDate.getMinutes(),
-    fromDate.getSeconds(),
-    fromDate.getMilliseconds(),
-  );
+  const date = constructor instanceof Date ? constructFrom(constructor, 0) : new constructor(0);
+  date.setFullYear(fromDate.getFullYear(), fromDate.getMonth(), fromDate.getDate());
+  date.setHours(fromDate.getHours(), fromDate.getMinutes(), fromDate.getSeconds(), fromDate.getMilliseconds());
   return date;
 }

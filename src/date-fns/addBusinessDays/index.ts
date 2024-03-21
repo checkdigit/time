@@ -1,8 +1,8 @@
-import { constructFrom } from "../constructFrom/index";
-import { isSaturday } from "../isSaturday/index";
-import { isSunday } from "../isSunday/index";
-import { isWeekend } from "../isWeekend/index";
-import { toDate } from "../toDate/index";
+import { constructFrom } from '../constructFrom/index';
+import { isSaturday } from '../isSaturday/index';
+import { isSunday } from '../isSunday/index';
+import { isWeekend } from '../isWeekend/index';
+import { toDate } from '../toDate/index';
 
 /**
  * @name addBusinessDays
@@ -24,10 +24,7 @@ import { toDate } from "../toDate/index";
  * const result = addBusinessDays(new Date(2014, 8, 1), 10)
  * //=> Mon Sep 15 2014 00:00:00 (skipped weekend days)
  */
-export function addBusinessDays<DateType extends Date>(
-  date: DateType | number | string,
-  amount: number,
-): DateType {
+export function addBusinessDays<DateType extends Date>(date: DateType | number | string, amount: number): DateType {
   const _date = toDate(date);
   const startedOnWeekend = isWeekend(_date);
 

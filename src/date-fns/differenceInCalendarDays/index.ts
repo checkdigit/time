@@ -1,6 +1,6 @@
-import { millisecondsInDay } from "../constants/index";
-import { startOfDay } from "../startOfDay/index";
-import { getTimezoneOffsetInMilliseconds } from "../_lib/getTimezoneOffsetInMilliseconds/index";
+import { millisecondsInDay } from '../constants/index';
+import { startOfDay } from '../startOfDay/index';
+import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index';
 
 /**
  * @name differenceInCalendarDays
@@ -41,10 +41,8 @@ export function differenceInCalendarDays<DateType extends Date>(
   const startOfDayLeft = startOfDay(dateLeft);
   const startOfDayRight = startOfDay(dateRight);
 
-  const timestampLeft =
-    +startOfDayLeft - getTimezoneOffsetInMilliseconds(startOfDayLeft);
-  const timestampRight =
-    +startOfDayRight - getTimezoneOffsetInMilliseconds(startOfDayRight);
+  const timestampLeft = +startOfDayLeft - getTimezoneOffsetInMilliseconds(startOfDayLeft);
+  const timestampRight = +startOfDayRight - getTimezoneOffsetInMilliseconds(startOfDayRight);
 
   // Round the number of days to the nearest integer because the number of
   // milliseconds in a day is not constant (e.g. it's different in the week of

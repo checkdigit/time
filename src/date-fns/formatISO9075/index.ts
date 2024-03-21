@@ -1,7 +1,7 @@
-import { isValid } from "../isValid/index";
-import { toDate } from "../toDate/index";
-import type { ISOFormatOptions } from "../types";
-import { addLeadingZeros } from "../_lib/addLeadingZeros/index";
+import { isValid } from '../isValid/index';
+import { toDate } from '../toDate/index';
+import type { ISOFormatOptions } from '../types';
+import { addLeadingZeros } from '../_lib/addLeadingZeros/index';
 
 /**
  * The {@link formatISO9075} function options.
@@ -52,19 +52,19 @@ export function formatISO9075<DateType extends Date>(
   const _date = toDate(date);
 
   if (!isValid(_date)) {
-    throw new RangeError("Invalid time value");
+    throw new RangeError('Invalid time value');
   }
 
-  const format = options?.format ?? "extended";
-  const representation = options?.representation ?? "complete";
+  const format = options?.format ?? 'extended';
+  const representation = options?.representation ?? 'complete';
 
-  let result = "";
+  let result = '';
 
-  const dateDelimiter = format === "extended" ? "-" : "";
-  const timeDelimiter = format === "extended" ? ":" : "";
+  const dateDelimiter = format === 'extended' ? '-' : '';
+  const timeDelimiter = format === 'extended' ? ':' : '';
 
   // Representation is either 'date' or 'complete'
-  if (representation !== "time") {
+  if (representation !== 'time') {
     const day = addLeadingZeros(_date.getDate(), 2);
     const month = addLeadingZeros(_date.getMonth() + 1, 2);
     const year = addLeadingZeros(_date.getFullYear(), 4);
@@ -74,13 +74,13 @@ export function formatISO9075<DateType extends Date>(
   }
 
   // Representation is either 'time' or 'complete'
-  if (representation !== "date") {
+  if (representation !== 'date') {
     const hour = addLeadingZeros(_date.getHours(), 2);
     const minute = addLeadingZeros(_date.getMinutes(), 2);
     const second = addLeadingZeros(_date.getSeconds(), 2);
 
     // If there's also date, separate it with time with a space
-    const separator = result === "" ? "" : " ";
+    const separator = result === '' ? '' : ' ';
 
     // HHmmss or HH:mm:ss.
     result = `${result}${separator}${hour}${timeDelimiter}${minute}${timeDelimiter}${second}`;

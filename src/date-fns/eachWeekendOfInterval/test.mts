@@ -1,8 +1,8 @@
-import { describe, expect, it } from "vitest";
-import { eachWeekendOfInterval } from "./index";
+import { describe, expect, it } from 'vitest';
+import { eachWeekendOfInterval } from './index';
 
-describe("eachWeekendOfInterval", () => {
-  it("returns all weekends within the interval", () => {
+describe('eachWeekendOfInterval', () => {
+  it('returns all weekends within the interval', () => {
     const result = eachWeekendOfInterval({
       start: new Date(2018, 8 /* Sept */, 17),
       end: new Date(2018, 8 /* Sept */, 30),
@@ -15,7 +15,7 @@ describe("eachWeekendOfInterval", () => {
     ]);
   });
 
-  it("returns all weekends within the interval when starting on a weekend", () => {
+  it('returns all weekends within the interval when starting on a weekend', () => {
     const result = eachWeekendOfInterval({
       start: new Date(2018, 8 /* Sept */, 22),
       end: new Date(2018, 8 /* Sept */, 30),
@@ -28,7 +28,7 @@ describe("eachWeekendOfInterval", () => {
     ]);
   });
 
-  it("returns reversed array if the start date is after the end date", () => {
+  it('returns reversed array if the start date is after the end date', () => {
     const result = eachWeekendOfInterval({
       start: new Date(2018, 8 /* Sept */, 30),
       end: new Date(2018, 8 /* Sept */, 17),
@@ -41,7 +41,7 @@ describe("eachWeekendOfInterval", () => {
     ]);
   });
 
-  it("returns an empty array if the start date is `Invalid Date`", () => {
+  it('returns an empty array if the start date is `Invalid Date`', () => {
     const result = eachWeekendOfInterval({
       start: new Date(NaN),
       end: new Date(2019, 11 /* Dec */, 31),
@@ -49,7 +49,7 @@ describe("eachWeekendOfInterval", () => {
     expect(result).toEqual([]);
   });
 
-  it("returns an empty array if the end date is `Invalid Date`", () => {
+  it('returns an empty array if the end date is `Invalid Date`', () => {
     const result = eachWeekendOfInterval({
       start: new Date(2019, 0 /* Jan */, 1),
       end: new Date(NaN),
@@ -57,7 +57,7 @@ describe("eachWeekendOfInterval", () => {
     expect(result).toEqual([]);
   });
 
-  it("returns an empty array if both of the properties are `Invalid Date`", () => {
+  it('returns an empty array if both of the properties are `Invalid Date`', () => {
     const result = eachWeekendOfInterval({
       start: new Date(NaN),
       end: new Date(NaN),

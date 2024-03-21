@@ -1,9 +1,9 @@
-import { addDays } from "../addDays/index";
-import { differenceInCalendarDays } from "../differenceInCalendarDays/index";
-import { isSameDay } from "../isSameDay/index";
-import { isValid } from "../isValid/index";
-import { isWeekend } from "../isWeekend/index";
-import { toDate } from "../toDate/index";
+import { addDays } from '../addDays/index';
+import { differenceInCalendarDays } from '../differenceInCalendarDays/index';
+import { isSameDay } from '../isSameDay/index';
+import { isValid } from '../isValid/index';
+import { isWeekend } from '../isWeekend/index';
+import { toDate } from '../toDate/index';
 
 /**
  * @name differenceInBusinessDays

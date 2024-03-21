@@ -1,8 +1,8 @@
-import { describe, expect, it } from "vitest";
-import { differenceInISOWeekYears } from "./index";
+import { describe, expect, it } from 'vitest';
+import { differenceInISOWeekYears } from './index';
 
-describe("differenceInISOWeekYears", () => {
-  it("returns the number of full ISO week-numbering years between the given dates", () => {
+describe('differenceInISOWeekYears', () => {
+  it('returns the number of full ISO week-numbering years between the given dates', () => {
     const result = differenceInISOWeekYears(
       new Date(2012, 6 /* Jul */, 2, 18, 0),
       new Date(2011, 6 /* Jul */, 2, 6, 0),
@@ -10,7 +10,7 @@ describe("differenceInISOWeekYears", () => {
     expect(result).toBe(1);
   });
 
-  it("returns a negative number if the time value of the first date is smaller", () => {
+  it('returns a negative number if the time value of the first date is smaller', () => {
     const result = differenceInISOWeekYears(
       new Date(2011, 6 /* Jul */, 2, 6, 0),
       new Date(2012, 6 /* Jul */, 2, 18, 0),
@@ -18,7 +18,7 @@ describe("differenceInISOWeekYears", () => {
     expect(result).toBe(-1);
   });
 
-  it("accepts timestamps", () => {
+  it('accepts timestamps', () => {
     const result = differenceInISOWeekYears(
       new Date(2014, 6 /* Jul */, 2).getTime(),
       new Date(2010, 6 /* Jul */, 2).getTime(),
@@ -26,7 +26,7 @@ describe("differenceInISOWeekYears", () => {
     expect(result).toBe(4);
   });
 
-  it("handles dates before 100 AD", () => {
+  it('handles dates before 100 AD', () => {
     const firstDate = new Date(0);
     firstDate.setFullYear(14, 0 /* Jan */, 1);
     firstDate.setHours(0, 0, 0, 0);
@@ -37,32 +37,23 @@ describe("differenceInISOWeekYears", () => {
     expect(result).toBe(14);
   });
 
-  describe("edge cases", () => {
-    it("the difference is less than an ISO year, but the given dates are in different calendar years", () => {
-      const result = differenceInISOWeekYears(
-        new Date(2012, 0 /* Jan */, 2),
-        new Date(2012, 0 /* Jan */, 1),
-      );
+  describe('edge cases', () => {
+    it('the difference is less than an ISO year, but the given dates are in different calendar years', () => {
+      const result = differenceInISOWeekYears(new Date(2012, 0 /* Jan */, 2), new Date(2012, 0 /* Jan */, 1));
       expect(result).toBe(0);
     });
 
-    it("the same for the swapped dates", () => {
-      const result = differenceInISOWeekYears(
-        new Date(2012, 0 /* Jan */, 1),
-        new Date(2012, 0 /* Jan */, 2),
-      );
+    it('the same for the swapped dates', () => {
+      const result = differenceInISOWeekYears(new Date(2012, 0 /* Jan */, 1), new Date(2012, 0 /* Jan */, 2));
       expect(result).toBe(0);
     });
 
-    it("the ISO weeks and weekdays of the given dates are the same", () => {
-      const result = differenceInISOWeekYears(
-        new Date(2013, 11 /* Dec */, 30),
-        new Date(2012, 0 /* Jan */, 2),
-      );
+    it('the ISO weeks and weekdays of the given dates are the same', () => {
+      const result = differenceInISOWeekYears(new Date(2013, 11 /* Dec */, 30), new Date(2012, 0 /* Jan */, 2));
       expect(result).toBe(2);
     });
 
-    it("the given dates are the same", () => {
+    it('the given dates are the same', () => {
       const result = differenceInISOWeekYears(
         new Date(2014, 8 /* Sep */, 5, 0, 0),
         new Date(2014, 8 /* Sep */, 5, 0, 0),
@@ -70,7 +61,7 @@ describe("differenceInISOWeekYears", () => {
       expect(result).toBe(0);
     });
 
-    it("does not return -0 when the given dates are the same", () => {
+    it('does not return -0 when the given dates are the same', () => {
       function isNegativeZero(x: number): boolean {
         return x === 0 && 1 / x < 0;
       }
@@ -85,23 +76,17 @@ describe("differenceInISOWeekYears", () => {
     });
   });
 
-  it("returns NaN if the first date is `Invalid Date`", () => {
-    const result = differenceInISOWeekYears(
-      new Date(NaN),
-      new Date(2017, 0 /* Jan */, 1),
-    );
+  it('returns NaN if the first date is `Invalid Date`', () => {
+    const result = differenceInISOWeekYears(new Date(NaN), new Date(2017, 0 /* Jan */, 1));
     expect(isNaN(result)).toBe(true);
   });
 
-  it("returns NaN if the second date is `Invalid Date`", () => {
-    const result = differenceInISOWeekYears(
-      new Date(2017, 0 /* Jan */, 1),
-      new Date(NaN),
-    );
+  it('returns NaN if the second date is `Invalid Date`', () => {
+    const result = differenceInISOWeekYears(new Date(2017, 0 /* Jan */, 1), new Date(NaN));
     expect(isNaN(result)).toBe(true);
   });
 
-  it("returns NaN if the both dates are `Invalid Date`", () => {
+  it('returns NaN if the both dates are `Invalid Date`', () => {
     const result = differenceInISOWeekYears(new Date(NaN), new Date(NaN));
     expect(isNaN(result)).toBe(true);
   });

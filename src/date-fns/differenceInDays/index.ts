@@ -1,5 +1,5 @@
-import { differenceInCalendarDays } from "../differenceInCalendarDays/index";
-import { toDate } from "../toDate/index";
+import { differenceInCalendarDays } from '../differenceInCalendarDays/index';
+import { toDate } from '../toDate/index';
 
 /**
  * @name differenceInDays
@@ -69,9 +69,7 @@ export function differenceInDays<DateType extends Date>(
 
   // Math.abs(diff in full days - diff in calendar days) === 1 if last calendar day is not full
   // If so, result must be decreased by 1 in absolute value
-  const isLastDayNotFull = Number(
-    compareLocalAsc(_dateLeft, _dateRight) === -sign,
-  );
+  const isLastDayNotFull = Number(compareLocalAsc(_dateLeft, _dateRight) === -sign);
   const result = sign * (difference - isLastDayNotFull);
   // Prevent negative zero
   return result === 0 ? 0 : result;
@@ -81,10 +79,7 @@ export function differenceInDays<DateType extends Date>(
 // for accurate equality comparisons of UTC timestamps that end up
 // having the same representation in local time, e.g. one hour before
 // DST ends vs. the instant that DST ends.
-function compareLocalAsc<DateType extends Date>(
-  dateLeft: DateType,
-  dateRight: DateType,
-): number {
+function compareLocalAsc<DateType extends Date>(dateLeft: DateType, dateRight: DateType): number {
   const diff =
     dateLeft.getFullYear() - dateRight.getFullYear() ||
     dateLeft.getMonth() - dateRight.getMonth() ||

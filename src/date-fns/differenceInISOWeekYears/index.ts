@@ -1,7 +1,7 @@
-import { compareAsc } from "../compareAsc/index";
-import { differenceInCalendarISOWeekYears } from "../differenceInCalendarISOWeekYears/index";
-import { subISOWeekYears } from "../subISOWeekYears/index";
-import { toDate } from "../toDate/index";
+import { compareAsc } from '../compareAsc/index';
+import { differenceInCalendarISOWeekYears } from '../differenceInCalendarISOWeekYears/index';
+import { subISOWeekYears } from '../subISOWeekYears/index';
+import { toDate } from '../toDate/index';
 
 /**
  * @name differenceInISOWeekYears
@@ -36,17 +36,13 @@ export function differenceInISOWeekYears<DateType extends Date>(
   const _dateRight = toDate(dateRight);
 
   const sign = compareAsc(_dateLeft, _dateRight);
-  const difference = Math.abs(
-    differenceInCalendarISOWeekYears(_dateLeft, _dateRight),
-  );
+  const difference = Math.abs(differenceInCalendarISOWeekYears(_dateLeft, _dateRight));
   _dateLeft = subISOWeekYears(_dateLeft, sign * difference);
 
   // Math.abs(diff in full ISO years - diff in calendar ISO years) === 1
   // if last calendar ISO year is not full
   // If so, result must be decreased by 1 in absolute value
-  const isLastISOWeekYearNotFull = Number(
-    compareAsc(_dateLeft, _dateRight) === -sign,
-  );
+  const isLastISOWeekYearNotFull = Number(compareAsc(_dateLeft, _dateRight) === -sign);
   const result = sign * (difference - isLastISOWeekYearNotFull);
   // Prevent negative zero
   return result === 0 ? 0 : result;

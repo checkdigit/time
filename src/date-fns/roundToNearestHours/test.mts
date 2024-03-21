@@ -1,11 +1,8 @@
-import { describe, expect, it } from "vitest";
-import {
-  roundToNearestHours,
-  type RoundToNearestHoursOptions,
-} from "./index";
+import { describe, expect, it } from 'vitest';
+import { roundToNearestHours, type RoundToNearestHoursOptions } from './index';
 
-describe("roundToNearestHours", () => {
-  it("rounds given date to the nearest hour by default", () => {
+describe('roundToNearestHours', () => {
+  it('rounds given date to the nearest hour by default', () => {
     // low
     expect(roundToNearestHours(makeDate(15, 10))).toEqual(makeDate(15));
 
@@ -16,7 +13,7 @@ describe("roundToNearestHours", () => {
     expect(roundToNearestHours(makeDate(15, 59))).toEqual(makeDate(16));
   });
 
-  it("rounds to the closest x hours if nearestTo is provided", () => {
+  it('rounds to the closest x hours if nearestTo is provided', () => {
     const options: RoundToNearestHoursOptions = { nearestTo: 3 };
 
     // low
@@ -29,9 +26,9 @@ describe("roundToNearestHours", () => {
     expect(roundToNearestHours(makeDate(11, 59), options)).toEqual(makeDate(12));
   });
 
-  describe("roundingMethod", () => {
-    it("trunc, nearestTo === 1 (default)", () => {
-      const options: RoundToNearestHoursOptions = { roundingMethod: "trunc" };
+  describe('roundingMethod', () => {
+    it('trunc, nearestTo === 1 (default)', () => {
+      const options: RoundToNearestHoursOptions = { roundingMethod: 'trunc' };
 
       // low
       expect(roundToNearestHours(makeDate(15, 10), options)).toEqual(makeDate(15));
@@ -43,9 +40,9 @@ describe("roundToNearestHours", () => {
       expect(roundToNearestHours(makeDate(15, 59), options)).toEqual(makeDate(15));
     });
 
-    it("trunc, nearestTo === 3", () => {
+    it('trunc, nearestTo === 3', () => {
       const options: RoundToNearestHoursOptions = {
-        roundingMethod: "trunc",
+        roundingMethod: 'trunc',
         nearestTo: 3,
       };
 
@@ -59,8 +56,8 @@ describe("roundToNearestHours", () => {
       expect(roundToNearestHours(makeDate(11, 59), options)).toEqual(makeDate(9));
     });
 
-    it("floor, nearestTo === 1 (default)", () => {
-      const options: RoundToNearestHoursOptions = { roundingMethod: "floor" };
+    it('floor, nearestTo === 1 (default)', () => {
+      const options: RoundToNearestHoursOptions = { roundingMethod: 'floor' };
 
       // low
       expect(roundToNearestHours(makeDate(15), options)).toEqual(makeDate(15));
@@ -72,9 +69,9 @@ describe("roundToNearestHours", () => {
       expect(roundToNearestHours(makeDate(15, 59), options)).toEqual(makeDate(15));
     });
 
-    it("floor, nearestTo === 3", () => {
+    it('floor, nearestTo === 3', () => {
       const options: RoundToNearestHoursOptions = {
-        roundingMethod: "floor",
+        roundingMethod: 'floor',
         nearestTo: 3,
       };
 
@@ -88,8 +85,8 @@ describe("roundToNearestHours", () => {
       expect(roundToNearestHours(makeDate(17, 59), options)).toEqual(makeDate(15));
     });
 
-    it("ceil, nearestTo === 1 (default)", () => {
-      const options: RoundToNearestHoursOptions = { roundingMethod: "ceil" };
+    it('ceil, nearestTo === 1 (default)', () => {
+      const options: RoundToNearestHoursOptions = { roundingMethod: 'ceil' };
 
       // low
       expect(roundToNearestHours(makeDate(15, 1), options)).toEqual(makeDate(16));
@@ -101,9 +98,9 @@ describe("roundToNearestHours", () => {
       expect(roundToNearestHours(makeDate(15, 59), options)).toEqual(makeDate(16));
     });
 
-    it("ceil, nearestTo === 3", () => {
+    it('ceil, nearestTo === 3', () => {
       const options: RoundToNearestHoursOptions = {
-        roundingMethod: "ceil",
+        roundingMethod: 'ceil',
         nearestTo: 3,
       };
 
@@ -117,8 +114,8 @@ describe("roundToNearestHours", () => {
       expect(roundToNearestHours(makeDate(17, 59), options)).toEqual(makeDate(18));
     });
 
-    it("round, nearestTo === 1 (default)", () => {
-      const options: RoundToNearestHoursOptions = { roundingMethod: "round" };
+    it('round, nearestTo === 1 (default)', () => {
+      const options: RoundToNearestHoursOptions = { roundingMethod: 'round' };
 
       // low
       expect(roundToNearestHours(makeDate(15), options)).toEqual(makeDate(15));
@@ -130,9 +127,9 @@ describe("roundToNearestHours", () => {
       expect(roundToNearestHours(makeDate(15, 59), options)).toEqual(makeDate(16));
     });
 
-    it("round, nearestTo === 3", () => {
+    it('round, nearestTo === 3', () => {
       const options: RoundToNearestHoursOptions = {
-        roundingMethod: "round",
+        roundingMethod: 'round',
         nearestTo: 3,
       };
 
@@ -147,49 +144,49 @@ describe("roundToNearestHours", () => {
     });
   });
 
-  describe("edge cases", () => {
-    it("rounds up to the next day", () => {
+  describe('edge cases', () => {
+    it('rounds up to the next day', () => {
       expect(roundToNearestHours(new Date(2014, 6, 10, 23, 59, 59, 999))).toEqual(new Date(2014, 6, 11));
     });
 
-    it("ceils correctly with 0 seconds and 1 millisecond", () => {
+    it('ceils correctly with 0 seconds and 1 millisecond', () => {
       // "ceil" does not round up when exactly oclock
-      expect(roundToNearestHours(makeDate(15, 0, 0, 0), { roundingMethod: "ceil" })).toEqual(makeDate(15));
+      expect(roundToNearestHours(makeDate(15, 0, 0, 0), { roundingMethod: 'ceil' })).toEqual(makeDate(15));
 
-      expect(roundToNearestHours(makeDate(15, 0, 0, 1), { roundingMethod: "ceil" })).toEqual(makeDate(16));
+      expect(roundToNearestHours(makeDate(15, 0, 0, 1), { roundingMethod: 'ceil' })).toEqual(makeDate(16));
     });
   });
 
-  describe("examples", () => {
-    it("example 1", () => {
+  describe('examples', () => {
+    it('example 1', () => {
       const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56));
       expect(result).toEqual(new Date(2014, 6, 10, 13));
     });
 
-    it("example 2", () => {
+    it('example 2', () => {
       const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56), {
         nearestTo: 6,
       });
       expect(result).toEqual(new Date(2014, 6, 10, 12));
     });
 
-    it("example 3", () => {
+    it('example 3', () => {
       const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56), {
         nearestTo: 8,
       });
       expect(result).toEqual(new Date(2014, 6, 10, 16));
     });
 
-    it("example 4", () => {
+    it('example 4', () => {
       const result = roundToNearestHours(new Date(2014, 6, 10, 1, 23, 45), {
-        roundingMethod: "ceil",
+        roundingMethod: 'ceil',
       });
       expect(result).toEqual(new Date(2014, 6, 10, 2));
     });
 
-    it("example 5", () => {
+    it('example 5', () => {
       const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56), {
-        roundingMethod: "floor",
+        roundingMethod: 'floor',
         nearestTo: 8,
       });
       expect(result).toEqual(new Date(2014, 6, 10, 8));
@@ -197,12 +194,7 @@ describe("roundToNearestHours", () => {
   });
 });
 
-function makeDate(
-  hours: number,
-  minutes: number = 0,
-  seconds: number = 0,
-  milliseconds: number = 0,
-) {
+function makeDate(hours: number, minutes: number = 0, seconds: number = 0, milliseconds: number = 0) {
   // helper to make tests more readable since we mostly care about hours and minutes
   return new Date(2014, 6 /* Jul */, 10, hours, minutes, seconds, milliseconds);
 }

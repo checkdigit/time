@@ -1,21 +1,21 @@
-import { defaultLocale } from "../_lib/defaultLocale/index";
-import { getDefaultOptions } from "../_lib/defaultOptions/index";
-import { formatters } from "../_lib/format/formatters/index";
-import { longFormatters } from "../_lib/format/longFormatters/index";
+import { defaultLocale } from '../_lib/defaultLocale/index';
+import { getDefaultOptions } from '../_lib/defaultOptions/index';
+import { formatters } from '../_lib/format/formatters/index';
+import { longFormatters } from '../_lib/format/longFormatters/index';
 import {
   isProtectedDayOfYearToken,
   isProtectedWeekYearToken,
   warnOrThrowProtectedError,
-} from "../_lib/protectedTokens/index";
-import { isValid } from "../isValid/index";
-import { toDate } from "../toDate/index";
+} from '../_lib/protectedTokens/index';
+import { isValid } from '../isValid/index';
+import { toDate } from '../toDate/index';
 import type {
   AdditionalTokensOptions,
   FirstWeekContainsDateOptions,
   FormatPart,
   LocalizedOptions,
   WeekOptions,
-} from "../types";
+} from '../types';
 
 // Rexports of internal for libraries to use.
 // See: https://github.com/date-fns/date-fns/issues/3638#issuecomment-1877082874
@@ -32,8 +32,7 @@ export { formatters, longFormatters };
 //   If there is no matching single quote
 //   then the sequence will continue until the end of the string.
 // - . matches any single character unmatched by previous parts of the RegExps
-const formattingTokensRegExp =
-  /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
+const formattingTokensRegExp = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
 
 // This RegExp catches symbols escaped by quotes, and also
 // sequences of symbols P, p, and the combinations like `PPPPPPPppppp`
@@ -50,7 +49,7 @@ export type { FormatOptions as FormatDateOptions };
  * The {@link format} function options.
  */
 export interface FormatOptions
-  extends LocalizedOptions<"options" | "localize" | "formatLong">,
+  extends LocalizedOptions<'options' | 'localize' | 'formatLong'>,
     WeekOptions,
     FirstWeekContainsDateOptions,
     AdditionalTokensOptions {}
@@ -366,20 +365,20 @@ export function format<DateType extends Date>(
   const originalDate = toDate(date);
 
   if (!isValid(originalDate)) {
-    throw new RangeError("Invalid time value");
+    throw new RangeError('Invalid time value');
   }
 
   let parts: FormatPart[] = formatStr
     .match(longFormattingTokensRegExp)!
     .map((substring) => {
       const firstCharacter = substring[0];
-      if (firstCharacter === "p" || firstCharacter === "P") {
+      if (firstCharacter === 'p' || firstCharacter === 'P') {
         const longFormatter = longFormatters[firstCharacter];
         return longFormatter!(substring, locale.formatLong);
       }
       return substring;
     })
-    .join("")
+    .join('')
     .match(formattingTokensRegExp)!
     .map((substring) => {
       // Replace two single quote characters with one single quote character
@@ -397,11 +396,7 @@ export function format<DateType extends Date>(
       }
 
       if (firstCharacter!.match(unescapedLatinCharacterRegExp)) {
-        throw new RangeError(
-          "Format string contains an unescaped latin alphabet character `" +
-            firstCharacter +
-            "`",
-        );
+        throw new RangeError('Format string contains an unescaped latin alphabet character `' + firstCharacter + '`');
       }
 
       return { isToken: false, value: substring };
@@ -425,10 +420,8 @@ export function format<DateType extends Date>(
       const token = part.value;
 
       if (
-        (!options?.useAdditionalWeekYearTokens &&
-          isProtectedWeekYearToken(token)) ||
-        (!options?.useAdditionalDayOfYearTokens &&
-          isProtectedDayOfYearToken(token))
+        (!options?.useAdditionalWeekYearTokens && isProtectedWeekYearToken(token)) ||
+        (!options?.useAdditionalDayOfYearTokens && isProtectedDayOfYearToken(token))
       ) {
         warnOrThrowProtectedError(token, formatStr, String(date));
       }
@@ -436,7 +429,7 @@ export function format<DateType extends Date>(
       const formatter = formatters[token[0]!];
       return formatter!(originalDate, token, locale.localize, formatterOptions);
     })
-    .join("");
+    .join('');
 }
 
 function cleanEscapedString(input: string): string {

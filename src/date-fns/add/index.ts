@@ -1,8 +1,8 @@
-import { addDays } from "../addDays/index";
-import { addMonths } from "../addMonths/index";
-import { constructFrom } from "../constructFrom/index";
-import { toDate } from "../toDate/index";
-import type { Duration } from "../types";
+import { addDays } from '../addDays/index';
+import { addMonths } from '../addMonths/index';
+import { constructFrom } from '../constructFrom/index';
+import { toDate } from '../toDate/index';
+import type { Duration } from '../types';
 
 /**
  * @name add
@@ -44,28 +44,15 @@ import type { Duration } from "../types";
  * })
  * //=> Thu Jun 15 2017 15:29:20
  */
-export function add<DateType extends Date>(
-  date: DateType | number | string,
-  duration: Duration,
-): DateType {
-  const {
-    years = 0,
-    months = 0,
-    weeks = 0,
-    days = 0,
-    hours = 0,
-    minutes = 0,
-    seconds = 0,
-  } = duration;
+export function add<DateType extends Date>(date: DateType | number | string, duration: Duration): DateType {
+  const { years = 0, months = 0, weeks = 0, days = 0, hours = 0, minutes = 0, seconds = 0 } = duration;
 
   // Add years and months
   const _date = toDate(date);
-  const dateWithMonths =
-    months || years ? addMonths(_date, months + years * 12) : _date;
+  const dateWithMonths = months || years ? addMonths(_date, months + years * 12) : _date;
 
   // Add weeks and days
-  const dateWithDays =
-    days || weeks ? addDays(dateWithMonths, days + weeks * 7) : dateWithMonths;
+  const dateWithDays = days || weeks ? addDays(dateWithMonths, days + weeks * 7) : dateWithMonths;
 
   // Add days, hours, minutes and seconds
   const minutesToAdd = minutes + hours * 60;

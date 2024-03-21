@@ -1,4 +1,4 @@
-import { toDate } from "../toDate/index";
+import { toDate } from '../toDate/index';
 
 /**
  * @name startOfQuarter
@@ -20,9 +20,7 @@ import { toDate } from "../toDate/index";
  * const result = startOfQuarter(new Date(2014, 8, 2, 11, 55, 0))
  * //=> Tue Jul 01 2014 00:00:00
  */
-export function startOfQuarter<DateType extends Date>(
-  date: DateType | number | string,
-): DateType {
+export function startOfQuarter<DateType extends Date>(date: DateType | number | string): DateType {
   const _date = toDate(date);
   const currentMonth = _date.getMonth();
   const month = currentMonth - (currentMonth % 3);

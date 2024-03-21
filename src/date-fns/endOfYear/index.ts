@@ -1,4 +1,4 @@
-import { toDate } from "../toDate/index";
+import { toDate } from '../toDate/index';
 
 /**
  * @name endOfYear
@@ -20,9 +20,7 @@ import { toDate } from "../toDate/index";
  * const result = endOfYear(new Date(2014, 8, 2, 11, 55, 00))
  * //=> Wed Dec 31 2014 23:59:59.999
  */
-export function endOfYear<DateType extends Date>(
-  date: DateType | number | string,
-): DateType {
+export function endOfYear<DateType extends Date>(date: DateType | number | string): DateType {
   const _date = toDate(date);
   const year = _date.getFullYear();
   _date.setFullYear(year + 1, 0, 0);

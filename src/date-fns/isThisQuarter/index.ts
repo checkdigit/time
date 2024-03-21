@@ -1,5 +1,5 @@
-import { constructNow } from "../constructNow/index";
-import { isSameQuarter } from "../isSameQuarter/index";
+import { constructNow } from '../constructNow/index';
+import { isSameQuarter } from '../isSameQuarter/index';
 
 /**
  * @name isThisQuarter
@@ -21,8 +21,6 @@ import { isSameQuarter } from "../isSameQuarter/index";
  * const result = isThisQuarter(new Date(2014, 6, 2))
  * //=> true
  */
-export function isThisQuarter<DateType extends Date>(
-  date: DateType | number | string,
-): boolean {
+export function isThisQuarter<DateType extends Date>(date: DateType | number | string): boolean {
   return isSameQuarter(date, constructNow(date));
 }

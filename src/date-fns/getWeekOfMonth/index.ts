@@ -1,15 +1,13 @@
-import { getDate } from "../getDate/index";
-import { getDay } from "../getDay/index";
-import { startOfMonth } from "../startOfMonth/index";
-import type { LocalizedOptions, WeekOptions } from "../types";
-import { getDefaultOptions } from "../_lib/defaultOptions/index";
+import { getDate } from '../getDate/index';
+import { getDay } from '../getDay/index';
+import { startOfMonth } from '../startOfMonth/index';
+import type { LocalizedOptions, WeekOptions } from '../types';
+import { getDefaultOptions } from '../_lib/defaultOptions/index';
 
 /**
  * The {@link getWeekOfMonth} function options.
  */
-export interface GetWeekOfMonthOptions
-  extends LocalizedOptions<"options">,
-    WeekOptions {}
+export interface GetWeekOfMonthOptions extends LocalizedOptions<'options'>, WeekOptions {}
 
 /**
  * @name getWeekOfMonth

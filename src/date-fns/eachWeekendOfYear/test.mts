@@ -1,9 +1,9 @@
-import { describe, expect, it } from "vitest";
-import { eachWeekendOfYear } from "./index";
-import { isWeekend } from "../isWeekend/index";
+import { describe, expect, it } from 'vitest';
+import { eachWeekendOfYear } from './index';
+import { isWeekend } from '../isWeekend/index';
 
-describe("eachWeekendOfYear", () => {
-  it("returns all weekends of the given year", () => {
+describe('eachWeekendOfYear', () => {
+  it('returns all weekends of the given year', () => {
     const result = eachWeekendOfYear(new Date(2020, 0, 1));
     expect(result.length).toBe(104);
     expect(result.every(isWeekend)).toBe(true);
@@ -11,7 +11,7 @@ describe("eachWeekendOfYear", () => {
     expect(result[103]).toEqual(new Date(2020, 11, 27));
   });
 
-  it("returns an empty asrray when the expected year is an Invalid Date", () => {
+  it('returns an empty asrray when the expected year is an Invalid Date', () => {
     const result = eachWeekendOfYear(new Date(NaN));
     expect(result).toEqual([]);
   });

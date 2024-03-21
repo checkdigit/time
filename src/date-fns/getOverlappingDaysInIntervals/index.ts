@@ -1,7 +1,7 @@
-import { getTimezoneOffsetInMilliseconds } from "../_lib/getTimezoneOffsetInMilliseconds/index";
-import { millisecondsInDay } from "../constants/index";
-import { toDate } from "../toDate/index";
-import type { Interval } from "../types";
+import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index';
+import { millisecondsInDay } from '../constants/index';
+import { toDate } from '../toDate/index';
+import type { Interval } from '../types';
 
 /**
  * @name getOverlappingDaysInIntervals
@@ -44,14 +44,8 @@ export function getOverlappingDaysInIntervals<DateType extends Date>(
   intervalLeft: Interval<DateType>,
   intervalRight: Interval<DateType>,
 ): number {
-  const [leftStart, leftEnd] = [
-    +toDate(intervalLeft.start),
-    +toDate(intervalLeft.end),
-  ].sort((a, b) => a - b);
-  const [rightStart, rightEnd] = [
-    +toDate(intervalRight.start),
-    +toDate(intervalRight.end),
-  ].sort((a, b) => a - b);
+  const [leftStart, leftEnd] = [+toDate(intervalLeft.start), +toDate(intervalLeft.end)].sort((a, b) => a - b);
+  const [rightStart, rightEnd] = [+toDate(intervalRight.start), +toDate(intervalRight.end)].sort((a, b) => a - b);
 
   // Prevent NaN result if intervals don't overlap at all.
   const isOverlapping = leftStart! < rightEnd! && rightStart! < leftEnd!;

@@ -1,6 +1,6 @@
-import { constructNow } from "../constructNow/index";
-import type { FormatDistanceOptions } from "../formatDistance/index";
-import { formatDistance } from "../formatDistance/index";
+import { constructNow } from '../constructNow/index';
+import type { FormatDistanceOptions } from '../formatDistance/index';
+import { formatDistance } from '../formatDistance/index';
 
 /**
  * The {@link formatDistanceToNow} function options.

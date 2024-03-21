@@ -1,6 +1,6 @@
-import { getRoundingMethod } from "../_lib/getRoundingMethod/index";
-import { differenceInMilliseconds } from "../differenceInMilliseconds/index";
-import type { RoundingOptions } from "../types";
+import { getRoundingMethod } from '../_lib/getRoundingMethod/index';
+import { differenceInMilliseconds } from '../differenceInMilliseconds/index';
+import type { RoundingOptions } from '../types';
 
 /**
  * The {@link differenceInSeconds} function options.

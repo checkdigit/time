@@ -14,20 +14,9 @@ export type FPArity = 1 | 2 | 3 | 4;
  * corresponding FP function interface.
  */
 export type FPFn<Fn extends FPFnInput, Arity extends FPArity> = Arity extends 4
-  ? FPFn4<
-      ReturnType<Fn>,
-      Parameters<Fn>[3],
-      Parameters<Fn>[2],
-      Parameters<Fn>[1],
-      Parameters<Fn>[0]
-    >
+  ? FPFn4<ReturnType<Fn>, Parameters<Fn>[3], Parameters<Fn>[2], Parameters<Fn>[1], Parameters<Fn>[0]>
   : Arity extends 3
-    ? FPFn3<
-        ReturnType<Fn>,
-        Parameters<Fn>[2],
-        Parameters<Fn>[1],
-        Parameters<Fn>[0]
-      >
+    ? FPFn3<ReturnType<Fn>, Parameters<Fn>[2], Parameters<Fn>[1], Parameters<Fn>[0]>
     : Arity extends 2
       ? FPFn2<ReturnType<Fn>, Parameters<Fn>[1], Parameters<Fn>[0]>
       : Arity extends 1

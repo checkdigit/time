@@ -1,8 +1,8 @@
-import { describe, expect, it } from "vitest";
-import { eachWeekendOfMonth } from "./index";
+import { describe, expect, it } from 'vitest';
+import { eachWeekendOfMonth } from './index';
 
-describe("eachWeekendOfMonth", () => {
-  it("returns all weekends of the given month", () => {
+describe('eachWeekendOfMonth', () => {
+  it('returns all weekends of the given month', () => {
     const result = eachWeekendOfMonth(new Date(2022, 1, 20));
     expect(result).toEqual([
       new Date(2022, 1, 5),
@@ -16,7 +16,7 @@ describe("eachWeekendOfMonth", () => {
     ]);
   });
 
-  it("returns an empty asrray when the expected year is an Invalid Date", () => {
+  it('returns an empty asrray when the expected year is an Invalid Date', () => {
     const result = eachWeekendOfMonth(new Date(NaN));
     expect(result).toEqual([]);
   });

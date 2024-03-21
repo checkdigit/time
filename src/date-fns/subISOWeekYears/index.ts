@@ -1,4 +1,4 @@
-import { addISOWeekYears } from "../addISOWeekYears/index";
+import { addISOWeekYears } from '../addISOWeekYears/index';
 
 /**
  * @name subISOWeekYears
@@ -22,9 +22,6 @@ import { addISOWeekYears } from "../addISOWeekYears/index";
  * const result = subISOWeekYears(new Date(2014, 8, 1), 5)
  * //=> Mon Aug 31 2009 00:00:00
  */
-export function subISOWeekYears<DateType extends Date>(
-  date: DateType | number | string,
-  amount: number,
-): DateType {
+export function subISOWeekYears<DateType extends Date>(date: DateType | number | string, amount: number): DateType {
   return addISOWeekYears(date, -amount);
 }

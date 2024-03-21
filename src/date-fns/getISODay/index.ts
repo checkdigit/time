@@ -1,4 +1,4 @@
-import { toDate } from "../toDate/index";
+import { toDate } from '../toDate/index';
 
 /**
  * @name getISODay
@@ -22,9 +22,7 @@ import { toDate } from "../toDate/index";
  * const result = getISODay(new Date(2012, 1, 26))
  * //=> 7
  */
-export function getISODay<DateType extends Date>(
-  date: DateType | number | string,
-): number {
+export function getISODay<DateType extends Date>(date: DateType | number | string): number {
   const _date = toDate(date);
   let day = _date.getDay();
 

@@ -1,13 +1,11 @@
-import { constructNow } from "../constructNow/index";
-import { isSameWeek } from "../isSameWeek/index";
-import type { LocalizedOptions, WeekOptions } from "../types";
+import { constructNow } from '../constructNow/index';
+import { isSameWeek } from '../isSameWeek/index';
+import type { LocalizedOptions, WeekOptions } from '../types';
 
 /**
  * The {@link isThisWeek} function options.
  */
-export interface IsThisWeekOptions
-  extends WeekOptions,
-    LocalizedOptions<"options"> {}
+export interface IsThisWeekOptions extends WeekOptions, LocalizedOptions<'options'> {}
 
 /**
  * @name isThisWeek

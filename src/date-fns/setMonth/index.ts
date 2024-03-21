@@ -1,6 +1,6 @@
-import { constructFrom } from "../constructFrom/index";
-import { getDaysInMonth } from "../getDaysInMonth/index";
-import { toDate } from "../toDate/index";
+import { constructFrom } from '../constructFrom/index';
+import { getDaysInMonth } from '../getDaysInMonth/index';
+import { toDate } from '../toDate/index';
 
 /**
  * @name setMonth
@@ -22,10 +22,7 @@ import { toDate } from "../toDate/index";
  * const result = setMonth(new Date(2014, 8, 1), 1)
  * //=> Sat Feb 01 2014 00:00:00
  */
-export function setMonth<DateType extends Date>(
-  date: DateType | number | string,
-  month: number,
-): DateType {
+export function setMonth<DateType extends Date>(date: DateType | number | string, month: number): DateType {
   const _date = toDate(date);
   const year = _date.getFullYear();
   const day = _date.getDate();

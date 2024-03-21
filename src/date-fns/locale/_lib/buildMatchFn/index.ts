@@ -1,11 +1,5 @@
-import type { Quarter, Era, Day, Month } from "../../../types";
-import type {
-  LocaleUnitValue,
-  LocaleWidth,
-  LocaleDayPeriod,
-  MatchFn,
-  MatchValueCallback,
-} from "../../types";
+import type { Quarter, Era, Day, Month } from '../../../types';
+import type { LocaleUnitValue, LocaleWidth, LocaleDayPeriod, MatchFn, MatchValueCallback } from '../../types';
 
 export interface BuildMatchFnArgs<
   Result extends LocaleUnitValue,
@@ -16,10 +10,7 @@ export interface BuildMatchFnArgs<
   defaultMatchWidth: DefaultMatchWidth;
   parsePatterns: BuildMatchFnParsePatterns<Result, DefaultParseWidth>;
   defaultParseWidth: DefaultParseWidth;
-  valueCallback?: MatchValueCallback<
-    Result extends LocaleDayPeriod ? string : number,
-    Result
-  >;
+  valueCallback?: MatchValueCallback<Result extends LocaleDayPeriod ? string : number, Result>;
 }
 
 export type BuildMatchFnMatchPatterns<DefaultWidth extends LocaleWidth> = {
@@ -28,54 +19,33 @@ export type BuildMatchFnMatchPatterns<DefaultWidth extends LocaleWidth> = {
   [Width in DefaultWidth]: RegExp;
 };
 
-export type BuildMatchFnParsePatterns<
-  Value extends LocaleUnitValue,
-  DefaultWidth extends LocaleWidth,
-> = {
+export type BuildMatchFnParsePatterns<Value extends LocaleUnitValue, DefaultWidth extends LocaleWidth> = {
   [Width in LocaleWidth]?: ParsePattern<Value>;
 } & {
   [Width in DefaultWidth]: ParsePattern<Value>;
 };
 
-export type ParsePattern<Value extends LocaleUnitValue> =
-  Value extends LocaleDayPeriod
-    ? Record<LocaleDayPeriod, RegExp>
-    : Value extends Quarter
-      ? readonly [RegExp, RegExp, RegExp, RegExp]
-      : Value extends Era
-        ? readonly [RegExp, RegExp]
-        : Value extends Day
-          ? readonly [RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp]
-          : Value extends Month
-            ? readonly [
-                RegExp,
-                RegExp,
-                RegExp,
-                RegExp,
-                RegExp,
-                RegExp,
-                RegExp,
-                RegExp,
-                RegExp,
-                RegExp,
-                RegExp,
-                RegExp,
-              ]
-            : never;
+export type ParsePattern<Value extends LocaleUnitValue> = Value extends LocaleDayPeriod
+  ? Record<LocaleDayPeriod, RegExp>
+  : Value extends Quarter
+    ? readonly [RegExp, RegExp, RegExp, RegExp]
+    : Value extends Era
+      ? readonly [RegExp, RegExp]
+      : Value extends Day
+        ? readonly [RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp]
+        : Value extends Month
+          ? readonly [RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp, RegExp]
+          : never;
 
 export function buildMatchFn<
   Value extends LocaleUnitValue,
   DefaultMatchWidth extends LocaleWidth,
   DefaultParseWidth extends LocaleWidth,
->(
-  args: BuildMatchFnArgs<Value, DefaultMatchWidth, DefaultParseWidth>,
-): MatchFn<Value> {
+>(args: BuildMatchFnArgs<Value, DefaultMatchWidth, DefaultParseWidth>): MatchFn<Value> {
   return (string, options = {}) => {
     const width = options.width;
 
-    const matchPattern =
-      (width && args.matchPatterns[width]) ||
-      args.matchPatterns[args.defaultMatchWidth];
+    const matchPattern = (width && args.matchPatterns[width]) || args.matchPatterns[args.defaultMatchWidth];
     const matchResult = string.match(matchPattern);
 
     if (!matchResult) {
@@ -83,9 +53,7 @@ export function buildMatchFn<
     }
     const matchedString = matchResult[0];
 
-    const parsePatterns =
-      (width && args.parsePatterns[width]) ||
-      args.parsePatterns[args.defaultParseWidth];
+    const parsePatterns = (width && args.parsePatterns[width]) || args.parsePatterns[args.defaultParseWidth];
 
     const key = (
       Array.isArray(parsePatterns)
@@ -113,20 +81,14 @@ function findKey<Value, Obj extends { [key in string | number]: Value }>(
   predicate: (value: Value) => boolean,
 ): keyof Obj | undefined {
   for (const key in object) {
-    if (
-      Object.prototype.hasOwnProperty.call(object, key) &&
-      predicate(object[key]!)
-    ) {
+    if (Object.prototype.hasOwnProperty.call(object, key) && predicate(object[key]!)) {
       return key;
     }
   }
   return undefined;
 }
 
-function findIndex<Item>(
-  array: Item[],
-  predicate: (item: Item) => boolean,
-): number | undefined {
+function findIndex<Item>(array: Item[], predicate: (item: Item) => boolean): number | undefined {
   for (let key = 0; key < array.length; key++) {
     if (predicate(array[key]!)) {
       return key;

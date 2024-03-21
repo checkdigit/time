@@ -1,4 +1,4 @@
-import { toDate } from "../toDate/index";
+import { toDate } from '../toDate/index';
 
 /**
  * @name isSameMonth
@@ -31,8 +31,5 @@ export function isSameMonth<DateType extends Date>(
 ): boolean {
   const _dateLeft = toDate(dateLeft);
   const _dateRight = toDate(dateRight);
-  return (
-    _dateLeft.getFullYear() === _dateRight.getFullYear() &&
-    _dateLeft.getMonth() === _dateRight.getMonth()
-  );
+  return _dateLeft.getFullYear() === _dateRight.getFullYear() && _dateLeft.getMonth() === _dateRight.getMonth();
 }

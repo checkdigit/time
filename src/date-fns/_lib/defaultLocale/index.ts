@@ -1,1 +1,1 @@
-export { enUS as defaultLocale } from "../../locale/en-US/index";
+export { enUS as defaultLocale } from '../../locale/en-US/index';

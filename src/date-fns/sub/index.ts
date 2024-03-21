@@ -1,7 +1,7 @@
-import { subDays } from "../subDays/index";
-import { subMonths } from "../subMonths/index";
-import type { Duration } from "../types";
-import { constructFrom } from "../constructFrom/index";
+import { subDays } from '../subDays/index';
+import { subMonths } from '../subMonths/index';
+import type { Duration } from '../types';
+import { constructFrom } from '../constructFrom/index';
 
 /**
  * @name sub
@@ -43,19 +43,8 @@ import { constructFrom } from "../constructFrom/index";
  * })
  * //=> Mon Sep 1 2014 10:19:50
  */
-export function sub<DateType extends Date>(
-  date: DateType | number | string,
-  duration: Duration,
-): DateType {
-  const {
-    years = 0,
-    months = 0,
-    weeks = 0,
-    days = 0,
-    hours = 0,
-    minutes = 0,
-    seconds = 0,
-  } = duration;
+export function sub<DateType extends Date>(date: DateType | number | string, duration: Duration): DateType {
+  const { years = 0, months = 0, weeks = 0, days = 0, hours = 0, minutes = 0, seconds = 0 } = duration;
 
   // Subtract years and months
   const dateWithoutMonths = subMonths(date, months + years * 12);

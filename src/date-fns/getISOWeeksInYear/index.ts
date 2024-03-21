@@ -1,6 +1,6 @@
-import { addWeeks } from "../addWeeks/index";
-import { millisecondsInWeek } from "../constants/index";
-import { startOfISOWeekYear } from "../startOfISOWeekYear/index";
+import { addWeeks } from '../addWeeks/index';
+import { millisecondsInWeek } from '../constants/index';
+import { startOfISOWeekYear } from '../startOfISOWeekYear/index';
 
 /**
  * @name getISOWeeksInYear
@@ -23,9 +23,7 @@ import { startOfISOWeekYear } from "../startOfISOWeekYear/index";
  * const result = getISOWeeksInYear(new Date(2015, 1, 11))
  * //=> 53
  */
-export function getISOWeeksInYear<DateType extends Date>(
-  date: DateType | number | string,
-): number {
+export function getISOWeeksInYear<DateType extends Date>(date: DateType | number | string): number {
   const thisYear = startOfISOWeekYear(date);
   const nextYear = startOfISOWeekYear(addWeeks(thisYear, 60));
   const diff = +nextYear - +thisYear;

@@ -1,6 +1,6 @@
-import { max } from "../max/index";
-import { min } from "../min/index";
-import type { Interval } from "../types";
+import { max } from '../max/index';
+import { min } from '../min/index';
+import type { Interval } from '../types';
 
 /**
  * @name clamp
@@ -30,9 +30,6 @@ import type { Interval } from "../types";
  * })
  * //=> Mon Mar 22 2021 00:00:00
  */
-export function clamp<DateType extends Date>(
-  date: DateType | number | string,
-  interval: Interval,
-): DateType | Date {
+export function clamp<DateType extends Date>(date: DateType | number | string, interval: Interval): DateType | Date {
   return min([max([date, interval.start]), interval.end]);
 }

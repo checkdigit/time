@@ -1,8 +1,8 @@
-import { describe, expect, it } from "vitest";
-import { eachHourOfInterval } from "./index";
+import { describe, expect, it } from 'vitest';
+import { eachHourOfInterval } from './index';
 
-describe("eachHourOfInterval", () => {
-  it("returns an array with starts of hours from the hour of the start date to the hour of the end date", () => {
+describe('eachHourOfInterval', () => {
+  it('returns an array with starts of hours from the hour of the start date to the hour of the end date', () => {
     const result = eachHourOfInterval({
       start: new Date(2014, 9 /* Oct */, 6, 12),
       end: new Date(2014, 9 /* Oct */, 6, 15),
@@ -15,7 +15,7 @@ describe("eachHourOfInterval", () => {
     ]);
   });
 
-  it("accepts timestamps", () => {
+  it('accepts timestamps', () => {
     const result = eachHourOfInterval({
       start: new Date(2014, 9 /* Oct */, 6, 12).getTime(),
       end: new Date(2014, 9 /* Oct */, 6, 15).getTime(),
@@ -28,7 +28,7 @@ describe("eachHourOfInterval", () => {
     ]);
   });
 
-  it("handles the hours that are not starts of hours", () => {
+  it('handles the hours that are not starts of hours', () => {
     const result = eachHourOfInterval({
       start: new Date(2014, 9 /* Oct */, 6, 12, 59, 59, 999),
       end: new Date(2014, 9 /* Oct */, 6, 15, 59, 59, 999),
@@ -41,7 +41,7 @@ describe("eachHourOfInterval", () => {
     ]);
   });
 
-  it("returns one hour if the both arguments are on the same hour", () => {
+  it('returns one hour if the both arguments are on the same hour', () => {
     const result = eachHourOfInterval({
       start: new Date(2014, 9 /* Oct */, 6, 12, 35),
       end: new Date(2014, 9 /* Oct */, 6, 12, 47),
@@ -49,7 +49,7 @@ describe("eachHourOfInterval", () => {
     expect(result).toEqual([new Date(2014, 9 /* Oct */, 6, 12)]);
   });
 
-  it("returns one hour if the both arguments are the same", () => {
+  it('returns one hour if the both arguments are the same', () => {
     const result = eachHourOfInterval({
       start: new Date(2014, 9 /* Oct */, 6, 12, 35),
       end: new Date(2014, 9 /* Oct */, 6, 12, 35),
@@ -57,7 +57,7 @@ describe("eachHourOfInterval", () => {
     expect(result).toEqual([new Date(2014, 9 /* Oct */, 6, 12)]);
   });
 
-  it("returns reversed array if the start date is after the end date", () => {
+  it('returns reversed array if the start date is after the end date', () => {
     const result = eachHourOfInterval({
       start: new Date(2014, 9 /* Oct */, 6, 15),
       end: new Date(2014, 9 /* Oct */, 6, 12),
@@ -70,7 +70,7 @@ describe("eachHourOfInterval", () => {
     ]);
   });
 
-  it("returns an empty array if the start date is `Invalid Date`", () => {
+  it('returns an empty array if the start date is `Invalid Date`', () => {
     const result = eachHourOfInterval({
       start: new Date(NaN),
       end: new Date(2014, 9 /* Oct */, 6, 12),
@@ -78,7 +78,7 @@ describe("eachHourOfInterval", () => {
     expect(result).toEqual([]);
   });
 
-  it("returns an empty array if the end date is `Invalid Date`", () => {
+  it('returns an empty array if the end date is `Invalid Date`', () => {
     const result = eachHourOfInterval({
       start: new Date(2014, 9 /* Oct */, 12, 12),
       end: new Date(NaN),
@@ -86,7 +86,7 @@ describe("eachHourOfInterval", () => {
     expect(result).toEqual([]);
   });
 
-  it("returns an empty array if both of the properties are `Invalid Date`", () => {
+  it('returns an empty array if both of the properties are `Invalid Date`', () => {
     const result = eachHourOfInterval({
       start: new Date(NaN),
       end: new Date(NaN),
@@ -94,13 +94,13 @@ describe("eachHourOfInterval", () => {
     expect(result).toEqual([]);
   });
 
-  describe("options.step", () => {
+  describe('options.step', () => {
     const interval = {
       start: new Date(2014, 9 /* Oct */, 6, 12),
       end: new Date(2014, 9 /* Oct */, 6, 18),
     };
 
-    it("returns an array with starts of hours from the hour of the start date to the hour of the end date with the given step", () => {
+    it('returns an array with starts of hours from the hour of the start date to the hour of the end date with the given step', () => {
       const result = eachHourOfInterval(interval, { step: 3 });
       expect(result).toEqual([
         new Date(2014, 9 /* Oct */, 6, 12),
@@ -109,7 +109,7 @@ describe("eachHourOfInterval", () => {
       ]);
     });
 
-    it("returns reversed array if `options.step` is negative", () => {
+    it('returns reversed array if `options.step` is negative', () => {
       const result = eachHourOfInterval(
         {
           start: new Date(2014, 9 /* Oct */, 6, 12),
@@ -125,7 +125,7 @@ describe("eachHourOfInterval", () => {
       ]);
     });
 
-    it("reverses array twice if `options.step` is negative and the interval is negative too", () => {
+    it('reverses array twice if `options.step` is negative and the interval is negative too', () => {
       const result = eachHourOfInterval(
         {
           start: new Date(2014, 9 /* Oct */, 6, 15),
@@ -141,12 +141,12 @@ describe("eachHourOfInterval", () => {
       ]);
     });
 
-    it("returns empty array if `options.step` is less than 1", () => {
+    it('returns empty array if `options.step` is less than 1', () => {
       const result = eachHourOfInterval(interval, { step: 0 });
       expect(result).toEqual([]);
     });
 
-    it("returns empty array if `options.step` is NaN", () => {
+    it('returns empty array if `options.step` is NaN', () => {
       const result = eachHourOfInterval(interval, { step: NaN });
       expect(result).toEqual([]);
     });

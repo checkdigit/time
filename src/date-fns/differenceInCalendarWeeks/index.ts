@@ -1,14 +1,12 @@
-import { millisecondsInWeek } from "../constants/index";
-import { startOfWeek } from "../startOfWeek/index";
-import type { LocalizedOptions, WeekOptions } from "../types";
-import { getTimezoneOffsetInMilliseconds } from "../_lib/getTimezoneOffsetInMilliseconds/index";
+import { millisecondsInWeek } from '../constants/index';
+import { startOfWeek } from '../startOfWeek/index';
+import type { LocalizedOptions, WeekOptions } from '../types';
+import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index';
 
 /**
  * The {@link differenceInCalendarWeeks} function options.
  */
-export interface DifferenceInCalendarWeeksOptions
-  extends LocalizedOptions<"options">,
-    WeekOptions {}
+export interface DifferenceInCalendarWeeksOptions extends LocalizedOptions<'options'>, WeekOptions {}
 
 /**
  * @name differenceInCalendarWeeks
@@ -52,10 +50,8 @@ export function differenceInCalendarWeeks<DateType extends Date>(
   const startOfWeekLeft = startOfWeek(dateLeft, options);
   const startOfWeekRight = startOfWeek(dateRight, options);
 
-  const timestampLeft =
-    +startOfWeekLeft - getTimezoneOffsetInMilliseconds(startOfWeekLeft);
-  const timestampRight =
-    +startOfWeekRight - getTimezoneOffsetInMilliseconds(startOfWeekRight);
+  const timestampLeft = +startOfWeekLeft - getTimezoneOffsetInMilliseconds(startOfWeekLeft);
+  const timestampRight = +startOfWeekRight - getTimezoneOffsetInMilliseconds(startOfWeekRight);
 
   // Round the number of days to the nearest integer because the number of
   // milliseconds in a days is not constant (e.g. it's different in the week of

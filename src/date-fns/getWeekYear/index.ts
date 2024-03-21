@@ -1,20 +1,13 @@
-import { constructFrom } from "../constructFrom/index";
-import { startOfWeek } from "../startOfWeek/index";
-import { toDate } from "../toDate/index";
-import type {
-  FirstWeekContainsDateOptions,
-  LocalizedOptions,
-  WeekOptions,
-} from "../types";
-import { getDefaultOptions } from "../_lib/defaultOptions/index";
+import { constructFrom } from '../constructFrom/index';
+import { startOfWeek } from '../startOfWeek/index';
+import { toDate } from '../toDate/index';
+import type { FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types';
+import { getDefaultOptions } from '../_lib/defaultOptions/index';
 
 /**
  * The {@link getWeekYear} function options.
  */
-export interface GetWeekYearOptions
-  extends LocalizedOptions<"options">,
-    WeekOptions,
-    FirstWeekContainsDateOptions {}
+export interface GetWeekYearOptions extends LocalizedOptions<'options'>, WeekOptions, FirstWeekContainsDateOptions {}
 
 /**
  * @name getWeekYear

@@ -1,4 +1,4 @@
-import { addLeadingZeros } from "../../addLeadingZeros/index";
+import { addLeadingZeros } from '../../addLeadingZeros/index';
 
 /*
  * |     | Unit                           |     | Unit                           |
@@ -28,13 +28,13 @@ export const lightFormatters = {
     const signedYear = date.getFullYear();
     // Returns 1 for 1 BC (which is year 0 in JavaScript)
     const year = signedYear > 0 ? signedYear : 1 - signedYear;
-    return addLeadingZeros(token === "yy" ? year % 100 : year, token.length);
+    return addLeadingZeros(token === 'yy' ? year % 100 : year, token.length);
   },
 
   // Month
   M(date: Date, token: string): string {
     const month = date.getMonth();
-    return token === "M" ? String(month + 1) : addLeadingZeros(month + 1, 2);
+    return token === 'M' ? String(month + 1) : addLeadingZeros(month + 1, 2);
   },
 
   // Day of the month
@@ -50,16 +50,16 @@ export const lightFormatters = {
     // const dayPeriodEnumValue = date.getHours() / 12 >= 1 ? "pm" : "am";
 
     switch (token) {
-      case "a":
-      case "aa":
+      case 'a':
+      case 'aa':
         return dayPeriodEnumValue.toUpperCase();
-      case "aaa":
+      case 'aaa':
         return dayPeriodEnumValue;
-      case "aaaaa":
+      case 'aaaaa':
         return dayPeriodEnumValue[0]!;
-      case "aaaa":
+      case 'aaaa':
       default:
-        return dayPeriodEnumValue === "am" ? "a.m." : "p.m.";
+        return dayPeriodEnumValue === 'am' ? 'a.m.' : 'p.m.';
     }
   },
 
@@ -93,9 +93,7 @@ export const lightFormatters = {
   S(date: Date, token: string): string {
     const numberOfDigits = token.length;
     const milliseconds = date.getMilliseconds();
-    const fractionalSeconds = Math.trunc(
-      milliseconds * Math.pow(10, numberOfDigits - 3),
-    );
+    const fractionalSeconds = Math.trunc(milliseconds * Math.pow(10, numberOfDigits - 3));
     return addLeadingZeros(fractionalSeconds, token.length);
   },
 };

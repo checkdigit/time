@@ -1,4 +1,4 @@
-import { toDate } from "../toDate/index";
+import { toDate } from '../toDate/index';
 
 /**
  * @name isPast
@@ -20,8 +20,6 @@ import { toDate } from "../toDate/index";
  * const result = isPast(new Date(2014, 6, 2))
  * //=> true
  */
-export function isPast<DateType extends Date>(
-  date: DateType | number | string,
-): boolean {
+export function isPast<DateType extends Date>(date: DateType | number | string): boolean {
   return +toDate(date) < Date.now();
 }

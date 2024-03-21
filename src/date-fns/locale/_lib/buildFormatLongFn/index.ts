@@ -1,8 +1,6 @@
-import type { FormatLongFn, FormatLongWidth } from "../../types";
+import type { FormatLongFn, FormatLongWidth } from '../../types';
 
-export interface BuildFormatLongFnArgs<
-  DefaultMatchWidth extends FormatLongWidth,
-> {
+export interface BuildFormatLongFnArgs<DefaultMatchWidth extends FormatLongWidth> {
   formats: Partial<{ [format in FormatLongWidth]: string }> & {
     [format in DefaultMatchWidth]: string;
   };
@@ -14,9 +12,7 @@ export function buildFormatLongFn<DefaultMatchWidth extends FormatLongWidth>(
 ): FormatLongFn {
   return (options = {}) => {
     // TODO: Remove String()
-    const width = options.width
-      ? (String(options.width) as FormatLongWidth)
-      : args.defaultWidth;
+    const width = options.width ? (String(options.width) as FormatLongWidth) : args.defaultWidth;
     const format = args.formats[width] || args.formats[args.defaultWidth];
     return format;
   };

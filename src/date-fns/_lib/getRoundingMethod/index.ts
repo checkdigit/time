@@ -1,4 +1,4 @@
-import type { RoundingMethod } from "../../types";
+import type { RoundingMethod } from '../../types';
 
 export function getRoundingMethod(method: RoundingMethod | undefined) {
   return (number: number) => {

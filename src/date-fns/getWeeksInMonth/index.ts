@@ -1,14 +1,12 @@
-import { differenceInCalendarWeeks } from "../differenceInCalendarWeeks/index";
-import { lastDayOfMonth } from "../lastDayOfMonth/index";
-import { startOfMonth } from "../startOfMonth/index";
-import type { LocalizedOptions, WeekOptions } from "../types";
+import { differenceInCalendarWeeks } from '../differenceInCalendarWeeks/index';
+import { lastDayOfMonth } from '../lastDayOfMonth/index';
+import { startOfMonth } from '../startOfMonth/index';
+import type { LocalizedOptions, WeekOptions } from '../types';
 
 /**
  * The {@link getWeeksInMonth} function options.
  */
-export interface GetWeeksInMonthOptions
-  extends LocalizedOptions<"options">,
-    WeekOptions {}
+export interface GetWeeksInMonthOptions extends LocalizedOptions<'options'>, WeekOptions {}
 
 /**
  * @name getWeeksInMonth
@@ -40,11 +38,5 @@ export function getWeeksInMonth<DateType extends Date>(
   date: DateType | number | string,
   options?: GetWeeksInMonthOptions,
 ): number {
-  return (
-    differenceInCalendarWeeks(
-      lastDayOfMonth(date),
-      startOfMonth(date),
-      options,
-    ) + 1
-  );
+  return differenceInCalendarWeeks(lastDayOfMonth(date), startOfMonth(date), options) + 1;
 }

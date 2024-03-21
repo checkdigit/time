@@ -1,4 +1,4 @@
-import { addSeconds } from "../addSeconds/index";
+import { addSeconds } from '../addSeconds/index';
 
 /**
  * @name subSeconds
@@ -20,9 +20,6 @@ import { addSeconds } from "../addSeconds/index";
  * const result = subSeconds(new Date(2014, 6, 10, 12, 45, 0), 30)
  * //=> Thu Jul 10 2014 12:44:30
  */
-export function subSeconds<DateType extends Date>(
-  date: DateType | number | string,
-  amount: number,
-): DateType {
+export function subSeconds<DateType extends Date>(date: DateType | number | string, amount: number): DateType {
   return addSeconds(date, -amount);
 }

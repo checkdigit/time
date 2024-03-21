@@ -1,9 +1,9 @@
-import { describe, expect, it } from "vitest";
-import { intervalToDuration } from "./index";
-import { addMonths } from "../addMonths/index";
+import { describe, expect, it } from 'vitest';
+import { intervalToDuration } from './index';
+import { addMonths } from '../addMonths/index';
 
-describe("intervalToDuration", () => {
-  it("returns correct duration for arbitrary dates", () => {
+describe('intervalToDuration', () => {
+  it('returns correct duration for arbitrary dates', () => {
     const start = new Date(1929, 0, 15, 12, 0, 0);
     const end = new Date(1968, 3, 4, 19, 5, 0);
     const result = intervalToDuration({ start, end });
@@ -17,7 +17,7 @@ describe("intervalToDuration", () => {
     });
   });
 
-  it("returns correct duration (1 of everything)", () => {
+  it('returns correct duration (1 of everything)', () => {
     const start = new Date(2020, 2, 1, 12, 0, 0);
     const end = new Date(2021, 3, 2, 13, 1, 1);
     const result = intervalToDuration({ start, end });
@@ -32,7 +32,7 @@ describe("intervalToDuration", () => {
     });
   });
 
-  it("returns duration of 0 when the dates are the same", () => {
+  it('returns duration of 0 when the dates are the same', () => {
     const start = new Date(2020, 2, 1, 12, 0, 0);
     const end = new Date(2020, 2, 1, 12, 0, 0);
     const result = intervalToDuration({ start, end });
@@ -70,41 +70,49 @@ describe("intervalToDuration", () => {
     expect(result).toEqual({});
   });
 
-  describe("edge cases", () => {
-    it("returns correct duration for dates in the end of Feb - issue 2255", () => {
-      expect(intervalToDuration({
-        start: new Date(2012, 1 /* Feb */, 28, 9, 0, 0),
-        end: new Date(2012, 1 /* Feb */, 29, 10, 0, 0),
-      })).toEqual({
+  describe('edge cases', () => {
+    it('returns correct duration for dates in the end of Feb - issue 2255', () => {
+      expect(
+        intervalToDuration({
+          start: new Date(2012, 1 /* Feb */, 28, 9, 0, 0),
+          end: new Date(2012, 1 /* Feb */, 29, 10, 0, 0),
+        }),
+      ).toEqual({
         days: 1,
         hours: 1,
       });
 
-      expect(intervalToDuration({
-        start: new Date(2012, 1 /* Feb */, 29, 9, 0, 0),
-        end: new Date(2012, 1 /* Feb */, 29, 10, 0, 0),
-      })).toEqual({
+      expect(
+        intervalToDuration({
+          start: new Date(2012, 1 /* Feb */, 29, 9, 0, 0),
+          end: new Date(2012, 1 /* Feb */, 29, 10, 0, 0),
+        }),
+      ).toEqual({
         hours: 1,
       });
 
-      expect(intervalToDuration({
-        start: new Date(2012, 1 /* Feb */, 28, 9, 0, 0),
-        end: new Date(2012, 1 /* Feb */, 28, 10, 0, 0),
-      })).toEqual({
+      expect(
+        intervalToDuration({
+          start: new Date(2012, 1 /* Feb */, 28, 9, 0, 0),
+          end: new Date(2012, 1 /* Feb */, 28, 10, 0, 0),
+        }),
+      ).toEqual({
         hours: 1,
       });
 
       // Issue 2261
-      expect(intervalToDuration({
-        start: new Date(2021, 1 /* Feb */, 28, 7, 23, 7),
-        end: new Date(2021, 1 /* Feb */, 28, 7, 38, 18),
-      })).toEqual({
+      expect(
+        intervalToDuration({
+          start: new Date(2021, 1 /* Feb */, 28, 7, 23, 7),
+          end: new Date(2021, 1 /* Feb */, 28, 7, 38, 18),
+        }),
+      ).toEqual({
         minutes: 15,
         seconds: 11,
       });
     });
 
-    it("returns correct duration for end of month start dates - issue 2611", () => {
+    it('returns correct duration for end of month start dates - issue 2611', () => {
       const start = new Date(2021, 7, 31);
       const end = addMonths(start, 1);
 
@@ -118,7 +126,7 @@ describe("intervalToDuration", () => {
       expect(duration).toEqual(expectedDuration);
     });
 
-    it("returns correct duration for Feb 29 on leap year + 1 month - issue 1778", () => {
+    it('returns correct duration for Feb 29 on leap year + 1 month - issue 1778', () => {
       const duration = intervalToDuration({
         start: new Date(2020, 1, 29),
         end: new Date(2020, 2, 29),
@@ -130,7 +138,7 @@ describe("intervalToDuration", () => {
       expect(duration).toEqual(expectedDuration);
     });
 
-    it("returns correct duration for Feb 28 to Apr 30 interval - issue 2910", () => {
+    it('returns correct duration for Feb 28 to Apr 30 interval - issue 2910', () => {
       const duration = intervalToDuration({
         start: new Date(2022, 1, 28),
         end: new Date(2022, 3, 30),
@@ -143,8 +151,8 @@ describe("intervalToDuration", () => {
       expect(duration).toEqual(expectedDuration);
     });
 
-    describe("issue 2470", () => {
-      it("returns correct duration for Feb 28 to Aug 31 interval", () => {
+    describe('issue 2470', () => {
+      it('returns correct duration for Feb 28 to Aug 31 interval', () => {
         const duration = intervalToDuration({
           start: new Date(2021, 1, 28),
           end: new Date(2021, 7, 31),
@@ -157,7 +165,7 @@ describe("intervalToDuration", () => {
         expect(duration).toEqual(expectedDuration);
       });
 
-      it("returns correct duration for Feb 28 to Aug 30 interval", () => {
+      it('returns correct duration for Feb 28 to Aug 30 interval', () => {
         const duration = intervalToDuration({
           start: new Date(2021, 1, 28),
           end: new Date(2021, 7, 30),
@@ -170,7 +178,7 @@ describe("intervalToDuration", () => {
         expect(duration).toEqual(expectedDuration);
       });
 
-      it("returns correct duration for Feb 28 to Aug 29 interval", () => {
+      it('returns correct duration for Feb 28 to Aug 29 interval', () => {
         const duration = intervalToDuration({
           start: new Date(2021, 1, 28),
           end: new Date(2021, 7, 29),
@@ -183,7 +191,7 @@ describe("intervalToDuration", () => {
         expect(duration).toEqual(expectedDuration);
       });
 
-      it("returns correct duration for Feb 28 to Aug 28 interval", () => {
+      it('returns correct duration for Feb 28 to Aug 28 interval', () => {
         const duration = intervalToDuration({
           start: new Date(2021, 1, 28),
           end: new Date(2021, 7, 28),
@@ -195,7 +203,7 @@ describe("intervalToDuration", () => {
         expect(duration).toEqual(expectedDuration);
       });
 
-      it("returns correct duration for Feb 28 to Aug 27 interval", () => {
+      it('returns correct duration for Feb 28 to Aug 27 interval', () => {
         // Feb 28 to July 28 is 5 months, July 28 to Aug 27 is 30 days
 
         const duration = intervalToDuration({
@@ -210,7 +218,7 @@ describe("intervalToDuration", () => {
         expect(duration).toEqual(expectedDuration);
       });
 
-      it("returns correct duration for Apr 30 to May 31 interval", () => {
+      it('returns correct duration for Apr 30 to May 31 interval', () => {
         const duration = intervalToDuration({
           start: new Date(2021, 3, 30),
           end: new Date(2021, 4, 31),

@@ -1,23 +1,10 @@
-import { isValid } from "../isValid/index";
-import { toDate } from "../toDate/index";
-import { addLeadingZeros } from "../_lib/addLeadingZeros/index";
+import { isValid } from '../isValid/index';
+import { toDate } from '../toDate/index';
+import { addLeadingZeros } from '../_lib/addLeadingZeros/index';
 
-const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 /**
  * @name formatRFC7231
@@ -41,13 +28,11 @@ const months = [
  * const result = formatRFC7231(new Date(2019, 8, 18, 19, 0, 52))
  * //=> 'Wed, 18 Sep 2019 19:00:52 GMT'
  */
-export function formatRFC7231<DateType extends Date>(
-  date: DateType | number | string,
-): string {
+export function formatRFC7231<DateType extends Date>(date: DateType | number | string): string {
   const _date = toDate(date);
 
   if (!isValid(_date)) {
-    throw new RangeError("Invalid time value");
+    throw new RangeError('Invalid time value');
   }
 
   const dayName = days[_date.getUTCDay()];

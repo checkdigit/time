@@ -1,20 +1,20 @@
-import { describe, expect, it } from "vitest";
-import { setDay } from "./index";
+import { describe, expect, it } from 'vitest';
+import { setDay } from './index';
 
-describe("setDay", () => {
-  it("sets the day of the week", () => {
+describe('setDay', () => {
+  it('sets the day of the week', () => {
     const result = setDay(new Date(2014, 8 /* Sep */, 1), 0);
     expect(result).toEqual(new Date(2014, 7 /* Aug */, 31));
   });
 
-  it("allows to specify which day is the first day of the week", () => {
+  it('allows to specify which day is the first day of the week', () => {
     const result = setDay(new Date(2014, 8 /* Sep */, 1), 0, {
       weekStartsOn: 1,
     });
     expect(result).toEqual(new Date(2014, 8 /* Sep */, 7));
   });
 
-  it("allows to specify which day is the first day of the week in locale", () => {
+  it('allows to specify which day is the first day of the week in locale', () => {
     const result = setDay(new Date(2014, 8 /* Sep */, 1), 0, {
       locale: {
         options: { weekStartsOn: 1 },
@@ -23,7 +23,7 @@ describe("setDay", () => {
     expect(result).toEqual(new Date(2014, 8 /* Sep */, 7));
   });
 
-  it("`options.weekStartsOn` overwrites the first day of the week specified in locale", () => {
+  it('`options.weekStartsOn` overwrites the first day of the week specified in locale', () => {
     const result = setDay(new Date(2014, 8 /* Sep */, 1), 0, {
       weekStartsOn: 1,
       locale: {
@@ -33,34 +33,34 @@ describe("setDay", () => {
     expect(result).toEqual(new Date(2014, 8 /* Sep */, 7));
   });
 
-  it("specifies Monday as the first day of the week", () => {
+  it('specifies Monday as the first day of the week', () => {
     const result = setDay(new Date(2014, 8 /* Sep */, 6), 1, {
       weekStartsOn: 1,
     });
     expect(result).toEqual(new Date(2014, 8 /* Sep */, 1));
   });
 
-  it("specifies Tuesday as the first day of the week", () => {
+  it('specifies Tuesday as the first day of the week', () => {
     const result = setDay(new Date(2014, 8 /* Sep */, 6), 1, {
       weekStartsOn: 2,
     });
     expect(result).toEqual(new Date(2014, 8 /* Sep */, 8));
   });
 
-  describe("the day index is more than 6", () => {
-    it("sets the day of the next week", () => {
+  describe('the day index is more than 6', () => {
+    it('sets the day of the next week', () => {
       const result = setDay(new Date(2014, 8 /* Sep */, 1), 8);
       expect(result).toEqual(new Date(2014, 8 /* Sep */, 8));
     });
 
-    it("allows to specify which day is the first day of the week", () => {
+    it('allows to specify which day is the first day of the week', () => {
       const result = setDay(new Date(2014, 8 /* Sep */, 1), 7, {
         weekStartsOn: 1,
       });
       expect(result).toEqual(new Date(2014, 8 /* Sep */, 8));
     });
 
-    it("sets the day of another week in the future", () => {
+    it('sets the day of another week in the future', () => {
       const result = setDay(new Date(2014, 8 /* Sep */, 1), 14, {
         weekStartsOn: 1,
       });
@@ -68,20 +68,20 @@ describe("setDay", () => {
     });
   });
 
-  describe("the day index is less than 0", () => {
-    it("sets the day of the last week", () => {
+  describe('the day index is less than 0', () => {
+    it('sets the day of the last week', () => {
       const result = setDay(new Date(2014, 8 /* Sep */, 1), -6);
       expect(result).toEqual(new Date(2014, 7 /* Aug */, 25));
     });
 
-    it("allows to specify which day is the first day of the week", () => {
+    it('allows to specify which day is the first day of the week', () => {
       const result = setDay(new Date(2014, 8 /* Sep */, 1), -7, {
         weekStartsOn: 1,
       });
       expect(result).toEqual(new Date(2014, 7 /* Aug */, 25));
     });
 
-    it("set the day of another week in the past", () => {
+    it('set the day of another week in the past', () => {
       const result = setDay(new Date(2014, 8 /* Sep */, 1), -14, {
         weekStartsOn: 1,
       });
@@ -89,23 +89,23 @@ describe("setDay", () => {
     });
   });
 
-  it("accepts a timestamp", () => {
+  it('accepts a timestamp', () => {
     const result = setDay(new Date(2014, 8 /* Sep */, 1).getTime(), 3);
     expect(result).toEqual(new Date(2014, 8 /* Sep */, 3));
   });
 
-  it("does not mutate the original date", () => {
+  it('does not mutate the original date', () => {
     const date = new Date(2014, 8 /* Sep */, 1);
     setDay(date, 3);
     expect(date).toEqual(new Date(2014, 8 /* Sep */, 1));
   });
 
-  it("returns `Invalid Date` if the given date is invalid", () => {
+  it('returns `Invalid Date` if the given date is invalid', () => {
     const result = setDay(new Date(NaN), 0);
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });
 
-  it("returns `Invalid Date` if the given amount is NaN", () => {
+  it('returns `Invalid Date` if the given amount is NaN', () => {
     const result = setDay(new Date(2014, 8 /* Sep */, 1), NaN);
     expect(result instanceof Date && isNaN(result.getTime())).toBe(true);
   });

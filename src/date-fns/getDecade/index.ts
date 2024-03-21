@@ -1,4 +1,4 @@
-import { toDate } from "../toDate/index";
+import { toDate } from '../toDate/index';
 
 /**
  * @name getDecade
@@ -19,9 +19,7 @@ import { toDate } from "../toDate/index";
  * const result = getDecade(new Date(1942, 10, 27))
  * //=> 1940
  */
-export function getDecade<DateType extends Date>(
-  date: DateType | number | string,
-): number {
+export function getDecade<DateType extends Date>(date: DateType | number | string): number {
   // TODO: Switch to more technical definition in of decades that start with 1
   // end with 0. I.e. 2001-2010 instead of current 2000-2009. It's a breaking
   // change, so it can only be done in 4.0.

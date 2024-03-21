@@ -1,4 +1,4 @@
-import { startOfWeek } from "../startOfWeek/index";
+import { startOfWeek } from '../startOfWeek/index';
 
 /**
  * @name startOfISOWeek
@@ -22,8 +22,6 @@ import { startOfWeek } from "../startOfWeek/index";
  * const result = startOfISOWeek(new Date(2014, 8, 2, 11, 55, 0))
  * //=> Mon Sep 01 2014 00:00:00
  */
-export function startOfISOWeek<DateType extends Date>(
-  date: DateType | number | string,
-): DateType {
+export function startOfISOWeek<DateType extends Date>(date: DateType | number | string): DateType {
   return startOfWeek(date, { weekStartsOn: 1 });
 }

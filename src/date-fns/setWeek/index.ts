@@ -1,18 +1,11 @@
-import { getWeek } from "../getWeek/index";
-import { toDate } from "../toDate/index";
-import type {
-  FirstWeekContainsDateOptions,
-  LocalizedOptions,
-  WeekOptions,
-} from "../types";
+import { getWeek } from '../getWeek/index';
+import { toDate } from '../toDate/index';
+import type { FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types';
 
 /**
  * The {@link setWeek} function options.
  */
-export interface SetWeekOptions
-  extends LocalizedOptions<"options">,
-    WeekOptions,
-    FirstWeekContainsDateOptions {}
+export interface SetWeekOptions extends LocalizedOptions<'options'>, WeekOptions, FirstWeekContainsDateOptions {}
 
 /**
  * @name setWeek
