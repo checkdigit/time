@@ -85,5 +85,3 @@ When updating the latest code from the original repositories, except making all 
 - nanosecond support
 
 Please search for `[PATCH:]` in the existing codebase.
-
-The date-fns tests files are renamed from `test.ts` to `test.mts` so that they can be excluded from being processed by builder bundling. It's a workaround until a better approach is available to have unified control over both regular compilation and bundling.
