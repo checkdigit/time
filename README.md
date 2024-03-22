@@ -20,7 +20,7 @@ The [`date-fns`](https://date-fns.org) library is included. The only locale curr
 available functionality as of v3.6.0.
 
 Additionally, the [`date-fns-tz`](https://github.com/marnusw/date-fns-tz) library is included. Contains all
-available functionality as of v1.3.7 except fp.
+available functionality as of v1.3.7 except that the code in `fp` folder is excluded, which contains functional programming related stuff that is not used at the moment.
 
 ### `formatUtc`
 
