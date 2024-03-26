@@ -1,5 +1,5 @@
-import transpose from '../../transpose/index';
-import constructFrom from '../../constructFrom/index';
+import { transpose } from '../../transpose/index';
+import { constructFrom } from '../../constructFrom/index';
 import type { ParseFlags, ParserOptions } from './types';
 
 const TIMEZONE_UNIT_PRIORITY = 10;

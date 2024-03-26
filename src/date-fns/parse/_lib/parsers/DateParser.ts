@@ -28,9 +28,9 @@ export class DateParser extends Parser<number> {
     const isLeapYear = isLeapYearIndex(year);
     const month = date.getMonth();
     if (isLeapYear) {
-      return value >= 1 && value <= (DAYS_IN_MONTH_LEAP_YEAR[month] as number);
+      return value >= 1 && value <= DAYS_IN_MONTH_LEAP_YEAR[month]!;
     } else {
-      return value >= 1 && value <= (DAYS_IN_MONTH[month] as number);
+      return value >= 1 && value <= DAYS_IN_MONTH[month]!;
     }
   }
 

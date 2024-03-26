@@ -7,27 +7,36 @@ import {
   secondsInWeek,
   secondsInYear,
 } from '../constants/index';
-import differenceInCalendarDays from '../differenceInCalendarDays/index';
-import differenceInCalendarMonths from '../differenceInCalendarMonths/index';
-import differenceInCalendarQuarters from '../differenceInCalendarQuarters/index';
-import differenceInCalendarWeeks from '../differenceInCalendarWeeks/index';
-import differenceInCalendarYears from '../differenceInCalendarYears/index';
-import differenceInHours from '../differenceInHours/index';
-import differenceInMinutes from '../differenceInMinutes/index';
-import differenceInSeconds from '../differenceInSeconds/index';
-import toDate from '../toDate/index';
-import type { IntlOptionsUnit } from '../types';
+import { differenceInCalendarDays } from '../differenceInCalendarDays/index';
+import { differenceInCalendarMonths } from '../differenceInCalendarMonths/index';
+import { differenceInCalendarQuarters } from '../differenceInCalendarQuarters/index';
+import { differenceInCalendarWeeks } from '../differenceInCalendarWeeks/index';
+import { differenceInCalendarYears } from '../differenceInCalendarYears/index';
+import { differenceInHours } from '../differenceInHours/index';
+import { differenceInMinutes } from '../differenceInMinutes/index';
+import { differenceInSeconds } from '../differenceInSeconds/index';
+import { toDate } from '../toDate/index';
 
 /**
  * The {@link intlFormatDistance} function options.
  */
 export interface IntlFormatDistanceOptions {
-  unit?: IntlOptionsUnit;
-  locale?: string; // [TODO:} the original type is Intl.BCP47LanguageTag, it's changed to string due to compilation error (Namespace 'Intl' has no exported member 'BCP47LanguageTag'.). hopefully this workaround won't be necessary once https://github.com/checkdigit/time/issues/15 is addressed
+  /** Force the distance unit */
+  unit?: IntlFormatDistanceUnit;
+  /** The locale(s) to use (see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument) */
+  locale?: Intl.UnicodeBCP47LocaleIdentifier | Intl.UnicodeBCP47LocaleIdentifier[];
+  /** The locale matching algorithm to use. Other value: 'lookup'. See MDN for details [Locale identification and negotiation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locale_identification_and_negotiation) */
   localeMatcher?: Intl.RelativeTimeFormatLocaleMatcher;
+  /** The output message format. The values are 'auto' (e.g. `yesterday`), 'always'(e.g. `1 day ago`) */
   numeric?: Intl.RelativeTimeFormatNumeric;
+  /** The length of the result. The values are: 'long' (e.g. `1 month`), 'short' (e.g. 'in 1 mo.'), 'narrow' (e.g. 'in 1 mo.'). The narrow one could be similar to the short one for some locales. */
   style?: Intl.RelativeTimeFormatStyle;
 }
+
+/**
+ * The unit used to format the distance in {@link intlFormatDistance}.
+ */
+export type IntlFormatDistanceUnit = 'year' | 'quarter' | 'month' | 'week' | 'day' | 'hour' | 'minute' | 'second';
 
 /**
  * @name intlFormatDistance
@@ -59,19 +68,23 @@ export interface IntlFormatDistanceOptions {
  * | 1 year                 | last year      | next year       |
  * | 2+ years               | X years ago    | in X years      |
  *
- * @param date - the date
- * @param baseDate - the date to compare with.
- * @param options - an object with options.
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The date
+ * @param baseDate - The date to compare with.
+ * @param options - An object with options.
  * See MDN for details [Locale identification and negotiation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locale_identification_and_negotiation)
  * The narrow one could be similar to the short one for some locales.
- * @returns the distance in words according to language-sensitive relative time formatting.
- * @throws {RangeError} `date` must not be Invalid Date
- * @throws {RangeError} `baseDate` must not be Invalid Date
- * @throws {RangeError} `options.unit` must not be invalid Unit
- * @throws {RangeError} `options.locale` must not be invalid locale
- * @throws {RangeError} `options.localeMatcher` must not be invalid localeMatcher
- * @throws {RangeError} `options.numeric` must not be invalid numeric
- * @throws {RangeError} `options.style` must not be invalid style
+ *
+ * @returns The distance in words according to language-sensitive relative time formatting.
+ *
+ * @throws `date` must not be Invalid Date
+ * @throws `baseDate` must not be Invalid Date
+ * @throws `options.unit` must not be invalid Unit
+ * @throws `options.locale` must not be invalid locale
+ * @throws `options.localeMatcher` must not be invalid localeMatcher
+ * @throws `options.numeric` must not be invalid numeric
+ * @throws `options.style` must not be invalid style
  *
  * @example
  * // What is the distance between the dates when the fist date is after the second?
@@ -124,9 +137,9 @@ export interface IntlFormatDistanceOptions {
  * )
  * //=> 'in 2 yr'
  */
-export default function intlFormatDistance(
-  date: Date | number,
-  baseDate: Date | number,
+export function intlFormatDistance<DateType extends Date>(
+  date: DateType | number | string,
+  baseDate: DateType | number | string,
   options?: IntlFormatDistanceOptions,
 ): string {
   let value: number = 0;
@@ -195,9 +208,9 @@ export default function intlFormatDistance(
   }
 
   const rtf = new Intl.RelativeTimeFormat(options?.locale, {
-    localeMatcher: options?.localeMatcher as Intl.RelativeTimeFormatLocaleMatcher,
+    ...(options?.localeMatcher === undefined ? {} : { localeMatcher: options?.localeMatcher }),
     numeric: options?.numeric || 'auto',
-    style: options?.style as Intl.RelativeTimeFormatStyle,
+    ...(options?.style === undefined ? {} : { style: options?.style }),
   });
 
   return rtf.format(value, unit);

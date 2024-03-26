@@ -17,10 +17,10 @@ and date manipulation functions provided by date-fns. Features:
 Temporal (vs the millisecond precision of standard Date built-in) is useful for webservices recording the time of events, where concurrent activity may occur and millisecond precision does not provide adequate uniqueness and ordering.
 
 The [`date-fns`](https://date-fns.org) library is included. The only locale currently supported is `en-US`, but otherwise contains all
-available functionality as of v2.29.1.
+available functionality as of v3.6.0.
 
 Additionally, the [`date-fns-tz`](https://github.com/marnusw/date-fns-tz) library is included. Contains all
-available functionality as of v1.3.7.
+available functionality as of v1.3.7 except that the code in `fp` folder is excluded, which contains functional programming related stuff that is not used at the moment.
 
 ### `formatUtc`
 
@@ -76,3 +76,12 @@ The reference documentation is here: https://tc39.es/proposal-temporal/docs/
 The documentation for `date-fns` is here: https://date-fns.org/
 
 The documentation for `date-fns-tz` is here: https://github.com/marnusw/date-fns-tz
+
+### Maintenance notes:
+
+When updating the latest code from the original repositories, except making all the necessary changes to make them fully typescript compatible, please remember to carry over the patches to overcome the following issues:
+
+- spring-forward support
+- nanosecond support
+
+Please search for `[PATCH:]` in the existing codebase.

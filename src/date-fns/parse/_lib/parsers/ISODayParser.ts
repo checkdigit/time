@@ -1,5 +1,5 @@
 import type { Match } from '../../../locale/types';
-import setISODay from '../../../setISODay/index';
+import { setISODay } from '../../../setISODay/index';
 import { Parser } from '../Parser';
 import type { ParseFlags, ParseResult } from '../types';
 import { mapValue, parseNDigits } from '../utils';

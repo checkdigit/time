@@ -1,12 +1,12 @@
-import isValid from '../isValid/index';
-import toDate from '../toDate/index';
-import type { FormatOptions, RepresentationOptions } from '../types';
-import addLeadingZeros from '../_lib/addLeadingZeros/index';
+import { isValid } from '../isValid/index';
+import { toDate } from '../toDate/index';
+import type { ISOFormatOptions } from '../types';
+import { addLeadingZeros } from '../_lib/addLeadingZeros/index';
 
 /**
  * The {@link formatISO9075} function options.
  */
-export interface FormatISO9075Options extends FormatOptions, RepresentationOptions {}
+export interface FormatISO9075Options extends ISOFormatOptions {}
 
 /**
  * @name formatISO9075
@@ -16,10 +16,14 @@ export interface FormatISO9075Options extends FormatOptions, RepresentationOptio
  * @description
  * Return the formatted date string in ISO 9075 format. Options may be passed to control the parts and notations of the date.
  *
- * @param date - the original date
- * @param options - an object with options.
- * @returns the formatted date string
- * @throws {RangeError} `date` must not be Invalid Date
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The original date
+ * @param options - An object with options.
+ *
+ * @returns The formatted date string
+ *
+ * @throws `date` must not be Invalid Date
  *
  * @example
  * // Represent 18 September 2019 in ISO 9075 format:
@@ -41,13 +45,13 @@ export interface FormatISO9075Options extends FormatOptions, RepresentationOptio
  * const result = formatISO9075(new Date(2019, 8, 18, 19, 0, 52), { representation: 'time' })
  * //=> '19:00:52'
  */
-export default function formatISO9075<DateType extends Date>(
-  dirtyDate: DateType | number,
+export function formatISO9075<DateType extends Date>(
+  date: DateType | number | string,
   options?: FormatISO9075Options,
 ): string {
-  const originalDate = toDate(dirtyDate);
+  const _date = toDate(date);
 
-  if (!isValid(originalDate)) {
+  if (!isValid(_date)) {
     throw new RangeError('Invalid time value');
   }
 
@@ -61,9 +65,9 @@ export default function formatISO9075<DateType extends Date>(
 
   // Representation is either 'date' or 'complete'
   if (representation !== 'time') {
-    const day = addLeadingZeros(originalDate.getDate(), 2);
-    const month = addLeadingZeros(originalDate.getMonth() + 1, 2);
-    const year = addLeadingZeros(originalDate.getFullYear(), 4);
+    const day = addLeadingZeros(_date.getDate(), 2);
+    const month = addLeadingZeros(_date.getMonth() + 1, 2);
+    const year = addLeadingZeros(_date.getFullYear(), 4);
 
     // yyyyMMdd or yyyy-MM-dd.
     result = `${year}${dateDelimiter}${month}${dateDelimiter}${day}`;
@@ -71,9 +75,9 @@ export default function formatISO9075<DateType extends Date>(
 
   // Representation is either 'time' or 'complete'
   if (representation !== 'date') {
-    const hour = addLeadingZeros(originalDate.getHours(), 2);
-    const minute = addLeadingZeros(originalDate.getMinutes(), 2);
-    const second = addLeadingZeros(originalDate.getSeconds(), 2);
+    const hour = addLeadingZeros(_date.getHours(), 2);
+    const minute = addLeadingZeros(_date.getMinutes(), 2);
+    const second = addLeadingZeros(_date.getSeconds(), 2);
 
     // If there's also date, separate it with time with a space
     const separator = result === '' ? '' : ' ';

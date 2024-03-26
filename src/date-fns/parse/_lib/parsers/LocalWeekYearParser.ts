@@ -1,6 +1,6 @@
-import getWeekYear from '../../../getWeekYear/index';
+import { getWeekYear } from '../../../getWeekYear/index';
 import type { Match } from '../../../locale/types';
-import startOfWeek from '../../../startOfWeek/index';
+import { startOfWeek } from '../../../startOfWeek/index';
 import { Parser } from '../Parser';
 import type { ParseFlags, ParseResult, ParserOptions } from '../types';
 import { mapValue, normalizeTwoDigitYear, parseNDigits } from '../utils';

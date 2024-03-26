@@ -1,6 +1,6 @@
 import type { Match } from '../../../locale/types';
-import setWeek from '../../../setWeek/index';
-import startOfWeek from '../../../startOfWeek/index';
+import { setWeek } from '../../../setWeek/index';
+import { startOfWeek } from '../../../startOfWeek/index';
 import { numericPatterns } from '../constants';
 import { Parser } from '../Parser';
 import type { ParseFlags, ParseResult, ParserOptions } from '../types';

@@ -1,5 +1,5 @@
 import type { Match } from '../../../locale/types';
-import setDay from '../../../setDay/index';
+import { setDay } from '../../../setDay/index';
 import { Parser } from '../Parser';
 import type { ParseFlags, ParseResult, ParserOptions } from '../types';
 import { mapValue, parseNDigits } from '../utils';
@@ -9,6 +9,7 @@ export class LocalDayParser extends Parser<number> {
   priority = 90;
   parse(dateString: string, token: string, match: Match, options: ParserOptions): ParseResult<number> {
     const valueCallback = (value: number) => {
+      // We want here floor instead of trunc, so we get -7 for value 0 instead of 0
       const wholeWeekDays = Math.floor((value - 1) / 7) * 7;
       return ((value + options.weekStartsOn + 6) % 7) + wholeWeekDays;
     };

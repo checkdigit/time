@@ -1,4 +1,4 @@
-import getTimezoneOffsetInMilliseconds from '../../date-fns/_lib/getTimezoneOffsetInMilliseconds';
+import { getTimezoneOffsetInMilliseconds } from '../../date-fns/_lib/getTimezoneOffsetInMilliseconds';
 import tzParseTimezone from '../_lib/tzParseTimezone';
 import tzPattern from '../_lib/tzPattern';
 import type { OptionsWithTZ } from '../types';

@@ -1,11 +1,13 @@
 import type { FormatLongFn, FormatLongWidth } from '../../types';
 
 export interface BuildFormatLongFnArgs<DefaultMatchWidth extends FormatLongWidth> {
-  formats: Partial<{ [format in FormatLongWidth]: string }> & { [format in DefaultMatchWidth]: string };
+  formats: Partial<{ [format in FormatLongWidth]: string }> & {
+    [format in DefaultMatchWidth]: string;
+  };
   defaultWidth: DefaultMatchWidth;
 }
 
-export default function buildFormatLongFn<DefaultMatchWidth extends FormatLongWidth>(
+export function buildFormatLongFn<DefaultMatchWidth extends FormatLongWidth>(
   args: BuildFormatLongFnArgs<DefaultMatchWidth>,
 ): FormatLongFn {
   return (options = {}) => {

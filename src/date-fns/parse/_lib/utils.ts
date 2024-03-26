@@ -1,5 +1,5 @@
 import type { LocaleDayPeriod } from '../../locale/types';
-import { millisecondsInHour, millisecondsInMinute, millisecondsInSecond } from '../../constants';
+import { millisecondsInHour, millisecondsInMinute, millisecondsInSecond } from '../../constants/index';
 import type { ParseResult } from './types';
 import { numericPatterns } from './constants';
 
@@ -25,8 +25,8 @@ export function parseNumericPattern(pattern: RegExp, dateString: string): ParseR
   }
 
   return {
-    value: parseInt(matchResult[0] as string, 10),
-    rest: dateString.slice((matchResult[0] as string).length),
+    value: parseInt(matchResult[0], 10),
+    rest: dateString.slice(matchResult[0].length),
   };
 }
 
@@ -52,7 +52,7 @@ export function parseTimezonePattern(pattern: RegExp, dateString: string): Parse
 
   return {
     value: sign * (hours * millisecondsInHour + minutes * millisecondsInMinute + seconds * millisecondsInSecond),
-    rest: dateString.slice((matchResult[0] as string).length),
+    rest: dateString.slice(matchResult[0].length),
   };
 }
 
@@ -121,7 +121,7 @@ export function normalizeTwoDigitYear(twoDigitYear: number, currentYear: number)
     result = twoDigitYear || 100;
   } else {
     const rangeEnd = absCurrentYear + 50;
-    const rangeEndCentury = Math.floor(rangeEnd / 100) * 100;
+    const rangeEndCentury = Math.trunc(rangeEnd / 100) * 100;
     const isPreviousCentury = twoDigitYear >= rangeEnd % 100;
     result = twoDigitYear + rangeEndCentury - (isPreviousCentury ? 100 : 0);
   }

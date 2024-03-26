@@ -2,7 +2,7 @@ import type { GenericDateConstructor } from '../types';
 
 /**
  * @name constructFrom
- * @category Date Extension Helpers
+ * @category Generic Helpers
  * @summary Constructs a date using the reference date and the value
  *
  * @description
@@ -10,9 +10,14 @@ import type { GenericDateConstructor } from '../types';
  * date and the given value. It helps to build generic functions that accept
  * date extensions.
  *
- * @param date {Date|number} - the reference date to take constructor from
- * @param value {Date|number} - the value to create the date
- * @returns date initialized using the given date and value
+ * It defaults to `Date` if the passed reference date is a number or a string.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The reference date to take constructor from
+ * @param value - The value to create the date
+ *
+ * @returns Date initialized using the given date and value
  *
  * @example
  * import { constructFrom } from 'date-fns'
@@ -25,7 +30,10 @@ import type { GenericDateConstructor } from '../types';
  *   )
  * }
  */
-export default function constructFrom<DateType extends Date>(date: DateType | number, value: Date | number): DateType {
+export function constructFrom<DateType extends Date>(
+  date: DateType | number | string,
+  value: Date | number | string,
+): DateType {
   if (date instanceof Date) {
     return new (date.constructor as GenericDateConstructor<DateType>)(value);
   } else {

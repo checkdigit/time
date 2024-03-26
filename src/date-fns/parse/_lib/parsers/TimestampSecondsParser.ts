@@ -1,4 +1,4 @@
-import constructFrom from '../../../constructFrom/index';
+import { constructFrom } from '../../../constructFrom/index';
 import { Parser } from '../Parser';
 import type { ParseFlags, ParseResult } from '../types';
 import { parseAnyDigitsSigned } from '../utils';

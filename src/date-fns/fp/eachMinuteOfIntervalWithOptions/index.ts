@@ -1,6 +1,6 @@
 // This file is generated automatically by `scripts/build/fp.ts`. Please, don't change it.
 
-import fn from '../../eachMinuteOfInterval/index';
-import convertToFP from '../_lib/convertToFP/index';
+import { eachMinuteOfInterval as fn } from '../../eachMinuteOfInterval/index';
+import { convertToFP } from '../_lib/convertToFP/index';
 
-export default convertToFP(fn, 2);
+export const eachMinuteOfIntervalWithOptions = convertToFP(fn, 2);

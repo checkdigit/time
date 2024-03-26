@@ -1,4 +1,5 @@
-import isSameMonth from '../isSameMonth/index';
+import { constructNow } from '../constructNow/index';
+import { isSameMonth } from '../isSameMonth/index';
 
 /**
  * @name isThisMonth
@@ -9,11 +10,11 @@ import isSameMonth from '../isSameMonth/index';
  * @description
  * Is the given date in the same month as the current date?
  *
- * > ⚠️ Please note that this function is not present in the FP submodule as
- * > it uses `Date.now()` internally hence impure and can't be safely curried.
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
- * @param date - the date to check
- * @returns the date is in this month
+ * @param date - The date to check
+ *
+ * @returns The date is in this month
  *
  * @example
  * // If today is 25 September 2014, is 15 September 2014 in this month?
@@ -21,6 +22,6 @@ import isSameMonth from '../isSameMonth/index';
  * //=> true
  */
 
-export default function isThisMonth<DateType extends Date>(dirtyDate: DateType | number): boolean {
-  return isSameMonth(Date.now(), dirtyDate);
+export function isThisMonth<DateType extends Date>(date: DateType | number | string): boolean {
+  return isSameMonth(date, constructNow(date));
 }

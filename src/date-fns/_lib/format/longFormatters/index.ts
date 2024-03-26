@@ -32,7 +32,7 @@ const timeLongFormatter: LongFormatter = (pattern, formatLong) => {
 
 const dateTimeLongFormatter: LongFormatter = (pattern: string, formatLong: FormatLong) => {
   const matchResult = pattern.match(/(P+)(p+)?/) || [];
-  const datePattern = matchResult[1] as string;
+  const datePattern = matchResult[1];
   const timePattern = matchResult[2];
 
   if (!timePattern) {
@@ -58,13 +58,11 @@ const dateTimeLongFormatter: LongFormatter = (pattern: string, formatLong: Forma
   }
 
   return dateTimeFormat
-    .replace('{{date}}', dateLongFormatter(datePattern, formatLong))
+    .replace('{{date}}', dateLongFormatter(datePattern!, formatLong))
     .replace('{{time}}', timeLongFormatter(timePattern, formatLong));
 };
 
-const longFormatters: Record<string, LongFormatter> = {
+export const longFormatters: Record<string, LongFormatter> = {
   p: timeLongFormatter,
   P: dateTimeLongFormatter,
 };
-
-export default longFormatters;

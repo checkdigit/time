@@ -1,20 +1,20 @@
-import compareAsc from '../compareAsc/index';
+import { compareAsc } from '../compareAsc/index';
 import { minutesInDay, minutesInMonth } from '../constants/index';
-import differenceInMonths from '../differenceInMonths/index';
-import differenceInSeconds from '../differenceInSeconds/index';
-import toDate from '../toDate/index';
-import type { LocaleOptions } from '../types';
-import assign from '../_lib/assign/index';
-import cloneObject from '../_lib/cloneObject/index';
-import defaultLocale from '../_lib/defaultLocale/index';
+import { differenceInMonths } from '../differenceInMonths/index';
+import { differenceInSeconds } from '../differenceInSeconds/index';
+import { toDate } from '../toDate/index';
+import type { LocalizedOptions } from '../types';
+import { defaultLocale } from '../_lib/defaultLocale/index';
 import { getDefaultOptions } from '../_lib/defaultOptions/index';
-import getTimezoneOffsetInMilliseconds from '../_lib/getTimezoneOffsetInMilliseconds/index';
+import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index';
 
 /**
  * The {@link formatDistance} function options.
  */
-export interface FormatDistanceOptions extends LocaleOptions {
+export interface FormatDistanceOptions extends LocalizedOptions<'formatDistance'> {
+  /** Distances less than a minute are more detailed */
   includeSeconds?: boolean;
+  /** Add "X ago"/"in X" in the locale language */
   addSuffix?: boolean;
 }
 
@@ -55,13 +55,17 @@ export interface FormatDistanceOptions extends LocaleOptions {
  * | 40 secs ... 60 secs    | less than a minute   |
  * | 60 secs ... 90 secs    | 1 minute             |
  *
- * @param date - the date
- * @param baseDate - the date to compare with
- * @param options - an object with options.
- * @returns the distance in words
- * @throws {RangeError} `date` must not be Invalid Date
- * @throws {RangeError} `baseDate` must not be Invalid Date
- * @throws {RangeError} `options.locale` must contain `formatDistance` property
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The date
+ * @param baseDate - The date to compare with
+ * @param options - An object with options
+ *
+ * @returns The distance in words
+ *
+ * @throws `date` must not be Invalid Date
+ * @throws `baseDate` must not be Invalid Date
+ * @throws `options.locale` must contain `formatDistance` property
  *
  * @example
  * // What is the distance between 2 July 2014 and 1 January 2015?
@@ -95,26 +99,22 @@ export interface FormatDistanceOptions extends LocaleOptions {
  * //=> 'pli ol 1 jaro'
  */
 
-export default function formatDistance<DateType extends Date>(
-  dirtyDate: DateType | number,
-  dirtyBaseDate: DateType | number,
+export function formatDistance<DateType extends Date>(
+  date: DateType | number | string,
+  baseDate: DateType | number | string,
   options?: FormatDistanceOptions,
 ): string {
   const defaultOptions = getDefaultOptions();
   const locale = options?.locale ?? defaultOptions.locale ?? defaultLocale;
   const minutesInAlmostTwoDays = 2520;
 
-  if (!locale.formatDistance) {
-    throw new RangeError('locale must contain formatDistance property');
-  }
-
-  const comparison = compareAsc(dirtyDate, dirtyBaseDate);
+  const comparison = compareAsc(date, baseDate);
 
   if (isNaN(comparison)) {
     throw new RangeError('Invalid time value');
   }
 
-  const localizeOptions = assign(cloneObject(options), {
+  const localizeOptions = Object.assign({}, options, {
     addSuffix: options?.addSuffix,
     comparison: comparison as -1 | 0 | 1,
   });
@@ -122,11 +122,11 @@ export default function formatDistance<DateType extends Date>(
   let dateLeft;
   let dateRight;
   if (comparison > 0) {
-    dateLeft = toDate(dirtyBaseDate);
-    dateRight = toDate(dirtyDate);
+    dateLeft = toDate(baseDate);
+    dateRight = toDate(date);
   } else {
-    dateLeft = toDate(dirtyDate);
-    dateRight = toDate(dirtyBaseDate);
+    dateLeft = toDate(date);
+    dateRight = toDate(baseDate);
   }
 
   const seconds = differenceInSeconds(dateRight, dateLeft);
@@ -197,7 +197,7 @@ export default function formatDistance<DateType extends Date>(
     // 1 year up to max Date
   } else {
     const monthsSinceStartOfYear = months % 12;
-    const years = Math.floor(months / 12);
+    const years = Math.trunc(months / 12);
 
     // N years up to 1 years 3 months
     if (monthsSinceStartOfYear < 3) {

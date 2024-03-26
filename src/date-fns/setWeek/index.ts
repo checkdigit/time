@@ -1,11 +1,11 @@
-import getWeek from '../getWeek/index';
-import toDate from '../toDate/index';
-import type { FirstWeekContainsDateOptions, LocaleOptions, WeekStartOptions } from '../types';
+import { getWeek } from '../getWeek/index';
+import { toDate } from '../toDate/index';
+import type { FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types';
 
 /**
  * The {@link setWeek} function options.
  */
-export interface SetWeekOptions extends LocaleOptions, WeekStartOptions, FirstWeekContainsDateOptions {}
+export interface SetWeekOptions extends LocalizedOptions<'options'>, WeekOptions, FirstWeekContainsDateOptions {}
 
 /**
  * @name setWeek
@@ -19,12 +19,15 @@ export interface SetWeekOptions extends LocaleOptions, WeekStartOptions, FirstWe
  * and `options.firstWeekContainsDate` (which is the day of January, which is always in
  * the first week of the week-numbering year)
  *
- * Week numbering: https://en.wikipedia.org/wiki/Week#Week_numbering
+ * Week numbering: https://en.wikipedia.org/wiki/Week#The_ISO_week_date_system
  *
- * @param date - the date to be changed
- * @param week - the week of the new date
- * @param options - an object with options.
- * @returns the new date with the local week set
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param date - The date to be changed
+ * @param week - The week of the new date
+ * @param options - An object with options
+ *
+ * @returns The new date with the local week set
  *
  * @example
  * // Set the 1st week to 2 January 2005 with default options:
@@ -41,13 +44,13 @@ export interface SetWeekOptions extends LocaleOptions, WeekStartOptions, FirstWe
  * })
  * //=> Sun Jan 4 2004 00:00:00
  */
-export default function setWeek<DateType extends Date>(
-  dirtyDate: DateType | number,
+export function setWeek<DateType extends Date>(
+  date: DateType | number | string,
   week: number,
   options?: SetWeekOptions,
 ): DateType {
-  const date = toDate(dirtyDate);
-  const diff = getWeek(date, options) - week;
-  date.setDate(date.getDate() - diff * 7);
-  return date;
+  const _date = toDate(date);
+  const diff = getWeek(_date, options) - week;
+  _date.setDate(_date.getDate() - diff * 7);
+  return _date;
 }

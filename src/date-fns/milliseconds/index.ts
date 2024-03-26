@@ -1,8 +1,5 @@
+import { daysInYear } from '../constants/index';
 import type { Duration } from '../types';
-
-// Leap year occures every 4 years, except for years that are divisable by 100 and not divisable by 400.
-// 1 mean year = (365+1/4-1/100+1/400) days = 365.2425 days
-const daysInYear = 365.2425;
 
 /**
  * @name milliseconds
@@ -20,8 +17,9 @@ const daysInYear = 365.2425;
  *
  * One month is a year divided by 12.
  *
- * @param duration - the object with years, months, weeks, days, hours, minutes and seconds to be added. Positive decimals will be rounded using `Math.floor`, decimals less than zero will be rounded using `Math.ceil`.
- * @returns the milliseconds
+ * @param duration - The object with years, months, weeks, days, hours, minutes and seconds to be added.
+ *
+ * @returns The milliseconds
  *
  * @example
  * // 1 year in milliseconds
@@ -32,7 +30,7 @@ const daysInYear = 365.2425;
  * milliseconds({ months: 3 })
  * //=> 7889238000
  */
-export default function milliseconds({ years, months, weeks, days, hours, minutes, seconds }: Duration): number {
+export function milliseconds({ years, months, weeks, days, hours, minutes, seconds }: Duration): number {
   let totalDays = 0;
 
   if (years) totalDays += years * daysInYear;
@@ -46,5 +44,5 @@ export default function milliseconds({ years, months, weeks, days, hours, minute
   if (minutes) totalSeconds += minutes * 60;
   if (seconds) totalSeconds += seconds;
 
-  return Math.round(totalSeconds * 1000);
+  return Math.trunc(totalSeconds * 1000);
 }

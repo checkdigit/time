@@ -1,6 +1,6 @@
 // This file is generated automatically by `scripts/build/fp.ts`. Please, don't change it.
 
-import fn from '../../getDaysInMonth/index';
-import convertToFP from '../_lib/convertToFP/index';
+import { getDaysInMonth as fn } from '../../getDaysInMonth/index';
+import { convertToFP } from '../_lib/convertToFP/index';
 
-export default convertToFP(fn, 1);
+export const getDaysInMonth = convertToFP(fn, 1);

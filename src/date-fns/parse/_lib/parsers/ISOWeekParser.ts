@@ -1,6 +1,6 @@
 import type { Match } from '../../../locale/types';
-import setISOWeek from '../../../setISOWeek/index';
-import startOfISOWeek from '../../../startOfISOWeek/index';
+import { setISOWeek } from '../../../setISOWeek/index';
+import { startOfISOWeek } from '../../../startOfISOWeek/index';
 import { numericPatterns } from '../constants';
 import { Parser } from '../Parser';
 import type { ParseFlags, ParseResult } from '../types';

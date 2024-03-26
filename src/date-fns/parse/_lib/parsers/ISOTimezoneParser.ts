@@ -1,5 +1,5 @@
-import constructFrom from '../../../constructFrom/index';
-import getTimezoneOffsetInMilliseconds from '../../../_lib/getTimezoneOffsetInMilliseconds/index';
+import { constructFrom } from '../../../constructFrom/index';
+import { getTimezoneOffsetInMilliseconds } from '../../../_lib/getTimezoneOffsetInMilliseconds/index';
 import { timezonePatterns } from '../constants';
 import { Parser } from '../Parser';
 import type { ParseFlags, ParseResult } from '../types';

@@ -1,14 +1,17 @@
 import type { FormatDistanceToken } from '../locale/types';
-import type { Duration, DurationUnit, LocaleOptions } from '../types';
-import defaultLocale from '../_lib/defaultLocale/index';
+import type { Duration, DurationUnit, LocalizedOptions } from '../types';
+import { defaultLocale } from '../_lib/defaultLocale/index';
 import { getDefaultOptions } from '../_lib/defaultOptions/index';
 
 /**
  * The {@link formatDuration} function options.
  */
-export interface FormatDurationOptions extends LocaleOptions {
+export interface FormatDurationOptions extends LocalizedOptions<'formatDistance'> {
+  /** The array of units to format */
   format?: DurationUnit[];
+  /** Should be zeros be included in the output? */
   zero?: boolean;
+  /** The delimiter string to use */
   delimiter?: string;
 }
 
@@ -22,9 +25,12 @@ const defaultFormat: DurationUnit[] = ['years', 'months', 'weeks', 'days', 'hour
  * @description
  * Return human-readable duration string i.e. "9 months 2 days"
  *
- * @param duration - the duration to format
- * @param options - an object with options.
- * @returns the formatted date string
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param duration - The duration to format
+ * @param options - An object with options.
+ *
+ * @returns The formatted date string
  *
  * @example
  * // Format full duration
@@ -71,7 +77,7 @@ const defaultFormat: DurationUnit[] = ['years', 'months', 'weeks', 'days', 'hour
  * formatDuration({ years: 2, months: 9, weeks: 3 }, { delimiter: ', ' })
  * //=> '2 years, 9 months, 3 weeks'
  */
-export default function formatDuration(duration: Duration, options?: FormatDurationOptions): string {
+export function formatDuration(duration: Duration, options?: FormatDurationOptions): string {
   const defaultOptions = getDefaultOptions();
   const locale = options?.locale ?? defaultOptions.locale ?? defaultLocale;
   const format = options?.format ?? defaultFormat;

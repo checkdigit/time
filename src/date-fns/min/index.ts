@@ -1,4 +1,4 @@
-import toDate from '../toDate/index';
+import { toDate } from '../toDate/index';
 
 /**
  * @name min
@@ -8,8 +8,11 @@ import toDate from '../toDate/index';
  * @description
  * Returns the earliest of the given dates.
  *
- * @param datesArray - the dates to compare
- * @returns - the earliest of the dates
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param dates - The dates to compare
+ *
+ * @returns The earliest of the dates
  *
  * @example
  * // Which of these dates is the earliest?
@@ -21,14 +24,13 @@ import toDate from '../toDate/index';
  * ])
  * //=> Wed Feb 11 1987 00:00:00
  */
-export default function min<DateType extends Date>(datesArray: Array<DateType | number>): DateType | Date {
+export function min<DateType extends Date>(dates: Array<DateType | number | string>): DateType | Date {
   let result: Date | undefined;
 
-  datesArray.forEach(function (dirtyDate: Date | number) {
-    let currentDate = toDate(dirtyDate);
-
-    if (result === undefined || result > currentDate || isNaN(currentDate.getDate())) {
-      result = currentDate;
+  dates.forEach((dirtyDate) => {
+    const date = toDate(dirtyDate);
+    if (!result || result > date || isNaN(+date)) {
+      result = date;
     }
   });
 

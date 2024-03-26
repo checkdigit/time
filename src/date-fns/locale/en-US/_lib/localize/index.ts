@@ -1,6 +1,5 @@
-import type { Quarter } from '../../../../types';
 import type { Localize, LocalizeFn } from '../../../types';
-import buildLocalizeFn from '../../../_lib/buildLocalizeFn/index';
+import { buildLocalizeFn } from '../../../_lib/buildLocalizeFn/index';
 
 const eraValues = {
   narrow: ['B', 'A'] as const,
@@ -110,7 +109,7 @@ const formattingDayPeriodValues = {
   },
 };
 
-const ordinalNumber: LocalizeFn<number, undefined> = (dirtyNumber, _options) => {
+const ordinalNumber: LocalizeFn<number> = (dirtyNumber, _options) => {
   const number = Number(dirtyNumber);
 
   // If ordinal numbers depend on context, for example,
@@ -134,7 +133,7 @@ const ordinalNumber: LocalizeFn<number, undefined> = (dirtyNumber, _options) => 
   return number + 'th';
 };
 
-const localize: Localize = {
+export const localize: Localize = {
   ordinalNumber,
 
   era: buildLocalizeFn({
@@ -145,7 +144,7 @@ const localize: Localize = {
   quarter: buildLocalizeFn({
     values: quarterValues,
     defaultWidth: 'wide',
-    argumentCallback: (quarter) => (quarter - 1) as Quarter,
+    argumentCallback: (quarter) => quarter - 1,
   }),
 
   month: buildLocalizeFn({
@@ -165,5 +164,3 @@ const localize: Localize = {
     defaultFormattingWidth: 'wide',
   }),
 };
-
-export default localize;

@@ -1,6 +1,6 @@
 // This file is generated automatically by `scripts/build/fp.ts`. Please, don't change it.
 
-import fn from '../../formatDistance/index';
-import convertToFP from '../_lib/convertToFP/index';
+import { formatDistance as fn } from '../../formatDistance/index';
+import { convertToFP } from '../_lib/convertToFP/index';
 
-export default convertToFP(fn, 2);
+export const formatDistance = convertToFP(fn, 2);

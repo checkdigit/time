@@ -1,5 +1,5 @@
-import startOfISOWeek from '../../../startOfISOWeek/index';
-import constructFrom from '../../../constructFrom/index';
+import { startOfISOWeek } from '../../../startOfISOWeek/index';
+import { constructFrom } from '../../../constructFrom/index';
 import { Parser } from '../Parser';
 import type { ParseFlags, ParseResult } from '../types';
 import { parseNDigitsSigned } from '../utils';

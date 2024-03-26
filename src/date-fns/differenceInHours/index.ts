@@ -1,7 +1,7 @@
+import { getRoundingMethod } from '../_lib/getRoundingMethod/index';
 import { millisecondsInHour } from '../constants/index';
-import differenceInMilliseconds from '../differenceInMilliseconds/index';
+import { differenceInMilliseconds } from '../differenceInMilliseconds/index';
 import type { RoundingOptions } from '../types';
-import { getRoundingMethod } from '../_lib/roundingMethods/index';
 
 /**
  * The {@link differenceInHours} function options.
@@ -16,10 +16,13 @@ export interface DifferenceInHoursOptions extends RoundingOptions {}
  * @description
  * Get the number of hours between the given dates.
  *
- * @param dateLeft - the later date
- * @param dateRight - the earlier date
- * @param options - an object with options.
- * @returns the number of hours
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ *
+ * @param dateLeft - The later date
+ * @param dateRight - The earlier date
+ * @param options - An object with options.
+ *
+ * @returns The number of hours
  *
  * @example
  * // How many hours are between 2 July 2014 06:50:00 and 2 July 2014 19:00:00?
@@ -29,9 +32,9 @@ export interface DifferenceInHoursOptions extends RoundingOptions {}
  * )
  * //=> 12
  */
-export default function differenceInHours<DateType extends Date>(
-  dateLeft: DateType | number,
-  dateRight: DateType | number,
+export function differenceInHours<DateType extends Date>(
+  dateLeft: DateType | number | string,
+  dateRight: DateType | number | string,
   options?: DifferenceInHoursOptions,
 ): number {
   const diff = differenceInMilliseconds(dateLeft, dateRight) / millisecondsInHour;

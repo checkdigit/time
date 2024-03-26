@@ -1,11 +1,11 @@
-import add from '../add/index';
-import differenceInDays from '../differenceInDays/index';
-import differenceInHours from '../differenceInHours/index';
-import differenceInMinutes from '../differenceInMinutes/index';
-import differenceInMonths from '../differenceInMonths/index';
-import differenceInSeconds from '../differenceInSeconds/index';
-import differenceInYears from '../differenceInYears/index';
-import toDate from '../toDate/index';
+import { add } from '../add/index';
+import { differenceInDays } from '../differenceInDays/index';
+import { differenceInHours } from '../differenceInHours/index';
+import { differenceInMinutes } from '../differenceInMinutes/index';
+import { differenceInMonths } from '../differenceInMonths/index';
+import { differenceInSeconds } from '../differenceInSeconds/index';
+import { differenceInYears } from '../differenceInYears/index';
+import { toDate } from '../toDate/index';
 import type { Duration, Interval } from '../types';
 
 /**
@@ -16,12 +16,11 @@ import type { Duration, Interval } from '../types';
  * @description
  * Convert a interval object to a duration object.
  *
- * @param interval - the interval to convert to duration
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
- * @returns The duration Object
- * @throws {RangeError} `start` must not be Invalid Date
- * @throws {RangeError} `end` must not be Invalid Date
- * @throws {RangeError} The start of an interval cannot be after its end
+ * @param interval - The interval to convert to duration
+ *
+ * @returns The duration object
  *
  * @example
  * // Get the duration between January 15, 1929 and April 4, 1968.
@@ -31,34 +30,40 @@ import type { Duration, Interval } from '../types';
  * })
  * // => { years: 39, months: 2, days: 20, hours: 7, minutes: 5, seconds: 0 }
  */
-export default function interval<DateType extends Date>(interval: Interval<DateType>): Duration {
+export function intervalToDuration<DateType extends Date>(interval: Interval<DateType>): Duration {
   const start = toDate(interval.start);
   const end = toDate(interval.end);
 
-  if (isNaN(start.getTime())) throw new RangeError('Start Date is invalid');
-  if (isNaN(end.getTime())) throw new RangeError('End Date is invalid');
-  if (start > end) {
-    throw new RangeError('The start of an interval cannot be after its end');
-  }
+  const duration: Duration = {};
 
-  const duration: Duration = {
-    years: differenceInYears(end, start),
-  };
+  const years = differenceInYears(end, start);
+  if (years) duration.years = years;
 
-  const remainingMonths = add(start, { years: duration.years as number });
-  duration.months = differenceInMonths(end, remainingMonths);
+  // @ts-ignore
+  const remainingMonths = add(start, { years: duration.years });
 
-  const remainingDays = add(remainingMonths, { months: duration.months });
-  duration.days = differenceInDays(end, remainingDays);
+  const months = differenceInMonths(end, remainingMonths);
+  if (months) duration.months = months;
 
-  const remainingHours = add(remainingDays, { days: duration.days });
-  duration.hours = differenceInHours(end, remainingHours);
+  const remainingDays = add(remainingMonths, { months: duration.months! });
 
-  const remainingMinutes = add(remainingHours, { hours: duration.hours });
-  duration.minutes = differenceInMinutes(end, remainingMinutes);
+  const days = differenceInDays(end, remainingDays);
+  if (days) duration.days = days;
 
-  const remainingSeconds = add(remainingMinutes, { minutes: duration.minutes });
-  duration.seconds = differenceInSeconds(end, remainingSeconds);
+  const remainingHours = add(remainingDays, { days: duration.days! });
+
+  const hours = differenceInHours(end, remainingHours);
+  if (hours) duration.hours = hours;
+
+  const remainingMinutes = add(remainingHours, { hours: duration.hours! });
+
+  const minutes = differenceInMinutes(end, remainingMinutes);
+  if (minutes) duration.minutes = minutes;
+
+  const remainingSeconds = add(remainingMinutes, { minutes: duration.minutes! });
+
+  const seconds = differenceInSeconds(end, remainingSeconds);
+  if (seconds) duration.seconds = seconds;
 
   return duration;
 }

@@ -8,7 +8,245 @@ This change log follows the format documented in [Keep a CHANGELOG].
 [semantic versioning]: http://semver.org/
 [keep a changelog]: http://keepachangelog.com/
 
-## v2.29.1 - 2022-07-22
+## v3.6.0 - 2024-03-18
+
+On this release worked @kossnocorp and @world1dan. Also, thanks to [@seated](https://github.com/seated) [for sponsoring me](https://github.com/sponsors/kossnocorp).
+
+### Fixed
+
+- [Fixed weeks in the Belarisuan locale's `formatDistance`.](https://github.com/date-fns/date-fns/pull/3720)
+
+### Added
+
+- [Added CDN versions of modules compatible with older browsers.](https://github.com/date-fns/date-fns/pull/3737) [See the CDN guide.](https://date-fns.org/docs/CDN)
+
+## v3.5.0 - 2024-03-15
+
+Kudos to @fturmel, @kossnocorp, @makstyle119, @tan75, @marcreichel, @tareknatsheh and @audunru for working on the release. Also, thanks to [@seated](https://github.com/seated) [for sponsoring me](https://github.com/sponsors/kossnocorp).
+
+### Fixed
+
+- [Fixed functions that use current date internally and made them work with date extensions like `UTCDate`.](https://github.com/date-fns/date-fns/issues/3730)
+
+- [Fixed `daysToWeeks` returning negative 0.](https://github.com/date-fns/date-fns/commit/882ced61c692c7c4a79eaaec6eb07cb9c8c9195b)
+
+- [Fixed German grammar for the "half a minute" string.](https://github.com/date-fns/date-fns/pull/3715)
+
+### Added
+
+- [Added the Northern Sámi (`se`) locale.](https://github.com/date-fns/date-fns/pull/3724)
+
+- Added the `constructNow` function that creates the current date using the passed reference date's constructor.
+
+## v3.4.0 - 2024-03-11
+
+Kudos to @kossnocorp, @sakamossan and @Revan99 for working on the release. Also, thanks to [@seated](https://github.com/seated) [for sponsoring me](https://github.com/sponsors/kossnocorp).
+
+### Added
+
+- [Added `roundToNearestHours` function.](https://github.com/date-fns/date-fns/pull/2752)
+
+- [Added Central Kurdish (`ckb`) locale.](https://github.com/date-fns/date-fns/pull/3421)
+
+## v3.3.1 - 2024-01-22
+
+Kudos to @kossnocorp and @fturmel for working on the release.
+
+### Fixed
+
+- Fixed DST issue in `getOverlappingDaysInIntervals`, resulting in an inconsistent number of days returned for intervals starting and ending in different DST periods.
+
+- Fixed functions incorrectly using `trunc` instead of `round`. The bug was introduced in v3.3.0. The affected functions: `differenceInCalendarDays`, `differenceInCalendarISOWeeks`, `differenceInCalendarWeeks`, `getISOWeek`, `getWeek`, and `getISOWeeksInYear`.
+
+## v3.3.0 - 2024-01-20
+
+On this release worked @kossnocorp, @TheKvikk, @fturmel and @ckcherry23.
+
+### Fixed
+
+- Fixed the bug in `getOverlappingDaysInIntervals` caused by incorrect sorting of interval components that led to 0 for timestamps of different lengths.
+
+- Fixed bugs when working with negative numbers caused by using `Math.floor` (`-1.1` → `-2`) instead of `Math.trunc` (`-1.1` → `-1`). Most of the conversion functions (i.e., `hoursToMinutes`) were affected when passing some negative fractional input. Also, some other functions that could be possibly affected by unfortunate timezone/date combinations were fixed.
+
+  The functions that were affected: `format`, `parse`, `getUnixTime`, `daysToWeeks`, `hoursToMilliseconds`, `hoursToMinutes`, `hoursToSeconds`, `milliseconds`, `minutesToMilliseconds`, `millisecondsToMinutes`, `monthsToYears`, `millisecondsToHours`, `millisecondsToSeconds`, `minutesToHours`, `minutesToSeconds`, `yearsToQuarters`, `yearsToMonths`, `yearsToDays`, `weeksToDays`, `secondsToMinutes`, `secondsToHours`, `quartersToYears`, `quartersToMonths` and `monthsToQuarters`.
+
+- [Fixed the Czech locale's `formatDistance` to include `1` in `formatDistance`.](https://github.com/date-fns/date-fns/pull/3269)
+
+- Fixed `differenceInSeconds` and other functions relying on rounding options that can produce a negative 0.
+
+- [Added a preprocessor to the locales API, enabling fixing a long-standing bug in the French locale.](https://github.com/date-fns/date-fns/pull/3662) ([#1391](https://github.com/date-fns/date-fns/issues/1391))
+
+- Added missing `yearsToDays` to the FP submodule.
+
+- Made functions using rounding methods always return `0` instead of `-0`.
+
+### Added
+
+- [Added `format` alias `formatDate` with corresponding `FormatDateOptions` interface](https://github.com/date-fns/date-fns/pull/3653).
+
+## v3.2.0 - 2024-01-09
+
+This release is brought to you by @kossnocorp, @fturmel, @grossbart, @MelvinVermeer, and @jcarstairs-scottlogic.
+
+### Fixed
+
+- Fixed types compatability with Lodash's `flow` and fp-ts's `pipe`. ([#3641](https://github.com/date-fns/date-fns/issues/3641))
+
+- [Fixed inconsistent behavior of `roundToNearestMinutes`.](https://github.com/date-fns/date-fns/pull/3132)
+
+### Added
+
+- Added exports of `format`, `lightFormat`, and `parse` internals that enable 3rd-parties to consume those.
+
+## v3.1.0 - 2024-01-05
+
+This release is brought to you by @kossnocorp, @makstyle119 and @dmgawel.
+
+### Fixed
+
+- [Fixed the plural form of weeks in Swedish](https://github.com/date-fns/date-fns/pull/3448).
+
+### Added
+
+- [Added `yearsToDays` function](https://github.com/date-fns/date-fns/pull/3540).
+
+- Added warning about using protected tokens like `Y` or `D` without passing a corresponding option. [See #2950](https://github.com/date-fns/date-fns/issues/2950).
+
+## v3.0.6 - 2023-12-22
+
+On this release worked @imwh0im, @jamcry and @tyrw.
+
+### Fixed
+
+- [Fixed bug in `areIntervalsOverlapping` caused by incorrect sorting](https://github.com/date-fns/date-fns/pull/3628) ([#3614](https://github.com/date-fns/date-fns/issues/3614))
+
+## v3.0.5 - 2023-12-21
+
+This release is brought to you by @goku4199.
+
+### Fixed
+
+- [Fixed internal `toDate` not processing string arguments properly](https://github.com/date-fns/date-fns/pull/3626)
+
+## v3.0.4 - 2023-12-21
+
+This release is brought to you by @kossnocorp.
+
+### Fixed
+
+- Fixed isWithinInterval bug caused by incorrectly sorting dates ([#3623](https://github.com/date-fns/date-fns/issues/3623)).
+
+## v3.0.3 - 2023-12-21
+
+### Fixed
+
+- Rolled back pointing ESM types to the same `d.ts` files. Instead now it copies the content to avoid [the Masquerading as CJS problem](https://github.com/arethetypeswrong/arethetypeswrong.github.io/blob/main/docs/problems/FalseCJS.md) reported by "Are the types wrong?".
+
+## v3.0.2 - 2023-12-21
+
+### Fixed
+
+- Fixed [yet another issue caused by ESM types](https://github.com/date-fns/date-fns/issues/3620) by pointing to the same `d.ts` files.
+
+- [Added `package.json` to exports](https://github.com/date-fns/date-fns/pull/3601) to provide access to tooling.
+
+- [Fixed TypeScript 5.4 build break](https://github.com/date-fns/date-fns/pull/3598) by using the latest type names.
+
+## v3.0.1 - 2023-12-20
+
+### Fixed
+
+- [Fixed an error](https://github.com/date-fns/date-fns/pull/3618) in certain environments caused by `d.mts` files exporting only types.
+
+## v3.0.0 - 2023-12-18
+
+### Changed
+
+- **BREAKING**: date-fns is now a dual-package with the support of both ESM and CommonJS. The files exports are now explicitly in the `package.json`. The ESM files now have `.mjs` extension.
+
+- **BREAKING**: The package now has a flat structure, meaning functions are now named `node_modules/date-fns/add.mjs`, locales are `node_modules/date-fns/locale/enUS.mjs`, etc.
+
+- **BREAKING**: Now all file content’s exported via named exports instead of `export default`, which will require change direct imports i.e. `const addDays = require(‘date-fns/addDays’)` to `const { addDays } = require(‘date-fns/addDays’)`.
+
+- **BREAKING**: TypeScript types are now completely rewritten, check out the `d.ts` files for more information.
+
+- **BREAKING**: `constants` now is not exported via the index, so to import one use `import { daysInYear } from "date-fns/constants";`. It improves compatibility with setups that modularize imports [like Next.js](https://twitter.com/kossnocorp/status/1731181274579325260).
+
+- **BREAKING**: Functions now don’t check the number of passed arguments, delegating this task to type checkers. The functions are now slimmer because of this.
+
+- **BREAKING** The arguments are not explicitly converted to the target types. Instead, they are passed as is, delegating this task to type checkers.
+
+- **BREAKING**: Functions that accept `Interval` arguments now do not throw an error if the start is before the end and handle it as a negative interval. If one of the properties in an `Invalid Date`, these functions also do not throw and handle them as invalid intervals.
+
+  - `areIntervalsOverlapping` normalize intervals before comparison, so `{ start: a, end: b }` is practically equivalent to `{ start: b, end: a }`. When comparing intervals with one of the properties being `Invalid Date`, the function will return false unless the others are valid and equal, given the `inclusive` option is passed. Otherwise, and when even one of the intervals has both properties invalid, the function will always return `false`.
+
+  - `getOverlappingDaysInIntervals` now normalizes intervals before comparison, so `{ start: a, end: b }` is practically equivalent to `{ start: b, end: a }`. If any of the intervals’ properties is an `Invalid Date`, the function will always return 0.
+
+  - `isWithinInterval` now normalizes intervals before comparison, so `{ start: a, end: b }` is practically equivalent to `{ start: b, end: a }`. If any of the intervals’ properties is an `Invalid Date`, the function will always return false.
+
+  - `intervalToDuration` now returns negative durations for negative intervals. If one or both of the interval properties are invalid, the function will return an empty object.
+
+  - The eachXOfInterval functions (`eachDayOfInterval`, `eachHourOfInterval`, `eachMinuteOfInterval`, `eachMonthOfInterval`, `eachWeekendOfInterval`, `eachWeekendOfMonth`, `eachWeekendOfYear`, `eachWeekOfInterval`, `eachYearOfInterval`) now return a reversed array if the passed interval’s start is after the end. Invalid properties will result in an empty array. Functions that accept the `step` option now also allow negative, 0, and NaN values and return reversed results if the step is negative and an empty array otherwise.
+
+- **BREAKING**: `intervalToDuration` now skips 0 values in the resulting duration, resulting in more compact objects with only relevant properties.
+
+- **BREAKING**: `roundToNearestMinutes` now returns `Invalid Date` instead of throwing an error when `nearestTo` option is less than 1 or more than 30.
+
+- **BREAKING**: IE is no longer supported.
+
+- **BREAKING**: Now all functions use `Math.trunc` rounding method where rounding is required. The behavior is configurable on a per-function basis.
+
+- **BREAKING**: Undocumented `onlyNumeric` option was removed from `nn` and `sv` locales. If you relied on it, [please contact me](mailto:koss@nocorp.me).
+
+- **BREAKING**: Flow is not supported anymore. If you relied on it, [please contact me](mailto:koss@nocorp.me).
+
+- **BREAKING**: The locales now use regular functions instead of the UTC version, which should not break any code unless you used locales directly.
+
+### Added
+
+- All functions that accept date arguments now also accept strings.
+
+- All functions now export options interfaces.
+
+- Now functions allow passing custom Date extensions like [UTCDate](https://github.com/date-fns/utc). They will detect and use the arguments constructor to generate the result of the same class.
+
+- `eachMonthOfInterval`, `eachQuarterOfInterval`, `eachWeekOfInterval`, and `eachYearOfInterval` now accept the `step` option like most of the eachXOfInterval functions.
+
+- A new `interval` function that validates interval, emulating the v2 interval functions behavior.
+
+- `differenceInX` functions now accept options and allow setting up `roundingMethod` that configures how the result is rounded. `Math.trunc` is the default method.
+
+## v2.30.0
+
+Kudos to @kossnocorp and @Andarist for working on the release.
+
+### Changes
+
+- Fixed increased build size after enabling compatibility with older browsers in the previous release. This was done by adding @babel/runtime as a dependency. [See more details](https://github.com/date-fns/date-fns/issues/3208#issuecomment-1528592465).
+
+## v2.29.3 - 2022-09-13
+
+This release is prepared by our own @leshakoss.
+
+### Fixed
+
+- [Fixed Ukrainian (`uk`) locale grammar for `formatDistance`.](https://github.com/date-fns/date-fns/pull/3175)
+
+- [Improved browser compatibility by transforming the code with `@babel/preset-env`.](https://github.com/date-fns/date-fns/pull/3167)
+
+## v2.29.2 - 2022-08-18
+
+This release is brought to you by @nopears, @vadimpopa and @leshakoss.
+
+### Fixed
+
+- [Fixed `sv` locale abbreviated months matcher.](https://github.com/date-fns/date-fns/pull/3160)
+
+- [Fixed `uk` locale abbreviated months matcher.](https://github.com/date-fns/date-fns/pull/3139)
+
+- [Fixed a breaking change in `intervalToDuration` by removing a recently introduced RangeError.](https://github.com/date-fns/date-fns/pull/3153)
+
+## v2.29.1 - 2022-08-18
 
 Thanks to @fturmel for working on the release.
 
