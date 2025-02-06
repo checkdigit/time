@@ -1,5 +1,7 @@
-import type { GenericDateConstructor } from '../types';
-import { constructFrom } from '../constructFrom/index';
+// date-fns/transpose/index.ts
+
+import type { GenericDateConstructor } from '../types.ts';
+import { constructFrom } from '../constructFrom/index.ts';
 
 /**
  * @name transpose

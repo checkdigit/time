@@ -1,4 +1,6 @@
-import { toDate } from '../toDate/index';
+// date-fns/max/index.ts
+
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name max
@@ -24,15 +26,15 @@ import { toDate } from '../toDate/index';
  * ])
  * //=> Sun Jul 02 1995 00:00:00
  */
-export function max<DateType extends Date>(dates: Array<DateType | number | string>): DateType | Date {
+export function max<DateType extends Date>(dates: (DateType | number | string)[]): DateType | Date {
   let result: Date | undefined;
-  dates.forEach(function (dirtyDate) {
+  for (const dirtyDate of dates) {
     const currentDate = toDate(dirtyDate);
 
     if (result === undefined || result < currentDate || isNaN(Number(currentDate))) {
       result = currentDate;
     }
-  });
+  }
 
-  return result || new Date(NaN);
+  return result || new Date(Number.NaN);
 }

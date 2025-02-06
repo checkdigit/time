@@ -1,10 +1,12 @@
-import type { Match } from '../../../locale/types';
-import { setISOWeek } from '../../../setISOWeek/index';
-import { startOfISOWeek } from '../../../startOfISOWeek/index';
-import { numericPatterns } from '../constants';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { parseNDigits, parseNumericPattern } from '../utils';
+// date-fns/parse/_lib/parsers/ISOWeekParser.ts
+
+import type { Match } from '../../../locale/types.ts';
+import { setISOWeek } from '../../../setISOWeek/index.ts';
+import { startOfISOWeek } from '../../../startOfISOWeek/index.ts';
+import { numericPatterns } from '../constants.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { parseNDigits, parseNumericPattern } from '../utils.ts';
 
 // ISO week of year
 export class ISOWeekParser extends Parser<number> {
@@ -12,12 +14,15 @@ export class ISOWeekParser extends Parser<number> {
 
   parse(dateString: string, token: string, match: Match): ParseResult<number> {
     switch (token) {
-      case 'I':
+      case 'I': {
         return parseNumericPattern(numericPatterns.week, dateString);
-      case 'Io':
+      }
+      case 'Io': {
         return match.ordinalNumber(dateString, { unit: 'week' });
-      default:
+      }
+      default: {
         return parseNDigits(token.length, dateString);
+      }
     }
   }
 
@@ -29,5 +34,5 @@ export class ISOWeekParser extends Parser<number> {
     return startOfISOWeek(setISOWeek(date, value));
   }
 
-  incompatibleTokens = ['y', 'Y', 'u', 'q', 'Q', 'M', 'L', 'w', 'd', 'D', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['y', 'Y', 'u', 'q', 'Q', 'M', 'L', 'w', 'd', 'D', 'e', 'c', 't', 'T'];
 }

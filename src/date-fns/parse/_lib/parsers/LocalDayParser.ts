@@ -1,8 +1,10 @@
-import type { Match } from '../../../locale/types';
-import { setDay } from '../../../setDay/index';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult, ParserOptions } from '../types';
-import { mapValue, parseNDigits } from '../utils';
+// date-fns/parse/_lib/parsers/LocalDayParser.ts
+
+import type { Match } from '../../../locale/types.ts';
+import { setDay } from '../../../setDay/index.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult, ParserOptions } from '../types.ts';
+import { mapValue, parseNDigits } from '../utils.ts';
 
 // Local day of week
 export class LocalDayParser extends Parser<number> {
@@ -17,18 +19,21 @@ export class LocalDayParser extends Parser<number> {
     switch (token) {
       // 3
       case 'e':
-      case 'ee': // 03
+      case 'ee': {
+        // 03
         return mapValue(parseNDigits(token.length, dateString), valueCallback);
+      }
       // 3rd
-      case 'eo':
+      case 'eo': {
         return mapValue(
           match.ordinalNumber(dateString, {
             unit: 'day',
           }),
           valueCallback,
         );
+      }
       // Tue
-      case 'eee':
+      case 'eee': {
         return (
           match.day(dateString, {
             width: 'abbreviated',
@@ -37,21 +42,24 @@ export class LocalDayParser extends Parser<number> {
           match.day(dateString, { width: 'short', context: 'formatting' }) ||
           match.day(dateString, { width: 'narrow', context: 'formatting' })
         );
+      }
       // T
-      case 'eeeee':
+      case 'eeeee': {
         return match.day(dateString, {
           width: 'narrow',
           context: 'formatting',
         });
+      }
       // Tu
-      case 'eeeeee':
+      case 'eeeeee': {
         return (
           match.day(dateString, { width: 'short', context: 'formatting' }) ||
           match.day(dateString, { width: 'narrow', context: 'formatting' })
         );
+      }
       // Tuesday
       case 'eeee':
-      default:
+      default: {
         return (
           match.day(dateString, { width: 'wide', context: 'formatting' }) ||
           match.day(dateString, {
@@ -61,6 +69,7 @@ export class LocalDayParser extends Parser<number> {
           match.day(dateString, { width: 'short', context: 'formatting' }) ||
           match.day(dateString, { width: 'narrow', context: 'formatting' })
         );
+      }
     }
   }
 
@@ -74,5 +83,5 @@ export class LocalDayParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['y', 'R', 'u', 'q', 'Q', 'M', 'L', 'I', 'd', 'D', 'E', 'i', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['y', 'R', 'u', 'q', 'Q', 'M', 'L', 'I', 'd', 'D', 'E', 'i', 'c', 't', 'T'];
 }

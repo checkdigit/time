@@ -1,4 +1,6 @@
-import { startOfMinute } from '../startOfMinute/index';
+// date-fns/isSameMinute/index.ts
+
+import { startOfMinute } from '../startOfMinute/index.ts';
 
 /**
  * @name isSameMinute

@@ -1,6 +1,8 @@
-import { addDays } from '../addDays/index';
-import { getDay } from '../getDay/index';
-import type { Day } from '../types';
+// date-fns/nextDay/index.ts
+
+import { addDays } from '../addDays/index.ts';
+import { getDay } from '../getDay/index.ts';
+import type { Day } from '../types.ts';
 
 /**
  * @name nextDay
@@ -29,7 +31,9 @@ import type { Day } from '../types';
  */
 export function nextDay<DateType extends Date>(date: DateType | number | string, day: Day): DateType {
   let delta = day - getDay(date);
-  if (delta <= 0) delta += 7;
+  if (delta <= 0) {
+    delta += 7;
+  }
 
   return addDays(date, delta);
 }

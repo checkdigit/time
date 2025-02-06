@@ -1,7 +1,9 @@
-import { addDays } from '../addDays/index';
-import { toDate } from '../toDate/index';
-import type { LocalizedOptions, WeekOptions } from '../types';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
+// date-fns/setDay/index.ts
+
+import { addDays } from '../addDays/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { LocalizedOptions, WeekOptions } from '../types.ts';
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
 
 /**
  * The {@link setDay} function options.

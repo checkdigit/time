@@ -1,8 +1,10 @@
-import type { Match } from '../../../locale/types';
-import { numericPatterns } from '../constants';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { mapValue, parseNDigits, parseNumericPattern } from '../utils';
+// date-fns/parse/_lib/parsers/StandAloneMonthParser.ts
+
+import type { Match } from '../../../locale/types.ts';
+import { numericPatterns } from '../constants.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { mapValue, parseNDigits, parseNumericPattern } from '../utils.ts';
 
 export class StandAloneMonthParser extends Parser<number> {
   priority = 110;
@@ -12,36 +14,41 @@ export class StandAloneMonthParser extends Parser<number> {
 
     switch (token) {
       // 1, 2, ..., 12
-      case 'L':
+      case 'L': {
         return mapValue(parseNumericPattern(numericPatterns.month, dateString), valueCallback);
+      }
       // 01, 02, ..., 12
-      case 'LL':
+      case 'LL': {
         return mapValue(parseNDigits(2, dateString), valueCallback);
+      }
       // 1st, 2nd, ..., 12th
-      case 'Lo':
+      case 'Lo': {
         return mapValue(
           match.ordinalNumber(dateString, {
             unit: 'month',
           }),
           valueCallback,
         );
+      }
       // Jan, Feb, ..., Dec
-      case 'LLL':
+      case 'LLL': {
         return (
           match.month(dateString, {
             width: 'abbreviated',
             context: 'standalone',
           }) || match.month(dateString, { width: 'narrow', context: 'standalone' })
         );
+      }
       // J, F, ..., D
-      case 'LLLLL':
+      case 'LLLLL': {
         return match.month(dateString, {
           width: 'narrow',
           context: 'standalone',
         });
+      }
       // January, February, ..., December
       case 'LLLL':
-      default:
+      default: {
         return (
           match.month(dateString, { width: 'wide', context: 'standalone' }) ||
           match.month(dateString, {
@@ -50,6 +57,7 @@ export class StandAloneMonthParser extends Parser<number> {
           }) ||
           match.month(dateString, { width: 'narrow', context: 'standalone' })
         );
+      }
     }
   }
 
@@ -63,5 +71,5 @@ export class StandAloneMonthParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['Y', 'R', 'q', 'Q', 'M', 'w', 'I', 'D', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['Y', 'R', 'q', 'Q', 'M', 'w', 'I', 'D', 'i', 'e', 'c', 't', 'T'];
 }

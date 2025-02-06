@@ -1,4 +1,6 @@
-import { toDate } from '../toDate/index';
+// date-fns/min/index.ts
+
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name min
@@ -24,15 +26,15 @@ import { toDate } from '../toDate/index';
  * ])
  * //=> Wed Feb 11 1987 00:00:00
  */
-export function min<DateType extends Date>(dates: Array<DateType | number | string>): DateType | Date {
+export function min<DateType extends Date>(dates: (DateType | number | string)[]): DateType | Date {
   let result: Date | undefined;
 
-  dates.forEach((dirtyDate) => {
+  for (const dirtyDate of dates) {
     const date = toDate(dirtyDate);
     if (!result || result > date || isNaN(+date)) {
       result = date;
     }
-  });
+  }
 
-  return result || new Date(NaN);
+  return result || new Date(Number.NaN);
 }

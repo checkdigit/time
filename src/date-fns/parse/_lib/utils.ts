@@ -1,19 +1,21 @@
-import type { LocaleDayPeriod } from '../../locale/types';
-import { millisecondsInHour, millisecondsInMinute, millisecondsInSecond } from '../../constants/index';
-import type { ParseResult } from './types';
-import { numericPatterns } from './constants';
+// date-fns/parse/_lib/utils.ts
+
+import type { LocaleDayPeriod } from '../../locale/types.ts';
+import { millisecondsInHour, millisecondsInMinute, millisecondsInSecond } from '../../constants/index.ts';
+import type { ParseResult } from './types.ts';
+import { numericPatterns } from './constants.ts';
 
 export function mapValue<TInput, TResult>(
-  parseFnResult: ParseResult<TInput>,
-  mapFn: (value: TInput) => TResult,
+  parseFunctionResult: ParseResult<TInput>,
+  mapFunction: (value: TInput) => TResult,
 ): ParseResult<TResult> {
-  if (!parseFnResult) {
-    return parseFnResult;
+  if (!parseFunctionResult) {
+    return parseFunctionResult;
   }
 
   return {
-    value: mapFn(parseFnResult.value),
-    rest: parseFnResult.rest,
+    value: mapFunction(parseFunctionResult.value),
+    rest: parseFunctionResult.rest,
   };
 }
 
@@ -25,7 +27,7 @@ export function parseNumericPattern(pattern: RegExp, dateString: string): ParseR
   }
 
   return {
-    value: parseInt(matchResult[0], 10),
+    value: Number.parseInt(matchResult[0], 10),
     rest: dateString.slice(matchResult[0].length),
   };
 }
@@ -46,9 +48,9 @@ export function parseTimezonePattern(pattern: RegExp, dateString: string): Parse
   }
 
   const sign = matchResult[1] === '+' ? 1 : -1;
-  const hours = matchResult[2] ? parseInt(matchResult[2], 10) : 0;
-  const minutes = matchResult[3] ? parseInt(matchResult[3], 10) : 0;
-  const seconds = matchResult[5] ? parseInt(matchResult[5], 10) : 0;
+  const hours = matchResult[2] ? Number.parseInt(matchResult[2], 10) : 0;
+  const minutes = matchResult[3] ? Number.parseInt(matchResult[3], 10) : 0;
+  const seconds = matchResult[5] ? Number.parseInt(matchResult[5], 10) : 0;
 
   return {
     value: sign * (hours * millisecondsInHour + minutes * millisecondsInMinute + seconds * millisecondsInSecond),
@@ -62,49 +64,63 @@ export function parseAnyDigitsSigned(dateString: string): ParseResult<number> {
 
 export function parseNDigits(n: number, dateString: string): ParseResult<number> {
   switch (n) {
-    case 1:
+    case 1: {
       return parseNumericPattern(numericPatterns.singleDigit, dateString);
-    case 2:
+    }
+    case 2: {
       return parseNumericPattern(numericPatterns.twoDigits, dateString);
-    case 3:
+    }
+    case 3: {
       return parseNumericPattern(numericPatterns.threeDigits, dateString);
-    case 4:
+    }
+    case 4: {
       return parseNumericPattern(numericPatterns.fourDigits, dateString);
-    default:
-      return parseNumericPattern(new RegExp('^\\d{1,' + n + '}'), dateString);
+    }
+    default: {
+      return parseNumericPattern(new RegExp(`${String.raw`^\d{1,` + n}}`), dateString);
+    }
   }
 }
 
 export function parseNDigitsSigned(n: number, dateString: string): ParseResult<number> {
   switch (n) {
-    case 1:
+    case 1: {
       return parseNumericPattern(numericPatterns.singleDigitSigned, dateString);
-    case 2:
+    }
+    case 2: {
       return parseNumericPattern(numericPatterns.twoDigitsSigned, dateString);
-    case 3:
+    }
+    case 3: {
       return parseNumericPattern(numericPatterns.threeDigitsSigned, dateString);
-    case 4:
+    }
+    case 4: {
       return parseNumericPattern(numericPatterns.fourDigitsSigned, dateString);
-    default:
-      return parseNumericPattern(new RegExp('^-?\\d{1,' + n + '}'), dateString);
+    }
+    default: {
+      return parseNumericPattern(new RegExp(`${String.raw`^-?\d{1,` + n}}`), dateString);
+    }
   }
 }
 
 export function dayPeriodEnumToHours(dayPeriod: LocaleDayPeriod): number {
   switch (dayPeriod) {
-    case 'morning':
+    case 'morning': {
       return 4;
-    case 'evening':
+    }
+    case 'evening': {
       return 17;
+    }
     case 'pm':
     case 'noon':
-    case 'afternoon':
+    case 'afternoon': {
       return 12;
+    }
     case 'am':
     case 'midnight':
     case 'night':
-    default:
+    default: {
       return 0;
+    }
   }
 }
 

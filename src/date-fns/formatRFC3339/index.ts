@@ -1,6 +1,8 @@
-import { isValid } from '../isValid/index';
-import { toDate } from '../toDate/index';
-import { addLeadingZeros } from '../_lib/addLeadingZeros/index';
+// date-fns/formatRFC3339/index.ts
+
+import { isValid } from '../isValid/index.ts';
+import { toDate } from '../toDate/index.ts';
+import { addLeadingZeros } from '../_lib/addLeadingZeros/index.ts';
 
 /**
  * The {@link formatRFC3339} function options.
@@ -62,14 +64,16 @@ export function formatRFC3339<DateType extends Date>(
   let fractionalSecond = '';
   if (fractionDigits > 0) {
     const milliseconds = _date.getMilliseconds();
-    const fractionalSeconds = Math.trunc(milliseconds * Math.pow(10, fractionDigits - 3));
-    fractionalSecond = '.' + addLeadingZeros(fractionalSeconds, fractionDigits);
+    const fractionalSeconds = Math.trunc(milliseconds * 10 ** (fractionDigits - 3));
+    fractionalSecond = `.${addLeadingZeros(fractionalSeconds, fractionDigits)}`;
   }
 
   let offset = '';
   const tzOffset = _date.getTimezoneOffset();
 
-  if (tzOffset !== 0) {
+  if (tzOffset === 0) {
+    offset = 'Z';
+  } else {
     const absoluteOffset = Math.abs(tzOffset);
     const hourOffset = addLeadingZeros(Math.trunc(absoluteOffset / 60), 2);
     const minuteOffset = addLeadingZeros(absoluteOffset % 60, 2);
@@ -77,8 +81,6 @@ export function formatRFC3339<DateType extends Date>(
     const sign = tzOffset < 0 ? '+' : '-';
 
     offset = `${sign}${hourOffset}:${minuteOffset}`;
-  } else {
-    offset = 'Z';
   }
 
   return `${year}-${month}-${day}T${hour}:${minute}:${second}${fractionalSecond}${offset}`;

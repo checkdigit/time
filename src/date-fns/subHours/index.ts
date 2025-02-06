@@ -1,4 +1,6 @@
-import { addHours } from '../addHours/index';
+// date-fns/subHours/index.ts
+
+import { addHours } from '../addHours/index.ts';
 
 /**
  * @name subHours

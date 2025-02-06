@@ -1,6 +1,8 @@
-import { getRoundingMethod } from '../_lib/getRoundingMethod/index';
-import { differenceInDays } from '../differenceInDays/index';
-import type { RoundingOptions } from '../types';
+// date-fns/differenceInWeeks/index.ts
+
+import { getRoundingMethod } from '../_lib/getRoundingMethod/index.ts';
+import { differenceInDays } from '../differenceInDays/index.ts';
+import type { RoundingOptions } from '../types.ts';
 
 /**
  * The {@link differenceInWeeks} function options.

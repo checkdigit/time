@@ -1,9 +1,8 @@
-/* eslint-disable no-unused-vars */
+// date-fns/types.ts
 
-import type { Locale } from './locale/types';
+import type { Locale } from './locale/types.ts';
 
-export type * from './locale/types';
-export type * from './fp/types';
+export type * from './locale/types.ts';
 
 /**
  * The generic date constructor. Replicates the Date constructor. Used to build
@@ -176,7 +175,7 @@ export type ISOStringFormat = 'extended' | 'basic';
  */
 export type ISOStringRepresentation = 'complete' | 'date' | 'time';
 
-/// Function options types
+// / Function options types
 
 /**
  * The step function options. Used to build function options.

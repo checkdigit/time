@@ -1,7 +1,9 @@
-import { constructFrom } from '../constructFrom/index';
-import { differenceInCalendarDays } from '../differenceInCalendarDays/index';
-import { startOfISOWeekYear } from '../startOfISOWeekYear/index';
-import { toDate } from '../toDate/index';
+// date-fns/setISOWeekYear/index.ts
+
+import { constructFrom } from '../constructFrom/index.ts';
+import { differenceInCalendarDays } from '../differenceInCalendarDays/index.ts';
+import { startOfISOWeekYear } from '../startOfISOWeekYear/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name setISOWeekYear

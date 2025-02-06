@@ -1,6 +1,8 @@
-import { toDate } from '../toDate/index';
-import type { LocalizedOptions, WeekOptions } from '../types';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
+// date-fns/endOfWeek/index.ts
+
+import { toDate } from '../toDate/index.ts';
+import type { LocalizedOptions, WeekOptions } from '../types.ts';
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
 
 /**
  * The {@link endOfWeek} function options.

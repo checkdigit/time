@@ -1,4 +1,6 @@
-import { addMilliseconds } from '../addMilliseconds/index';
+// date-fns/addSeconds/index.ts
+
+import { addMilliseconds } from '../addMilliseconds/index.ts';
 
 /**
  * @name addSeconds

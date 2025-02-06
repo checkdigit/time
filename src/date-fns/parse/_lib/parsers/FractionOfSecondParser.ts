@@ -1,12 +1,14 @@
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { mapValue, parseNDigits } from '../utils';
+// date-fns/parse/_lib/parsers/FractionOfSecondParser.ts
+
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { mapValue, parseNDigits } from '../utils.ts';
 
 export class FractionOfSecondParser extends Parser<number> {
   priority = 30;
 
   parse(dateString: string, token: string): ParseResult<number> {
-    const valueCallback = (value: number) => Math.trunc(value * Math.pow(10, -token.length + 3));
+    const valueCallback = (value: number) => Math.trunc(value * 10 ** (-token.length + 3));
     return mapValue(parseNDigits(token.length, dateString), valueCallback);
   }
 
@@ -15,5 +17,5 @@ export class FractionOfSecondParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['t', 'T'];
+  incompatibleTokens = ['t', 'T'] as string[];
 }

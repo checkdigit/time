@@ -1,4 +1,6 @@
-import { endOfWeek } from '../endOfWeek/index';
+// date-fns/endOfISOWeek/index.ts
+
+import { endOfWeek } from '../endOfWeek/index.ts';
 
 /**
  * @name endOfISOWeek

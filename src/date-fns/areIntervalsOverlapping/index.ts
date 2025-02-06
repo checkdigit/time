@@ -1,5 +1,7 @@
-import { toDate } from '../toDate/index';
-import type { Interval } from '../types';
+// date-fns/areIntervalsOverlapping/index.ts
+
+import { toDate } from '../toDate/index.ts';
+import type { Interval } from '../types.ts';
 
 /**
  * The {@link areIntervalsOverlapping} function options.
@@ -73,7 +75,9 @@ export function areIntervalsOverlapping(
     (a, b) => a - b,
   );
 
-  if (options?.inclusive) return leftStartTime! <= rightEndTime! && rightStartTime! <= leftEndTime!;
+  if (options?.inclusive) {
+    return leftStartTime! <= rightEndTime! && rightStartTime! <= leftEndTime!;
+  }
 
   return leftStartTime! < rightEndTime! && rightStartTime! < leftEndTime!;
 }

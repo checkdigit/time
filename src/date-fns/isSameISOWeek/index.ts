@@ -1,4 +1,6 @@
-import { isSameWeek } from '../isSameWeek/index';
+// date-fns/isSameISOWeek/index.ts
+
+import { isSameWeek } from '../isSameWeek/index.ts';
 
 /**
  * @name isSameISOWeek

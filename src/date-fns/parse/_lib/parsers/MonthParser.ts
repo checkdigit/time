@@ -1,11 +1,13 @@
-import type { Match } from '../../../locale/types';
-import { numericPatterns } from '../constants';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { mapValue, parseNDigits, parseNumericPattern } from '../utils';
+// date-fns/parse/_lib/parsers/MonthParser.ts
+
+import type { Match } from '../../../locale/types.ts';
+import { numericPatterns } from '../constants.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { mapValue, parseNDigits, parseNumericPattern } from '../utils.ts';
 
 export class MonthParser extends Parser<number> {
-  incompatibleTokens = ['Y', 'R', 'q', 'Q', 'L', 'w', 'I', 'D', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['Y', 'R', 'q', 'Q', 'L', 'w', 'I', 'D', 'i', 'e', 'c', 't', 'T'];
   priority = 110;
 
   parse(dateString: string, token: string, match: Match): ParseResult<number> {
@@ -13,36 +15,41 @@ export class MonthParser extends Parser<number> {
 
     switch (token) {
       // 1, 2, ..., 12
-      case 'M':
+      case 'M': {
         return mapValue(parseNumericPattern(numericPatterns.month, dateString), valueCallback);
+      }
       // 01, 02, ..., 12
-      case 'MM':
+      case 'MM': {
         return mapValue(parseNDigits(2, dateString), valueCallback);
+      }
       // 1st, 2nd, ..., 12th
-      case 'Mo':
+      case 'Mo': {
         return mapValue(
           match.ordinalNumber(dateString, {
             unit: 'month',
           }),
           valueCallback,
         );
+      }
       // Jan, Feb, ..., Dec
-      case 'MMM':
+      case 'MMM': {
         return (
           match.month(dateString, {
             width: 'abbreviated',
             context: 'formatting',
           }) || match.month(dateString, { width: 'narrow', context: 'formatting' })
         );
+      }
       // J, F, ..., D
-      case 'MMMMM':
+      case 'MMMMM': {
         return match.month(dateString, {
           width: 'narrow',
           context: 'formatting',
         });
+      }
       // January, February, ..., December
       case 'MMMM':
-      default:
+      default: {
         return (
           match.month(dateString, { width: 'wide', context: 'formatting' }) ||
           match.month(dateString, {
@@ -51,6 +58,7 @@ export class MonthParser extends Parser<number> {
           }) ||
           match.month(dateString, { width: 'narrow', context: 'formatting' })
         );
+      }
     }
   }
 

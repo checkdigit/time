@@ -1,4 +1,6 @@
-import tzParseTimezone from '../_lib/tzParseTimezone';
+// date-fns-tz/getTimezoneOffset/index.ts
+
+import tzParseTimezone from '../_lib/tzParseTimezone/index.ts';
 
 /**
  * @name getTimezoneOffset

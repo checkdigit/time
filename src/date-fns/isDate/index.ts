@@ -1,3 +1,5 @@
+// date-fns/isDate/index.ts
+
 /**
  * @name isDate
  * @category Common Helpers

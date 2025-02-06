@@ -1,5 +1,7 @@
-import { setMonth } from '../setMonth/index';
-import { toDate } from '../toDate/index';
+// date-fns/setQuarter/index.ts
+
+import { setMonth } from '../setMonth/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name setQuarter

@@ -1,8 +1,10 @@
-import { addDays } from '../addDays/index';
-import { addMonths } from '../addMonths/index';
-import { constructFrom } from '../constructFrom/index';
-import { toDate } from '../toDate/index';
-import type { Duration } from '../types';
+// date-fns/add/index.ts
+
+import { addDays } from '../addDays/index.ts';
+import { addMonths } from '../addMonths/index.ts';
+import { constructFrom } from '../constructFrom/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { Duration } from '../types.ts';
 
 /**
  * @name add

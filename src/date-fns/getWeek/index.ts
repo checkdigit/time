@@ -1,8 +1,10 @@
-import { millisecondsInWeek } from '../constants/index';
-import { startOfWeek } from '../startOfWeek/index';
-import { startOfWeekYear } from '../startOfWeekYear/index';
-import { toDate } from '../toDate/index';
-import type { FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types';
+// date-fns/getWeek/index.ts
+
+import { millisecondsInWeek } from '../constants/index.ts';
+import { startOfWeek } from '../startOfWeek/index.ts';
+import { startOfWeekYear } from '../startOfWeekYear/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link getWeek} function options.

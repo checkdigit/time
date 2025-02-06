@@ -1,8 +1,10 @@
-import { getDate } from '../getDate/index';
-import { getDay } from '../getDay/index';
-import { startOfMonth } from '../startOfMonth/index';
-import type { LocalizedOptions, WeekOptions } from '../types';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
+// date-fns/getWeekOfMonth/index.ts
+
+import { getDate } from '../getDate/index.ts';
+import { getDay } from '../getDay/index.ts';
+import { startOfMonth } from '../startOfMonth/index.ts';
+import type { LocalizedOptions, WeekOptions } from '../types.ts';
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
 
 /**
  * The {@link getWeekOfMonth} function options.
@@ -42,12 +44,16 @@ export function getWeekOfMonth<DateType extends Date>(
     0;
 
   const currentDayOfMonth = getDate(date);
-  if (isNaN(currentDayOfMonth)) return NaN;
+  if (isNaN(currentDayOfMonth)) {
+    return Number.NaN;
+  }
 
   const startWeekDay = getDay(startOfMonth(date));
 
   let lastDayOfFirstWeek = weekStartsOn - startWeekDay;
-  if (lastDayOfFirstWeek <= 0) lastDayOfFirstWeek += 7;
+  if (lastDayOfFirstWeek <= 0) {
+    lastDayOfFirstWeek += 7;
+  }
 
   const remainingDaysAfterFirstWeek = currentDayOfMonth - lastDayOfFirstWeek;
   return Math.ceil(remainingDaysAfterFirstWeek / 7) + 1;

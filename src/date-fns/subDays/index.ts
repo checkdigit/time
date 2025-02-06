@@ -1,4 +1,6 @@
-import { addDays } from '../addDays/index';
+// date-fns/subDays/index.ts
+
+import { addDays } from '../addDays/index.ts';
 
 /**
  * @name subDays

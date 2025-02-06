@@ -1,6 +1,14 @@
-/* eslint-disable no-unused-vars */
+// date-fns/locale/types.ts
 
-import type { Day, Era, FirstWeekContainsDateOptions, LocalizedOptions, Month, Quarter, WeekOptions } from '../types';
+import type {
+  Day,
+  Era,
+  FirstWeekContainsDateOptions,
+  LocalizedOptions,
+  Month,
+  Quarter,
+  WeekOptions,
+} from '../types.ts';
 
 /**
  * The locale object with all functions and data needed to parse and format
@@ -28,7 +36,7 @@ export interface Locale {
  */
 export interface LocaleOptions extends WeekOptions, FirstWeekContainsDateOptions {}
 
-/// Format distance types
+// / Format distance types
 
 /**
  * The function that takes a token (i.e. halfAMinute) passed by `formatDistance`
@@ -40,12 +48,16 @@ export interface LocaleOptions extends WeekOptions, FirstWeekContainsDateOptions
  *
  * @returns The localized distance in words
  */
-export type FormatDistanceFn = (token: FormatDistanceToken, count: number, options?: FormatDistanceFnOptions) => string;
+export type FormatDistanceFn = (
+  token: FormatDistanceToken,
+  count: number,
+  options?: FormatDistanceFunctionOptions,
+) => string;
 
 /**
  * The {@link FormatDistanceFn} function options.
  */
-export interface FormatDistanceFnOptions {
+export interface FormatDistanceFunctionOptions {
   /** Add "X ago"/"in X" in the locale language */
   addSuffix?: boolean;
   /** The distance vector. -1 represents past and 1 future. Tells which suffix
@@ -61,7 +73,7 @@ export type FormatDistanceTokenFn = (
   /** The distance as number to format */
   count: number,
   /** The object with options */
-  options?: FormatDistanceFnOptions,
+  options?: FormatDistanceFunctionOptions,
 ) => string;
 
 /**
@@ -76,9 +88,7 @@ export type FormatDistanceTokenFn = (
  *
  * @typeParam Template - The property value type.
  */
-export type FormatDistanceLocale<Template> = {
-  [Token in FormatDistanceToken]: Template;
-};
+export type FormatDistanceLocale<Template> = Record<FormatDistanceToken, Template>;
 
 /**
  * The token used in the format distance function. Represents the distance unit
@@ -102,7 +112,7 @@ export type FormatDistanceToken =
   | 'overXYears'
   | 'almostXYears';
 
-/// Format relative types
+// / Format relative types
 
 /**
  * The locale function that does the work for the `formatRelative` function.
@@ -120,13 +130,13 @@ export type FormatRelativeFn = <DateType extends Date>(
   token: FormatRelativeToken,
   date: DateType,
   baseDate: DateType,
-  options?: FormatRelativeFnOptions,
+  options?: FormatRelativeFunctionOptions,
 ) => string;
 
 /**
  * The {@link FormatRelativeFn} function options.
  */
-export interface FormatRelativeFnOptions extends WeekOptions, LocalizedOptions<'options' | 'formatRelative'> {}
+export interface FormatRelativeFunctionOptions extends WeekOptions, LocalizedOptions<'options' | 'formatRelative'> {}
 
 /**
  * The locale function used inside the {@link FormatRelativeFn} function
@@ -141,13 +151,13 @@ export interface FormatRelativeFnOptions extends WeekOptions, LocalizedOptions<'
 export type FormatRelativeTokenFn = <DateType extends Date>(
   date: DateType | number | string,
   baseDate: DateType | number | string,
-  options?: FormatRelativeTokenFnOptions,
+  options?: FormatRelativeTokenFunctionOptions,
 ) => string;
 
 /**
  * The {@link FormatRelativeTokenFn} function options.
  */
-export interface FormatRelativeTokenFnOptions extends WeekOptions {}
+export interface FormatRelativeTokenFunctionOptions extends WeekOptions {}
 
 /**
  * The token used in format relative function. Represents the time unit.
@@ -164,7 +174,7 @@ export interface FormatPart {
   value: string;
 }
 
-/// Localize types
+// / Localize types
 
 /**
  * The object with functions used to localize various values. Part of the public
@@ -198,12 +208,15 @@ export interface Localize {
  *
  * @returns The localized string
  */
-export type LocalizeFn<Value extends LocaleUnitValue | number> = (value: Value, options?: LocalizeFnOptions) => string;
+export type LocalizeFn<Value extends LocaleUnitValue | number> = (
+  value: Value,
+  options?: LocalizeFunctionOptions,
+) => string;
 
 /**
  * The {@link LocalizeFn} function options.
  */
-export interface LocalizeFnOptions {
+export interface LocalizeFunctionOptions {
   /** The width to use formatting the value, defines how short or long
    * the formatted string might be. */
   width?: LocaleWidth;
@@ -215,7 +228,7 @@ export interface LocalizeFnOptions {
   unit?: LocaleUnit;
 }
 
-/// Match types
+// / Match types
 
 /**
  * The object with functions used to match and parse various localized values.
@@ -248,16 +261,16 @@ export interface Match {
  * @returns The match result or null if match failed
  */
 export type MatchFn<Result, ExtraOptions = Record<string, unknown>> = (
-  str: string,
-  options?: MatchFnOptions<Result> & ExtraOptions,
-) => MatchFnResult<Result> | null;
+  string_: string,
+  options?: MatchFunctionOptions<Result> & ExtraOptions,
+) => MatchFunctionResult<Result> | null;
 
 /**
  * The {@link MatchFn} function options.
  *
  * @typeParam Result - The matched value type.
  */
-export interface MatchFnOptions<Result> {
+export interface MatchFunctionOptions<Result> {
   /** The width to use matching the value, defines how short or long
    * the matched string might be. */
   width?: LocaleWidth;
@@ -282,21 +295,21 @@ export interface MatchFnOptions<Result> {
  *
  * @returns The matched value
  */
-export type MatchValueCallback<Arg, Result> = (value: Arg) => Result;
+export type MatchValueCallback<Argument, Result> = (value: Argument) => Result;
 
 /**
  * The {@link MatchFn} function result.
  *
  * @typeParam Result - The matched value type.
  */
-export interface MatchFnResult<Result> {
+export interface MatchFunctionResult<Result> {
   /** The matched value parsed as the corresponding unit type */
   value: Result;
   /** The remaining string after parsing */
   rest: string;
 }
 
-/// Format long types
+// / Format long types
 
 /**
  * The object with functions that return localized formats. Long stands for
@@ -319,12 +332,12 @@ export interface FormatLong {
  *
  * @returns The localized string
  */
-export type FormatLongFn = (options: FormatLongFnOptions) => string;
+export type FormatLongFn = (options: FormatLongFunctionOptions) => string;
 
 /**
  * The {@link FormatLongFn} function options.
  */
-export interface FormatLongFnOptions {
+export interface FormatLongFunctionOptions {
   /** Format width to set */
   width?: FormatLongWidth;
 }
@@ -335,7 +348,7 @@ export interface FormatLongFnOptions {
  */
 export type FormatLongWidth = 'full' | 'long' | 'medium' | 'short' | 'any';
 
-/// Common types
+// / Common types
 
 /**
  * The formatting unit value, represents the raw value that can be formatted.

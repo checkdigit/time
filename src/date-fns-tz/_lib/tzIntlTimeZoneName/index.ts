@@ -1,20 +1,22 @@
+// date-fns-tz/_lib/tzIntlTimeZoneName/index.ts
+
 /**
  * Returns the formatted time zone name of the provided `timeZone` or the current
  * system time zone if omitted, accounting for DST according to the UTC value of
  * the date.
  */
-import type { Locale } from '../../../date-fns/locale/types';
+import type { Locale } from '../../../date-fns/locale/types.ts';
 
 export default function tzIntlTimeZoneName(
   length: 'short' | 'long' | 'shortOffset' | 'longOffset' | 'shortGeneric' | 'longGeneric',
   date: Date,
   options: { timeZone: string; locale?: Locale },
-) {
+): string | undefined {
   const dtf = getDTF(length, options.timeZone, options.locale);
   return partsTimeZone(dtf, date);
 }
 
-function partsTimeZone(dtf: Intl.DateTimeFormat, date: Date) {
+function partsTimeZone(dtf: Intl.DateTimeFormat, date: Date): string | undefined {
   const formatted = dtf.formatToParts(date);
   for (let i = formatted.length - 1; i >= 0; --i) {
     if (formatted[i]?.type === 'timeZoneName') {

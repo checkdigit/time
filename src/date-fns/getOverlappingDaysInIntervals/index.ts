@@ -1,7 +1,9 @@
-import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index';
-import { millisecondsInDay } from '../constants/index';
-import { toDate } from '../toDate/index';
-import type { Interval } from '../types';
+// date-fns/getOverlappingDaysInIntervals/index.ts
+
+import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index.ts';
+import { millisecondsInDay } from '../constants/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { Interval } from '../types.ts';
 
 /**
  * @name getOverlappingDaysInIntervals
@@ -49,7 +51,9 @@ export function getOverlappingDaysInIntervals<DateType extends Date>(
 
   // Prevent NaN result if intervals don't overlap at all.
   const isOverlapping = leftStart! < rightEnd! && rightStart! < leftEnd!;
-  if (!isOverlapping) return 0;
+  if (!isOverlapping) {
+    return 0;
+  }
 
   // Remove the timezone offset to negate the DST effect on calculations.
   const overlapLeft = rightStart! < leftStart! ? leftStart : rightStart;

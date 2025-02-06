@@ -1,11 +1,13 @@
-import { defaultLocale } from '../_lib/defaultLocale/index';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
-import { getRoundingMethod } from '../_lib/getRoundingMethod/index';
-import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index';
-import { compareAsc } from '../compareAsc/index';
-import { millisecondsInMinute, minutesInDay, minutesInMonth, minutesInYear } from '../constants/index';
-import { toDate } from '../toDate/index';
-import type { LocalizedOptions, RoundingOptions } from '../types';
+// date-fns/formatDistanceStrict/index.ts
+
+import { defaultLocale } from '../_lib/defaultLocale/index.ts';
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
+import { getRoundingMethod } from '../_lib/getRoundingMethod/index.ts';
+import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index.ts';
+import { compareAsc } from '../compareAsc/index.ts';
+import { millisecondsInMinute, minutesInDay, minutesInMonth, minutesInYear } from '../constants/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { LocalizedOptions, RoundingOptions } from '../types.ts';
 
 /**
  * The {@link formatDistanceStrict} function options.
@@ -116,7 +118,7 @@ export function formatDistanceStrict<DateType extends Date>(
     throw new RangeError('Invalid time value');
   }
 
-  const localizeOptions = Object.assign({}, options, {
+  const localizeOptions: FormatDistanceStrictOptions = Object.assign({}, options, {
     addSuffix: options?.addSuffix,
     comparison: comparison as -1 | 0 | 1,
   });

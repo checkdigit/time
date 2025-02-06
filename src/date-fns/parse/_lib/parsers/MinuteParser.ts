@@ -1,20 +1,25 @@
-import type { Match } from '../../../locale/types';
-import { numericPatterns } from '../constants';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { parseNDigits, parseNumericPattern } from '../utils';
+// date-fns/parse/_lib/parsers/MinuteParser.ts
+
+import type { Match } from '../../../locale/types.ts';
+import { numericPatterns } from '../constants.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { parseNDigits, parseNumericPattern } from '../utils.ts';
 
 export class MinuteParser extends Parser<number> {
   priority = 60;
 
   parse(dateString: string, token: string, match: Match): ParseResult<number> {
     switch (token) {
-      case 'm':
+      case 'm': {
         return parseNumericPattern(numericPatterns.minute, dateString);
-      case 'mo':
+      }
+      case 'mo': {
         return match.ordinalNumber(dateString, { unit: 'minute' });
-      default:
+      }
+      default: {
         return parseNDigits(token.length, dateString);
+      }
     }
   }
 
@@ -27,5 +32,5 @@ export class MinuteParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['t', 'T'];
+  incompatibleTokens: string[] = ['t', 'T'];
 }

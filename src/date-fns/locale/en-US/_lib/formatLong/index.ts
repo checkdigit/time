@@ -1,5 +1,7 @@
-import { buildFormatLongFn } from '../../../_lib/buildFormatLongFn/index';
-import type { FormatLong } from '../../../types';
+// date-fns/locale/en-US/_lib/formatLong/index.ts
+
+import { buildFormatLongFn as buildFormatLongFunction } from '../../../_lib/buildFormatLongFn/index.ts';
+import type { FormatLong } from '../../../types.ts';
 
 const dateFormats = {
   full: 'EEEE, MMMM do, y',
@@ -23,17 +25,17 @@ const dateTimeFormats = {
 };
 
 export const formatLong: FormatLong = {
-  date: buildFormatLongFn({
+  date: buildFormatLongFunction({
     formats: dateFormats,
     defaultWidth: 'full',
   }),
 
-  time: buildFormatLongFn({
+  time: buildFormatLongFunction({
     formats: timeFormats,
     defaultWidth: 'full',
   }),
 
-  dateTime: buildFormatLongFn({
+  dateTime: buildFormatLongFunction({
     formats: dateTimeFormats,
     defaultWidth: 'full',
   }),

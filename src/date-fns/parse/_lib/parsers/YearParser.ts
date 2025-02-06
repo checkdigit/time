@@ -1,7 +1,9 @@
-import type { Match } from '../../../locale/types';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { mapValue, normalizeTwoDigitYear, parseNDigits } from '../utils';
+// date-fns/parse/_lib/parsers/YearParser.ts
+
+import type { Match } from '../../../locale/types.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { mapValue, normalizeTwoDigitYear, parseNDigits } from '../utils.ts';
 
 export interface YearParserValue {
   year: number;
@@ -18,7 +20,7 @@ export interface YearParserValue {
 // | AD 12345 | 12345 | 45 | 12345 | 12345 | 12345 |
 export class YearParser extends Parser<YearParserValue> {
   priority = 130;
-  incompatibleTokens = ['Y', 'R', 'u', 'w', 'I', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['Y', 'R', 'u', 'w', 'I', 'i', 'e', 'c', 't', 'T'];
 
   parse(dateString: string, token: string, match: Match): ParseResult<YearParserValue> {
     const valueCallback = (year: number) => ({
@@ -27,17 +29,20 @@ export class YearParser extends Parser<YearParserValue> {
     });
 
     switch (token) {
-      case 'y':
+      case 'y': {
         return mapValue(parseNDigits(4, dateString), valueCallback);
-      case 'yo':
+      }
+      case 'yo': {
         return mapValue(
           match.ordinalNumber(dateString, {
             unit: 'year',
           }),
           valueCallback,
         );
-      default:
+      }
+      default: {
         return mapValue(parseNDigits(token.length, dateString), valueCallback);
+      }
     }
   }
 

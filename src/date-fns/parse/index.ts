@@ -1,22 +1,22 @@
-import { constructFrom } from '../constructFrom/index';
-import { getDefaultOptions } from '../getDefaultOptions/index';
-import { defaultLocale } from '../_lib/defaultLocale/index';
-import { toDate } from '../toDate/index';
-import type { AdditionalTokensOptions, FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types';
-import { longFormatters } from '../_lib/format/longFormatters/index';
+// date-fns/parse/index.ts
+
+import { constructFrom } from '../constructFrom/index.ts';
+import { getDefaultOptions } from '../getDefaultOptions/index.ts';
+import { defaultLocale } from '../_lib/defaultLocale/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { AdditionalTokensOptions, FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types.ts';
+import { longFormatters } from '../_lib/format/longFormatters/index.ts';
 import {
   isProtectedDayOfYearToken,
   isProtectedWeekYearToken,
   warnOrThrowProtectedError,
-} from '../_lib/protectedTokens/index';
-import { parsers } from './_lib/parsers/index';
-import type { Setter } from './_lib/Setter';
-import { DateToSystemTimezoneSetter } from './_lib/Setter';
-import type { ParseFlags, ParserOptions } from './_lib/types';
+} from '../_lib/protectedTokens/index.ts';
+import { parsers } from './_lib/parsers/index.ts';
+import { DateToSystemTimezoneSetter, type Setter } from './_lib/Setter.ts';
+import type { ParseFlags, ParserOptions } from './_lib/types.ts';
 
 // Rexports of internal for libraries to use.
 // See: https://github.com/date-fns/date-fns/issues/3638#issuecomment-1877082874
-export { longFormatters, parsers };
 
 /**
  * The {@link parse} function options.
@@ -348,8 +348,8 @@ const unescapedLatinCharacterRegExp = /[a-zA-Z]/;
  * //=> Sun Feb 28 2010 00:00:00
  */
 export function parse<DateType extends Date>(
-  dateStr: string,
-  formatStr: string,
+  dateString: string,
+  formatString: string,
   referenceDate: DateType | number | string,
   options?: ParseOptions,
 ): DateType {
@@ -370,15 +370,14 @@ export function parse<DateType extends Date>(
     defaultOptions.locale?.options?.weekStartsOn ??
     0;
 
-  if (formatStr === '') {
-    if (dateStr === '') {
+  if (formatString === '') {
+    if (dateString === '') {
       return toDate(referenceDate);
-    } else {
-      return constructFrom(referenceDate, NaN);
     }
+    return constructFrom(referenceDate, Number.NaN);
   }
 
-  const subFnOptions: ParserOptions = {
+  const subFunctionOptions: ParserOptions = {
     firstWeekContainsDate,
     weekStartsOn,
     locale,
@@ -387,7 +386,7 @@ export function parse<DateType extends Date>(
   // If timezone isn't specified, it will be set to the system timezone
   const setters: Setter[] = [new DateToSystemTimezoneSetter()];
 
-  const tokens = formatStr
+  const tokens = formatString
     .match(longFormattingTokensRegExp)!
     .map((substring) => {
       const firstCharacter = substring[0]!;
@@ -400,14 +399,14 @@ export function parse<DateType extends Date>(
     .join('')
     .match(formattingTokensRegExp)!;
 
-  const usedTokens: Array<{ token: string; fullToken: string }> = [];
+  const usedTokens: { token: string; fullToken: string }[] = [];
 
   for (let token of tokens) {
     if (!options?.useAdditionalWeekYearTokens && isProtectedWeekYearToken(token)) {
-      warnOrThrowProtectedError(token, formatStr, dateStr);
+      warnOrThrowProtectedError(token, formatString, dateString);
     }
     if (!options?.useAdditionalDayOfYearTokens && isProtectedDayOfYearToken(token)) {
-      warnOrThrowProtectedError(token, formatStr, dateStr);
+      warnOrThrowProtectedError(token, formatString, dateString);
     }
 
     const firstCharacter = token[0];
@@ -429,18 +428,18 @@ export function parse<DateType extends Date>(
 
       usedTokens.push({ token: firstCharacter!, fullToken: token });
 
-      const parseResult = parser.run(dateStr, token, locale.match, subFnOptions);
+      const parseResult = parser.run(dateString, token, locale.match, subFunctionOptions);
 
       if (!parseResult) {
-        return constructFrom(referenceDate, NaN);
+        return constructFrom(referenceDate, Number.NaN);
       }
 
       setters.push(parseResult.setter);
 
-      dateStr = parseResult.rest;
+      dateString = parseResult.rest;
     } else {
-      if (firstCharacter!.match(unescapedLatinCharacterRegExp)) {
-        throw new RangeError('Format string contains an unescaped latin alphabet character `' + firstCharacter + '`');
+      if (unescapedLatinCharacterRegExp.test(firstCharacter!)) {
+        throw new RangeError(`Format string contains an unescaped latin alphabet character \`${firstCharacter}\``);
       }
 
       // Replace two single quote characters with one single quote character
@@ -451,17 +450,17 @@ export function parse<DateType extends Date>(
       }
 
       // Cut token from string, or, if string doesn't match the token, return Invalid Date
-      if (dateStr.indexOf(token) === 0) {
-        dateStr = dateStr.slice(token.length);
+      if (dateString.startsWith(token)) {
+        dateString = dateString.slice(token.length);
       } else {
-        return constructFrom(referenceDate, NaN);
+        return constructFrom(referenceDate, Number.NaN);
       }
     }
   }
 
   // Check if the remaining input contains something other than whitespace
-  if (dateStr.length > 0 && notWhitespaceRegExp.test(dateStr)) {
-    return constructFrom(referenceDate, NaN);
+  if (dateString.length > 0 && notWhitespaceRegExp.test(dateString)) {
+    return constructFrom(referenceDate, Number.NaN);
   }
 
   const uniquePrioritySetters = setters
@@ -476,16 +475,16 @@ export function parse<DateType extends Date>(
   let date = toDate(referenceDate);
 
   if (isNaN(date.getTime())) {
-    return constructFrom(referenceDate, NaN);
+    return constructFrom(referenceDate, Number.NaN);
   }
 
   const flags: ParseFlags = {};
   for (const setter of uniquePrioritySetters) {
-    if (!setter!.validate(date, subFnOptions)) {
-      return constructFrom(referenceDate, NaN);
+    if (!setter!.validate(date, subFunctionOptions)) {
+      return constructFrom(referenceDate, Number.NaN);
     }
 
-    const result = setter!.set(date, flags, subFnOptions);
+    const result = setter!.set(date, flags, subFunctionOptions);
     // Result is tuple (date, flags)
     if (Array.isArray(result)) {
       date = result[0];
@@ -500,5 +499,8 @@ export function parse<DateType extends Date>(
 }
 
 function cleanEscapedString(input: string) {
-  return input.match(escapedStringRegExp)![1]!.replace(doubleQuoteRegExp, "'");
+  return escapedStringRegExp.exec(input)![1]!.replaceAll(doubleQuoteRegExp, "'");
 }
+
+export { longFormatters } from '../_lib/format/longFormatters/index.ts';
+export { parsers } from './_lib/parsers/index.ts';

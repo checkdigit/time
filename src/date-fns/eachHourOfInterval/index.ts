@@ -1,6 +1,8 @@
-import { addHours } from '../addHours/index';
-import { toDate } from '../toDate/index';
-import type { Interval, StepOptions } from '../types';
+// date-fns/eachHourOfInterval/index.ts
+
+import { addHours } from '../addHours/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { Interval, StepOptions } from '../types.ts';
 
 /**
  * The {@link eachHourOfInterval} function options.
@@ -48,7 +50,9 @@ export function eachHourOfInterval<DateType extends Date>(
   currentDate.setMinutes(0, 0, 0);
 
   let step = options?.step ?? 1;
-  if (!step) return [];
+  if (!step) {
+    return [];
+  }
   if (step < 0) {
     step = -step;
     reversed = !reversed;

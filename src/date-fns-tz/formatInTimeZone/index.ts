@@ -1,7 +1,9 @@
-import cloneObject from '../date-fns-v2-lib/cloneObject';
-import format from '../format';
-import type { OptionsWithTZ } from '../types';
-import utcToZonedTime from '../utcToZonedTime';
+// date-fns-tz/formatInTimeZone/index.ts
+
+import cloneObject from '../date-fns-v2-lib/cloneObject/index.ts';
+import format from '../format/index.ts';
+import type { OptionsWithTZ } from '../types.ts';
+import utcToZonedTime from '../utcToZonedTime/index.ts';
 
 /**
  * @name formatInTimeZone

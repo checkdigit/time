@@ -1,6 +1,8 @@
-import { millisecondsInWeek } from '../constants/index';
-import { startOfISOWeek } from '../startOfISOWeek/index';
-import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index';
+// date-fns/differenceInCalendarISOWeeks/index.ts
+
+import { millisecondsInWeek } from '../constants/index.ts';
+import { startOfISOWeek } from '../startOfISOWeek/index.ts';
+import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index.ts';
 
 /**
  * @name differenceInCalendarISOWeeks

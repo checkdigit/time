@@ -1,6 +1,8 @@
-import { isValid } from '../isValid/index';
-import { toDate } from '../toDate/index';
-import { addLeadingZeros } from '../_lib/addLeadingZeros/index';
+// date-fns/formatRFC7231/index.ts
+
+import { isValid } from '../isValid/index.ts';
+import { toDate } from '../toDate/index.ts';
+import { addLeadingZeros } from '../_lib/addLeadingZeros/index.ts';
 
 const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 

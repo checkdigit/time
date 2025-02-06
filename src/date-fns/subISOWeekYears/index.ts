@@ -1,4 +1,6 @@
-import { addISOWeekYears } from '../addISOWeekYears/index';
+// date-fns/subISOWeekYears/index.ts
+
+import { addISOWeekYears } from '../addISOWeekYears/index.ts';
 
 /**
  * @name subISOWeekYears

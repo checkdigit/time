@@ -1,4 +1,6 @@
-import { getISOWeekYear } from '../getISOWeekYear/index';
+// date-fns/differenceInCalendarISOWeekYears/index.ts
+
+import { getISOWeekYear } from '../getISOWeekYear/index.ts';
 
 /**
  * @name differenceInCalendarISOWeekYears

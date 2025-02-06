@@ -1,4 +1,6 @@
-import { nextDay } from '../nextDay/index';
+// date-fns/nextMonday/index.ts
+
+import { nextDay } from '../nextDay/index.ts';
 
 /**
  * @name nextMonday

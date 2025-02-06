@@ -1,4 +1,6 @@
-import { daysInYear } from '../constants/index';
+// date-fns/yearsToDays/index.ts
+
+import { daysInYear } from '../constants/index.ts';
 
 /**
  * @name yearsToDays

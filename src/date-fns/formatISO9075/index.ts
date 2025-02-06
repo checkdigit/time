@@ -1,7 +1,9 @@
-import { isValid } from '../isValid/index';
-import { toDate } from '../toDate/index';
-import type { ISOFormatOptions } from '../types';
-import { addLeadingZeros } from '../_lib/addLeadingZeros/index';
+// date-fns/formatISO9075/index.ts
+
+import { isValid } from '../isValid/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ISOFormatOptions } from '../types.ts';
+import { addLeadingZeros } from '../_lib/addLeadingZeros/index.ts';
 
 /**
  * The {@link formatISO9075} function options.

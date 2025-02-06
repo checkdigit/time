@@ -1,5 +1,7 @@
-import { constructNow } from '../constructNow/index';
-import { isSameYear } from '../isSameYear/index';
+// date-fns/isThisYear/index.ts
+
+import { constructNow } from '../constructNow/index.ts';
+import { isSameYear } from '../isSameYear/index.ts';
 
 /**
  * @name isThisYear

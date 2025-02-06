@@ -1,7 +1,9 @@
-import { compareAsc } from '../compareAsc/index';
-import { differenceInCalendarMonths } from '../differenceInCalendarMonths/index';
-import { isLastDayOfMonth } from '../isLastDayOfMonth/index';
-import { toDate } from '../toDate/index';
+// date-fns/differenceInMonths/index.ts
+
+import { compareAsc } from '../compareAsc/index.ts';
+import { differenceInCalendarMonths } from '../differenceInCalendarMonths/index.ts';
+import { isLastDayOfMonth } from '../isLastDayOfMonth/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name differenceInMonths

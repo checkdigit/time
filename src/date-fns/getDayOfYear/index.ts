@@ -1,6 +1,8 @@
-import { differenceInCalendarDays } from '../differenceInCalendarDays/index';
-import { startOfYear } from '../startOfYear/index';
-import { toDate } from '../toDate/index';
+// date-fns/getDayOfYear/index.ts
+
+import { differenceInCalendarDays } from '../differenceInCalendarDays/index.ts';
+import { startOfYear } from '../startOfYear/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name getDayOfYear

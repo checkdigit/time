@@ -1,6 +1,8 @@
-import { compareAsc } from '../compareAsc/index';
-import { differenceInCalendarYears } from '../differenceInCalendarYears/index';
-import { toDate } from '../toDate/index';
+// date-fns/differenceInYears/index.ts
+
+import { compareAsc } from '../compareAsc/index.ts';
+import { differenceInCalendarYears } from '../differenceInCalendarYears/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name differenceInYears

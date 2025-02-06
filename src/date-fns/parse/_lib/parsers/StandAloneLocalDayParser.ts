@@ -1,8 +1,10 @@
-import type { Match } from '../../../locale/types';
-import { setDay } from '../../../setDay/index';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult, ParserOptions } from '../types';
-import { mapValue, parseNDigits } from '../utils';
+// date-fns/parse/_lib/parsers/StandAloneLocalDayParser.ts
+
+import type { Match } from '../../../locale/types.ts';
+import { setDay } from '../../../setDay/index.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult, ParserOptions } from '../types.ts';
+import { mapValue, parseNDigits } from '../utils.ts';
 
 // Stand-alone local day of week
 export class StandAloneLocalDayParser extends Parser<number> {
@@ -18,18 +20,21 @@ export class StandAloneLocalDayParser extends Parser<number> {
     switch (token) {
       // 3
       case 'c':
-      case 'cc': // 03
+      case 'cc': {
+        // 03
         return mapValue(parseNDigits(token.length, dateString), valueCallback);
+      }
       // 3rd
-      case 'co':
+      case 'co': {
         return mapValue(
           match.ordinalNumber(dateString, {
             unit: 'day',
           }),
           valueCallback,
         );
+      }
       // Tue
-      case 'ccc':
+      case 'ccc': {
         return (
           match.day(dateString, {
             width: 'abbreviated',
@@ -38,21 +43,24 @@ export class StandAloneLocalDayParser extends Parser<number> {
           match.day(dateString, { width: 'short', context: 'standalone' }) ||
           match.day(dateString, { width: 'narrow', context: 'standalone' })
         );
+      }
       // T
-      case 'ccccc':
+      case 'ccccc': {
         return match.day(dateString, {
           width: 'narrow',
           context: 'standalone',
         });
+      }
       // Tu
-      case 'cccccc':
+      case 'cccccc': {
         return (
           match.day(dateString, { width: 'short', context: 'standalone' }) ||
           match.day(dateString, { width: 'narrow', context: 'standalone' })
         );
+      }
       // Tuesday
       case 'cccc':
-      default:
+      default: {
         return (
           match.day(dateString, { width: 'wide', context: 'standalone' }) ||
           match.day(dateString, {
@@ -62,6 +70,7 @@ export class StandAloneLocalDayParser extends Parser<number> {
           match.day(dateString, { width: 'short', context: 'standalone' }) ||
           match.day(dateString, { width: 'narrow', context: 'standalone' })
         );
+      }
     }
   }
 
@@ -75,5 +84,5 @@ export class StandAloneLocalDayParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['y', 'R', 'u', 'q', 'Q', 'M', 'L', 'I', 'd', 'D', 'E', 'i', 'e', 't', 'T'];
+  incompatibleTokens: string[] = ['y', 'R', 'u', 'q', 'Q', 'M', 'L', 'I', 'd', 'D', 'E', 'i', 'e', 't', 'T'];
 }

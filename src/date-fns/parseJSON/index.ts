@@ -1,3 +1,5 @@
+// date-fns/parseJSON/index.ts
+
 /**
  * @name parseJSON
  * @category Common Helpers
@@ -32,9 +34,9 @@
  *
  * @returns The parsed date in the local time zone
  */
-export function parseJSON(dateStr: string): Date {
-  const parts = dateStr.match(
-    /(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2}):(\d{2})(?:\.(\d{0,7}))?(?:Z|(.)(\d{2}):?(\d{2})?)?/,
+export function parseJSON(dateString: string): Date {
+  const parts = /(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2}):(\d{2})(?:\.(\d{0,7}))?(?:Z|(.)(\d{2}):?(\d{2})?)?/.exec(
+    dateString,
   );
   if (parts) {
     // Group 8 matches the sign
@@ -46,9 +48,9 @@ export function parseJSON(dateStr: string): Date {
         +parts[4]! - (+parts[9]! || 0) * (parts[8] == '-' ? -1 : 1),
         +parts[5]! - (+parts[10]! || 0) * (parts[8] == '-' ? -1 : 1),
         +parts[6]!,
-        +((parts[7] || '0') + '00').substring(0, 3),
+        +`${parts[7] || '0'}00`.slice(0, 3),
       ),
     );
   }
-  return new Date(NaN);
+  return new Date(Number.NaN);
 }

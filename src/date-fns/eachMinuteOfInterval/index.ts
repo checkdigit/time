@@ -1,7 +1,9 @@
-import { addMinutes } from '../addMinutes/index';
-import { startOfMinute } from '../startOfMinute/index';
-import { toDate } from '../toDate/index';
-import type { Interval, StepOptions } from '../types';
+// date-fns/eachMinuteOfInterval/index.ts
+
+import { addMinutes } from '../addMinutes/index.ts';
+import { startOfMinute } from '../startOfMinute/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { Interval, StepOptions } from '../types.ts';
 
 /**
  * The {@link eachMinuteOfInterval} function options.
@@ -48,7 +50,9 @@ export function eachMinuteOfInterval<DateType extends Date>(
   let currentDate = reversed ? endDate : startDate;
 
   let step = options?.step ?? 1;
-  if (!step) return [];
+  if (!step) {
+    return [];
+  }
   if (step < 0) {
     step = -step;
     reversed = !reversed;

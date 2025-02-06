@@ -1,6 +1,8 @@
-import { millisecondsInDay } from '../constants/index';
-import { startOfDay } from '../startOfDay/index';
-import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index';
+// date-fns/differenceInCalendarDays/index.ts
+
+import { millisecondsInDay } from '../constants/index.ts';
+import { startOfDay } from '../startOfDay/index.ts';
+import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index.ts';
 
 /**
  * @name differenceInCalendarDays

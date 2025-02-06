@@ -1,8 +1,10 @@
-import type { Match } from '../../../locale/types';
-import { setISODay } from '../../../setISODay/index';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { mapValue, parseNDigits } from '../utils';
+// date-fns/parse/_lib/parsers/ISODayParser.ts
+
+import type { Match } from '../../../locale/types.ts';
+import { setISODay } from '../../../setISODay/index.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { mapValue, parseNDigits } from '../utils.ts';
 
 // ISO day of week
 export class ISODayParser extends Parser<number> {
@@ -19,13 +21,16 @@ export class ISODayParser extends Parser<number> {
     switch (token) {
       // 2
       case 'i':
-      case 'ii': // 02
+      case 'ii': {
+        // 02
         return parseNDigits(token.length, dateString);
+      }
       // 2nd
-      case 'io':
+      case 'io': {
         return match.ordinalNumber(dateString, { unit: 'day' });
+      }
       // Tue
-      case 'iii':
+      case 'iii': {
         return mapValue(
           match.day(dateString, {
             width: 'abbreviated',
@@ -41,8 +46,9 @@ export class ISODayParser extends Parser<number> {
             }),
           valueCallback,
         );
+      }
       // T
-      case 'iiiii':
+      case 'iiiii': {
         return mapValue(
           match.day(dateString, {
             width: 'narrow',
@@ -50,8 +56,9 @@ export class ISODayParser extends Parser<number> {
           }),
           valueCallback,
         );
+      }
       // Tu
-      case 'iiiiii':
+      case 'iiiiii': {
         return mapValue(
           match.day(dateString, {
             width: 'short',
@@ -63,9 +70,10 @@ export class ISODayParser extends Parser<number> {
             }),
           valueCallback,
         );
+      }
       // Tuesday
       case 'iiii':
-      default:
+      default: {
         return mapValue(
           match.day(dateString, {
             width: 'wide',
@@ -85,6 +93,7 @@ export class ISODayParser extends Parser<number> {
             }),
           valueCallback,
         );
+      }
     }
   }
 
@@ -98,5 +107,5 @@ export class ISODayParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['y', 'Y', 'u', 'q', 'Q', 'M', 'L', 'w', 'd', 'D', 'E', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['y', 'Y', 'u', 'q', 'Q', 'M', 'L', 'w', 'd', 'D', 'E', 'e', 'c', 't', 'T'];
 }

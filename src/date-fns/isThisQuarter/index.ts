@@ -1,5 +1,7 @@
-import { constructNow } from '../constructNow/index';
-import { isSameQuarter } from '../isSameQuarter/index';
+// date-fns/isThisQuarter/index.ts
+
+import { constructNow } from '../constructNow/index.ts';
+import { isSameQuarter } from '../isSameQuarter/index.ts';
 
 /**
  * @name isThisQuarter

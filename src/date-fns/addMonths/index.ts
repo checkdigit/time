@@ -1,5 +1,7 @@
-import { toDate } from '../toDate/index';
-import { constructFrom } from '../constructFrom/index';
+// date-fns/addMonths/index.ts
+
+import { toDate } from '../toDate/index.ts';
+import { constructFrom } from '../constructFrom/index.ts';
 
 /**
  * @name addMonths
@@ -27,7 +29,9 @@ import { constructFrom } from '../constructFrom/index';
  */
 export function addMonths<DateType extends Date>(date: DateType | number | string, amount: number): DateType {
   const _date = toDate(date);
-  if (isNaN(amount)) return constructFrom(date, NaN);
+  if (isNaN(amount)) {
+    return constructFrom(date, Number.NaN);
+  }
   if (!amount) {
     // If 0 months, no-op to avoid changing times in the hour before end of DST
     return _date;
@@ -49,15 +53,14 @@ export function addMonths<DateType extends Date>(date: DateType | number | strin
     // If we're already at the end of the month, then this is the correct date
     // and we're done.
     return endOfDesiredMonth;
-  } else {
-    // Otherwise, we now know that setting the original day-of-month value won't
-    // cause an overflow, so set the desired day-of-month. Note that we can't
-    // just set the date of `endOfDesiredMonth` because that object may have had
-    // its time changed in the unusual case where where a DST transition was on
-    // the last day of the month and its local time was in the hour skipped or
-    // repeated next to a DST transition.  So we use `date` instead which is
-    // guaranteed to still have the original time.
-    _date.setFullYear(endOfDesiredMonth.getFullYear(), endOfDesiredMonth.getMonth(), dayOfMonth);
-    return _date;
   }
+  // Otherwise, we now know that setting the original day-of-month value won't
+  // cause an overflow, so set the desired day-of-month. Note that we can't
+  // just set the date of `endOfDesiredMonth` because that object may have had
+  // its time changed in the unusual case where where a DST transition was on
+  // the last day of the month and its local time was in the hour skipped or
+  // repeated next to a DST transition.  So we use `date` instead which is
+  // guaranteed to still have the original time.
+  _date.setFullYear(endOfDesiredMonth.getFullYear(), endOfDesiredMonth.getMonth(), dayOfMonth);
+  return _date;
 }

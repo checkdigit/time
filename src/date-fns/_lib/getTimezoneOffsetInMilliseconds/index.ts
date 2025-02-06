@@ -1,4 +1,6 @@
-import { toDate } from '../../toDate/index';
+// date-fns/_lib/getTimezoneOffsetInMilliseconds/index.ts
+
+import { toDate } from '../../toDate/index.ts';
 
 /**
  * Google Chrome as of 67.0.3396.87 introduced timezones with offset that includes seconds.

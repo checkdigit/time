@@ -1,4 +1,6 @@
-import { toDate } from '../toDate/index';
+// date-fns/endOfDecade/index.ts
+
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name endOfDecade

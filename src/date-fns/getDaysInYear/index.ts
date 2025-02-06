@@ -1,5 +1,7 @@
-import { isLeapYear } from '../isLeapYear/index';
-import { toDate } from '../toDate/index';
+// date-fns/getDaysInYear/index.ts
+
+import { isLeapYear } from '../isLeapYear/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name getDaysInYear
@@ -24,7 +26,7 @@ export function getDaysInYear<DateType extends Date>(date: DateType | number | s
   const _date = toDate(date);
 
   if (String(new Date(_date)) === 'Invalid Date') {
-    return NaN;
+    return Number.NaN;
   }
 
   return isLeapYear(_date) ? 366 : 365;

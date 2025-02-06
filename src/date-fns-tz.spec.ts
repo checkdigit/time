@@ -1,10 +1,9 @@
 // date-fns-tz.spec.ts
 
 import { strict as assert } from 'node:assert';
+import { describe, it } from 'node:test';
 
-import { describe, it } from '@jest/globals';
-
-import { tzFormat, tzUtcToZonedTime } from './index';
+import { tzFormat, tzUtcToZonedTime } from './index.ts';
 
 describe('date-fns-tz', () => {
   it('tzFormat works', () => {

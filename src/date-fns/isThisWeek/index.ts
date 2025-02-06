@@ -1,6 +1,8 @@
-import { constructNow } from '../constructNow/index';
-import { isSameWeek } from '../isSameWeek/index';
-import type { LocalizedOptions, WeekOptions } from '../types';
+// date-fns/isThisWeek/index.ts
+
+import { constructNow } from '../constructNow/index.ts';
+import { isSameWeek } from '../isSameWeek/index.ts';
+import type { LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link isThisWeek} function options.

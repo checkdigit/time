@@ -1,5 +1,7 @@
-import { toDate } from '../toDate/index';
-import type { NormalizedInterval } from '../types';
+// date-fns/interval/index.ts
+
+import { toDate } from '../toDate/index.ts';
+import type { NormalizedInterval } from '../types.ts';
 
 /**
  * The {@link interval} function options.
@@ -35,12 +37,18 @@ export function interval<DateType extends Date>(
   options?: IntervalOptions,
 ): NormalizedInterval<DateType> {
   const _start = toDate(start);
-  if (isNaN(+_start)) throw new TypeError('Start date is invalid');
+  if (isNaN(+_start)) {
+    throw new TypeError('Start date is invalid');
+  }
 
   const _end = toDate(end);
-  if (isNaN(+_end)) throw new TypeError('End date is invalid');
+  if (isNaN(+_end)) {
+    throw new TypeError('End date is invalid');
+  }
 
-  if (options?.assertPositive && +_start > +_end) throw new TypeError('End date must be after start date');
+  if (options?.assertPositive && +_start > +_end) {
+    throw new TypeError('End date must be after start date');
+  }
 
   return { start: _start, end: _end };
 }

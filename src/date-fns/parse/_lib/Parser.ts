@@ -1,6 +1,8 @@
-import type { Match } from '../../locale/types';
-import { ValueSetter } from './Setter';
-import type { ParseFlags, ParseResult, ParserOptions } from './types';
+// date-fns/parse/_lib/Parser.ts
+
+import type { Match } from '../../locale/types.ts';
+import { ValueSetter } from './Setter.ts';
+import type { ParseFlags, ParseResult, ParserOptions } from './types.ts';
 
 export abstract class Parser<Value> {
   public abstract incompatibleTokens: string[] | '*';

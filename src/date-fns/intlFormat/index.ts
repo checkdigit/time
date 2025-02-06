@@ -1,4 +1,6 @@
-import { toDate } from '../toDate/index';
+// date-fns/intlFormat/index.ts
+
+import { toDate } from '../toDate/index.ts';
 
 /**
  * The locale string (see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument).
@@ -141,7 +143,7 @@ export function intlFormat<DateType extends Date>(
 }
 
 function isFormatOptions(
-  opts: IntlFormatLocaleOptions | IntlFormatFormatOptions | undefined,
-): opts is IntlFormatFormatOptions {
-  return opts !== undefined && !('locale' in opts);
+  options: IntlFormatLocaleOptions | IntlFormatFormatOptions | undefined,
+): options is IntlFormatFormatOptions {
+  return options !== undefined && !('locale' in options);
 }

@@ -1,6 +1,8 @@
-import { max } from '../max/index';
-import { min } from '../min/index';
-import type { Interval } from '../types';
+// date-fns/clamp/index.ts
+
+import { max } from '../max/index.ts';
+import { min } from '../min/index.ts';
+import type { Interval } from '../types.ts';
 
 /**
  * @name clamp

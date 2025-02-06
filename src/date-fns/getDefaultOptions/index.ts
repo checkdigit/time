@@ -1,5 +1,6 @@
-import type { DefaultOptions } from '../_lib/defaultOptions/index';
-import { getDefaultOptions as getInternalDefaultOptions } from '../_lib/defaultOptions/index';
+// date-fns/getDefaultOptions/index.ts
+
+import { type DefaultOptions, getDefaultOptions as getInternalDefaultOptions } from '../_lib/defaultOptions/index.ts';
 
 /**
  * @name getDefaultOptions
@@ -26,5 +27,5 @@ import { getDefaultOptions as getInternalDefaultOptions } from '../_lib/defaultO
  * //=> { weekStarsOn: 1, firstWeekContainsDate: 4 }
  */
 export function getDefaultOptions(): DefaultOptions {
-  return Object.assign({}, getInternalDefaultOptions());
+  return { ...getInternalDefaultOptions() };
 }

@@ -1,7 +1,9 @@
-import { differenceInCalendarWeeks } from '../differenceInCalendarWeeks/index';
-import { lastDayOfMonth } from '../lastDayOfMonth/index';
-import { startOfMonth } from '../startOfMonth/index';
-import type { LocalizedOptions, WeekOptions } from '../types';
+// date-fns/getWeeksInMonth/index.ts
+
+import { differenceInCalendarWeeks } from '../differenceInCalendarWeeks/index.ts';
+import { lastDayOfMonth } from '../lastDayOfMonth/index.ts';
+import { startOfMonth } from '../startOfMonth/index.ts';
+import type { LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link getWeeksInMonth} function options.

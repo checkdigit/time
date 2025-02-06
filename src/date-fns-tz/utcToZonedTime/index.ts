@@ -1,6 +1,8 @@
-import tzParseTimezone from '../_lib/tzParseTimezone';
-import toDate from '../toDate';
-import type { OptionsWithTZ } from '../types';
+// date-fns-tz/utcToZonedTime/index.ts
+
+import tzParseTimezone from '../_lib/tzParseTimezone/index.ts';
+import toDate from '../toDate/index.ts';
+import type { OptionsWithTZ } from '../types.ts';
 
 /**
  * @name utcToZonedTime

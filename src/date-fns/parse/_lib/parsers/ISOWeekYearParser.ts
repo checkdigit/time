@@ -1,8 +1,10 @@
-import { startOfISOWeek } from '../../../startOfISOWeek/index';
-import { constructFrom } from '../../../constructFrom/index';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { parseNDigitsSigned } from '../utils';
+// date-fns/parse/_lib/parsers/ISOWeekYearParser.ts
+
+import { startOfISOWeek } from '../../../startOfISOWeek/index.ts';
+import { constructFrom } from '../../../constructFrom/index.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { parseNDigitsSigned } from '../utils.ts';
 
 // ISO week-numbering year
 export class ISOWeekYearParser extends Parser<number> {
@@ -23,5 +25,5 @@ export class ISOWeekYearParser extends Parser<number> {
     return startOfISOWeek(firstWeekOfYear);
   }
 
-  incompatibleTokens = ['G', 'y', 'Y', 'u', 'Q', 'q', 'M', 'L', 'w', 'd', 'D', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['G', 'y', 'Y', 'u', 'Q', 'q', 'M', 'L', 'w', 'd', 'D', 'e', 'c', 't', 'T'];
 }

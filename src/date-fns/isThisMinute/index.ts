@@ -1,5 +1,7 @@
-import { constructNow } from '../constructNow/index';
-import { isSameMinute } from '../isSameMinute/index';
+// date-fns/isThisMinute/index.ts
+
+import { constructNow } from '../constructNow/index.ts';
+import { isSameMinute } from '../isSameMinute/index.ts';
 
 /**
  * @name isThisMinute

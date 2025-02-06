@@ -1,3 +1,5 @@
+// date-fns/intlFormatDistance/index.ts
+
 import {
   secondsInDay,
   secondsInHour,
@@ -6,16 +8,16 @@ import {
   secondsInQuarter,
   secondsInWeek,
   secondsInYear,
-} from '../constants/index';
-import { differenceInCalendarDays } from '../differenceInCalendarDays/index';
-import { differenceInCalendarMonths } from '../differenceInCalendarMonths/index';
-import { differenceInCalendarQuarters } from '../differenceInCalendarQuarters/index';
-import { differenceInCalendarWeeks } from '../differenceInCalendarWeeks/index';
-import { differenceInCalendarYears } from '../differenceInCalendarYears/index';
-import { differenceInHours } from '../differenceInHours/index';
-import { differenceInMinutes } from '../differenceInMinutes/index';
-import { differenceInSeconds } from '../differenceInSeconds/index';
-import { toDate } from '../toDate/index';
+} from '../constants/index.ts';
+import { differenceInCalendarDays } from '../differenceInCalendarDays/index.ts';
+import { differenceInCalendarMonths } from '../differenceInCalendarMonths/index.ts';
+import { differenceInCalendarQuarters } from '../differenceInCalendarQuarters/index.ts';
+import { differenceInCalendarWeeks } from '../differenceInCalendarWeeks/index.ts';
+import { differenceInCalendarYears } from '../differenceInCalendarYears/index.ts';
+import { differenceInHours } from '../differenceInHours/index.ts';
+import { differenceInMinutes } from '../differenceInMinutes/index.ts';
+import { differenceInSeconds } from '../differenceInSeconds/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * The {@link intlFormatDistance} function options.
@@ -142,12 +144,59 @@ export function intlFormatDistance<DateType extends Date>(
   baseDate: DateType | number | string,
   options?: IntlFormatDistanceOptions,
 ): string {
-  let value: number = 0;
+  let value = 0;
   let unit: Intl.RelativeTimeFormatUnit;
   const dateLeft = toDate(date);
   const dateRight = toDate(baseDate);
 
-  if (!options?.unit) {
+  if (options?.unit) {
+    // Get the value if unit is specified
+    unit = options.unit;
+    switch (unit) {
+      case 'second': {
+        value = differenceInSeconds(dateLeft, dateRight);
+
+        break;
+      }
+      case 'minute': {
+        value = differenceInMinutes(dateLeft, dateRight);
+
+        break;
+      }
+      case 'hour': {
+        value = differenceInHours(dateLeft, dateRight);
+
+        break;
+      }
+      case 'day': {
+        value = differenceInCalendarDays(dateLeft, dateRight);
+
+        break;
+      }
+      case 'week': {
+        value = differenceInCalendarWeeks(dateLeft, dateRight);
+
+        break;
+      }
+      case 'month': {
+        value = differenceInCalendarMonths(dateLeft, dateRight);
+
+        break;
+      }
+      case 'quarter': {
+        value = differenceInCalendarQuarters(dateLeft, dateRight);
+
+        break;
+      }
+      case 'year': {
+        value = differenceInCalendarYears(dateLeft, dateRight);
+
+        break;
+      }
+      default:
+      // Do nothing
+    }
+  } else {
     // Get the unit based on diffInSeconds calculations if no unit is specified
     const diffInSeconds = differenceInSeconds(dateLeft, dateRight); // The smallest unit
 
@@ -185,32 +234,12 @@ export function intlFormatDistance<DateType extends Date>(
       value = differenceInCalendarYears(dateLeft, dateRight);
       unit = 'year';
     }
-  } else {
-    // Get the value if unit is specified
-    unit = options?.unit;
-    if (unit === 'second') {
-      value = differenceInSeconds(dateLeft, dateRight);
-    } else if (unit === 'minute') {
-      value = differenceInMinutes(dateLeft, dateRight);
-    } else if (unit === 'hour') {
-      value = differenceInHours(dateLeft, dateRight);
-    } else if (unit === 'day') {
-      value = differenceInCalendarDays(dateLeft, dateRight);
-    } else if (unit === 'week') {
-      value = differenceInCalendarWeeks(dateLeft, dateRight);
-    } else if (unit === 'month') {
-      value = differenceInCalendarMonths(dateLeft, dateRight);
-    } else if (unit === 'quarter') {
-      value = differenceInCalendarQuarters(dateLeft, dateRight);
-    } else if (unit === 'year') {
-      value = differenceInCalendarYears(dateLeft, dateRight);
-    }
   }
 
   const rtf = new Intl.RelativeTimeFormat(options?.locale, {
-    ...(options?.localeMatcher === undefined ? {} : { localeMatcher: options?.localeMatcher }),
+    ...(options?.localeMatcher === undefined ? {} : { localeMatcher: options.localeMatcher }),
     numeric: options?.numeric || 'auto',
-    ...(options?.style === undefined ? {} : { style: options?.style }),
+    ...(options?.style === undefined ? {} : { style: options.style }),
   });
 
   return rtf.format(value, unit);

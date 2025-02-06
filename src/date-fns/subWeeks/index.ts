@@ -1,4 +1,6 @@
-import { addWeeks } from '../addWeeks/index';
+// date-fns/subWeeks/index.ts
+
+import { addWeeks } from '../addWeeks/index.ts';
 
 /**
  * @name subWeeks

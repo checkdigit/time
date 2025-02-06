@@ -1,6 +1,8 @@
-import { getWeek } from '../getWeek/index';
-import { toDate } from '../toDate/index';
-import type { FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types';
+// date-fns/setWeek/index.ts
+
+import { getWeek } from '../getWeek/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link setWeek} function options.

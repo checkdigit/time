@@ -1,5 +1,7 @@
-import { toDate } from '../toDate/index';
-import { constructFrom } from '../constructFrom/index';
+// date-fns/getDaysInMonth/index.ts
+
+import { toDate } from '../toDate/index.ts';
+import { constructFrom } from '../constructFrom/index.ts';
 
 /**
  * @name getDaysInMonth

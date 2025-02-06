@@ -1,25 +1,26 @@
-import { defaultLocale } from '../_lib/defaultLocale/index';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
-import { formatters } from '../_lib/format/formatters/index';
-import { longFormatters } from '../_lib/format/longFormatters/index';
+// date-fns/format/index.ts
+
+import { defaultLocale } from '../_lib/defaultLocale/index.ts';
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
+import { formatters } from '../_lib/format/formatters/index.ts';
+import { longFormatters } from '../_lib/format/longFormatters/index.ts';
 import {
   isProtectedDayOfYearToken,
   isProtectedWeekYearToken,
   warnOrThrowProtectedError,
-} from '../_lib/protectedTokens/index';
-import { isValid } from '../isValid/index';
-import { toDate } from '../toDate/index';
+} from '../_lib/protectedTokens/index.ts';
+import { isValid } from '../isValid/index.ts';
+import { toDate } from '../toDate/index.ts';
 import type {
   AdditionalTokensOptions,
   FirstWeekContainsDateOptions,
   FormatPart,
   LocalizedOptions,
   WeekOptions,
-} from '../types';
+} from '../types.ts';
 
 // Rexports of internal for libraries to use.
 // See: https://github.com/date-fns/date-fns/issues/3638#issuecomment-1877082874
-export { formatters, longFormatters };
 
 // This RegExp consists of three parts separated by `|`:
 // - [yYQqMLwIdDecihHKkms]o matches any available ordinal number token
@@ -342,7 +343,7 @@ export interface FormatOptions
  */
 export function format<DateType extends Date>(
   date: DateType | number | string,
-  formatStr: string,
+  formatString: string,
   options?: FormatOptions,
 ): string {
   const defaultOptions = getDefaultOptions();
@@ -368,7 +369,7 @@ export function format<DateType extends Date>(
     throw new RangeError('Invalid time value');
   }
 
-  let parts: FormatPart[] = formatStr
+  let parts: FormatPart[] = formatString
     .match(longFormattingTokensRegExp)!
     .map((substring) => {
       const firstCharacter = substring[0];
@@ -395,8 +396,8 @@ export function format<DateType extends Date>(
         return { isToken: true, value: substring };
       }
 
-      if (firstCharacter!.match(unescapedLatinCharacterRegExp)) {
-        throw new RangeError('Format string contains an unescaped latin alphabet character `' + firstCharacter + '`');
+      if (unescapedLatinCharacterRegExp.test(firstCharacter!)) {
+        throw new RangeError(`Format string contains an unescaped latin alphabet character \`${firstCharacter}\``);
       }
 
       return { isToken: false, value: substring };
@@ -415,7 +416,9 @@ export function format<DateType extends Date>(
 
   return parts
     .map((part) => {
-      if (!part.isToken) return part.value;
+      if (!part.isToken) {
+        return part.value;
+      }
 
       const token = part.value;
 
@@ -423,7 +426,7 @@ export function format<DateType extends Date>(
         (!options?.useAdditionalWeekYearTokens && isProtectedWeekYearToken(token)) ||
         (!options?.useAdditionalDayOfYearTokens && isProtectedDayOfYearToken(token))
       ) {
-        warnOrThrowProtectedError(token, formatStr, String(date));
+        warnOrThrowProtectedError(token, formatString, String(date));
       }
 
       const formatter = formatters[token[0]!];
@@ -433,11 +436,14 @@ export function format<DateType extends Date>(
 }
 
 function cleanEscapedString(input: string): string {
-  const matched = input.match(escapedStringRegExp);
+  const matched = escapedStringRegExp.exec(input);
 
   if (!matched) {
     return input;
   }
 
-  return matched[1]!.replace(doubleQuoteRegExp, "'");
+  return matched[1]!.replaceAll(doubleQuoteRegExp, "'");
 }
+
+export { formatters } from '../_lib/format/formatters/index.ts';
+export { longFormatters } from '../_lib/format/longFormatters/index.ts';

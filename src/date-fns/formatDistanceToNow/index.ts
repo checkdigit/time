@@ -1,6 +1,7 @@
-import { constructNow } from '../constructNow/index';
-import type { FormatDistanceOptions } from '../formatDistance/index';
-import { formatDistance } from '../formatDistance/index';
+// date-fns/formatDistanceToNow/index.ts
+
+import { constructNow } from '../constructNow/index.ts';
+import { formatDistance, type FormatDistanceOptions } from '../formatDistance/index.ts';
 
 /**
  * The {@link formatDistanceToNow} function options.

@@ -1,10 +1,12 @@
-import { getWeekYear } from '../../../getWeekYear/index';
-import type { Match } from '../../../locale/types';
-import { startOfWeek } from '../../../startOfWeek/index';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult, ParserOptions } from '../types';
-import { mapValue, normalizeTwoDigitYear, parseNDigits } from '../utils';
-import type { YearParserValue } from './YearParser';
+// date-fns/parse/_lib/parsers/LocalWeekYearParser.ts
+
+import { getWeekYear } from '../../../getWeekYear/index.ts';
+import type { Match } from '../../../locale/types.ts';
+import { startOfWeek } from '../../../startOfWeek/index.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult, ParserOptions } from '../types.ts';
+import { mapValue, normalizeTwoDigitYear, parseNDigits } from '../utils.ts';
+import type { YearParserValue } from './YearParser.ts';
 
 // Local week-numbering year
 export class LocalWeekYearParser extends Parser<YearParserValue> {
@@ -17,17 +19,20 @@ export class LocalWeekYearParser extends Parser<YearParserValue> {
     });
 
     switch (token) {
-      case 'Y':
+      case 'Y': {
         return mapValue(parseNDigits(4, dateString), valueCallback);
-      case 'Yo':
+      }
+      case 'Yo': {
         return mapValue(
           match.ordinalNumber(dateString, {
             unit: 'year',
           }),
           valueCallback,
         );
-      default:
+      }
+      default: {
         return mapValue(parseNDigits(token.length, dateString), valueCallback);
+      }
     }
   }
 
@@ -56,5 +61,5 @@ export class LocalWeekYearParser extends Parser<YearParserValue> {
     return startOfWeek(date, options);
   }
 
-  incompatibleTokens = ['y', 'R', 'u', 'Q', 'q', 'M', 'L', 'I', 'd', 'D', 'i', 't', 'T'];
+  incompatibleTokens: string[] = ['y', 'R', 'u', 'Q', 'q', 'M', 'L', 'I', 'd', 'D', 'i', 't', 'T'];
 }

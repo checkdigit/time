@@ -1,7 +1,9 @@
-import { millisecondsInWeek } from '../constants/index';
-import { startOfISOWeek } from '../startOfISOWeek/index';
-import { startOfISOWeekYear } from '../startOfISOWeekYear/index';
-import { toDate } from '../toDate/index';
+// date-fns/getISOWeek/index.ts
+
+import { millisecondsInWeek } from '../constants/index.ts';
+import { startOfISOWeek } from '../startOfISOWeek/index.ts';
+import { startOfISOWeekYear } from '../startOfISOWeekYear/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name getISOWeek

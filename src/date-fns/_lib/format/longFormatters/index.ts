@@ -1,37 +1,47 @@
-import type { FormatLong } from '../../../locale/types';
+// date-fns/_lib/format/longFormatters/index.ts
+
+import type { FormatLong } from '../../../locale/types.ts';
 
 type LongFormatter = (pattern: string, formatLong: FormatLong) => string;
 
 const dateLongFormatter: LongFormatter = (pattern, formatLong) => {
   switch (pattern) {
-    case 'P':
+    case 'P': {
       return formatLong.date({ width: 'short' });
-    case 'PP':
+    }
+    case 'PP': {
       return formatLong.date({ width: 'medium' });
-    case 'PPP':
+    }
+    case 'PPP': {
       return formatLong.date({ width: 'long' });
+    }
     case 'PPPP':
-    default:
+    default: {
       return formatLong.date({ width: 'full' });
+    }
   }
 };
 
 const timeLongFormatter: LongFormatter = (pattern, formatLong) => {
   switch (pattern) {
-    case 'p':
+    case 'p': {
       return formatLong.time({ width: 'short' });
-    case 'pp':
+    }
+    case 'pp': {
       return formatLong.time({ width: 'medium' });
-    case 'ppp':
+    }
+    case 'ppp': {
       return formatLong.time({ width: 'long' });
+    }
     case 'pppp':
-    default:
+    default: {
       return formatLong.time({ width: 'full' });
+    }
   }
 };
 
 const dateTimeLongFormatter: LongFormatter = (pattern: string, formatLong: FormatLong) => {
-  const matchResult = pattern.match(/(P+)(p+)?/) || [];
+  const matchResult = /(P+)(p+)?/.exec(pattern) || [];
   const datePattern = matchResult[1];
   const timePattern = matchResult[2];
 
@@ -42,19 +52,23 @@ const dateTimeLongFormatter: LongFormatter = (pattern: string, formatLong: Forma
   let dateTimeFormat: string;
 
   switch (datePattern) {
-    case 'P':
+    case 'P': {
       dateTimeFormat = formatLong.dateTime({ width: 'short' });
       break;
-    case 'PP':
+    }
+    case 'PP': {
       dateTimeFormat = formatLong.dateTime({ width: 'medium' });
       break;
-    case 'PPP':
+    }
+    case 'PPP': {
       dateTimeFormat = formatLong.dateTime({ width: 'long' });
       break;
+    }
     case 'PPPP':
-    default:
+    default: {
       dateTimeFormat = formatLong.dateTime({ width: 'full' });
       break;
+    }
   }
 
   return dateTimeFormat

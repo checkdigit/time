@@ -1,7 +1,9 @@
-import type { Quarter } from '../../../../types';
-import type { Match } from '../../../types';
-import { buildMatchFn } from '../../../_lib/buildMatchFn/index';
-import { buildMatchPatternFn } from '../../../_lib/buildMatchPatternFn/index';
+// date-fns/locale/en-US/_lib/match/index.ts
+
+import type { Quarter } from '../../../../types.ts';
+import type { Match } from '../../../types.ts';
+import { buildMatchFn as buildMatchFunction } from '../../../_lib/buildMatchFn/index.ts';
+import { buildMatchPatternFn as buildMatchPatternFunction } from '../../../_lib/buildMatchPatternFn/index.ts';
 
 const matchOrdinalNumberPattern = /^(\d+)(th|st|nd|rd)?/i;
 const parseOrdinalNumberPattern = /\d+/i;
@@ -63,20 +65,20 @@ const parseDayPeriodPatterns = {
 };
 
 export const match: Match = {
-  ordinalNumber: buildMatchPatternFn({
+  ordinalNumber: buildMatchPatternFunction({
     matchPattern: matchOrdinalNumberPattern,
     parsePattern: parseOrdinalNumberPattern,
-    valueCallback: (value) => parseInt(value, 10),
+    valueCallback: (value) => Number.parseInt(value, 10),
   }),
 
-  era: buildMatchFn({
+  era: buildMatchFunction({
     matchPatterns: matchEraPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseEraPatterns,
     defaultParseWidth: 'any',
   }),
 
-  quarter: buildMatchFn({
+  quarter: buildMatchFunction({
     matchPatterns: matchQuarterPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseQuarterPatterns,
@@ -84,21 +86,21 @@ export const match: Match = {
     valueCallback: (index) => (index + 1) as Quarter,
   }),
 
-  month: buildMatchFn({
+  month: buildMatchFunction({
     matchPatterns: matchMonthPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseMonthPatterns,
     defaultParseWidth: 'any',
   }),
 
-  day: buildMatchFn({
+  day: buildMatchFunction({
     matchPatterns: matchDayPatterns,
     defaultMatchWidth: 'wide',
     parsePatterns: parseDayPatterns,
     defaultParseWidth: 'any',
   }),
 
-  dayPeriod: buildMatchFn({
+  dayPeriod: buildMatchFunction({
     matchPatterns: matchDayPeriodPatterns,
     defaultMatchWidth: 'any',
     parsePatterns: parseDayPeriodPatterns,

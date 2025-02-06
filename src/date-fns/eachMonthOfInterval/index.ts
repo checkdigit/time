@@ -1,5 +1,7 @@
-import { toDate } from '../toDate/index';
-import type { Interval, StepOptions } from '../types';
+// date-fns/eachMonthOfInterval/index.ts
+
+import { toDate } from '../toDate/index.ts';
+import type { Interval, StepOptions } from '../types.ts';
 
 /**
  * The {@link eachMonthOfInterval} function options.
@@ -50,7 +52,9 @@ export function eachMonthOfInterval<DateType extends Date>(
   currentDate.setDate(1);
 
   let step = options?.step ?? 1;
-  if (!step) return [];
+  if (!step) {
+    return [];
+  }
   if (step < 0) {
     step = -step;
     reversed = !reversed;

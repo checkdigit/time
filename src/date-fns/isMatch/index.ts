@@ -1,6 +1,8 @@
-import { isValid } from '../isValid/index';
-import { parse } from '../parse/index';
-import type { AdditionalTokensOptions, FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types';
+// date-fns/isMatch/index.ts
+
+import { isValid } from '../isValid/index.ts';
+import { parse } from '../parse/index.ts';
+import type { AdditionalTokensOptions, FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link isMatch} function options.
@@ -297,6 +299,6 @@ export interface IsMatchOptions
  * })
  * //=> true
  */
-export function isMatch(dateStr: string, formatStr: string, options?: IsMatchOptions): boolean {
-  return isValid(parse(dateStr, formatStr, new Date(), options));
+export function isMatch(dateString: string, formatString: string, options?: IsMatchOptions): boolean {
+  return isValid(parse(dateString, formatString, new Date(), options));
 }

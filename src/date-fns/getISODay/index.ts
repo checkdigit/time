@@ -1,4 +1,6 @@
-import { toDate } from '../toDate/index';
+// date-fns/getISODay/index.ts
+
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name getISODay

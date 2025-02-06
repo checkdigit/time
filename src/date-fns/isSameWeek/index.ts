@@ -1,5 +1,7 @@
-import { startOfWeek } from '../startOfWeek/index';
-import type { LocalizedOptions, WeekOptions } from '../types';
+// date-fns/isSameWeek/index.ts
+
+import { startOfWeek } from '../startOfWeek/index.ts';
+import type { LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link isSameWeek} function options.

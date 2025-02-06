@@ -1,4 +1,6 @@
-import { secondsInHour } from '../constants/index';
+// date-fns/hoursToSeconds/index.ts
+
+import { secondsInHour } from '../constants/index.ts';
 
 /**
  * @name hoursToSeconds

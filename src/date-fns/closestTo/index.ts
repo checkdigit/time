@@ -1,5 +1,7 @@
-import { constructFrom } from '../constructFrom/index';
-import { toDate } from '../toDate/index';
+// date-fns/closestTo/index.ts
+
+import { constructFrom } from '../constructFrom/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name closestTo

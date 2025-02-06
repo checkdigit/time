@@ -1,8 +1,10 @@
-import tzTokenizeDate from '../tzTokenizeDate';
-import newDateUTC from '../newDateUTC';
+// date-fns-tz/_lib/tzParseTimezone/index.ts
 
-const MILLISECONDS_IN_HOUR = 3600000;
-const MILLISECONDS_IN_MINUTE = 60000;
+import tzTokenizeDate from '../tzTokenizeDate/index.ts';
+import newDateUTC from '../newDateUTC/index.ts';
+
+const MILLISECONDS_IN_HOUR = 3_600_000;
+const MILLISECONDS_IN_MINUTE = 60_000;
 
 const patterns = {
   timezone: /([Z+-].*)$/,
@@ -12,7 +14,7 @@ const patterns = {
 };
 
 // Parse various time zone offset formats to an offset in milliseconds
-export default function tzParseTimezone(timezoneString: string, date?: Date, isUtcDate?: boolean) {
+export default function tzParseTimezone(timezoneString: string, date?: Date, isUtcDate?: boolean): number {
   let token: RegExpExecArray | null;
   let absoluteOffset;
 
@@ -32,10 +34,10 @@ export default function tzParseTimezone(timezoneString: string, date?: Date, isU
   // ±hh
   token = patterns.timezoneHH.exec(timezoneString);
   if (token) {
-    hours = parseInt(token[1] as string, 10);
+    hours = Number.parseInt(token[1]!, 10);
 
     if (!validateTimezone(hours)) {
-      return NaN;
+      return Number.NaN;
     }
 
     return -(hours * MILLISECONDS_IN_HOUR);
@@ -44,11 +46,11 @@ export default function tzParseTimezone(timezoneString: string, date?: Date, isU
   // ±hh:mm or ±hhmm
   token = patterns.timezoneHHMM.exec(timezoneString);
   if (token) {
-    hours = parseInt(token[1] as string, 10);
-    let minutes = parseInt(token[2] as string, 10);
+    hours = Number.parseInt(token[1]!, 10);
+    const minutes = Number.parseInt(token[2]!, 10);
 
     if (!validateTimezone(hours, minutes)) {
-      return NaN;
+      return Number.NaN;
     }
 
     absoluteOffset = Math.abs(hours) * MILLISECONDS_IN_HOUR + minutes * MILLISECONDS_IN_MINUTE;
@@ -58,16 +60,16 @@ export default function tzParseTimezone(timezoneString: string, date?: Date, isU
   // IANA time zone
   if (isValidTimezoneIANAString(timezoneString)) {
     date = new Date(date || Date.now());
-    let utcDate = isUtcDate ? date : toUtcDate(date);
+    const utcDate = isUtcDate ? date : toUtcDate(date);
 
-    let offset = calcOffset(utcDate, timezoneString);
+    const offset = calcOffset(utcDate, timezoneString);
 
-    let fixedOffset = isUtcDate ? offset : fixOffset(date, offset, timezoneString);
+    const fixedOffset = isUtcDate ? offset : fixOffset(date, offset, timezoneString);
 
     return -fixedOffset;
   }
 
-  return NaN;
+  return Number.NaN;
 }
 
 function toUtcDate(date: Date) {
@@ -83,33 +85,33 @@ function toUtcDate(date: Date) {
 }
 
 function calcOffset(date: Date, timezoneString: string) {
-  let tokens = tzTokenizeDate(date, timezoneString);
+  const tokens = tzTokenizeDate(date, timezoneString);
 
   // ms dropped because it's not provided by tzTokenizeDate
-  let asUTC = newDateUTC(
-    tokens[0] as number,
-    (tokens[1] as number) - 1,
-    tokens[2] as number,
-    (tokens[3] as number) % 24,
-    tokens[4] as number,
-    tokens[5] as number,
+  const asUTC = newDateUTC(
+    tokens[0]!,
+    tokens[1]! - 1,
+    tokens[2]!,
+    tokens[3]! % 24,
+    tokens[4]!,
+    tokens[5]!,
     0,
   ).getTime();
 
   let asTS = date.getTime();
-  let over = asTS % 1000;
+  const over = asTS % 1000;
   asTS -= over >= 0 ? over : 1000 + over;
   return asUTC - asTS;
 }
 
 function fixOffset(date: Date, offset: number, timezoneString: string): number {
-  let localTS = date.getTime();
+  const localTS = date.getTime();
 
   // Our UTC time is just a guess because our offset is just a guess
   let utcGuess = localTS - offset;
 
   // Test whether the zone matches the offset for this ts
-  let o2 = calcOffset(new Date(utcGuess), timezoneString);
+  const o2 = calcOffset(new Date(utcGuess), timezoneString);
 
   // If so, offset didn't change, and we're done
   if (offset === o2) {
@@ -120,7 +122,7 @@ function fixOffset(date: Date, offset: number, timezoneString: string): number {
   utcGuess -= o2 - offset;
 
   // If that gives us the local time we want, we're done
-  let o3 = calcOffset(new Date(utcGuess), timezoneString);
+  const o3 = calcOffset(new Date(utcGuess), timezoneString);
   if (o2 === o3) {
     return o2;
   }
@@ -130,17 +132,19 @@ function fixOffset(date: Date, offset: number, timezoneString: string): number {
 }
 
 function validateTimezone(hours: number, minutes?: number): boolean {
-  return -23 <= hours && hours <= 23 && (minutes == null || (0 <= minutes && minutes <= 59));
+  return hours >= -23 && hours <= 23 && (minutes == null || (minutes >= 0 && minutes <= 59));
 }
 
 const validIANATimezoneCache = {} as Record<string, boolean>;
 function isValidTimezoneIANAString(timeZoneString: string): boolean {
-  if (validIANATimezoneCache[timeZoneString]) return true;
+  if (validIANATimezoneCache[timeZoneString]) {
+    return true;
+  }
   try {
     new Intl.DateTimeFormat(undefined, { timeZone: timeZoneString });
     validIANATimezoneCache[timeZoneString] = true;
     return true;
-  } catch (error) {
+  } catch {
     return false;
   }
 }

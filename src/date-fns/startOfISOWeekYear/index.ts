@@ -1,6 +1,8 @@
-import { getISOWeekYear } from '../getISOWeekYear/index';
-import { startOfISOWeek } from '../startOfISOWeek/index';
-import { constructFrom } from '../constructFrom/index';
+// date-fns/startOfISOWeekYear/index.ts
+
+import { getISOWeekYear } from '../getISOWeekYear/index.ts';
+import { startOfISOWeek } from '../startOfISOWeek/index.ts';
+import { constructFrom } from '../constructFrom/index.ts';
 
 /**
  * @name startOfISOWeekYear

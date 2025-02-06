@@ -1,20 +1,25 @@
-import type { Match } from '../../../locale/types';
-import { numericPatterns } from '../constants';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { parseNDigits, parseNumericPattern } from '../utils';
+// date-fns/parse/_lib/parsers/Hour0To11Parser.ts
+
+import type { Match } from '../../../locale/types.ts';
+import { numericPatterns } from '../constants.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { parseNDigits, parseNumericPattern } from '../utils.ts';
 
 export class Hour0To11Parser extends Parser<number> {
   priority = 70;
 
   parse(dateString: string, token: string, match: Match): ParseResult<number> {
     switch (token) {
-      case 'K':
+      case 'K': {
         return parseNumericPattern(numericPatterns.hour11h, dateString);
-      case 'Ko':
+      }
+      case 'Ko': {
         return match.ordinalNumber(dateString, { unit: 'hour' });
-      default:
+      }
+      default: {
         return parseNDigits(token.length, dateString);
+      }
     }
   }
 
@@ -32,5 +37,5 @@ export class Hour0To11Parser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['h', 'H', 'k', 't', 'T'];
+  incompatibleTokens = ['h', 'H', 'k', 't', 'T'] as string[];
 }

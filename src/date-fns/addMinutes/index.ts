@@ -1,5 +1,7 @@
-import { addMilliseconds } from '../addMilliseconds/index';
-import { millisecondsInMinute } from '../constants/index';
+// date-fns/addMinutes/index.ts
+
+import { addMilliseconds } from '../addMilliseconds/index.ts';
+import { millisecondsInMinute } from '../constants/index.ts';
 
 /**
  * @name addMinutes

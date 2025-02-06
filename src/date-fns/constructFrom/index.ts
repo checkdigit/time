@@ -1,4 +1,6 @@
-import type { GenericDateConstructor } from '../types';
+// date-fns/constructFrom/index.ts
+
+import type { GenericDateConstructor } from '../types.ts';
 
 /**
  * @name constructFrom
@@ -36,7 +38,6 @@ export function constructFrom<DateType extends Date>(
 ): DateType {
   if (date instanceof Date) {
     return new (date.constructor as GenericDateConstructor<DateType>)(value);
-  } else {
-    return new Date(value) as DateType;
   }
+  return new Date(value) as DateType;
 }

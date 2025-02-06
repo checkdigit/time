@@ -1,6 +1,8 @@
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { parseNDigitsSigned } from '../utils';
+// date-fns/parse/_lib/parsers/ExtendedYearParser.ts
+
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { parseNDigitsSigned } from '../utils.ts';
 
 export class ExtendedYearParser extends Parser<number> {
   priority = 130;
@@ -19,5 +21,5 @@ export class ExtendedYearParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['G', 'y', 'Y', 'R', 'w', 'I', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens = ['G', 'y', 'Y', 'R', 'w', 'I', 'i', 'e', 'c', 't', 'T'] as string[];
 }

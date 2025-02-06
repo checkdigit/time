@@ -1,5 +1,7 @@
-import { isDate } from '../isDate/index';
-import { toDate } from '../toDate/index';
+// date-fns/isValid/index.ts
+
+import { isDate } from '../isDate/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name isValid

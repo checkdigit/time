@@ -1,3 +1,5 @@
+// date-fns-tz/_lib/newDateUTC/index.ts
+
 /**
  * Use instead of `new Date(Date.UTC(...))` to support years below 100 which doesn't work
  * otherwise due to the nature of the
@@ -13,7 +15,7 @@ export default function newDateUTC(
   minute: number,
   second: number,
   millisecond: number,
-) {
+): Date {
   const utcDate = new Date(0);
   utcDate.setUTCFullYear(fullYear, month, day);
   utcDate.setUTCHours(hour, minute, second, millisecond);

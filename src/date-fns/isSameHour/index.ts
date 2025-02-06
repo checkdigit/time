@@ -1,4 +1,6 @@
-import { startOfHour } from '../startOfHour/index';
+// date-fns/isSameHour/index.ts
+
+import { startOfHour } from '../startOfHour/index.ts';
 
 /**
  * @name isSameHour

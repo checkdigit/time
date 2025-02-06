@@ -1,4 +1,6 @@
-import { lastDayOfWeek } from '../lastDayOfWeek/index';
+// date-fns/lastDayOfISOWeek/index.ts
+
+import { lastDayOfWeek } from '../lastDayOfWeek/index.ts';
 
 /**
  * @name lastDayOfISOWeek

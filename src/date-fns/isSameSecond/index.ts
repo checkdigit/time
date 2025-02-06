@@ -1,4 +1,6 @@
-import { startOfSecond } from '../startOfSecond/index';
+// date-fns/isSameSecond/index.ts
+
+import { startOfSecond } from '../startOfSecond/index.ts';
 
 /**
  * @name isSameSecond

@@ -1,6 +1,8 @@
-import { endOfDay } from '../endOfDay/index';
-import { endOfMonth } from '../endOfMonth/index';
-import { toDate } from '../toDate/index';
+// date-fns/isLastDayOfMonth/index.ts
+
+import { endOfDay } from '../endOfDay/index.ts';
+import { endOfMonth } from '../endOfMonth/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name isLastDayOfMonth

@@ -1,4 +1,6 @@
-import { addBusinessDays } from '../addBusinessDays/index';
+// date-fns/subBusinessDays/index.ts
+
+import { addBusinessDays } from '../addBusinessDays/index.ts';
 
 /**
  * @name subBusinessDays

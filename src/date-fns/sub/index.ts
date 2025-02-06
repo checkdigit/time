@@ -1,7 +1,9 @@
-import { subDays } from '../subDays/index';
-import { subMonths } from '../subMonths/index';
-import type { Duration } from '../types';
-import { constructFrom } from '../constructFrom/index';
+// date-fns/sub/index.ts
+
+import { subDays } from '../subDays/index.ts';
+import { subMonths } from '../subMonths/index.ts';
+import type { Duration } from '../types.ts';
+import { constructFrom } from '../constructFrom/index.ts';
 
 /**
  * @name sub

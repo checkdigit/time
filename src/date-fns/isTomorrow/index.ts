@@ -1,6 +1,8 @@
-import { addDays } from '../addDays/index';
-import { constructNow } from '../constructNow/index';
-import { isSameDay } from '../isSameDay/index';
+// date-fns/isTomorrow/index.ts
+
+import { addDays } from '../addDays/index.ts';
+import { constructNow } from '../constructNow/index.ts';
+import { isSameDay } from '../isSameDay/index.ts';
 
 /**
  * @name isTomorrow

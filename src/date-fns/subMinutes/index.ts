@@ -1,4 +1,6 @@
-import { addMinutes } from '../addMinutes/index';
+// date-fns/subMinutes/index.ts
+
+import { addMinutes } from '../addMinutes/index.ts';
 
 /**
  * @name subMinutes

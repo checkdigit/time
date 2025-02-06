@@ -1,9 +1,11 @@
-import cloneObject from '../date-fns-v2-lib/cloneObject';
-import toDate from '../toDate';
-import tzPattern from '../_lib/tzPattern';
-import tzParseTimezone from '../_lib/tzParseTimezone';
-import newDateUTC from '../_lib/newDateUTC';
-import type { OptionsWithTZ } from '../types';
+// date-fns-tz/zonedTimeToUtc/index.ts
+
+import cloneObject from '../date-fns-v2-lib/cloneObject/index.ts';
+import toDate from '../toDate/index.ts';
+import tzPattern from '../_lib/tzPattern/index.ts';
+import tzParseTimezone from '../_lib/tzParseTimezone/index.ts';
+import newDateUTC from '../_lib/newDateUTC/index.ts';
+import type { OptionsWithTZ } from '../types.ts';
 
 /**
  * @name zonedTimeToUtc

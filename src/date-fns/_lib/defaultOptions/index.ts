@@ -1,4 +1,6 @@
-import type { FirstWeekContainsDateOptions, Locale, LocalizedOptions, WeekOptions } from '../../types';
+// date-fns/_lib/defaultOptions/index.ts
+
+import type { FirstWeekContainsDateOptions, Locale, LocalizedOptions, WeekOptions } from '../../types.ts';
 
 export type DefaultOptions = LocalizedOptions<keyof Locale> & WeekOptions & FirstWeekContainsDateOptions;
 

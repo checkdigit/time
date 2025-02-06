@@ -1,7 +1,9 @@
-import type { LocaleDayPeriod, Match } from '../../../locale/types';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { dayPeriodEnumToHours } from '../utils';
+// date-fns/parse/_lib/parsers/DayPeriodParser.ts
+
+import type { LocaleDayPeriod, Match } from '../../../locale/types.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { dayPeriodEnumToHours } from '../utils.ts';
 
 // in the morning, in the afternoon, in the evening, at night
 export class DayPeriodParser extends Parser<LocaleDayPeriod> {
@@ -11,7 +13,7 @@ export class DayPeriodParser extends Parser<LocaleDayPeriod> {
     switch (token) {
       case 'B':
       case 'BB':
-      case 'BBB':
+      case 'BBB': {
         return (
           match.dayPeriod(dateString, {
             width: 'abbreviated',
@@ -22,13 +24,15 @@ export class DayPeriodParser extends Parser<LocaleDayPeriod> {
             context: 'formatting',
           })
         );
-      case 'BBBBB':
+      }
+      case 'BBBBB': {
         return match.dayPeriod(dateString, {
           width: 'narrow',
           context: 'formatting',
         });
+      }
       case 'BBBB':
-      default:
+      default: {
         return (
           match.dayPeriod(dateString, {
             width: 'wide',
@@ -43,6 +47,7 @@ export class DayPeriodParser extends Parser<LocaleDayPeriod> {
             context: 'formatting',
           })
         );
+      }
     }
   }
 
@@ -51,5 +56,5 @@ export class DayPeriodParser extends Parser<LocaleDayPeriod> {
     return date;
   }
 
-  incompatibleTokens = ['a', 'b', 't', 'T'];
+  incompatibleTokens = ['a', 'b', 't', 'T'] as string[];
 }

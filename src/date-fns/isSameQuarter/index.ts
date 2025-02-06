@@ -1,4 +1,6 @@
-import { startOfQuarter } from '../startOfQuarter/index';
+// date-fns/isSameQuarter/index.ts
+
+import { startOfQuarter } from '../startOfQuarter/index.ts';
 
 /**
  * @name isSameQuarter

@@ -1,19 +1,19 @@
-import type { FormatLongFn, FormatLongWidth } from '../../types';
+// date-fns/locale/_lib/buildFormatLongFn/index.ts
 
-export interface BuildFormatLongFnArgs<DefaultMatchWidth extends FormatLongWidth> {
-  formats: Partial<{ [format in FormatLongWidth]: string }> & {
-    [format in DefaultMatchWidth]: string;
-  };
+import type { FormatLongFn as FormatLongFunction, FormatLongWidth } from '../../types.ts';
+
+export interface BuildFormatLongFunctionArguments<DefaultMatchWidth extends FormatLongWidth> {
+  formats: Partial<Record<FormatLongWidth, string>> & Record<DefaultMatchWidth, string>;
   defaultWidth: DefaultMatchWidth;
 }
 
 export function buildFormatLongFn<DefaultMatchWidth extends FormatLongWidth>(
-  args: BuildFormatLongFnArgs<DefaultMatchWidth>,
-): FormatLongFn {
+  arguments_: BuildFormatLongFunctionArguments<DefaultMatchWidth>,
+): FormatLongFunction {
   return (options = {}) => {
     // TODO: Remove String()
-    const width = options.width ? (String(options.width) as FormatLongWidth) : args.defaultWidth;
-    const format = args.formats[width] || args.formats[args.defaultWidth];
+    const width = options.width ? (String(options.width) as FormatLongWidth) : arguments_.defaultWidth;
+    const format = arguments_.formats[width] || arguments_.formats[arguments_.defaultWidth];
     return format;
   };
 }

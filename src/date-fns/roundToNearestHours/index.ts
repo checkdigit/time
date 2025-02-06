@@ -1,7 +1,9 @@
-import { getRoundingMethod } from '../_lib/getRoundingMethod/index';
-import { constructFrom } from '../constructFrom/index';
-import { toDate } from '../toDate/index';
-import type { NearestHours, NearestToUnitOptions, RoundingOptions } from '../types';
+// date-fns/roundToNearestHours/index.ts
+
+import { getRoundingMethod } from '../_lib/getRoundingMethod/index.ts';
+import { constructFrom } from '../constructFrom/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { NearestHours, NearestToUnitOptions, RoundingOptions } from '../types.ts';
 
 /**
  * The {@link roundToNearestHours} function options.
@@ -55,7 +57,9 @@ export function roundToNearestHours<DateType extends Date>(
 ): Date {
   const nearestTo = options?.nearestTo ?? 1;
 
-  if (nearestTo < 1 || nearestTo > 12) return constructFrom(date, NaN);
+  if (nearestTo < 1 || nearestTo > 12) {
+    return constructFrom(date, Number.NaN);
+  }
 
   const _date = toDate(date);
   const fractionalMinutes = _date.getMinutes() / 60;

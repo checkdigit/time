@@ -1,7 +1,9 @@
-import { addWeeks } from '../addWeeks/index';
-import { startOfWeek } from '../startOfWeek/index';
-import { toDate } from '../toDate/index';
-import type { Interval, LocalizedOptions, StepOptions, WeekOptions } from '../types';
+// date-fns/eachWeekOfInterval/index.ts
+
+import { addWeeks } from '../addWeeks/index.ts';
+import { startOfWeek } from '../startOfWeek/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { Interval, LocalizedOptions, StepOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link eachWeekOfInterval} function options.
@@ -59,7 +61,9 @@ export function eachWeekOfInterval<DateType extends Date>(
   let currentDate = startDateWeek;
 
   let step = options?.step ?? 1;
-  if (!step) return [];
+  if (!step) {
+    return [];
+  }
   if (step < 0) {
     step = -step;
     reversed = !reversed;

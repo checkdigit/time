@@ -1,4 +1,6 @@
-import { previousDay } from '../previousDay/index';
+// date-fns/previousFriday/index.ts
+
+import { previousDay } from '../previousDay/index.ts';
 
 /**
  * @name previousFriday

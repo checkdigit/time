@@ -1,4 +1,6 @@
-import type { LocalizedOptions, FirstWeekContainsDateOptions, WeekOptions } from '../../types';
+// date-fns/parse/_lib/types.ts
+
+import type { FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../../types.ts';
 
 export interface ParseFlags {
   timestampIsSet?: boolean;

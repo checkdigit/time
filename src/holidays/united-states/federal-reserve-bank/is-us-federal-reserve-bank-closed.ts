@@ -1,8 +1,8 @@
 // holidays/united-states/federal-reserve-bank/is-us-federal-reserve-bank-closed.ts
 
-import { formatUtc } from '../../../index';
+import { formatUtc } from '../../../index.ts';
 
-import { getAllUSFederalReserveBankHolidays, type PlainDate } from './index';
+import { getAllUSFederalReserveBankHolidays, type PlainDate } from './index.ts';
 
 const DAY_OF_THE_WEEK_SUNDAY = 0;
 const DAY_OF_THE_WEEK_SATURDAY = 6;

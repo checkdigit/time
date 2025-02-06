@@ -1,6 +1,8 @@
-import { eachDayOfInterval } from '../eachDayOfInterval/index';
-import { isWeekend } from '../isWeekend/index';
-import type { Interval } from '../types';
+// date-fns/eachWeekendOfInterval/index.ts
+
+import { eachDayOfInterval } from '../eachDayOfInterval/index.ts';
+import { isWeekend } from '../isWeekend/index.ts';
+import type { Interval } from '../types.ts';
 
 /**
  * @name eachWeekendOfInterval
@@ -35,7 +37,9 @@ export function eachWeekendOfInterval<DateType extends Date>(interval: Interval<
   let index = 0;
   while (index < dateInterval.length) {
     const date = dateInterval[index++];
-    if (isWeekend(date!)) weekends.push(date!);
+    if (isWeekend(date!)) {
+      weekends.push(date!);
+    }
   }
   return weekends;
 }

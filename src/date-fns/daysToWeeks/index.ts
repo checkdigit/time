@@ -1,4 +1,6 @@
-import { daysInWeek } from '../constants/index';
+// date-fns/daysToWeeks/index.ts
+
+import { daysInWeek } from '../constants/index.ts';
 
 /**
  * @name daysToWeeks

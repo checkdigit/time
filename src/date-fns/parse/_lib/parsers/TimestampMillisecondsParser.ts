@@ -1,7 +1,9 @@
-import { constructFrom } from '../../../constructFrom/index';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { parseAnyDigitsSigned } from '../utils';
+// date-fns/parse/_lib/parsers/TimestampMillisecondsParser.ts
+
+import { constructFrom } from '../../../constructFrom/index.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { parseAnyDigitsSigned } from '../utils.ts';
 
 export class TimestampMillisecondsParser extends Parser<number> {
   priority = 20;

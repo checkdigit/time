@@ -1,8 +1,10 @@
-import { constructFrom } from '../constructFrom/index';
-import { isSaturday } from '../isSaturday/index';
-import { isSunday } from '../isSunday/index';
-import { isWeekend } from '../isWeekend/index';
-import { toDate } from '../toDate/index';
+// date-fns/addBusinessDays/index.ts
+
+import { constructFrom } from '../constructFrom/index.ts';
+import { isSaturday } from '../isSaturday/index.ts';
+import { isSunday } from '../isSunday/index.ts';
+import { isWeekend } from '../isWeekend/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name addBusinessDays
@@ -28,7 +30,9 @@ export function addBusinessDays<DateType extends Date>(date: DateType | number |
   const _date = toDate(date);
   const startedOnWeekend = isWeekend(_date);
 
-  if (isNaN(amount)) return constructFrom(date, NaN);
+  if (isNaN(amount)) {
+    return constructFrom(date, Number.NaN);
+  }
 
   const hours = _date.getHours();
   const sign = amount < 0 ? -1 : 1;

@@ -1,7 +1,9 @@
-import { millisecondsInWeek } from '../constants/index';
-import { startOfWeek } from '../startOfWeek/index';
-import type { LocalizedOptions, WeekOptions } from '../types';
-import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index';
+// date-fns/differenceInCalendarWeeks/index.ts
+
+import { millisecondsInWeek } from '../constants/index.ts';
+import { startOfWeek } from '../startOfWeek/index.ts';
+import type { LocalizedOptions, WeekOptions } from '../types.ts';
+import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index.ts';
 
 /**
  * The {@link differenceInCalendarWeeks} function options.

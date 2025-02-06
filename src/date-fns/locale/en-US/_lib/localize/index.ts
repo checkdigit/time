@@ -1,5 +1,7 @@
-import type { Localize, LocalizeFn } from '../../../types';
-import { buildLocalizeFn } from '../../../_lib/buildLocalizeFn/index';
+// date-fns/locale/en-US/_lib/localize/index.ts
+
+import type { Localize, LocalizeFn as LocalizeFunction } from '../../../types.ts';
+import { buildLocalizeFn as buildLocalizeFunction } from '../../../_lib/buildLocalizeFn/index.ts';
 
 const eraValues = {
   narrow: ['B', 'A'] as const,
@@ -109,7 +111,7 @@ const formattingDayPeriodValues = {
   },
 };
 
-const ordinalNumber: LocalizeFn<number> = (dirtyNumber, _options) => {
+const ordinalNumber: LocalizeFunction<number> = (dirtyNumber, _options) => {
   const number = Number(dirtyNumber);
 
   // If ordinal numbers depend on context, for example,
@@ -122,42 +124,45 @@ const ordinalNumber: LocalizeFn<number> = (dirtyNumber, _options) => {
   const rem100 = number % 100;
   if (rem100 > 20 || rem100 < 10) {
     switch (rem100 % 10) {
-      case 1:
-        return number + 'st';
-      case 2:
-        return number + 'nd';
-      case 3:
-        return number + 'rd';
+      case 1: {
+        return `${number}st`;
+      }
+      case 2: {
+        return `${number}nd`;
+      }
+      case 3: {
+        return `${number}rd`;
+      }
     }
   }
-  return number + 'th';
+  return `${number}th`;
 };
 
 export const localize: Localize = {
   ordinalNumber,
 
-  era: buildLocalizeFn({
+  era: buildLocalizeFunction({
     values: eraValues,
     defaultWidth: 'wide',
   }),
 
-  quarter: buildLocalizeFn({
+  quarter: buildLocalizeFunction({
     values: quarterValues,
     defaultWidth: 'wide',
     argumentCallback: (quarter) => quarter - 1,
   }),
 
-  month: buildLocalizeFn({
+  month: buildLocalizeFunction({
     values: monthValues,
     defaultWidth: 'wide',
   }),
 
-  day: buildLocalizeFn({
+  day: buildLocalizeFunction({
     values: dayValues,
     defaultWidth: 'wide',
   }),
 
-  dayPeriod: buildLocalizeFn({
+  dayPeriod: buildLocalizeFunction({
     values: dayPeriodValues,
     defaultWidth: 'wide',
     formattingValues: formattingDayPeriodValues,

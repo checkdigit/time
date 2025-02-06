@@ -1,4 +1,6 @@
-import { addLeadingZeros } from '../../addLeadingZeros/index';
+// date-fns/_lib/format/lightFormatters/index.ts
+
+import { addLeadingZeros } from '../../addLeadingZeros/index.ts';
 
 /*
  * |     | Unit                           |     | Unit                           |
@@ -51,15 +53,19 @@ export const lightFormatters = {
 
     switch (token) {
       case 'a':
-      case 'aa':
+      case 'aa': {
         return dayPeriodEnumValue.toUpperCase();
-      case 'aaa':
+      }
+      case 'aaa': {
         return dayPeriodEnumValue;
-      case 'aaaaa':
+      }
+      case 'aaaaa': {
         return dayPeriodEnumValue[0]!;
+      }
       case 'aaaa':
-      default:
+      default: {
         return dayPeriodEnumValue === 'am' ? 'a.m.' : 'p.m.';
+      }
     }
   },
 
@@ -93,7 +99,7 @@ export const lightFormatters = {
   S(date: Date, token: string): string {
     const numberOfDigits = token.length;
     const milliseconds = date.getMilliseconds();
-    const fractionalSeconds = Math.trunc(milliseconds * Math.pow(10, numberOfDigits - 3));
+    const fractionalSeconds = Math.trunc(milliseconds * 10 ** (numberOfDigits - 3));
     return addLeadingZeros(fractionalSeconds, token.length);
   },
 };

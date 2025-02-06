@@ -1,9 +1,11 @@
-import { constructFrom } from '../constructFrom/index';
-import { differenceInCalendarDays } from '../differenceInCalendarDays/index';
-import { startOfWeekYear } from '../startOfWeekYear/index';
-import { toDate } from '../toDate/index';
-import type { FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
+// date-fns/setWeekYear/index.ts
+
+import { constructFrom } from '../constructFrom/index.ts';
+import { differenceInCalendarDays } from '../differenceInCalendarDays/index.ts';
+import { startOfWeekYear } from '../startOfWeekYear/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types.ts';
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
 
 /**
  * The {@link setWeekYear} function options.

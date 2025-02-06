@@ -1,7 +1,9 @@
-import type { FormatDistanceToken } from '../locale/types';
-import type { Duration, DurationUnit, LocalizedOptions } from '../types';
-import { defaultLocale } from '../_lib/defaultLocale/index';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
+// date-fns/formatDuration/index.ts
+
+import type { FormatDistanceToken } from '../locale/types.ts';
+import type { Duration, DurationUnit, LocalizedOptions } from '../types.ts';
+import { defaultLocale } from '../_lib/defaultLocale/index.ts';
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
 
 /**
  * The {@link formatDuration} function options.
@@ -89,14 +91,14 @@ export function formatDuration(duration: Duration, options?: FormatDurationOptio
   }
 
   const result = format
-    .reduce((acc, unit) => {
+    .reduce<string[]>((accumulator, unit) => {
       const token = `x${unit.replace(/(^.)/, (m) => m.toUpperCase())}` as FormatDistanceToken;
       const value = duration[unit];
       if (value !== undefined && (zero || duration[unit])) {
-        return acc.concat(locale.formatDistance(token, value));
+        return accumulator.concat(locale.formatDistance(token, value));
       }
-      return acc;
-    }, [] as string[])
+      return accumulator;
+    }, [])
     .join(delimiter);
 
   return result;

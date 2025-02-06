@@ -1,4 +1,6 @@
-import { addMonths } from '../addMonths/index';
+// date-fns/addQuarters/index.ts
+
+import { addMonths } from '../addMonths/index.ts';
 
 /**
  * @name addQuarters

@@ -1,7 +1,9 @@
-import { constructFrom } from '../constructFrom/index';
-import { setMonth } from '../setMonth/index';
-import { toDate } from '../toDate/index';
-import type { DateValues } from '../types';
+// date-fns/set/index.ts
+
+import { constructFrom } from '../constructFrom/index.ts';
+import { setMonth } from '../setMonth/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { DateValues } from '../types.ts';
 
 /**
  * @name set
@@ -41,7 +43,7 @@ export function set<DateType extends Date>(date: DateType | number | string, val
 
   // Check if date is Invalid Date because Date.prototype.setFullYear ignores the value of Invalid Date
   if (isNaN(+_date)) {
-    return constructFrom(date, NaN);
+    return constructFrom(date, Number.NaN);
   }
 
   if (values.year != null) {

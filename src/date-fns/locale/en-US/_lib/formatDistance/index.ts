@@ -1,4 +1,6 @@
-import type { FormatDistanceFn, FormatDistanceLocale } from '../../../types';
+// date-fns/locale/en-US/_lib/formatDistance/index.ts
+
+import type { FormatDistanceFn as FormatDistanceFunction, FormatDistanceLocale } from '../../../types.ts';
 
 type FormatDistanceTokenValue =
   | string
@@ -86,7 +88,7 @@ const formatDistanceLocale: FormatDistanceLocale<FormatDistanceTokenValue> = {
   },
 };
 
-export const formatDistance: FormatDistanceFn = (token, count, options) => {
+export const formatDistance: FormatDistanceFunction = (token, count, options) => {
   let result;
 
   const tokenValue = formatDistanceLocale[token];
@@ -100,10 +102,9 @@ export const formatDistance: FormatDistanceFn = (token, count, options) => {
 
   if (options?.addSuffix) {
     if (options.comparison && options.comparison > 0) {
-      return 'in ' + result;
-    } else {
-      return result + ' ago';
+      return `in ${result}`;
     }
+    return `${result} ago`;
   }
 
   return result;

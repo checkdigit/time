@@ -1,6 +1,8 @@
-import { getRoundingMethod } from '../_lib/getRoundingMethod/index';
-import { differenceInMonths } from '../differenceInMonths/index';
-import type { RoundingOptions } from '../types';
+// date-fns/differenceInQuarters/index.ts
+
+import { getRoundingMethod } from '../_lib/getRoundingMethod/index.ts';
+import { differenceInMonths } from '../differenceInMonths/index.ts';
+import type { RoundingOptions } from '../types.ts';
 
 /**
  * The {@link differenceInQuarters} function options.

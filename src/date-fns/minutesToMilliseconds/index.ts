@@ -1,4 +1,6 @@
-import { millisecondsInMinute } from '../constants/index';
+// date-fns/minutesToMilliseconds/index.ts
+
+import { millisecondsInMinute } from '../constants/index.ts';
 
 /**
  * @name minutesToMilliseconds

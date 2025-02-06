@@ -1,5 +1,7 @@
-import { constructNow } from '../constructNow/index';
-import { isSameSecond } from '../isSameSecond/index';
+// date-fns/isThisSecond/index.ts
+
+import { constructNow } from '../constructNow/index.ts';
+import { isSameSecond } from '../isSameSecond/index.ts';
 
 /**
  * @name isThisSecond

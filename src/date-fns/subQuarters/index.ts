@@ -1,4 +1,6 @@
-import { addQuarters } from '../addQuarters/index';
+// date-fns/subQuarters/index.ts
+
+import { addQuarters } from '../addQuarters/index.ts';
 
 /**
  * @name subQuarters

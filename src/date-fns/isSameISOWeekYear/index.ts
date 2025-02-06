@@ -1,4 +1,6 @@
-import { startOfISOWeekYear } from '../startOfISOWeekYear/index';
+// date-fns/isSameISOWeekYear/index.ts
+
+import { startOfISOWeekYear } from '../startOfISOWeekYear/index.ts';
 
 /**
  * @name isSameISOWeekYear

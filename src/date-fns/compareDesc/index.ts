@@ -1,4 +1,6 @@
-import { toDate } from '../toDate/index';
+// date-fns/compareDesc/index.ts
+
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name compareDesc
@@ -48,7 +50,6 @@ export function compareDesc<DateType extends Date>(
   } else if (diff < 0) {
     return 1;
     // Return 0 if diff is 0; return NaN if diff is NaN
-  } else {
-    return diff;
   }
+  return diff;
 }

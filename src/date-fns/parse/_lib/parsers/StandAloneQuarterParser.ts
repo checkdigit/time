@@ -1,7 +1,9 @@
-import type { Match } from '../../../locale/types';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { parseNDigits } from '../utils';
+// date-fns/parse/_lib/parsers/StandAloneQuarterParser.ts
+
+import type { Match } from '../../../locale/types.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { parseNDigits } from '../utils.ts';
 
 export class StandAloneQuarterParser extends Parser<number> {
   priority = 120;
@@ -10,13 +12,16 @@ export class StandAloneQuarterParser extends Parser<number> {
     switch (token) {
       // 1, 2, 3, 4
       case 'q':
-      case 'qq': // 01, 02, 03, 04
+      case 'qq': {
+        // 01, 02, 03, 04
         return parseNDigits(token.length, dateString);
+      }
       // 1st, 2nd, 3rd, 4th
-      case 'qo':
+      case 'qo': {
         return match.ordinalNumber(dateString, { unit: 'quarter' });
+      }
       // Q1, Q2, Q3, Q4
-      case 'qqq':
+      case 'qqq': {
         return (
           match.quarter(dateString, {
             width: 'abbreviated',
@@ -27,15 +32,17 @@ export class StandAloneQuarterParser extends Parser<number> {
             context: 'standalone',
           })
         );
+      }
       // 1, 2, 3, 4 (narrow quarter; could be not numerical)
-      case 'qqqqq':
+      case 'qqqqq': {
         return match.quarter(dateString, {
           width: 'narrow',
           context: 'standalone',
         });
+      }
       // 1st quarter, 2nd quarter, ...
       case 'qqqq':
-      default:
+      default: {
         return (
           match.quarter(dateString, {
             width: 'wide',
@@ -50,6 +57,7 @@ export class StandAloneQuarterParser extends Parser<number> {
             context: 'standalone',
           })
         );
+      }
     }
   }
 
@@ -63,5 +71,5 @@ export class StandAloneQuarterParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['Y', 'R', 'Q', 'M', 'L', 'w', 'I', 'd', 'D', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['Y', 'R', 'Q', 'M', 'L', 'w', 'I', 'd', 'D', 'i', 'e', 'c', 't', 'T'];
 }

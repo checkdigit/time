@@ -1,7 +1,9 @@
-import { compareAsc } from '../compareAsc/index';
-import { differenceInCalendarISOWeekYears } from '../differenceInCalendarISOWeekYears/index';
-import { subISOWeekYears } from '../subISOWeekYears/index';
-import { toDate } from '../toDate/index';
+// date-fns/differenceInISOWeekYears/index.ts
+
+import { compareAsc } from '../compareAsc/index.ts';
+import { differenceInCalendarISOWeekYears } from '../differenceInCalendarISOWeekYears/index.ts';
+import { subISOWeekYears } from '../subISOWeekYears/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name differenceInISOWeekYears

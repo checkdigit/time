@@ -1,7 +1,9 @@
-import type { Match } from '../../../locale/types';
-import { setDay } from '../../../setDay/index';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult, ParserOptions } from '../types';
+// date-fns/parse/_lib/parsers/DayParser.ts
+
+import type { Match } from '../../../locale/types.ts';
+import { setDay } from '../../../setDay/index.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult, ParserOptions } from '../types.ts';
 
 // Day of week
 export class DayParser extends Parser<number> {
@@ -12,7 +14,7 @@ export class DayParser extends Parser<number> {
       // Tue
       case 'E':
       case 'EE':
-      case 'EEE':
+      case 'EEE': {
         return (
           match.day(dateString, {
             width: 'abbreviated',
@@ -21,21 +23,24 @@ export class DayParser extends Parser<number> {
           match.day(dateString, { width: 'short', context: 'formatting' }) ||
           match.day(dateString, { width: 'narrow', context: 'formatting' })
         );
+      }
       // T
-      case 'EEEEE':
+      case 'EEEEE': {
         return match.day(dateString, {
           width: 'narrow',
           context: 'formatting',
         });
+      }
       // Tu
-      case 'EEEEEE':
+      case 'EEEEEE': {
         return (
           match.day(dateString, { width: 'short', context: 'formatting' }) ||
           match.day(dateString, { width: 'narrow', context: 'formatting' })
         );
+      }
       // Tuesday
       case 'EEEE':
-      default:
+      default: {
         return (
           match.day(dateString, { width: 'wide', context: 'formatting' }) ||
           match.day(dateString, {
@@ -45,6 +50,7 @@ export class DayParser extends Parser<number> {
           match.day(dateString, { width: 'short', context: 'formatting' }) ||
           match.day(dateString, { width: 'narrow', context: 'formatting' })
         );
+      }
     }
   }
 
@@ -58,5 +64,5 @@ export class DayParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['D', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['D', 'i', 'e', 'c', 't', 'T'];
 }

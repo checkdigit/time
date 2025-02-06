@@ -1,3 +1,5 @@
+// date-fns/endOfTomorrow/index.ts
+
 /**
  * @name endOfTomorrow
  * @category Day Helpers

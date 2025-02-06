@@ -1,6 +1,8 @@
-import { toDate } from '../toDate/index';
-import type { ISOFormatOptions } from '../types';
-import { addLeadingZeros } from '../_lib/addLeadingZeros/index';
+// date-fns/formatISO/index.ts
+
+import { toDate } from '../toDate/index.ts';
+import type { ISOFormatOptions } from '../types.ts';
+import { addLeadingZeros } from '../_lib/addLeadingZeros/index.ts';
 
 /**
  * The {@link formatISO} function options.
@@ -75,7 +77,9 @@ export function formatISO<DateType extends Date>(date: DateType | number | strin
     // Add the timezone.
     const offset = _date.getTimezoneOffset();
 
-    if (offset !== 0) {
+    if (offset === 0) {
+      tzOffset = 'Z';
+    } else {
       const absoluteOffset = Math.abs(offset);
       const hourOffset = addLeadingZeros(Math.trunc(absoluteOffset / 60), 2);
       const minuteOffset = addLeadingZeros(absoluteOffset % 60, 2);
@@ -83,8 +87,6 @@ export function formatISO<DateType extends Date>(date: DateType | number | strin
       const sign = offset < 0 ? '+' : '-';
 
       tzOffset = `${sign}${hourOffset}:${minuteOffset}`;
-    } else {
-      tzOffset = 'Z';
     }
 
     const hour = addLeadingZeros(_date.getHours(), 2);

@@ -1,12 +1,14 @@
-import { compareAsc } from '../compareAsc/index';
-import { minutesInDay, minutesInMonth } from '../constants/index';
-import { differenceInMonths } from '../differenceInMonths/index';
-import { differenceInSeconds } from '../differenceInSeconds/index';
-import { toDate } from '../toDate/index';
-import type { LocalizedOptions } from '../types';
-import { defaultLocale } from '../_lib/defaultLocale/index';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
-import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index';
+// date-fns/formatDistance/index.ts
+
+import { compareAsc } from '../compareAsc/index.ts';
+import { minutesInDay, minutesInMonth } from '../constants/index.ts';
+import { differenceInMonths } from '../differenceInMonths/index.ts';
+import { differenceInSeconds } from '../differenceInSeconds/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { LocalizedOptions } from '../types.ts';
+import { defaultLocale } from '../_lib/defaultLocale/index.ts';
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
+import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index.ts';
 
 /**
  * The {@link formatDistance} function options.
@@ -114,7 +116,7 @@ export function formatDistance<DateType extends Date>(
     throw new RangeError('Invalid time value');
   }
 
-  const localizeOptions = Object.assign({}, options, {
+  const localizeOptions: FormatDistanceOptions = Object.assign({}, options, {
     addSuffix: options?.addSuffix,
     comparison: comparison as -1 | 0 | 1,
   });

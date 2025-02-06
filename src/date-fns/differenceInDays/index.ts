@@ -1,5 +1,7 @@
-import { differenceInCalendarDays } from '../differenceInCalendarDays/index';
-import { toDate } from '../toDate/index';
+// date-fns/differenceInDays/index.ts
+
+import { differenceInCalendarDays } from '../differenceInCalendarDays/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name differenceInDays
@@ -94,7 +96,6 @@ function compareLocalAsc<DateType extends Date>(dateLeft: DateType, dateRight: D
   } else if (diff > 0) {
     return 1;
     // Return 0 if diff is 0; return NaN if diff is NaN
-  } else {
-    return diff;
   }
+  return diff;
 }

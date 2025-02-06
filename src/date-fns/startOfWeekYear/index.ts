@@ -1,8 +1,10 @@
-import { constructFrom } from '../constructFrom/index';
-import { getWeekYear } from '../getWeekYear/index';
-import { startOfWeek } from '../startOfWeek/index';
-import type { FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
+// date-fns/startOfWeekYear/index.ts
+
+import { constructFrom } from '../constructFrom/index.ts';
+import { getWeekYear } from '../getWeekYear/index.ts';
+import { startOfWeek } from '../startOfWeek/index.ts';
+import type { FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types.ts';
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
 
 /**
  * The {@link startOfWeekYear} function options.

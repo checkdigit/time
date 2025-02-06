@@ -1,4 +1,6 @@
-import type { FormatRelativeFn } from '../../../types';
+// date-fns/locale/en-US/_lib/formatRelative/index.ts
+
+import type { FormatRelativeFn as FormatRelativeFunction } from '../../../types.ts';
 
 const formatRelativeLocale = {
   lastWeek: "'last' eeee 'at' p",
@@ -9,4 +11,5 @@ const formatRelativeLocale = {
   other: 'P',
 };
 
-export const formatRelative: FormatRelativeFn = (token, _date, _baseDate, _options) => formatRelativeLocale[token];
+export const formatRelative: FormatRelativeFunction = (token, _date, _baseDate, _options) =>
+  formatRelativeLocale[token];

@@ -1,4 +1,6 @@
-import type { Duration } from '../types';
+// date-fns/formatISODuration/index.ts
+
+import type { Duration } from '../types.ts';
 
 /**
  * @name formatISODuration

@@ -1,17 +1,17 @@
-/* eslint-disable no-unused-vars */
+// date-fns/locale/_lib/buildLocalizeFn/index.ts
 
-import type { Day, Era, Month, Quarter } from '../../../types';
-import type { LocaleDayPeriod, LocaleUnitValue, LocaleWidth, LocalizeFn } from '../../types';
+import type { Day, Era, Month, Quarter } from '../../../types.ts';
+import type { LocaleDayPeriod, LocaleUnitValue, LocaleWidth, LocalizeFn as LocalizeFunction } from '../../types.ts';
 
 export type BuildLocalizeFnArgs<
   Value extends LocaleUnitValue,
-  ArgCallback extends LocalizeFnArgCallback<Value> | undefined,
+  ArgumentCallback extends LocalizeFnArgCallback<Value> | undefined,
 > = {
   values: LocalizePeriodValuesMap<Value>;
   defaultWidth: LocaleWidth;
   formattingValues?: LocalizePeriodValuesMap<Value>;
   defaultFormattingWidth?: LocaleWidth;
-} & (ArgCallback extends undefined
+} & (ArgumentCallback extends undefined
   ? { argumentCallback?: undefined }
   : { argumentCallback: LocalizeFnArgCallback<Value> });
 
@@ -28,9 +28,9 @@ export type LocalizeFnArgCallback<Value extends LocaleUnitValue | number> = (val
 /**
  * The map of localized values for each width.
  */
-export type LocalizePeriodValuesMap<Value extends LocaleUnitValue> = {
-  [Pattern in LocaleWidth]?: LocalizeValues<Value>;
-};
+export type LocalizePeriodValuesMap<Value extends LocaleUnitValue> = Partial<
+  Record<LocaleWidth, LocalizeValues<Value>>
+>;
 
 /**
  * The index type of the locale unit value. It types conversion of units of
@@ -91,22 +91,24 @@ export type LocalizeMonthValues = readonly [
 
 export function buildLocalizeFn<
   Value extends LocaleUnitValue,
-  ArgCallback extends LocalizeFnArgCallback<Value> | undefined,
->(args: BuildLocalizeFnArgs<Value, ArgCallback>): LocalizeFn<Value> {
+  ArgumentCallback extends LocalizeFnArgCallback<Value> | undefined,
+>(arguments_: BuildLocalizeFnArgs<Value, ArgumentCallback>): LocalizeFunction<Value> {
   return (value, options) => {
     const context = options?.context ? String(options.context) : 'standalone';
 
     let valuesArray: LocalizeValues<Value>;
-    if (context === 'formatting' && args.formattingValues) {
-      const defaultWidth = args.defaultFormattingWidth || args.defaultWidth;
+    if (context === 'formatting' && arguments_.formattingValues) {
+      const defaultWidth = arguments_.defaultFormattingWidth || arguments_.defaultWidth;
       const width = (options?.width ? String(options.width) : defaultWidth) as LocaleWidth;
-      valuesArray = (args.formattingValues[width] || args.formattingValues[defaultWidth]) as LocalizeValues<Value>;
+      valuesArray = (arguments_.formattingValues[width] || arguments_.formattingValues[defaultWidth])!;
     } else {
-      const defaultWidth = args.defaultWidth;
-      const width = (options?.width ? String(options.width) : args.defaultWidth) as LocaleWidth;
-      valuesArray = (args.values[width] || args.values[defaultWidth]) as LocalizeValues<Value>;
+      const defaultWidth = arguments_.defaultWidth;
+      const width = (options?.width ? String(options.width) : arguments_.defaultWidth) as LocaleWidth;
+      valuesArray = (arguments_.values[width] || arguments_.values[defaultWidth])!;
     }
-    const index = (args.argumentCallback ? args.argumentCallback(value as Value) : value) as LocalizeUnitIndex<Value>;
+    const index = (
+      arguments_.argumentCallback ? arguments_.argumentCallback(value) : value
+    ) as LocalizeUnitIndex<Value>;
     // @ts-expect-error - For some reason TypeScript just don't want to match it, no matter how hard we try. I challenge you to try to remove it!
     return valuesArray[index];
   };

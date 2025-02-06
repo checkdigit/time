@@ -1,6 +1,8 @@
-import { getDay } from '../getDay/index';
-import { subDays } from '../subDays/index';
-import type { Day } from '../types';
+// date-fns/previousDay/index.ts
+
+import { getDay } from '../getDay/index.ts';
+import { subDays } from '../subDays/index.ts';
+import type { Day } from '../types.ts';
 
 /**
  * @name previousDay
@@ -29,7 +31,9 @@ import type { Day } from '../types';
  */
 export function previousDay<DateType extends Date>(date: DateType | number | string, day: Day): DateType {
   let delta = getDay(date) - day;
-  if (delta <= 0) delta += 7;
+  if (delta <= 0) {
+    delta += 7;
+  }
 
   return subDays(date, delta);
 }

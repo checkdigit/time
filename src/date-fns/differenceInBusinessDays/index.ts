@@ -1,9 +1,11 @@
-import { addDays } from '../addDays/index';
-import { differenceInCalendarDays } from '../differenceInCalendarDays/index';
-import { isSameDay } from '../isSameDay/index';
-import { isValid } from '../isValid/index';
-import { isWeekend } from '../isWeekend/index';
-import { toDate } from '../toDate/index';
+// date-fns/differenceInBusinessDays/index.ts
+
+import { addDays } from '../addDays/index.ts';
+import { differenceInCalendarDays } from '../differenceInCalendarDays/index.ts';
+import { isSameDay } from '../isSameDay/index.ts';
+import { isValid } from '../isValid/index.ts';
+import { isWeekend } from '../isWeekend/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name differenceInBusinessDays
@@ -63,7 +65,9 @@ export function differenceInBusinessDays<DateType extends Date>(
   const _dateLeft = toDate(dateLeft);
   let _dateRight = toDate(dateRight);
 
-  if (!isValid(_dateLeft) || !isValid(_dateRight)) return NaN;
+  if (!isValid(_dateLeft) || !isValid(_dateRight)) {
+    return Number.NaN;
+  }
 
   const calendarDifference = differenceInCalendarDays(_dateLeft, _dateRight);
   const sign = calendarDifference < 0 ? -1 : 1;

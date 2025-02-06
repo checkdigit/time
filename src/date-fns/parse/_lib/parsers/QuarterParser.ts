@@ -1,7 +1,9 @@
-import type { Match } from '../../../locale/types';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { parseNDigits } from '../utils';
+// date-fns/parse/_lib/parsers/QuarterParser.ts
+
+import type { Match } from '../../../locale/types.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { parseNDigits } from '../utils.ts';
 
 export class QuarterParser extends Parser<number> {
   priority = 120;
@@ -10,13 +12,16 @@ export class QuarterParser extends Parser<number> {
     switch (token) {
       // 1, 2, 3, 4
       case 'Q':
-      case 'QQ': // 01, 02, 03, 04
+      case 'QQ': {
+        // 01, 02, 03, 04
         return parseNDigits(token.length, dateString);
+      }
       // 1st, 2nd, 3rd, 4th
-      case 'Qo':
+      case 'Qo': {
         return match.ordinalNumber(dateString, { unit: 'quarter' });
+      }
       // Q1, Q2, Q3, Q4
-      case 'QQQ':
+      case 'QQQ': {
         return (
           match.quarter(dateString, {
             width: 'abbreviated',
@@ -27,15 +32,17 @@ export class QuarterParser extends Parser<number> {
             context: 'formatting',
           })
         );
+      }
       // 1, 2, 3, 4 (narrow quarter; could be not numerical)
-      case 'QQQQQ':
+      case 'QQQQQ': {
         return match.quarter(dateString, {
           width: 'narrow',
           context: 'formatting',
         });
+      }
       // 1st quarter, 2nd quarter, ...
       case 'QQQQ':
-      default:
+      default: {
         return (
           match.quarter(dateString, {
             width: 'wide',
@@ -50,6 +57,7 @@ export class QuarterParser extends Parser<number> {
             context: 'formatting',
           })
         );
+      }
     }
   }
 
@@ -63,5 +71,5 @@ export class QuarterParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['Y', 'R', 'q', 'M', 'L', 'w', 'I', 'd', 'D', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['Y', 'R', 'q', 'M', 'L', 'w', 'I', 'd', 'D', 'i', 'e', 'c', 't', 'T'];
 }

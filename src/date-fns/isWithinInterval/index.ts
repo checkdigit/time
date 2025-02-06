@@ -1,5 +1,7 @@
-import { toDate } from '../toDate/index';
-import type { Interval } from '../types';
+// date-fns/isWithinInterval/index.ts
+
+import { toDate } from '../toDate/index.ts';
+import type { Interval } from '../types.ts';
 
 /**
  * @name isWithinInterval

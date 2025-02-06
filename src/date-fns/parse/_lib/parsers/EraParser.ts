@@ -1,7 +1,9 @@
-import type { Match } from '../../../locale/types';
-import type { Era } from '../../../types';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
+// date-fns/parse/_lib/parsers/EraParser.ts
+
+import type { Match } from '../../../locale/types.ts';
+import type { Era } from '../../../types.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
 
 export class EraParser extends Parser<number> {
   priority = 140;
@@ -11,19 +13,22 @@ export class EraParser extends Parser<number> {
       // AD, BC
       case 'G':
       case 'GG':
-      case 'GGG':
+      case 'GGG': {
         return match.era(dateString, { width: 'abbreviated' }) || match.era(dateString, { width: 'narrow' });
+      }
       // A, B
-      case 'GGGGG':
+      case 'GGGGG': {
         return match.era(dateString, { width: 'narrow' });
+      }
       // Anno Domini, Before Christ
       case 'GGGG':
-      default:
+      default: {
         return (
           match.era(dateString, { width: 'wide' }) ||
           match.era(dateString, { width: 'abbreviated' }) ||
           match.era(dateString, { width: 'narrow' })
         );
+      }
     }
   }
 
@@ -34,5 +39,5 @@ export class EraParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['R', 'u', 't', 'T'];
+  incompatibleTokens = ['R', 'u', 't', 'T'] as string[];
 }

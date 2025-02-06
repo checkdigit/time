@@ -1,10 +1,12 @@
-import type { Match } from '../../../locale/types';
-import { setWeek } from '../../../setWeek/index';
-import { startOfWeek } from '../../../startOfWeek/index';
-import { numericPatterns } from '../constants';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult, ParserOptions } from '../types';
-import { parseNDigits, parseNumericPattern } from '../utils';
+// date-fns/parse/_lib/parsers/LocalWeekParser.ts
+
+import type { Match } from '../../../locale/types.ts';
+import { setWeek } from '../../../setWeek/index.ts';
+import { startOfWeek } from '../../../startOfWeek/index.ts';
+import { numericPatterns } from '../constants.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult, ParserOptions } from '../types.ts';
+import { parseNDigits, parseNumericPattern } from '../utils.ts';
 
 // Local week of year
 export class LocalWeekParser extends Parser<number> {
@@ -12,12 +14,15 @@ export class LocalWeekParser extends Parser<number> {
 
   parse(dateString: string, token: string, match: Match): ParseResult<number> {
     switch (token) {
-      case 'w':
+      case 'w': {
         return parseNumericPattern(numericPatterns.week, dateString);
-      case 'wo':
+      }
+      case 'wo': {
         return match.ordinalNumber(dateString, { unit: 'week' });
-      default:
+      }
+      default: {
         return parseNDigits(token.length, dateString);
+      }
     }
   }
 
@@ -29,5 +34,5 @@ export class LocalWeekParser extends Parser<number> {
     return startOfWeek(setWeek(date, value, options), options);
   }
 
-  incompatibleTokens = ['y', 'R', 'u', 'q', 'Q', 'M', 'L', 'I', 'd', 'D', 'i', 't', 'T'];
+  incompatibleTokens: string[] = ['y', 'R', 'u', 'q', 'Q', 'M', 'L', 'I', 'd', 'D', 'i', 't', 'T'];
 }

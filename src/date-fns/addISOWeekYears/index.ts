@@ -1,5 +1,7 @@
-import { getISOWeekYear } from '../getISOWeekYear/index';
-import { setISOWeekYear } from '../setISOWeekYear/index';
+// date-fns/addISOWeekYears/index.ts
+
+import { getISOWeekYear } from '../getISOWeekYear/index.ts';
+import { setISOWeekYear } from '../setISOWeekYear/index.ts';
 
 /**
  * @name addISOWeekYears

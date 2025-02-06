@@ -1,20 +1,25 @@
-import type { Match } from '../../../locale/types';
-import { numericPatterns } from '../constants';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { parseNDigits, parseNumericPattern } from '../utils';
+// date-fns/parse/_lib/parsers/SecondParser.ts
+
+import type { Match } from '../../../locale/types.ts';
+import { numericPatterns } from '../constants.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { parseNDigits, parseNumericPattern } from '../utils.ts';
 
 export class SecondParser extends Parser<number> {
   priority = 50;
 
   parse(dateString: string, token: string, match: Match): ParseResult<number> {
     switch (token) {
-      case 's':
+      case 's': {
         return parseNumericPattern(numericPatterns.second, dateString);
-      case 'so':
+      }
+      case 'so': {
         return match.ordinalNumber(dateString, { unit: 'second' });
-      default:
+      }
+      default: {
         return parseNDigits(token.length, dateString);
+      }
     }
   }
 
@@ -27,5 +32,5 @@ export class SecondParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['t', 'T'];
+  incompatibleTokens: string[] = ['t', 'T'];
 }

@@ -1,5 +1,7 @@
-import { daysInYear } from '../constants/index';
-import type { Duration } from '../types';
+// date-fns/milliseconds/index.ts
+
+import { daysInYear } from '../constants/index.ts';
+import type { Duration } from '../types.ts';
 
 /**
  * @name milliseconds
@@ -33,16 +35,30 @@ import type { Duration } from '../types';
 export function milliseconds({ years, months, weeks, days, hours, minutes, seconds }: Duration): number {
   let totalDays = 0;
 
-  if (years) totalDays += years * daysInYear;
-  if (months) totalDays += months * (daysInYear / 12);
-  if (weeks) totalDays += weeks * 7;
-  if (days) totalDays += days;
+  if (years) {
+    totalDays += years * daysInYear;
+  }
+  if (months) {
+    totalDays += months * (daysInYear / 12);
+  }
+  if (weeks) {
+    totalDays += weeks * 7;
+  }
+  if (days) {
+    totalDays += days;
+  }
 
   let totalSeconds = totalDays * 24 * 60 * 60;
 
-  if (hours) totalSeconds += hours * 60 * 60;
-  if (minutes) totalSeconds += minutes * 60;
-  if (seconds) totalSeconds += seconds;
+  if (hours) {
+    totalSeconds += hours * 60 * 60;
+  }
+  if (minutes) {
+    totalSeconds += minutes * 60;
+  }
+  if (seconds) {
+    totalSeconds += seconds;
+  }
 
   return Math.trunc(totalSeconds * 1000);
 }

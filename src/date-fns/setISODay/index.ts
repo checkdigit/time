@@ -1,6 +1,8 @@
-import { addDays } from '../addDays/index';
-import { getISODay } from '../getISODay/index';
-import { toDate } from '../toDate/index';
+// date-fns/setISODay/index.ts
+
+import { addDays } from '../addDays/index.ts';
+import { getISODay } from '../getISODay/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name setISODay

@@ -1,6 +1,8 @@
-import type { Locale } from '../date-fns/locale/types';
+// date-fns-tz/types.ts
 
-export type OptionsWithTZ = {
+import type { Locale } from '../date-fns/locale/types.ts';
+
+export interface OptionsWithTZ {
   weekStartsOn?: 0 | 1 | 2 | 3 | 4 | 5 | 6;
   firstWeekContainsDate?: 1 | 2 | 3 | 4 | 5 | 6 | 7;
   additionalDigits?: 0 | 1 | 2;
@@ -11,4 +13,4 @@ export type OptionsWithTZ = {
   unit?: 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year';
   roundingMethod?: 'floor' | 'ceil' | 'round';
   awareOfUnicodeTokens?: boolean;
-};
+}

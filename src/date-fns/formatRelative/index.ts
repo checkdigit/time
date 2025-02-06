@@ -1,10 +1,12 @@
-import { differenceInCalendarDays } from '../differenceInCalendarDays/index';
-import { format } from '../format/index';
-import type { FormatRelativeToken } from '../locale/types';
-import { toDate } from '../toDate/index';
-import type { LocalizedOptions, WeekOptions } from '../types';
-import { defaultLocale } from '../_lib/defaultLocale/index';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
+// date-fns/formatRelative/index.ts
+
+import { differenceInCalendarDays } from '../differenceInCalendarDays/index.ts';
+import { format } from '../format/index.ts';
+import type { FormatRelativeToken } from '../locale/types.ts';
+import { toDate } from '../toDate/index.ts';
+import type { LocalizedOptions, WeekOptions } from '../types.ts';
+import { defaultLocale } from '../_lib/defaultLocale/index.ts';
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
 
 /**
  * The {@link formatRelative} function options.
@@ -89,9 +91,9 @@ export function formatRelative<DateType extends Date>(
     token = 'other';
   }
 
-  const formatStr = locale.formatRelative(token, _date, _baseDate, {
+  const formatString = locale.formatRelative(token, _date, _baseDate, {
     locale,
     weekStartsOn,
   });
-  return format(_date, formatStr, { locale, weekStartsOn });
+  return format(_date, formatString, { locale, weekStartsOn });
 }

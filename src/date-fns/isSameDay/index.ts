@@ -1,4 +1,6 @@
-import { startOfDay } from '../startOfDay/index';
+// date-fns/isSameDay/index.ts
+
+import { startOfDay } from '../startOfDay/index.ts';
 
 /**
  * @name isSameDay

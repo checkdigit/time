@@ -1,4 +1,6 @@
-import { minutesInHour } from '../constants/index';
+// date-fns/minutesToHours/index.ts
+
+import { minutesInHour } from '../constants/index.ts';
 
 /**
  * @name minutesToHours

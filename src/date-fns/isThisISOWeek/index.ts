@@ -1,5 +1,7 @@
-import { constructNow } from '../constructNow/index';
-import { isSameISOWeek } from '../isSameISOWeek/index';
+// date-fns/isThisISOWeek/index.ts
+
+import { constructNow } from '../constructNow/index.ts';
+import { isSameISOWeek } from '../isSameISOWeek/index.ts';
 
 /**
  * @name isThisISOWeek

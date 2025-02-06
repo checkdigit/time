@@ -1,7 +1,9 @@
-import type { LocaleDayPeriod, Match } from '../../../locale/types';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { dayPeriodEnumToHours } from '../utils';
+// date-fns/parse/_lib/parsers/AMPMParser.ts
+
+import type { LocaleDayPeriod, Match } from '../../../locale/types.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { dayPeriodEnumToHours } from '../utils.ts';
 
 export class AMPMParser extends Parser<LocaleDayPeriod> {
   priority = 80;
@@ -10,7 +12,7 @@ export class AMPMParser extends Parser<LocaleDayPeriod> {
     switch (token) {
       case 'a':
       case 'aa':
-      case 'aaa':
+      case 'aaa': {
         return (
           match.dayPeriod(dateString, {
             width: 'abbreviated',
@@ -21,13 +23,15 @@ export class AMPMParser extends Parser<LocaleDayPeriod> {
             context: 'formatting',
           })
         );
-      case 'aaaaa':
+      }
+      case 'aaaaa': {
         return match.dayPeriod(dateString, {
           width: 'narrow',
           context: 'formatting',
         });
+      }
       case 'aaaa':
-      default:
+      default: {
         return (
           match.dayPeriod(dateString, {
             width: 'wide',
@@ -42,6 +46,7 @@ export class AMPMParser extends Parser<LocaleDayPeriod> {
             context: 'formatting',
           })
         );
+      }
     }
   }
 
@@ -50,5 +55,5 @@ export class AMPMParser extends Parser<LocaleDayPeriod> {
     return date;
   }
 
-  incompatibleTokens = ['b', 'B', 'H', 'k', 't', 'T'];
+  incompatibleTokens = ['b', 'B', 'H', 'k', 't', 'T'] as string[];
 }

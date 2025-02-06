@@ -1,4 +1,6 @@
-import { endOfDay } from '../endOfDay/index';
+// date-fns/endOfToday/index.ts
+
+import { endOfDay } from '../endOfDay/index.ts';
 
 /**
  * @name endOfToday

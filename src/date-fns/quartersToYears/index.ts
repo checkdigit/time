@@ -1,4 +1,6 @@
-import { quartersInYear } from '../constants/index';
+// date-fns/quartersToYears/index.ts
+
+import { quartersInYear } from '../constants/index.ts';
 
 /**
  * @name quartersToYears

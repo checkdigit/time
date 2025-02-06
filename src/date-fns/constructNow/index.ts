@@ -1,4 +1,6 @@
-import { constructFrom } from '../constructFrom/index';
+// date-fns/constructNow/index.ts
+
+import { constructFrom } from '../constructFrom/index.ts';
 
 /**
  * @name constructNow

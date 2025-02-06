@@ -1,10 +1,11 @@
-import { isValid } from '../isValid/index';
-import { toDate } from '../toDate/index';
-import { lightFormatters } from '../_lib/format/lightFormatters/index';
+// date-fns/lightFormat/index.ts
+
+import { isValid } from '../isValid/index.ts';
+import { toDate } from '../toDate/index.ts';
+import { lightFormatters } from '../_lib/format/lightFormatters/index.ts';
 
 // Rexports of internal for libraries to use.
 // See: https://github.com/date-fns/date-fns/issues/3638#issuecomment-1877082874
-export { lightFormatters };
 
 // This RegExp consists of three parts separated by `|`:
 // - (\w)\1* matches any sequences of the same letter
@@ -85,17 +86,19 @@ type Token = keyof typeof lightFormatters;
  * const result = lightFormat(new Date(2014, 1, 11), 'yyyy-MM-dd')
  * //=> '2014-02-11'
  */
-export function lightFormat<DateType extends Date>(date: DateType | number | string, formatStr: string): string {
+export function lightFormat<DateType extends Date>(date: DateType | number | string, formatString: string): string {
   const _date = toDate(date);
 
   if (!isValid(_date)) {
     throw new RangeError('Invalid time value');
   }
 
-  const tokens = formatStr.match(formattingTokensRegExp);
+  const tokens = formatString.match(formattingTokensRegExp);
 
   // The only case when formattingTokensRegExp doesn't match the string is when it's empty
-  if (!tokens) return '';
+  if (!tokens) {
+    return '';
+  }
 
   const result = tokens
     .map((substring) => {
@@ -114,8 +117,8 @@ export function lightFormat<DateType extends Date>(date: DateType | number | str
         return formatter(_date, substring);
       }
 
-      if (firstCharacter!.match(unescapedLatinCharacterRegExp)) {
-        throw new RangeError('Format string contains an unescaped latin alphabet character `' + firstCharacter + '`');
+      if (unescapedLatinCharacterRegExp.test(firstCharacter!)) {
+        throw new RangeError(`Format string contains an unescaped latin alphabet character \`${firstCharacter}\``);
       }
 
       return substring;
@@ -126,11 +129,13 @@ export function lightFormat<DateType extends Date>(date: DateType | number | str
 }
 
 function cleanEscapedString(input: string) {
-  const matches = input.match(escapedStringRegExp);
+  const matches = escapedStringRegExp.exec(input);
 
   if (!matches) {
     return input;
   }
 
-  return matches[1]!.replace(doubleQuoteRegExp, "'");
+  return matches[1]!.replaceAll(doubleQuoteRegExp, "'");
 }
+
+export { lightFormatters } from '../_lib/format/lightFormatters/index.ts';

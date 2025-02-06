@@ -1,6 +1,8 @@
-import { constructFrom } from '../constructFrom/index';
-import { startOfISOWeek } from '../startOfISOWeek/index';
-import { toDate } from '../toDate/index';
+// date-fns/getISOWeekYear/index.ts
+
+import { constructFrom } from '../constructFrom/index.ts';
+import { startOfISOWeek } from '../startOfISOWeek/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name getISOWeekYear
@@ -42,7 +44,6 @@ export function getISOWeekYear<DateType extends Date>(date: DateType | number | 
     return year + 1;
   } else if (_date.getTime() >= startOfThisYear.getTime()) {
     return year;
-  } else {
-    return year - 1;
   }
+  return year - 1;
 }

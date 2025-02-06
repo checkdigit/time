@@ -1,8 +1,10 @@
+// date-fns-tz/_lib/tzTokenizeDate/index.ts
+
 /**
  * Returns the [year, month, day, hour, minute, seconds] tokens of the provided
  * `date` as it will be rendered in the `timeZone`.
  */
-export default function tzTokenizeDate(date: Date, timeZone: string) {
+export default function tzTokenizeDate(date: Date, timeZone: string): number[] {
   const dtf = getDateTimeFormat(timeZone);
   return partsOffset(dtf, date);
 }
@@ -20,16 +22,16 @@ function partsOffset(dtf: Intl.DateTimeFormat, date: Date) {
   try {
     const formatted = dtf.formatToParts(date);
     const filled = [];
-    for (let i = 0; i < formatted.length; i++) {
-      const pos = typeToPos[formatted[i]?.type as 'year'] as number;
+    for (const element of formatted) {
+      const pos = typeToPos[element.type as 'year'];
       if (pos >= 0) {
-        filled[pos] = parseInt(formatted[i]?.value as keyof typeof typeToPos, 10);
+        filled[pos] = Number.parseInt(element.value as keyof typeof typeToPos, 10);
       }
     }
     return filled;
   } catch (error) {
     if (error instanceof RangeError) {
-      return [NaN];
+      return [Number.NaN];
     }
     throw error;
   }
@@ -57,7 +59,7 @@ function getDateTimeFormat(timeZone: string): Intl.DateTimeFormat {
     dtfCache[timeZone] = hourCycleSupported
       ? new Intl.DateTimeFormat('en-US', {
           hour12: false,
-          timeZone: timeZone,
+          timeZone,
           year: 'numeric',
           month: 'numeric',
           day: '2-digit',
@@ -67,7 +69,7 @@ function getDateTimeFormat(timeZone: string): Intl.DateTimeFormat {
         })
       : new Intl.DateTimeFormat('en-US', {
           hourCycle: 'h23',
-          timeZone: timeZone,
+          timeZone,
           year: 'numeric',
           month: 'numeric',
           day: '2-digit',
@@ -76,5 +78,5 @@ function getDateTimeFormat(timeZone: string): Intl.DateTimeFormat {
           second: '2-digit',
         });
   }
-  return dtfCache[timeZone] as Intl.DateTimeFormat;
+  return dtfCache[timeZone];
 }

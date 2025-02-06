@@ -1,4 +1,6 @@
-import { monthsInYear } from '../constants/index';
+// date-fns/monthsToYears/index.ts
+
+import { monthsInYear } from '../constants/index.ts';
 
 /**
  * @name monthsToYears

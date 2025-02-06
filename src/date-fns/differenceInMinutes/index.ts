@@ -1,7 +1,9 @@
-import { getRoundingMethod } from '../_lib/getRoundingMethod/index';
-import { millisecondsInMinute } from '../constants/index';
-import { differenceInMilliseconds } from '../differenceInMilliseconds/index';
-import type { RoundingOptions } from '../types';
+// date-fns/differenceInMinutes/index.ts
+
+import { getRoundingMethod } from '../_lib/getRoundingMethod/index.ts';
+import { millisecondsInMinute } from '../constants/index.ts';
+import { differenceInMilliseconds } from '../differenceInMilliseconds/index.ts';
+import type { RoundingOptions } from '../types.ts';
 
 /**
  * The {@link differenceInMinutes} function options.

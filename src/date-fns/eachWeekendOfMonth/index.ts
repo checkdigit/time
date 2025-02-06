@@ -1,6 +1,8 @@
-import { eachWeekendOfInterval } from '../eachWeekendOfInterval/index';
-import { endOfMonth } from '../endOfMonth/index';
-import { startOfMonth } from '../startOfMonth/index';
+// date-fns/eachWeekendOfMonth/index.ts
+
+import { eachWeekendOfInterval } from '../eachWeekendOfInterval/index.ts';
+import { endOfMonth } from '../endOfMonth/index.ts';
+import { startOfMonth } from '../startOfMonth/index.ts';
 
 /**
  * @name eachWeekendOfMonth
