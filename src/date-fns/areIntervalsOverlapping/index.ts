@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, Interval } from "../types.ts";
 
@@ -75,3 +79,5 @@ export function areIntervalsOverlapping(
 
   return leftStartTime < rightEndTime && rightStartTime < leftEndTime;
 }
+
+/* eslint-enable */

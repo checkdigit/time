@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { ContextFn, Interval, NormalizedInterval } from "../../types.ts";
 import { normalizeDates } from "../normalizeDates/index.ts";
 
@@ -8,3 +12,5 @@ export function normalizeInterval(
   const [start, end] = normalizeDates(context, interval.start, interval.end);
   return { start, end };
 }
+
+/* eslint-enable */

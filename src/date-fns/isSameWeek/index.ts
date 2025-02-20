@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import { startOfWeek } from "../startOfWeek/index.ts";
 import type { LocalizedOptions, WeekOptions } from "../types.ts";
@@ -57,3 +61,5 @@ export function isSameWeek(
     +startOfWeek(laterDate_, options) === +startOfWeek(earlierDate_, options)
   );
 }
+
+/* eslint-enable */

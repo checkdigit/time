@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { addLeadingZeros } from "../_lib/addLeadingZeros/index.ts";
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg, ISOFormatOptions } from "../types.ts";
@@ -106,3 +110,5 @@ export function formatISO(
 
   return result;
 }
+
+/* eslint-enable */

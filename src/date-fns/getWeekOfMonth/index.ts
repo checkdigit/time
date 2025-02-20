@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getDefaultOptions } from "../_lib/defaultOptions/index.ts";
 import { getDate } from "../getDate/index.ts";
 import { getDay } from "../getDay/index.ts";
@@ -59,3 +63,5 @@ export function getWeekOfMonth(
   const remainingDaysAfterFirstWeek = currentDayOfMonth - lastDayOfFirstWeek;
   return Math.ceil(remainingDaysAfterFirstWeek / 7) + 1;
 }
+
+/* eslint-enable */

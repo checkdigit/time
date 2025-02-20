@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getDefaultOptions } from "../_lib/defaultOptions/index.ts";
 import { toDate } from "../toDate/index.ts";
 import type {
@@ -65,3 +69,5 @@ export function startOfWeek<
   _date.setHours(0, 0, 0, 0);
   return _date;
 }
+
+/* eslint-enable */

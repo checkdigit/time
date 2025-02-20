@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getDay } from "../getDay/index.ts";
 import { subDays } from "../subDays/index.ts";
 import type { ContextOptions, DateArg, Day } from "../types.ts";
@@ -48,3 +52,5 @@ export function previousDay<
 
   return subDays(date, delta, options);
 }
+
+/* eslint-enable */

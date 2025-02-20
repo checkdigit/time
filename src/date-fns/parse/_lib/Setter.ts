@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructFrom } from "../../constructFrom/index.ts";
 import { transpose } from "../../transpose/index.ts";
 import type { ContextFn, DateArg } from "../../types.ts";
@@ -82,3 +86,5 @@ export class DateTimezoneSetter extends Setter {
     return constructFrom(date, transpose(date, this.context));
   }
 }
+
+/* eslint-enable */

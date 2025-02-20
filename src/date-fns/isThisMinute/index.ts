@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructNow } from "../constructNow/index.ts";
 import { isSameMinute } from "../isSameMinute/index.ts";
 import type { DateArg } from "../types.ts";
@@ -25,3 +29,5 @@ import type { DateArg } from "../types.ts";
 export function isThisMinute(date: DateArg<Date> & {}): boolean {
   return isSameMinute(date, constructNow(date));
 }
+
+/* eslint-enable */

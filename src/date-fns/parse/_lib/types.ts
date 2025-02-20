@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type {
   LocalizedOptions,
   FirstWeekContainsDateOptions,
@@ -14,3 +18,5 @@ export type ParserOptions = Required<
 >;
 
 export type ParseResult<TValue> = { value: TValue; rest: string } | null;
+
+/* eslint-enable */

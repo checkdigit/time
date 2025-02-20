@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { Quarter, Era, Day, Month } from "../../../types.ts";
 import type {
   LocaleUnitValue,
@@ -134,3 +138,5 @@ function findIndex<Item>(
   }
   return undefined;
 }
+
+/* eslint-enable */

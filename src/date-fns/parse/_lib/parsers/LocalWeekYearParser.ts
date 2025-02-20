@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getWeekYear } from "../../../getWeekYear/index.ts";
 import type { Match } from "../../../locale/types.ts";
 import { startOfWeek } from "../../../startOfWeek/index.ts";
@@ -87,3 +91,5 @@ export class LocalWeekYearParser extends Parser<YearParserValue> {
     "T",
   ];
 }
+
+/* eslint-enable */

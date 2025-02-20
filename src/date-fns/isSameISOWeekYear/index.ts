@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { startOfISOWeekYear } from "../startOfISOWeekYear/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
@@ -40,3 +44,5 @@ export function isSameISOWeekYear(
   );
   return +startOfISOWeekYear(laterDate_) === +startOfISOWeekYear(earlierDate_);
 }
+
+/* eslint-enable */

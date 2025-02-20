@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import {
   millisecondsInHour,
   millisecondsInMinute,
@@ -317,3 +321,5 @@ function validateTime(
 function validateTimezone(_hours: number, minutes: number): boolean {
   return minutes >= 0 && minutes <= 59;
 }
+
+/* eslint-enable */

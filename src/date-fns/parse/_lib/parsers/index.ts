@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { Parser } from "../Parser.ts";
 import { EraParser } from "./EraParser.ts";
 import { YearParser } from "./YearParser.ts";
@@ -107,3 +111,5 @@ export const parsers: Record<string, Parser<any>> = {
   t: new TimestampSecondsParser(),
   T: new TimestampMillisecondsParser(),
 };
+
+/* eslint-enable */

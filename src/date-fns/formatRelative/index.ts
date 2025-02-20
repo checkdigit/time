@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { defaultLocale } from "../_lib/defaultLocale/index.ts";
 import { getDefaultOptions } from "../_lib/defaultOptions/index.ts";
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
@@ -100,3 +104,5 @@ export function formatRelative(
   });
   return format(date_, formatStr, { locale, weekStartsOn });
 }
+
+/* eslint-enable */

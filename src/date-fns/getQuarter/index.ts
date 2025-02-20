@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -32,3 +36,5 @@ export function getQuarter(
   const quarter = Math.trunc(_date.getMonth() / 3) + 1;
   return quarter;
 }
+
+/* eslint-enable */

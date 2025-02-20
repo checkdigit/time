@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructFrom } from "../constructFrom/index.ts";
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
@@ -37,3 +41,5 @@ export function getDaysInMonth(
   lastDayOfMonth.setHours(0, 0, 0, 0);
   return lastDayOfMonth.getDate();
 }
+
+/* eslint-enable */

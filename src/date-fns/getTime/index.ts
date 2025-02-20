@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { toDate } from "../toDate/index.ts";
 import type { DateArg } from "../types.ts";
 
@@ -21,3 +25,5 @@ import type { DateArg } from "../types.ts";
 export function getTime(date: DateArg<Date> & {}): number {
   return +toDate(date);
 }
+
+/* eslint-enable */

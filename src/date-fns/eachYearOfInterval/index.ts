@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { normalizeInterval } from "../_lib/normalizeInterval/index.ts";
 import { constructFrom } from "../constructFrom/index.ts";
 import type { ContextOptions, Interval, StepOptions } from "../types.ts";
@@ -88,3 +92,5 @@ export function eachYearOfInterval<
 
   return reversed ? dates.reverse() : dates;
 }
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import { startOfDay } from "../startOfDay/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
@@ -48,3 +52,5 @@ export function isSameDay(
   );
   return +startOfDay(dateLeft_) === +startOfDay(dateRight_);
 }
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getTimezoneOffsetInMilliseconds } from "../_lib/getTimezoneOffsetInMilliseconds/index.ts";
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import { millisecondsInWeek } from "../constants/index.ts";
@@ -70,3 +74,5 @@ export function differenceInCalendarWeeks(
 
   return Math.round((laterTimestamp - earlierTimestamp) / millisecondsInWeek);
 }
+
+/* eslint-enable */

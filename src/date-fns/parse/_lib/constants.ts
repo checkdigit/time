@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 export const numericPatterns = {
   month: /^(1[0-2]|0?\d)/, // 0 to 12
   date: /^(3[0-1]|[0-2]?\d)/, // 0 to 31
@@ -29,3 +33,5 @@ export const timezonePatterns = {
   extended: /^([+-])(\d{2}):(\d{2})|Z/,
   extendedOptionalSeconds: /^([+-])(\d{2}):(\d{2})(:(\d{2}))?|Z/,
 };
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { Match } from "../../../locale/types.ts";
 import { setDay } from "../../../setDay/index.ts";
 import { Parser } from "../Parser.ts";
@@ -103,3 +107,5 @@ export class StandAloneLocalDayParser extends Parser<number> {
     "T",
   ];
 }
+
+/* eslint-enable */

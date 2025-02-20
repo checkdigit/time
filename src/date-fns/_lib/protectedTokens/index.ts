@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 const dayOfYearTokenRE = /^D+$/;
 const weekYearTokenRE = /^Y+$/;
 
@@ -25,3 +29,5 @@ function message(token: string, format: string, input: string) {
   const subject = token[0] === "Y" ? "years" : "days of the month";
   return `Use \`${token.toLowerCase()}\` instead of \`${token}\` (in \`${format}\`) for formatting ${subject} to the input \`${input}\`; see: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md`;
 }
+
+/* eslint-enable */

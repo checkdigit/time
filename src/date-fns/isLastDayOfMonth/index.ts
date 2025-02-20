@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { endOfDay } from "../endOfDay/index.ts";
 import { endOfMonth } from "../endOfMonth/index.ts";
 import { toDate } from "../toDate/index.ts";
@@ -30,3 +34,5 @@ export function isLastDayOfMonth(
   const _date = toDate(date, options?.in);
   return +endOfDay(_date, options) === +endOfMonth(_date, options);
 }
+
+/* eslint-enable */

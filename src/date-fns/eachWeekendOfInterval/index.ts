@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { normalizeInterval } from "../_lib/normalizeInterval/index.ts";
 import { constructFrom } from "../constructFrom/index.ts";
 import { eachDayOfInterval } from "../eachDayOfInterval/index.ts";
@@ -72,3 +76,5 @@ export function eachWeekendOfInterval<
   }
   return weekends;
 }
+
+/* eslint-enable */

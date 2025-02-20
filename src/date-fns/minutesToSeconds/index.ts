@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { secondsInMinute } from "../constants/index.ts";
 
 /**
@@ -20,3 +24,5 @@ import { secondsInMinute } from "../constants/index.ts";
 export function minutesToSeconds(minutes: number): number {
   return Math.trunc(minutes * secondsInMinute);
 }
+
+/* eslint-enable */

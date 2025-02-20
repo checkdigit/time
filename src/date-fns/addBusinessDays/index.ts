@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructFrom } from "../constructFrom/index.ts";
 import { isSaturday } from "../isSaturday/index.ts";
 import { isSunday } from "../isSunday/index.ts";
@@ -78,3 +82,5 @@ export function addBusinessDays<
 
   return _date;
 }
+
+/* eslint-enable */

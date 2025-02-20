@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructFrom } from "../constructFrom/index.ts";
 import type { ContextFn, GenericDateConstructor } from "../types.ts";
 
@@ -57,3 +61,5 @@ function isConstructor(
     constructor.prototype?.constructor === constructor
   );
 }
+
+/* eslint-enable */

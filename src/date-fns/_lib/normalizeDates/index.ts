@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructFrom } from "../../constructFrom/index.ts";
 import type { ContextFn, DateArg } from "../../types.ts";
 
@@ -26,3 +30,5 @@ export function normalizeDates(
   );
   return dates.map(normalize);
 }
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { addMilliseconds } from "../addMilliseconds/index.ts";
 import { millisecondsInHour } from "../constants/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
@@ -40,3 +44,5 @@ export function addHours<
 ): ResultDate {
   return addMilliseconds(date, amount * millisecondsInHour, options);
 }
+
+/* eslint-enable */

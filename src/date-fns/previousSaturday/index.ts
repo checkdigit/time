@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { previousDay } from "../previousDay/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -37,3 +41,5 @@ export function previousSaturday<
 ): ResultDate {
   return previousDay(date, 6, options);
 }
+
+/* eslint-enable */

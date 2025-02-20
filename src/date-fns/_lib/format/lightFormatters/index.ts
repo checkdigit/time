@@ -1,6 +1,7 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
+
 import { addLeadingZeros } from '../../addLeadingZeros/index.ts';
 
 /*
@@ -100,4 +101,5 @@ export const lightFormatters = {
     return addLeadingZeros(fractionalSeconds, token.length);
   },
 };
+
 /* eslint-enable */

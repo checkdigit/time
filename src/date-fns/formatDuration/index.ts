@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { FormatDistanceToken } from "../locale/types.ts";
 import type { Duration, DurationUnit, LocalizedOptions } from "../types.ts";
 import { defaultLocale } from "../_lib/defaultLocale/index.ts";
@@ -113,3 +117,5 @@ export function formatDuration(
 
   return result;
 }
+
+/* eslint-enable */

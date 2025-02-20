@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { buildFormatLongFn } from "../../../_lib/buildFormatLongFn/index.ts";
 import type { FormatLong } from "../../../types.ts";
 
@@ -38,3 +42,5 @@ export const formatLong: FormatLong = {
     defaultWidth: "full",
   }),
 };
+
+/* eslint-enable */

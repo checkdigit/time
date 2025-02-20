@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -30,3 +34,5 @@ export function getDate(
 ): number {
   return toDate(date, options?.in).getDate();
 }
+
+/* eslint-enable */

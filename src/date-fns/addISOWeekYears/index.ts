@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getISOWeekYear } from "../getISOWeekYear/index.ts";
 import { setISOWeekYear } from "../setISOWeekYear/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
@@ -41,3 +45,5 @@ export function addISOWeekYears<
 ): ResultDate {
   return setISOWeekYear(date, getISOWeekYear(date, options) + amount, options);
 }
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { toDate } from "../toDate/index.ts";
 import type { DateArg, MaybeArray } from "../types.ts";
 
@@ -143,3 +147,5 @@ function isFormatOptions(
 ): opts is IntlFormatFormatOptions {
   return opts !== undefined && !("locale" in opts);
 }
+
+/* eslint-enable */

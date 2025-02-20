@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { Quarter } from "../../../../types.ts";
 import type { Match } from "../../../types.ts";
 import { buildMatchFn } from "../../../_lib/buildMatchFn/index.ts";
@@ -131,3 +135,5 @@ export const match: Match = {
     defaultParseWidth: "any",
   }),
 };
+
+/* eslint-enable */

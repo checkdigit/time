@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { addDays } from "../addDays/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -36,3 +40,5 @@ export function subDays<
 ): ResultDate {
   return addDays(date, -amount, options);
 }
+
+/* eslint-enable */

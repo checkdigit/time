@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { nextDay } from "../nextDay/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -37,3 +41,5 @@ export function nextMonday<
 ): ResultDate {
   return nextDay(date, 1, options);
 }
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructFrom } from "../constructFrom/index.ts";
 import { constructNow } from "../constructNow/index.ts";
 import { isSameISOWeek } from "../isSameISOWeek/index.ts";
@@ -38,3 +42,5 @@ export function isThisISOWeek(
     constructNow(options?.in || date),
   );
 }
+
+/* eslint-enable */

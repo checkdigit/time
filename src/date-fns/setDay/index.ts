@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getDefaultOptions } from "../_lib/defaultOptions/index.ts";
 import { addDays } from "../addDays/index.ts";
 import { toDate } from "../toDate/index.ts";
@@ -72,3 +76,5 @@ export function setDay<
       : ((dayIndex + delta) % 7) - ((currentDay + delta) % 7);
   return addDays(date_, diff, options);
 }
+
+/* eslint-enable */

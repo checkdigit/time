@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type {
   DefaultOptions} from "../_lib/defaultOptions/index.ts";
 import {
@@ -31,3 +35,5 @@ import {
 export function getDefaultOptions(): DefaultOptions {
   return Object.assign({}, getInternalDefaultOptions());
 }
+
+/* eslint-enable */

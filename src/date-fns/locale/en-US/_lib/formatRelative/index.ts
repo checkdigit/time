@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { FormatRelativeFn } from "../../../types.ts";
 
 const formatRelativeLocale = {
@@ -15,3 +19,5 @@ export const formatRelative: FormatRelativeFn = (
   _baseDate,
   _options,
 ) => formatRelativeLocale[token];
+
+/* eslint-enable */

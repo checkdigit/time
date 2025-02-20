@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { MatchFn, MatchValueCallback } from "../../types.ts";
 
 export interface BuildMatchPatternFnArgs<Result> {
@@ -27,3 +31,5 @@ export function buildMatchPatternFn<Result>(
     return { value, rest };
   };
 }
+
+/* eslint-enable */

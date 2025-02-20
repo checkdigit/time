@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { monthsInYear } from "../constants/index.ts";
 
 /**
@@ -20,3 +24,5 @@ import { monthsInYear } from "../constants/index.ts";
 export function yearsToMonths(years: number): number {
   return Math.trunc(years * monthsInYear);
 }
+
+/* eslint-enable */

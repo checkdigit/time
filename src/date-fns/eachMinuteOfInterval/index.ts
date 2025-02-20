@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { normalizeInterval } from "../_lib/normalizeInterval/index.ts";
 import { addMinutes } from "../addMinutes/index.ts";
 import { constructFrom } from "../constructFrom/index.ts";
@@ -89,3 +93,5 @@ export function eachMinuteOfInterval<
 
   return reversed ? dates.reverse() : dates;
 }
+
+/* eslint-enable */

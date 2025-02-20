@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import { getISOWeekYear } from "../getISOWeekYear/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
@@ -46,3 +50,5 @@ export function differenceInCalendarISOWeekYears(
     getISOWeekYear(laterDate_, options) - getISOWeekYear(earlierDate_, options)
   );
 }
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { formatDistance } from "./_lib/formatDistance/index.ts";
 import { formatLong } from "./_lib/formatLong/index.ts";
 import { formatRelative } from "./_lib/formatRelative/index.ts";
@@ -25,3 +29,5 @@ export const enUS: Locale = {
     firstWeekContainsDate: 1,
   },
 };
+
+/* eslint-enable */

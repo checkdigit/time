@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getRoundingMethod } from "../_lib/getRoundingMethod/index.ts";
 import { differenceInMonths } from "../differenceInMonths/index.ts";
 import type { ContextOptions, DateArg, RoundingOptions } from "../types.ts";
@@ -36,3 +40,5 @@ export function differenceInQuarters(
   const diff = differenceInMonths(laterDate, earlierDate, options) / 3;
   return getRoundingMethod(options?.roundingMethod)(diff);
 }
+
+/* eslint-enable */

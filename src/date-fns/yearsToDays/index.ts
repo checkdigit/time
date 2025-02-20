@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { daysInYear } from "../constants/index.ts";
 
 /**
@@ -20,3 +24,5 @@ import { daysInYear } from "../constants/index.ts";
 export function yearsToDays(years: number): number {
   return Math.trunc(years * daysInYear);
 }
+
+/* eslint-enable */

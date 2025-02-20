@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { addLeadingZeros } from "../_lib/addLeadingZeros/index.ts";
 import { isValid } from "../isValid/index.ts";
 import { toDate } from "../toDate/index.ts";
@@ -84,3 +88,5 @@ export function formatRFC3339(
 
   return `${year}-${month}-${day}T${hour}:${minute}:${second}${fractionalSecond}${offset}`;
 }
+
+/* eslint-enable */

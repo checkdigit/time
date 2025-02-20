@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import { max } from "../max/index.ts";
 import { min } from "../min/index.ts";
@@ -83,3 +87,5 @@ export function clamp<
     Options
   >;
 }
+
+/* eslint-enable */

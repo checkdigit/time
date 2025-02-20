@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import { closestIndexTo } from "../closestIndexTo/index.ts";
 import { constructFrom } from "../constructFrom/index.ts";
@@ -81,3 +85,5 @@ export function closestTo<
   if (index !== undefined)
     return dates_[index] as ClosestToResult<DateToCompare, DatesType, Options>;
 }
+
+/* eslint-enable */

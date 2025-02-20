@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 /**
  * @module constants
  * @summary Useful constants
@@ -214,3 +218,5 @@ export const secondsInQuarter = secondsInMonth * 3;
  * a constructor argument.
  */
 export const constructFromSymbol = Symbol.for("constructDateFrom");
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { startOfISOWeek } from "../../../startOfISOWeek/index.ts";
 import { constructFrom } from "../../../constructFrom/index.ts";
 import { Parser } from "../Parser.ts";
@@ -45,3 +49,5 @@ export class ISOWeekYearParser extends Parser<number> {
     "T",
   ];
 }
+
+/* eslint-enable */

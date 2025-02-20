@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { monthsInQuarter } from "../constants/index.ts";
 
 /**
@@ -20,3 +24,5 @@ import { monthsInQuarter } from "../constants/index.ts";
 export function quartersToMonths(quarters: number): number {
   return Math.trunc(quarters * monthsInQuarter);
 }
+
+/* eslint-enable */

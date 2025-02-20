@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { LocaleDayPeriod, Match } from "../../../locale/types.ts";
 import { Parser } from "../Parser.ts";
 import type { ParseFlags, ParseResult } from "../types.ts";
@@ -60,3 +64,5 @@ export class AMPMParser extends Parser<LocaleDayPeriod> {
 
   incompatibleTokens = ["b", "B", "H", "k", "t", "T"];
 }
+
+/* eslint-enable */

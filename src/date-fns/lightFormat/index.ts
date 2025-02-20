@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { lightFormatters } from "../_lib/format/lightFormatters/index.ts";
 import { isValid } from "../isValid/index.ts";
 import { toDate } from "../toDate/index.ts";
@@ -136,3 +140,5 @@ function cleanEscapedString(input: string) {
   if (!matches) return input;
   return matches[1].replace(doubleQuoteRegExp, "'");
 }
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { LocaleDayPeriod } from "../../locale/types.ts";
 import {
   millisecondsInHour,
@@ -155,3 +159,5 @@ export function normalizeTwoDigitYear(
 export function isLeapYearIndex(year: number): boolean {
   return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
 }
+
+/* eslint-enable */

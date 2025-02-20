@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { millisecondsInWeek } from "../constants/index.ts";
 import { startOfWeek } from "../startOfWeek/index.ts";
 import { startOfWeekYear } from "../startOfWeekYear/index.ts";
@@ -65,3 +69,5 @@ export function getWeek(
   // the daylight saving time clock shift).
   return Math.round(diff / millisecondsInWeek) + 1;
 }
+
+/* eslint-enable */

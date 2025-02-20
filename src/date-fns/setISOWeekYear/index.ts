@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructFrom } from "../constructFrom/index.ts";
 import { differenceInCalendarDays } from "../differenceInCalendarDays/index.ts";
 import { startOfISOWeekYear } from "../startOfISOWeekYear/index.ts";
@@ -55,3 +59,5 @@ export function setISOWeekYear<
   _date.setDate(_date.getDate() + diff);
   return _date;
 }
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { addBusinessDays } from "../addBusinessDays/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -39,3 +43,5 @@ export function subBusinessDays<
 ): ResultDate {
   return addBusinessDays(date, -amount, options);
 }
+
+/* eslint-enable */

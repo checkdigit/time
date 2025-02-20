@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructNow } from "../constructNow/index.ts";
 import { isSameSecond } from "../isSameSecond/index.ts";
 import type { DateArg } from "../types.ts";
@@ -24,3 +28,5 @@ import type { DateArg } from "../types.ts";
 export function isThisSecond(date: DateArg<Date> & {}): boolean {
   return isSameSecond(date, constructNow(date));
 }
+
+/* eslint-enable */

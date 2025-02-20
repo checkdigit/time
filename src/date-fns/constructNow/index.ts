@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructFrom } from "../constructFrom/index.ts";
 import type { ContextFn, DateArg } from "../types.ts";
 
@@ -35,3 +39,5 @@ export function constructNow<
 >(date: DateArg<DateType> | ContextFn<ResultDate> | undefined): ResultDate {
   return constructFrom(date, Date.now());
 }
+
+/* eslint-enable */

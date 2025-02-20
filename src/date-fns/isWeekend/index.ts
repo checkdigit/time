@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -31,3 +35,5 @@ export function isWeekend(
   const day = toDate(date, options?.in).getDay();
   return day === 0 || day === 6;
 }
+
+/* eslint-enable */

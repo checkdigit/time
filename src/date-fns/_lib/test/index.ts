@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { afterEach, beforeEach } from "vitest";
 import { addLeadingZeros } from "../addLeadingZeros/index.ts";
 import { setDefaultOptions } from "../defaultOptions/index.ts";
@@ -58,3 +62,5 @@ export function fakeDate(date: number | Date) {
 
   return { fakeNow };
 }
+
+/* eslint-enable */

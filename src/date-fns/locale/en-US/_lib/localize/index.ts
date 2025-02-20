@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { Localize, LocalizeFn } from "../../../types.ts";
 import { buildLocalizeFn } from "../../../_lib/buildLocalizeFn/index.ts";
 
@@ -185,3 +189,5 @@ export const localize: Localize = {
     defaultFormattingWidth: "wide",
   }),
 };
+
+/* eslint-enable */

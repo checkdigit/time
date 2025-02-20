@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { addWeeks } from "../addWeeks/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -39,3 +43,5 @@ export function subWeeks<
 ): ResultDate {
   return addWeeks(date, -amount, options);
 }
+
+/* eslint-enable */

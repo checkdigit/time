@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { Match } from "../../../locale/types.ts";
 import type { Era } from "../../../types.ts";
 import { Parser } from "../Parser.ts";
@@ -43,3 +47,5 @@ export class EraParser extends Parser<number> {
 
   incompatibleTokens = ["R", "u", "t", "T"];
 }
+
+/* eslint-enable */

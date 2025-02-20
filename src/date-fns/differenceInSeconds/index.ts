@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getRoundingMethod } from "../_lib/getRoundingMethod/index.ts";
 import { differenceInMilliseconds } from "../differenceInMilliseconds/index.ts";
 import type { DateArg, RoundingOptions } from "../types.ts";
@@ -38,3 +42,5 @@ export function differenceInSeconds(
   const diff = differenceInMilliseconds(laterDate, earlierDate) / 1000;
   return getRoundingMethod(options?.roundingMethod)(diff);
 }
+
+/* eslint-enable */

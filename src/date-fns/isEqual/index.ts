@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { toDate } from "../toDate/index.ts";
 import type { DateArg } from "../types.ts";
 
@@ -28,3 +32,5 @@ export function isEqual(
 ): boolean {
   return +toDate(leftDate) === +toDate(rightDate);
 }
+
+/* eslint-enable */

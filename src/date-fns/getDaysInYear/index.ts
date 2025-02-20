@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { isLeapYear } from "../isLeapYear/index.ts";
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
@@ -33,3 +37,5 @@ export function getDaysInYear(
   if (Number.isNaN(+_date)) return NaN;
   return isLeapYear(_date) ? 366 : 365;
 }
+
+/* eslint-enable */

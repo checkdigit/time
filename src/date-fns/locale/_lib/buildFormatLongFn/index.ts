@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { FormatLongFn, FormatLongWidth } from "../../types.ts";
 
 export interface BuildFormatLongFnArgs<
@@ -21,3 +25,5 @@ export function buildFormatLongFn<DefaultMatchWidth extends FormatLongWidth>(
     return format;
   };
 }
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getDayOfYear } from "../../../getDayOfYear/index.ts";
 import { getISOWeek } from "../../../getISOWeek/index.ts";
 import { getISOWeekYear } from "../../../getISOWeekYear/index.ts";
@@ -795,3 +799,5 @@ function formatTimezone(offset: number, delimiter: string = ""): string {
   const minutes = addLeadingZeros(absOffset % 60, 2);
   return sign + hours + delimiter + minutes;
 }
+
+/* eslint-enable */

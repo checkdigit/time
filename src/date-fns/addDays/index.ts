@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructFrom } from "../constructFrom/index.ts";
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
@@ -47,3 +51,4 @@ export function addDays<
   _date.setDate(_date.getDate() + amount);
   return _date;
 }
+/* eslint-enable */

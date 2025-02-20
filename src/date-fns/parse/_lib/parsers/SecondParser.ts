@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { Match } from "../../../locale/types.ts";
 import { numericPatterns } from "../constants.ts";
 import { Parser } from "../Parser.ts";
@@ -33,3 +37,5 @@ export class SecondParser extends Parser<number> {
 
   incompatibleTokens = ["t", "T"];
 }
+
+/* eslint-enable */

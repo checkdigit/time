@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { normalizeInterval } from "../_lib/normalizeInterval/index.ts";
 import { add } from "../add/index.ts";
 import { differenceInDays } from "../differenceInDays/index.ts";
@@ -66,3 +70,5 @@ export function intervalToDuration(
 
   return duration;
 }
+
+/* eslint-enable */

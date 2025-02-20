@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { startOfMinute } from "../startOfMinute/index.ts";
 import type { DateArg } from "../types.ts";
 
@@ -36,3 +40,5 @@ export function isSameMinute(
 ): boolean {
   return +startOfMinute(laterDate) === +startOfMinute(earlierDate);
 }
+
+/* eslint-enable */

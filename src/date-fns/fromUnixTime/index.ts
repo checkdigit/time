@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions } from "../types.ts";
 
@@ -33,3 +37,5 @@ export function fromUnixTime<DateType extends Date = Date>(
 ): DateType {
   return toDate(unixTime * 1000, options?.in);
 }
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import { differenceInCalendarDays } from "../differenceInCalendarDays/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
@@ -109,3 +113,5 @@ function compareLocalAsc(laterDate: Date, earlierDate: Date): number {
   // Return 0 if diff is 0; return NaN if diff is NaN
   return diff;
 }
+
+/* eslint-enable */

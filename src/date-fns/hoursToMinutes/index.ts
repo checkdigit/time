@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { minutesInHour } from "../constants/index.ts";
 
 /**
@@ -20,3 +24,5 @@ import { minutesInHour } from "../constants/index.ts";
 export function hoursToMinutes(hours: number): number {
   return Math.trunc(hours * minutesInHour);
 }
+
+/* eslint-enable */

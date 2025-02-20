@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getRoundingMethod } from "../_lib/getRoundingMethod/index.ts";
 import { millisecondsInMinute } from "../constants/index.ts";
 import { differenceInMilliseconds } from "../differenceInMilliseconds/index.ts";
@@ -47,3 +51,5 @@ export function differenceInMinutes(
     differenceInMilliseconds(dateLeft, dateRight) / millisecondsInMinute;
   return getRoundingMethod(options?.roundingMethod)(diff);
 }
+
+/* eslint-enable */

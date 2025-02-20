@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import {
   secondsInDay,
@@ -224,3 +228,5 @@ export function intlFormatDistance(
 
   return rtf.format(value, unit);
 }
+
+/* eslint-enable */

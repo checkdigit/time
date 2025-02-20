@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { endOfDay } from "../endOfDay/index.ts";
 import type { ContextOptions } from "../types.ts";
 
@@ -33,3 +37,5 @@ export function endOfToday<ResultDate extends Date = Date>(
 ): ResultDate {
   return endOfDay(Date.now(), options);
 }
+
+/* eslint-enable */

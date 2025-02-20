@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { daysInYear } from "../constants/index.ts";
 import type { Duration } from "../types.ts";
 
@@ -54,3 +58,5 @@ export function milliseconds({
 
   return Math.trunc(totalSeconds * 1000);
 }
+
+/* eslint-enable */

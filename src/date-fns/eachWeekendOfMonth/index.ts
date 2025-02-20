@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { eachWeekendOfInterval } from "../eachWeekendOfInterval/index.ts";
 import { endOfMonth } from "../endOfMonth/index.ts";
 import { startOfMonth } from "../startOfMonth/index.ts";
@@ -50,3 +54,5 @@ export function eachWeekendOfMonth<
   const end = endOfMonth(date, options);
   return eachWeekendOfInterval({ start, end }, options);
 }
+
+/* eslint-enable */

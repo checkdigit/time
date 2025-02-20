@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructFrom } from "../constructFrom/index.ts";
 import { getISOWeekYear } from "../getISOWeekYear/index.ts";
 import { startOfISOWeek } from "../startOfISOWeek/index.ts";
@@ -50,3 +54,5 @@ export function lastDayOfISOWeekYear<
   date_.setDate(date_.getDate() - 1);
   return date_;
 }
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getTimezoneOffsetInMilliseconds } from "../_lib/getTimezoneOffsetInMilliseconds/index.ts";
 import { millisecondsInDay } from "../constants/index.ts";
 import { toDate } from "../toDate/index.ts";
@@ -65,3 +69,5 @@ export function getOverlappingDaysInIntervals(
   // Ceil the number to include partial days too.
   return Math.ceil((right - left) / millisecondsInDay);
 }
+
+/* eslint-enable */

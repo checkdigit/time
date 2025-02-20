@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -39,3 +43,5 @@ export function endOfYear<
   _date.setHours(23, 59, 59, 999);
   return _date;
 }
+
+/* eslint-enable */

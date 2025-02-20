@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { addHours } from "../addHours/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -39,3 +43,5 @@ export function subHours<
 ): ResultDate {
   return addHours(date, -amount, options);
 }
+
+/* eslint-enable */

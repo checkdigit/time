@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { Parser } from "../Parser.ts";
 import type { ParseFlags, ParseResult } from "../types.ts";
 import { parseNDigitsSigned } from "../utils.ts";
@@ -25,3 +29,5 @@ export class ExtendedYearParser extends Parser<number> {
 
   incompatibleTokens = ["G", "y", "Y", "R", "w", "I", "i", "e", "c", "t", "T"];
 }
+
+/* eslint-enable */

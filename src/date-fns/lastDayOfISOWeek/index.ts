@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { lastDayOfWeek } from "../lastDayOfWeek/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -40,3 +44,5 @@ export function lastDayOfISOWeek<
 ): ResultDate {
   return lastDayOfWeek(date, { ...options, weekStartsOn: 1 });
 }
+
+/* eslint-enable */

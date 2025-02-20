@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { Duration } from "../types.ts";
 
 /**
@@ -36,3 +40,5 @@ export function formatISODuration(duration: Duration): string {
 
   return `P${years}Y${months}M${days}DT${hours}H${minutes}M${seconds}S`;
 }
+
+/* eslint-enable */

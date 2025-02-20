@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { addDays } from "../addDays/index.ts";
 import { constructNow } from "../constructNow/index.ts";
 import { isSameDay } from "../isSameDay/index.ts";
@@ -37,3 +41,5 @@ export function isTomorrow(
     options,
   );
 }
+
+/* eslint-enable */

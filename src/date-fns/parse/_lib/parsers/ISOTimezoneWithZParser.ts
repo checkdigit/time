@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructFrom } from "../../../constructFrom/index.ts";
 import { getTimezoneOffsetInMilliseconds } from "../../../_lib/getTimezoneOffsetInMilliseconds/index.ts";
 import { timezonePatterns } from "../constants.ts";
@@ -48,3 +52,5 @@ export class ISOTimezoneWithZParser extends Parser<number> {
 
   incompatibleTokens = ["t", "T", "x"];
 }
+
+/* eslint-enable */

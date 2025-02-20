@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -41,3 +45,5 @@ export function differenceInCalendarYears(
   );
   return laterDate_.getFullYear() - earlierDate_.getFullYear();
 }
+
+/* eslint-enable */

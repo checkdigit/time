@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { differenceInCalendarWeeks } from "../differenceInCalendarWeeks/index.ts";
 import { lastDayOfMonth } from "../lastDayOfMonth/index.ts";
 import { startOfMonth } from "../startOfMonth/index.ts";
@@ -54,3 +58,5 @@ export function getWeeksInMonth(
     ) + 1
   );
 }
+
+/* eslint-enable */

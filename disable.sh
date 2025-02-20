@@ -1,6 +1,6 @@
 #!/bin/bash
 # Directory containing the files
-folder="src/date-fns"
+folder="src/date-fns-tz"
 
 # Text to insert at the beginning
 insert_text_begin="/* eslint-disable eslint-comments/no-unlimited-disable */\n/* eslint-disable */\n// @ts-nocheck\n"
@@ -9,7 +9,7 @@ insert_text_begin="/* eslint-disable eslint-comments/no-unlimited-disable */\n/*
 insert_text_end="\n/* eslint-enable */"
 
 # Loop over each file in the folder (adjust the glob as needed, e.g. *.txt)
-for file in "$folder"/*; do
+find "$folder" -type f -name "*.ts" -print0 | while IFS= read -r -d '' file; do
   if [ -f "$file" ]; then
     # Create a temporary file that contains the new text followed by the original file contents
     { printf "%b\n" "$insert_text_begin"; cat "$file"; printf "%b\n" "$insert_text_end"; } > "${file}.tmp" && mv "${file}.tmp" "$file"

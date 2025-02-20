@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { addLeadingZeros } from "../_lib/addLeadingZeros/index.ts";
 import { isValid } from "../isValid/index.ts";
 import { toDate } from "../toDate/index.ts";
@@ -59,3 +63,5 @@ export function formatRFC7231(date: DateArg<Date> & {}): string {
   // Result variables.
   return `${dayName}, ${dayOfMonth} ${monthName} ${year} ${hour}:${minute}:${second} GMT`;
 }
+
+/* eslint-enable */

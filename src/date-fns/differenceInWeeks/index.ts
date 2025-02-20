@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getRoundingMethod } from "../_lib/getRoundingMethod/index.ts";
 import { differenceInDays } from "../differenceInDays/index.ts";
 import type { ContextOptions, DateArg, RoundingOptions } from "../types.ts";
@@ -57,3 +61,5 @@ export function differenceInWeeks(
   const diff = differenceInDays(laterDate, earlierDate, options) / 7;
   return getRoundingMethod(options?.roundingMethod)(diff);
 }
+
+/* eslint-enable */

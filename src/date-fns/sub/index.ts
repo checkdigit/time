@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructFrom } from "../constructFrom/index.ts";
 import { subDays } from "../subDays/index.ts";
 import { subMonths } from "../subMonths/index.ts";
@@ -75,3 +79,5 @@ export function sub<DateType extends Date, ResultDate extends Date = DateType>(
 
   return constructFrom(options?.in || date, +withoutDays - msToSub);
 }
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { Match } from "../../locale/types.ts";
 import { ValueSetter } from "./Setter.ts";
 import type { ParseFlags, ParseResult, ParserOptions } from "./types.ts";
@@ -52,3 +56,5 @@ export abstract class Parser<Value> {
     options: ParserOptions,
   ): DateType | [DateType, ParseFlags];
 }
+
+/* eslint-enable */

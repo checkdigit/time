@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -42,3 +46,5 @@ export function lastDayOfMonth<
   _date.setHours(0, 0, 0, 0);
   return toDate(_date, options?.in) as ResultDate;
 }
+
+/* eslint-enable */

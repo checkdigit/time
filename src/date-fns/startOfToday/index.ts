@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { startOfDay } from "../startOfDay/index.ts";
 import type { ContextOptions } from "../types.ts";
 
@@ -32,3 +36,5 @@ export function startOfToday<ContextDate extends Date>(
 ): ContextDate {
   return startOfDay(Date.now(), options);
 }
+
+/* eslint-enable */

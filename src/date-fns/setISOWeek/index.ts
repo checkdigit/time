@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getISOWeek } from "../getISOWeek/index.ts";
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
@@ -45,3 +49,5 @@ export function setISOWeek<
   _date.setDate(_date.getDate() - diff * 7);
   return _date;
 }
+
+/* eslint-enable */

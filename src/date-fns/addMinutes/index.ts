@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { millisecondsInMinute } from "../constants/index.ts";
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
@@ -42,3 +46,5 @@ export function addMinutes<
   _date.setTime(_date.getTime() + amount * millisecondsInMinute);
   return _date;
 }
+
+/* eslint-enable */

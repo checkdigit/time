@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { addMilliseconds } from "../addMilliseconds/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -29,3 +33,5 @@ export function subMilliseconds<
 ): ResultDate {
   return addMilliseconds(date, -amount, options);
 }
+
+/* eslint-enable */

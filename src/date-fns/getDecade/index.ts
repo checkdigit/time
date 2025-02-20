@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -36,3 +40,5 @@ export function getDecade(
   const decade = Math.floor(year / 10) * 10;
   return decade;
 }
+
+/* eslint-enable */

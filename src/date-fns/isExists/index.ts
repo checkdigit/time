@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 /**
  * @name isExists
  * @category Common Helpers
@@ -30,3 +34,5 @@ export function isExists(year: number, month: number, day: number): boolean {
     date.getDate() === day
   );
 }
+
+/* eslint-enable */

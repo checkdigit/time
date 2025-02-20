@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { isValid } from "../isValid/index.ts";
 import { parse } from "../parse/index.ts";
 import type {
@@ -307,3 +311,5 @@ export function isMatch(
 ): boolean {
   return isValid(parse(dateStr, formatStr, new Date(), options));
 }
+
+/* eslint-enable */

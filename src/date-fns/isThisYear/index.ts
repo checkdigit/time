@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructFrom } from "../constructFrom/index.ts";
 import { constructNow } from "../constructNow/index.ts";
 import { isSameYear } from "../isSameYear/index.ts";
@@ -36,3 +40,5 @@ export function isThisYear(
     constructNow(options?.in || date),
   );
 }
+
+/* eslint-enable */

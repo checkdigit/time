@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { addQuarters } from "../addQuarters/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -39,3 +43,5 @@ export function subQuarters<
 ): ResultDate {
   return addQuarters(date, -amount, options);
 }
+
+/* eslint-enable */

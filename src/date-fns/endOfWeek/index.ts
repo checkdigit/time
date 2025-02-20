@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getDefaultOptions } from "../_lib/defaultOptions/index.ts";
 import { toDate } from "../toDate/index.ts";
 import type {
@@ -62,3 +66,5 @@ export function endOfWeek<
   _date.setHours(23, 59, 59, 999);
   return _date;
 }
+
+/* eslint-enable */

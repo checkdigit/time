@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructNow } from "../constructNow/index.ts";
 import type { ContextOptions } from "../types.ts";
 
@@ -40,3 +44,5 @@ export function startOfYesterday<ContextDate extends Date>(
   date.setHours(0, 0, 0, 0);
   return date;
 }
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructFrom } from "../constructFrom/index.ts";
 import { getDaysInMonth } from "../getDaysInMonth/index.ts";
 import { toDate } from "../toDate/index.ts";
@@ -52,3 +56,5 @@ export function setMonth<
   _date.setMonth(month, Math.min(day, daysInMonth));
   return _date;
 }
+
+/* eslint-enable */

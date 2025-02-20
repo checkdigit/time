@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { toDate } from "../toDate/index.ts";
 import type { DateArg } from "../types.ts";
 
@@ -25,3 +29,5 @@ export function isBefore(
 ): boolean {
   return +toDate(date) < +toDate(dateToCompare);
 }
+
+/* eslint-enable */

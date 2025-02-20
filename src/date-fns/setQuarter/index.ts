@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { setMonth } from "../setMonth/index.ts";
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
@@ -43,3 +47,5 @@ export function setQuarter<
   const diff = quarter - oldQuarter;
   return setMonth(date_, date_.getMonth() + diff * 3);
 }
+
+/* eslint-enable */

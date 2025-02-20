@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { differenceInCalendarDays } from "../differenceInCalendarDays/index.ts";
 import { startOfYear } from "../startOfYear/index.ts";
 import { toDate } from "../toDate/index.ts";
@@ -35,3 +39,5 @@ export function getDayOfYear(
   const dayOfYear = diff + 1;
   return dayOfYear;
 }
+
+/* eslint-enable */

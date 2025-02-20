@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { startOfWeek } from "../startOfWeek/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -40,3 +44,5 @@ export function startOfISOWeek<
 ): ResultDate {
   return startOfWeek(date, { ...options, weekStartsOn: 1 });
 }
+
+/* eslint-enable */

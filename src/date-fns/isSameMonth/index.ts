@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -45,3 +49,5 @@ export function isSameMonth(
     laterDate_.getMonth() === earlierDate_.getMonth()
   );
 }
+
+/* eslint-enable */

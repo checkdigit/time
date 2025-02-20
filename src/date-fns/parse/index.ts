@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { defaultLocale } from "../_lib/defaultLocale/index.ts";
 import { longFormatters } from "../_lib/format/longFormatters/index.ts";
 import {
@@ -533,3 +537,5 @@ export function parse<
 function cleanEscapedString(input: string) {
   return input.match(escapedStringRegExp)![1].replace(doubleQuoteRegExp, "'");
 }
+
+/* eslint-enable */

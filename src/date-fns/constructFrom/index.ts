@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructFromSymbol } from "../constants/index.ts";
 import type {
   ConstructableDate,
@@ -70,3 +74,5 @@ export function constructFrom<
 
   return new Date(value) as ResultDate;
 }
+
+/* eslint-enable */

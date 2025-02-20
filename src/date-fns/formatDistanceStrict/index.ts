@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { defaultLocale } from "../_lib/defaultLocale/index.ts";
 import { getDefaultOptions } from "../_lib/defaultOptions/index.ts";
 import { getRoundingMethod } from "../_lib/getRoundingMethod/index.ts";
@@ -210,3 +214,5 @@ export function formatDistanceStrict(
     return locale.formatDistance("xYears", years, localizeOptions);
   }
 }
+
+/* eslint-enable */

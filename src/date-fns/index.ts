@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 // This file is generated automatically by `scripts/build/indices.ts`. Please, don't change it.
 
 export * from "./add/index.ts";
@@ -246,3 +250,5 @@ export * from "./yearsToDays/index.ts";
 export * from "./yearsToMonths/index.ts";
 export * from "./yearsToQuarters/index.ts";
 export type * from "./types.ts";
+
+/* eslint-enable */

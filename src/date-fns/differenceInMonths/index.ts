@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import { compareAsc } from "../compareAsc/index.ts";
 import { differenceInCalendarMonths } from "../differenceInCalendarMonths/index.ts";
@@ -62,3 +66,5 @@ export function differenceInMonths(
   const result = sign * (difference - +isLastMonthNotFull);
   return result === 0 ? 0 : result;
 }
+
+/* eslint-enable */

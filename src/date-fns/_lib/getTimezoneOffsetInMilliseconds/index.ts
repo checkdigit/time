@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { toDate } from "../../toDate/index.ts";
 import type { DateArg } from "../../types.ts";
 
@@ -30,3 +34,5 @@ export function getTimezoneOffsetInMilliseconds(
   utcDate.setUTCFullYear(_date.getFullYear());
   return +date - +utcDate;
 }
+
+/* eslint-enable */

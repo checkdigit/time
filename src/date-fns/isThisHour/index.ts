@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructNow } from "../constructNow/index.ts";
 import { isSameHour } from "../isSameHour/index.ts";
 import { toDate } from "../toDate/index.ts";
@@ -37,3 +41,5 @@ export function isThisHour(
     constructNow(options?.in || date),
   );
 }
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getTimezoneOffsetInMilliseconds } from "../_lib/getTimezoneOffsetInMilliseconds/index.ts";
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import { millisecondsInDay } from "../constants/index.ts";
@@ -64,3 +68,5 @@ export function differenceInCalendarDays(
   // the daylight saving time clock shift).
   return Math.round((laterTimestamp - earlierTimestamp) / millisecondsInDay);
 }
+
+/* eslint-enable */

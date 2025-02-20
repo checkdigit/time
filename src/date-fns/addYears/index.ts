@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { addMonths } from "../addMonths/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -39,3 +43,5 @@ export function addYears<
 ): ResultDate {
   return addMonths(date, amount * 12, options);
 }
+
+/* eslint-enable */

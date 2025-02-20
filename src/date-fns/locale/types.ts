@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type {
   DateArg,
   Day,
@@ -402,3 +406,5 @@ export type LocaleUnit =
   | "month"
   | "quarter"
   | "year";
+
+/* eslint-enable */

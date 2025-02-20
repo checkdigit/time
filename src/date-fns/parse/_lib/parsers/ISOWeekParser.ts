@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { Match } from "../../../locale/types.ts";
 import { setISOWeek } from "../../../setISOWeek/index.ts";
 import { startOfISOWeek } from "../../../startOfISOWeek/index.ts";
@@ -50,3 +54,5 @@ export class ISOWeekParser extends Parser<number> {
     "T",
   ];
 }
+
+/* eslint-enable */

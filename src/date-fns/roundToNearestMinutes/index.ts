@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getRoundingMethod } from "../_lib/getRoundingMethod/index.ts";
 import { constructFrom } from "../constructFrom/index.ts";
 import { toDate } from "../toDate/index.ts";
@@ -79,3 +83,5 @@ export function roundToNearestMinutes<
   date_.setMinutes(roundedMinutes, 0, 0);
   return date_;
 }
+
+/* eslint-enable */

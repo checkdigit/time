@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { toDate } from "../toDate/index.ts";
 import type { DateArg } from "../types.ts";
 
@@ -45,3 +49,5 @@ export function compareDesc(
   // Return 0 if diff is 0; return NaN if diff is NaN
   return diff;
 }
+
+/* eslint-enable */

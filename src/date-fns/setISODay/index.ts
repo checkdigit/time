@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { addDays } from "../addDays/index.ts";
 import { getISODay } from "../getISODay/index.ts";
 import { toDate } from "../toDate/index.ts";
@@ -46,3 +50,5 @@ export function setISODay<
   const diff = day - currentDay;
   return addDays(date_, diff, options);
 }
+
+/* eslint-enable */

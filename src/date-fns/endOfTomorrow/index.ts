@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructNow } from "../constructNow/index.ts";
 import type { ContextOptions } from "../types.ts";
 
@@ -41,3 +45,5 @@ export function endOfTomorrow<
   date.setHours(23, 59, 59, 999);
   return options?.in ? options.in(date) : (date as ResultDate);
 }
+
+/* eslint-enable */

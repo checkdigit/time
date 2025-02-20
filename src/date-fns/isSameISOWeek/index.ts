@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { isSameWeek } from "../isSameWeek/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -39,3 +43,5 @@ export function isSameISOWeek(
 ): boolean {
   return isSameWeek(laterDate, earlierDate, { ...options, weekStartsOn: 1 });
 }
+
+/* eslint-enable */

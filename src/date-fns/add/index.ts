@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { addDays } from "../addDays/index.ts";
 import { addMonths } from "../addMonths/index.ts";
 import { constructFrom } from "../constructFrom/index.ts";
@@ -71,3 +75,5 @@ export function add<DateType extends Date, ResultDate extends Date = DateType>(
 
   return constructFrom(options?.in || date, +dateWithDays + msToAdd);
 }
+
+/* eslint-enable */

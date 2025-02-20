@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { RoundingMethod } from "../../types.ts";
 
 export function getRoundingMethod(method: RoundingMethod | undefined) {
@@ -8,3 +12,5 @@ export function getRoundingMethod(method: RoundingMethod | undefined) {
     return result === 0 ? 0 : result;
   };
 }
+
+/* eslint-enable */

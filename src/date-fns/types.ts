@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { type constructFromSymbol } from "./constants/index.ts";
 import type { Locale } from "./locale/types.ts";
 
@@ -342,3 +346,5 @@ export type ContextFn<DateType extends Date> = (
  * Resolves passed type or array of types.
  */
 export type MaybeArray<Type> = Type | Type[];
+
+/* eslint-enable */

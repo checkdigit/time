@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { daysInWeek } from "../constants/index.ts";
 
 /**
@@ -27,3 +31,5 @@ export function daysToWeeks(days: number): number {
   // Prevent negative zero
   return result === 0 ? 0 : result;
 }
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructNow } from "../constructNow/index.ts";
 import type { FormatDistanceStrictOptions } from "../formatDistanceStrict/index.ts";
 import { formatDistanceStrict } from "../formatDistanceStrict/index.ts";
@@ -87,3 +91,5 @@ export function formatDistanceToNowStrict(
 ): string {
   return formatDistanceStrict(date, constructNow(date), options);
 }
+
+/* eslint-enable */

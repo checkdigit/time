@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { normalizeInterval } from "../_lib/normalizeInterval/index.ts";
 import { addQuarters } from "../addQuarters/index.ts";
 import { constructFrom } from "../constructFrom/index.ts";
@@ -87,3 +91,5 @@ export function eachQuarterOfInterval<
 
   return reversed ? dates.reverse() : dates;
 }
+
+/* eslint-enable */

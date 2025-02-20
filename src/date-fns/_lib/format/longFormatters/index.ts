@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { FormatLong } from "../../../locale/types.ts";
 
 type LongFormatter = (pattern: string, formatLong: FormatLong) => string;
@@ -69,3 +73,5 @@ export const longFormatters: Record<string, LongFormatter> = {
   p: timeLongFormatter,
   P: dateTimeLongFormatter,
 };
+
+/* eslint-enable */

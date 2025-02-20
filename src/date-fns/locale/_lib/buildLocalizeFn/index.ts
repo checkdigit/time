@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { Day, Era, Month, Quarter } from "../../../types.ts";
 import type {
   LocaleDayPeriod,
@@ -132,3 +136,5 @@ export function buildLocalizeFn<
     return valuesArray[index];
   };
 }
+
+/* eslint-enable */

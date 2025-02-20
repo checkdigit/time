@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getDefaultOptions } from "../_lib/defaultOptions/index.ts";
 import { constructFrom } from "../constructFrom/index.ts";
 import { getWeekYear } from "../getWeekYear/index.ts";
@@ -78,3 +82,5 @@ export function startOfWeekYear<
   const _date = startOfWeek(firstWeek, options);
   return _date;
 }
+
+/* eslint-enable */

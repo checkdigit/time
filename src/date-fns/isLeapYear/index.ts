@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { toDate } from "../toDate/index.ts";
 import type { ContextOptions, DateArg } from "../types.ts";
 
@@ -29,3 +33,5 @@ export function isLeapYear(
   const year = _date.getFullYear();
   return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
 }
+
+/* eslint-enable */

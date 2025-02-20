@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { Match } from "../../../locale/types.ts";
 import { numericPatterns } from "../constants.ts";
 import { Parser } from "../Parser.ts";
@@ -34,3 +38,5 @@ export class Hour1To24Parser extends Parser<number> {
 
   incompatibleTokens = ["a", "b", "h", "H", "K", "t", "T"];
 }
+
+/* eslint-enable */

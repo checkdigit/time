@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getRoundingMethod } from "../_lib/getRoundingMethod/index.ts";
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import { millisecondsInHour } from "../constants/index.ts";
@@ -45,3 +49,5 @@ export function differenceInHours(
   const diff = (+laterDate_ - +earlierDate_) / millisecondsInHour;
   return getRoundingMethod(options?.roundingMethod)(diff);
 }
+
+/* eslint-enable */

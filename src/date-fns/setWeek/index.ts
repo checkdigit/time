@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getWeek } from "../getWeek/index.ts";
 import { toDate } from "../toDate/index.ts";
 import type {
@@ -68,3 +72,5 @@ export function setWeek<
   date_.setDate(date_.getDate() - diff * 7);
   return toDate(date_, options?.in);
 }
+
+/* eslint-enable */

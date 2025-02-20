@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { startOfSecond } from "../startOfSecond/index.ts";
 import type { DateArg } from "../types.ts";
 
@@ -44,3 +48,5 @@ export function isSameSecond(
 ): boolean {
   return +startOfSecond(laterDate) === +startOfSecond(earlierDate);
 }
+
+/* eslint-enable */

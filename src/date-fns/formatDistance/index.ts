@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { defaultLocale } from "../_lib/defaultLocale/index.ts";
 import { getDefaultOptions } from "../_lib/defaultOptions/index.ts";
 import { getTimezoneOffsetInMilliseconds } from "../_lib/getTimezoneOffsetInMilliseconds/index.ts";
@@ -207,3 +211,5 @@ export function formatDistance(
     }
   }
 }
+
+/* eslint-enable */

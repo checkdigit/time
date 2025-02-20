@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type {
   FirstWeekContainsDateOptions,
   Locale,
@@ -18,3 +22,5 @@ export function getDefaultOptions(): DefaultOptions {
 export function setDefaultOptions(newOptions: DefaultOptions): void {
   defaultOptions = newOptions;
 }
+
+/* eslint-enable */

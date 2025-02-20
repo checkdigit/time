@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { constructFrom } from "../constructFrom/index.ts";
 import { setMonth } from "../setMonth/index.ts";
 import { toDate } from "../toDate/index.ts";
@@ -63,3 +67,5 @@ export function set<DateType extends Date, ResultDate extends Date = DateType>(
 
   return _date;
 }
+
+/* eslint-enable */

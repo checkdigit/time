@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getTimezoneOffsetInMilliseconds } from "../_lib/getTimezoneOffsetInMilliseconds/index.ts";
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import { millisecondsInWeek } from "../constants/index.ts";
@@ -58,3 +62,5 @@ export function differenceInCalendarISOWeeks(
   // the daylight saving time clock shift).
   return Math.round((timestampLeft - timestampRight) / millisecondsInWeek);
 }
+
+/* eslint-enable */

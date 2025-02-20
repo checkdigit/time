@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { normalizeDates } from "../_lib/normalizeDates/index.ts";
 import { addDays } from "../addDays/index.ts";
 import { differenceInCalendarDays } from "../differenceInCalendarDays/index.ts";
@@ -91,3 +95,5 @@ export function differenceInBusinessDays(
   // Prevent negative zero
   return result === 0 ? 0 : result;
 }
+
+/* eslint-enable */

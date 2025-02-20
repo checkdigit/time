@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { getDefaultOptions } from "../_lib/defaultOptions/index.ts";
 import { toDate } from "../toDate/index.ts";
 import type {
@@ -56,3 +60,5 @@ export function lastDayOfWeek<
 
   return _date;
 }
+
+/* eslint-enable */

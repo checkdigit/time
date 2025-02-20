@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import { quartersInYear } from "../constants/index.ts";
 
 /**
@@ -20,3 +24,5 @@ import { quartersInYear } from "../constants/index.ts";
 export function yearsToQuarters(years: number): number {
   return Math.trunc(years * quartersInYear);
 }
+
+/* eslint-enable */
