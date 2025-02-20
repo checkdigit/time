@@ -1,7 +1,13 @@
-import { millisecondsInWeek } from '../constants/index';
-import { startOfISOWeek } from '../startOfISOWeek/index';
-import { startOfISOWeekYear } from '../startOfISOWeekYear/index';
-import { toDate } from '../toDate/index';
+import { millisecondsInWeek } from "../constants/index.ts";
+import { startOfISOWeek } from "../startOfISOWeek/index.ts";
+import { startOfISOWeekYear } from "../startOfISOWeekYear/index.ts";
+import { toDate } from "../toDate/index.ts";
+import type { ContextOptions, DateArg } from "../types.ts";
+
+/**
+ * The {@link getISOWeek} function options.
+ */
+export interface GetISOWeekOptions extends ContextOptions<Date> {}
 
 /**
  * @name getISOWeek
@@ -13,9 +19,8 @@ import { toDate } from '../toDate/index';
  *
  * ISO week-numbering year: http://en.wikipedia.org/wiki/ISO_week_date
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The given date
+ * @param options - The options
  *
  * @returns The ISO week
  *
@@ -24,8 +29,11 @@ import { toDate } from '../toDate/index';
  * const result = getISOWeek(new Date(2005, 0, 2))
  * //=> 53
  */
-export function getISOWeek<DateType extends Date>(date: DateType | number | string): number {
-  const _date = toDate(date);
+export function getISOWeek(
+  date: DateArg<Date> & {},
+  options?: GetISOWeekOptions | undefined,
+): number {
+  const _date = toDate(date, options?.in);
   const diff = +startOfISOWeek(_date) - +startOfISOWeekYear(_date);
 
   // Round the number of weeks to the nearest integer because the number of

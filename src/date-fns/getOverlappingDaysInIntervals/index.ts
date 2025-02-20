@@ -1,7 +1,7 @@
-import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index';
-import { millisecondsInDay } from '../constants/index';
-import { toDate } from '../toDate/index';
-import type { Interval } from '../types';
+import { getTimezoneOffsetInMilliseconds } from "../_lib/getTimezoneOffsetInMilliseconds/index.ts";
+import { millisecondsInDay } from "../constants/index.ts";
+import { toDate } from "../toDate/index.ts";
+import type { Interval } from "../types.ts";
 
 /**
  * @name getOverlappingDaysInIntervals
@@ -16,10 +16,9 @@ import type { Interval } from '../types';
  * Two equal 0-length intervals will result in 0. Two equal 1ms intervals will
  * result in 1.
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param intervalLeft - The first interval to compare.
  * @param intervalRight - The second interval to compare.
+ * @param options - An object with options
  *
  * @returns The number of days that overlap in two time intervals
  *
@@ -40,22 +39,28 @@ import type { Interval } from '../types';
  * //=> 0
  */
 
-export function getOverlappingDaysInIntervals<DateType extends Date>(
-  intervalLeft: Interval<DateType>,
-  intervalRight: Interval<DateType>,
+export function getOverlappingDaysInIntervals(
+  intervalLeft: Interval,
+  intervalRight: Interval,
 ): number {
-  const [leftStart, leftEnd] = [+toDate(intervalLeft.start), +toDate(intervalLeft.end)].sort((a, b) => a - b);
-  const [rightStart, rightEnd] = [+toDate(intervalRight.start), +toDate(intervalRight.end)].sort((a, b) => a - b);
+  const [leftStart, leftEnd] = [
+    +toDate(intervalLeft.start),
+    +toDate(intervalLeft.end),
+  ].sort((a, b) => a - b);
+  const [rightStart, rightEnd] = [
+    +toDate(intervalRight.start),
+    +toDate(intervalRight.end),
+  ].sort((a, b) => a - b);
 
   // Prevent NaN result if intervals don't overlap at all.
-  const isOverlapping = leftStart! < rightEnd! && rightStart! < leftEnd!;
+  const isOverlapping = leftStart < rightEnd && rightStart < leftEnd;
   if (!isOverlapping) return 0;
 
   // Remove the timezone offset to negate the DST effect on calculations.
-  const overlapLeft = rightStart! < leftStart! ? leftStart : rightStart;
-  const left = overlapLeft! - getTimezoneOffsetInMilliseconds(overlapLeft!);
-  const overlapRight = rightEnd! > leftEnd! ? leftEnd : rightEnd;
-  const right = overlapRight! - getTimezoneOffsetInMilliseconds(overlapRight!);
+  const overlapLeft = rightStart < leftStart ? leftStart : rightStart;
+  const left = overlapLeft - getTimezoneOffsetInMilliseconds(overlapLeft);
+  const overlapRight = rightEnd > leftEnd ? leftEnd : rightEnd;
+  const right = overlapRight - getTimezoneOffsetInMilliseconds(overlapRight);
 
   // Ceil the number to include partial days too.
   return Math.ceil((right - left) / millisecondsInDay);

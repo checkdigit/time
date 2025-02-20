@@ -1,7 +1,7 @@
-import { getRoundingMethod } from '../_lib/getRoundingMethod/index';
-import { millisecondsInMinute } from '../constants/index';
-import { differenceInMilliseconds } from '../differenceInMilliseconds/index';
-import type { RoundingOptions } from '../types';
+import { getRoundingMethod } from "../_lib/getRoundingMethod/index.ts";
+import { millisecondsInMinute } from "../constants/index.ts";
+import { differenceInMilliseconds } from "../differenceInMilliseconds/index.ts";
+import type { DateArg, RoundingOptions } from "../types.ts";
 
 /**
  * The {@link differenceInMinutes} function options.
@@ -15,8 +15,6 @@ export interface DifferenceInMinutesOptions extends RoundingOptions {}
  *
  * @description
  * Get the signed number of full (rounded towards 0) minutes between the given dates.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
  * @param dateLeft - The later date
  * @param dateRight - The earlier date
@@ -40,11 +38,12 @@ export interface DifferenceInMinutesOptions extends RoundingOptions {}
  * )
  * //=> -1
  */
-export function differenceInMinutes<DateType extends Date>(
-  dateLeft: DateType | number | string,
-  dateRight: DateType | number | string,
+export function differenceInMinutes(
+  dateLeft: DateArg<Date> & {},
+  dateRight: DateArg<Date> & {},
   options?: DifferenceInMinutesOptions,
 ): number {
-  const diff = differenceInMilliseconds(dateLeft, dateRight) / millisecondsInMinute;
+  const diff =
+    differenceInMilliseconds(dateLeft, dateRight) / millisecondsInMinute;
   return getRoundingMethod(options?.roundingMethod)(diff);
 }

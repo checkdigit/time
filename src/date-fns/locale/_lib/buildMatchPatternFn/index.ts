@@ -1,4 +1,4 @@
-import type { MatchFn, MatchValueCallback } from '../../types';
+import type { MatchFn, MatchValueCallback } from "../../types.ts";
 
 export interface BuildMatchPatternFnArgs<Result> {
   matchPattern: RegExp;
@@ -6,7 +6,9 @@ export interface BuildMatchPatternFnArgs<Result> {
   valueCallback?: MatchValueCallback<string, Result>;
 }
 
-export function buildMatchPatternFn<Result>(args: BuildMatchPatternFnArgs<Result>): MatchFn<Result> {
+export function buildMatchPatternFn<Result>(
+  args: BuildMatchPatternFnArgs<Result>,
+): MatchFn<Result> {
   return (string, options = {}) => {
     const matchResult = string.match(args.matchPattern);
     if (!matchResult) return null;
@@ -14,8 +16,10 @@ export function buildMatchPatternFn<Result>(args: BuildMatchPatternFnArgs<Result
 
     const parseResult = string.match(args.parsePattern);
     if (!parseResult) return null;
-    let value = (args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0]) as Result;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- I challange you to fix the type
+    let value = (
+      args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0]
+    ) as Result;
+    // [TODO] I challenge you to fix the type
     value = options.valueCallback ? options.valueCallback(value as any) : value;
 
     const rest = string.slice(matchedString.length);

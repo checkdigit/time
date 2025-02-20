@@ -1,4 +1,4 @@
-import { daysInYear } from '../constants/index';
+import { daysInYear } from "../constants/index.ts";
 
 /**
  * @name yearsToDays

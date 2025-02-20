@@ -1,6 +1,7 @@
-import { isValid } from '../isValid/index';
-import { toDate } from '../toDate/index';
-import { lightFormatters } from '../_lib/format/lightFormatters/index';
+import { lightFormatters } from "../_lib/format/lightFormatters/index.ts";
+import { isValid } from "../isValid/index.ts";
+import { toDate } from "../toDate/index.ts";
+import type { DateArg } from "../types.ts";
 
 // Rexports of internal for libraries to use.
 // See: https://github.com/date-fns/date-fns/issues/3638#issuecomment-1877082874
@@ -71,8 +72,6 @@ type Token = keyof typeof lightFormatters;
  * |                                 | SSS     | 000, 001, ..., 999                |
  * |                                 | SSSS    | ...                               |
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The original date
  * @param format - The string of tokens
  *
@@ -85,17 +84,20 @@ type Token = keyof typeof lightFormatters;
  * const result = lightFormat(new Date(2014, 1, 11), 'yyyy-MM-dd')
  * //=> '2014-02-11'
  */
-export function lightFormat<DateType extends Date>(date: DateType | number | string, formatStr: string): string {
-  const _date = toDate(date);
+export function lightFormat(
+  date: DateArg<Date> & {},
+  formatStr: string,
+): string {
+  const date_ = toDate(date);
 
-  if (!isValid(_date)) {
-    throw new RangeError('Invalid time value');
+  if (!isValid(date_)) {
+    throw new RangeError("Invalid time value");
   }
 
   const tokens = formatStr.match(formattingTokensRegExp);
 
   // The only case when formattingTokensRegExp doesn't match the string is when it's empty
-  if (!tokens) return '';
+  if (!tokens) return "";
 
   const result = tokens
     .map((substring) => {
@@ -111,26 +113,26 @@ export function lightFormat<DateType extends Date>(date: DateType | number | str
 
       const formatter = lightFormatters[firstCharacter as Token];
       if (formatter) {
-        return formatter(_date, substring);
+        return formatter(date_, substring);
       }
 
-      if (firstCharacter!.match(unescapedLatinCharacterRegExp)) {
-        throw new RangeError('Format string contains an unescaped latin alphabet character `' + firstCharacter + '`');
+      if (firstCharacter.match(unescapedLatinCharacterRegExp)) {
+        throw new RangeError(
+          "Format string contains an unescaped latin alphabet character `" +
+            firstCharacter +
+            "`",
+        );
       }
 
       return substring;
     })
-    .join('');
+    .join("");
 
   return result;
 }
 
 function cleanEscapedString(input: string) {
   const matches = input.match(escapedStringRegExp);
-
-  if (!matches) {
-    return input;
-  }
-
-  return matches[1]!.replace(doubleQuoteRegExp, "'");
+  if (!matches) return input;
+  return matches[1].replace(doubleQuoteRegExp, "'");
 }

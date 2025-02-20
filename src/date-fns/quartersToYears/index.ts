@@ -1,4 +1,4 @@
-import { quartersInYear } from '../constants/index';
+import { quartersInYear } from "../constants/index.ts";
 
 /**
  * @name quartersToYears
@@ -7,8 +7,6 @@ import { quartersInYear } from '../constants/index';
  *
  * @description
  * Convert a number of quarters to a full number of years.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
  * @param quarters - The number of quarters to be converted
  *

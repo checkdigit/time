@@ -1,4 +1,10 @@
-import { toDate } from '../toDate/index';
+import { toDate } from "../toDate/index.ts";
+import type { ContextOptions, DateArg } from "../types.ts";
+
+/**
+ * The {@link getQuarter} function options.
+ */
+export interface GetQuarterOptions extends ContextOptions<Date> {}
 
 /**
  * @name getQuarter
@@ -8,19 +14,21 @@ import { toDate } from '../toDate/index';
  * @description
  * Get the year quarter of the given date.
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The given date
+ * @param options - An object with options
  *
  * @returns The quarter
  *
  * @example
  * // Which quarter is 2 July 2014?
- * const result = getQuarter(new Date(2014, 6, 2))
+ * const result = getQuarter(new Date(2014, 6, 2));
  * //=> 3
  */
-export function getQuarter<DateType extends Date>(date: DateType | number | string): number {
-  const _date = toDate(date);
+export function getQuarter(
+  date: DateArg<Date> & {},
+  options?: GetQuarterOptions | undefined,
+): number {
+  const _date = toDate(date, options?.in);
   const quarter = Math.trunc(_date.getMonth() / 3) + 1;
   return quarter;
 }

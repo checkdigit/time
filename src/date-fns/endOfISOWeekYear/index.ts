@@ -1,6 +1,13 @@
-import { getISOWeekYear } from '../getISOWeekYear/index';
-import { startOfISOWeek } from '../startOfISOWeek/index';
-import { constructFrom } from '../constructFrom/index';
+import { constructFrom } from "../constructFrom/index.ts";
+import { getISOWeekYear } from "../getISOWeekYear/index.ts";
+import { startOfISOWeek } from "../startOfISOWeek/index.ts";
+import type { ContextOptions, DateArg } from "../types.ts";
+
+/**
+ * The {@link endOfISOWeekYear} function options.
+ */
+export interface EndOfISOWeekYearOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {}
 
 /**
  * @name endOfISOWeekYear
@@ -15,8 +22,10 @@ import { constructFrom } from '../constructFrom/index';
  * ISO week-numbering year: http://en.wikipedia.org/wiki/ISO_week_date
  *
  * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ContextDate - The `Date` type of the context function.
  *
  * @param date - The original date
+ * @param options - The options
  *
  * @returns The end of an ISO week-numbering year
  *
@@ -25,12 +34,18 @@ import { constructFrom } from '../constructFrom/index';
  * const result = endOfISOWeekYear(new Date(2005, 6, 2))
  * //=> Sun Jan 01 2006 23:59:59.999
  */
-export function endOfISOWeekYear<DateType extends Date>(date: DateType | number | string): DateType {
-  const year = getISOWeekYear(date);
-  const fourthOfJanuaryOfNextYear = constructFrom(date, 0);
+export function endOfISOWeekYear<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
+  date: DateArg<DateType>,
+  options?: EndOfISOWeekYearOptions<ResultDate> | undefined,
+): ResultDate {
+  const year = getISOWeekYear(date, options);
+  const fourthOfJanuaryOfNextYear = constructFrom(options?.in || date, 0);
   fourthOfJanuaryOfNextYear.setFullYear(year + 1, 0, 4);
   fourthOfJanuaryOfNextYear.setHours(0, 0, 0, 0);
-  const _date = startOfISOWeek(fourthOfJanuaryOfNextYear);
+  const _date = startOfISOWeek(fourthOfJanuaryOfNextYear, options);
   _date.setMilliseconds(_date.getMilliseconds() - 1);
   return _date;
 }

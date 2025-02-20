@@ -1,9 +1,16 @@
-import { millisecondsInHour, millisecondsInMinute } from '../constants/index';
+import {
+  millisecondsInHour,
+  millisecondsInMinute,
+} from "../constants/index.ts";
+import { constructFrom } from "../constructFrom/index.ts";
+import { toDate } from "../toDate/index.ts";
+import type { ContextOptions } from "../types.ts";
 
 /**
  * The {@link parseISO} function options.
  */
-export interface ParseISOOptions {
+export interface ParseISOOptions<DateType extends Date = Date>
+  extends ContextOptions<DateType> {
   /** The additional number of digits in the extended year format */
   additionalDigits?: 0 | 1 | 2;
 }
@@ -23,6 +30,7 @@ export interface ParseISOOptions {
  * the values are invalid, it returns Invalid Date.
  *
  * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
  *
  * @param argument - The value to convert
  * @param options - An object with options
@@ -40,7 +48,12 @@ export interface ParseISOOptions {
  * const result = parseISO('+02014101', { additionalDigits: 1 })
  * //=> Fri Apr 11 2014 00:00:00
  */
-export function parseISO(argument: string, options?: ParseISOOptions): Date {
+export function parseISO<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(argument: string, options?: ParseISOOptions<ResultDate>): ResultDate {
+  const invalidDate = () => constructFrom(options?.in, NaN);
+
   const additionalDigits = options?.additionalDigits ?? 2;
   const dateStrings = splitDateString(argument);
 
@@ -50,45 +63,38 @@ export function parseISO(argument: string, options?: ParseISOOptions): Date {
     date = parseDate(parseYearResult.restDateString, parseYearResult.year);
   }
 
-  if (!date || isNaN(date.getTime())) {
-    return new Date(NaN);
-  }
+  if (!date || isNaN(+date)) return invalidDate();
 
-  const timestamp = date.getTime();
+  const timestamp = +date;
   let time = 0;
   let offset;
 
   if (dateStrings.time) {
     time = parseTime(dateStrings.time);
-    if (isNaN(time)) {
-      return new Date(NaN);
-    }
+    if (isNaN(time)) return invalidDate();
   }
 
   if (dateStrings.timezone) {
     offset = parseTimezone(dateStrings.timezone);
-    if (isNaN(offset)) {
-      return new Date(NaN);
-    }
+    if (isNaN(offset)) return invalidDate();
   } else {
-    const dirtyDate = new Date(timestamp + time);
-    // JS parsed string assuming it's in UTC timezone
-    // but we need it to be parsed in our timezone
-    // so we use utc values to build date in our timezone.
-    // Year values from 0 to 99 map to the years 1900 to 1999
-    // so set year explicitly with setFullYear.
-    const result = new Date(0);
-    result.setFullYear(dirtyDate.getUTCFullYear(), dirtyDate.getUTCMonth(), dirtyDate.getUTCDate());
+    const tmpDate = new Date(timestamp + time);
+    const result = toDate(0, options?.in);
+    result.setFullYear(
+      tmpDate.getUTCFullYear(),
+      tmpDate.getUTCMonth(),
+      tmpDate.getUTCDate(),
+    );
     result.setHours(
-      dirtyDate.getUTCHours(),
-      dirtyDate.getUTCMinutes(),
-      dirtyDate.getUTCSeconds(),
-      dirtyDate.getUTCMilliseconds(),
+      tmpDate.getUTCHours(),
+      tmpDate.getUTCMinutes(),
+      tmpDate.getUTCSeconds(),
+      tmpDate.getUTCMilliseconds(),
     );
     return result;
   }
 
-  return new Date(timestamp + time + offset);
+  return toDate(timestamp + time + offset, options?.in);
 }
 
 interface DateString {
@@ -108,8 +114,10 @@ const patterns = {
   timezone: /([Z+-].*)$/,
 };
 
-const dateRegex = /^-?(?:(\d{3})|(\d{2})(?:-?(\d{2}))?|W(\d{2})(?:-?(\d{1}))?|)$/;
-const timeRegex = /^(\d{2}(?:[.,]\d*)?)(?::?(\d{2}(?:[.,]\d*)?))?(?::?(\d{2}(?:[.,]\d*)?))?$/;
+const dateRegex =
+  /^-?(?:(\d{3})|(\d{2})(?:-?(\d{2}))?|W(\d{2})(?:-?(\d{1}))?|)$/;
+const timeRegex =
+  /^(\d{2}(?:[.,]\d*)?)(?::?(\d{2}(?:[.,]\d*)?))?(?::?(\d{2}(?:[.,]\d*)?))?$/;
 const timezoneRegex = /^([+-])(\d{2})(?::?(\d{2}))?$/;
 
 function splitDateString(dateString: string): DateString {
@@ -123,22 +131,25 @@ function splitDateString(dateString: string): DateString {
     return dateStrings;
   }
 
-  if (/:/.test(array[0]!)) {
+  if (/:/.test(array[0])) {
     timeString = array[0];
   } else {
-    dateStrings.date = array[0]!;
+    dateStrings.date = array[0];
     timeString = array[1];
     if (patterns.timeZoneDelimiter.test(dateStrings.date)) {
-      dateStrings.date = dateString.split(patterns.timeZoneDelimiter)[0]!;
-      timeString = dateString.substr(dateStrings.date.length, dateString.length);
+      dateStrings.date = dateString.split(patterns.timeZoneDelimiter)[0];
+      timeString = dateString.substr(
+        dateStrings.date.length,
+        dateString.length,
+      );
     }
   }
 
   if (timeString) {
     const token = patterns.timezone.exec(timeString);
     if (token) {
-      dateStrings.time = timeString.replace(token[1]!, '');
-      dateStrings.timezone = token[1]!;
+      dateStrings.time = timeString.replace(token[1], "");
+      dateStrings.timezone = token[1];
     } else {
       dateStrings.time = timeString;
     }
@@ -149,12 +160,16 @@ function splitDateString(dateString: string): DateString {
 
 function parseYear(dateString: string, additionalDigits: number): ParsedYear {
   const regex = new RegExp(
-    '^(?:(\\d{4}|[+-]\\d{' + (4 + additionalDigits) + '})|(\\d{2}|[+-]\\d{' + (2 + additionalDigits) + '})$)',
+    "^(?:(\\d{4}|[+-]\\d{" +
+      (4 + additionalDigits) +
+      "})|(\\d{2}|[+-]\\d{" +
+      (2 + additionalDigits) +
+      "})$)",
   );
 
   const captures = dateString.match(regex);
   // Invalid ISO-formatted year
-  if (!captures) return { year: NaN, restDateString: '' };
+  if (!captures) return { year: NaN, restDateString: "" };
 
   const year = captures[1] ? parseInt(captures[1]) : null;
   const century = captures[2] ? parseInt(captures[2]) : null;
@@ -162,7 +177,7 @@ function parseYear(dateString: string, additionalDigits: number): ParsedYear {
   // either year or century is null, not both
   return {
     year: century === null ? (year as number) : century * 100,
-    restDateString: dateString.slice((captures[1] || captures[2]!).length),
+    restDateString: dateString.slice((captures[1] || captures[2]).length),
   };
 }
 
@@ -175,11 +190,11 @@ function parseDate(dateString: string, year: number): Date {
   if (!captures) return new Date(NaN);
 
   const isWeekDate = !!captures[4];
-  const dayOfYear = parseDateUnit(captures[1]!);
-  const month = parseDateUnit(captures[2]!) - 1;
-  const day = parseDateUnit(captures[3]!);
-  const week = parseDateUnit(captures[4]!);
-  const dayOfWeek = parseDateUnit(captures[5]!) - 1;
+  const dayOfYear = parseDateUnit(captures[1]);
+  const month = parseDateUnit(captures[2]) - 1;
+  const day = parseDateUnit(captures[3]);
+  const week = parseDateUnit(captures[4]);
+  const dayOfWeek = parseDateUnit(captures[5]) - 1;
 
   if (isWeekDate) {
     if (!validateWeekDate(year, week, dayOfWeek)) {
@@ -188,7 +203,10 @@ function parseDate(dateString: string, year: number): Date {
     return dayOfISOWeekYear(year, week, dayOfWeek);
   } else {
     const date = new Date(0);
-    if (!validateDate(year, month, day) || !validateDayOfYearDate(year, dayOfYear)) {
+    if (
+      !validateDate(year, month, day) ||
+      !validateDayOfYearDate(year, dayOfYear)
+    ) {
       return new Date(NaN);
     }
     date.setUTCFullYear(year, month, Math.max(dayOfYear, day));
@@ -204,29 +222,31 @@ function parseTime(timeString: string): number {
   const captures = timeString.match(timeRegex);
   if (!captures) return NaN; // Invalid ISO-formatted time
 
-  const hours = parseTimeUnit(captures[1]!);
-  const minutes = parseTimeUnit(captures[2]!);
-  const seconds = parseTimeUnit(captures[3]!);
+  const hours = parseTimeUnit(captures[1]);
+  const minutes = parseTimeUnit(captures[2]);
+  const seconds = parseTimeUnit(captures[3]);
 
   if (!validateTime(hours, minutes, seconds)) {
     return NaN;
   }
 
-  return hours * millisecondsInHour + minutes * millisecondsInMinute + seconds * 1000;
+  return (
+    hours * millisecondsInHour + minutes * millisecondsInMinute + seconds * 1000
+  );
 }
 
 function parseTimeUnit(value: string): number {
-  return (value && parseFloat(value.replace(',', '.'))) || 0;
+  return (value && parseFloat(value.replace(",", "."))) || 0;
 }
 
 function parseTimezone(timezoneString: string): number {
-  if (timezoneString === 'Z') return 0;
+  if (timezoneString === "Z") return 0;
 
   const captures = timezoneString.match(timezoneRegex);
   if (!captures) return 0;
 
-  const sign = captures[1] === '+' ? -1 : 1;
-  const hours = parseInt(captures[2]!);
+  const sign = captures[1] === "+" ? -1 : 1;
+  const hours = parseInt(captures[2]);
   const minutes = (captures[3] && parseInt(captures[3])) || 0;
 
   if (!validateTimezone(hours, minutes)) {
@@ -236,7 +256,11 @@ function parseTimezone(timezoneString: string): number {
   return sign * (hours * millisecondsInHour + minutes * millisecondsInMinute);
 }
 
-function dayOfISOWeekYear(isoWeekYear: number, week: number, day: number): Date {
+function dayOfISOWeekYear(
+  isoWeekYear: number,
+  week: number,
+  day: number,
+): Date {
   const date = new Date(0);
   date.setUTCFullYear(isoWeekYear, 0, 4);
   const fourthOfJanuaryDay = date.getUTCDay() || 7;
@@ -255,7 +279,12 @@ function isLeapYearIndex(year: number): boolean {
 }
 
 function validateDate(year: number, month: number, date: number): boolean {
-  return month >= 0 && month <= 11 && date >= 1 && date <= (daysInMonths[month] || (isLeapYearIndex(year) ? 29 : 28));
+  return (
+    month >= 0 &&
+    month <= 11 &&
+    date >= 1 &&
+    date <= (daysInMonths[month] || (isLeapYearIndex(year) ? 29 : 28))
+  );
 }
 
 function validateDayOfYearDate(year: number, dayOfYear: number): boolean {
@@ -266,12 +295,23 @@ function validateWeekDate(_year: number, week: number, day: number): boolean {
   return week >= 1 && week <= 53 && day >= 0 && day <= 6;
 }
 
-function validateTime(hours: number, minutes: number, seconds: number): boolean {
+function validateTime(
+  hours: number,
+  minutes: number,
+  seconds: number,
+): boolean {
   if (hours === 24) {
     return minutes === 0 && seconds === 0;
   }
 
-  return seconds >= 0 && seconds < 60 && minutes >= 0 && minutes < 60 && hours >= 0 && hours < 25;
+  return (
+    seconds >= 0 &&
+    seconds < 60 &&
+    minutes >= 0 &&
+    minutes < 60 &&
+    hours >= 0 &&
+    hours < 25
+  );
 }
 
 function validateTimezone(_hours: number, minutes: number): boolean {

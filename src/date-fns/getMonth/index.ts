@@ -1,4 +1,10 @@
-import { toDate } from '../toDate/index';
+import { toDate } from "../toDate/index.ts";
+import type { ContextOptions, DateArg } from "../types.ts";
+
+/**
+ * The {@link getMonth} function options.
+ */
+export interface GetMonthOptions extends ContextOptions<Date> {}
 
 /**
  * @name getMonth
@@ -8,9 +14,8 @@ import { toDate } from '../toDate/index';
  * @description
  * Get the month of the given date.
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The given date
+ * @param options - An object with options
  *
  * @returns The month index (0-11)
  *
@@ -19,8 +24,9 @@ import { toDate } from '../toDate/index';
  * const result = getMonth(new Date(2012, 1, 29))
  * //=> 1
  */
-export function getMonth<DateType extends Date>(date: DateType | number | string): number {
-  const _date = toDate(date);
-  const month = _date.getMonth();
-  return month;
+export function getMonth(
+  date: DateArg<Date> & {},
+  options?: GetMonthOptions | undefined,
+): number {
+  return toDate(date, options?.in).getMonth();
 }

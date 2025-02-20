@@ -1,11 +1,19 @@
-import { toDate } from '../toDate/index';
-import type { LocalizedOptions, WeekOptions } from '../types';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
+import { getDefaultOptions } from "../_lib/defaultOptions/index.ts";
+import { toDate } from "../toDate/index.ts";
+import type {
+  ContextOptions,
+  DateArg,
+  LocalizedOptions,
+  WeekOptions,
+} from "../types.ts";
 
 /**
  * The {@link startOfWeek} function options.
  */
-export interface StartOfWeekOptions extends LocalizedOptions<'options'>, WeekOptions {}
+export interface StartOfWeekOptions<DateType extends Date = Date>
+  extends LocalizedOptions<"options">,
+    WeekOptions,
+    ContextOptions<DateType> {}
 
 /**
  * @name startOfWeek
@@ -17,6 +25,7 @@ export interface StartOfWeekOptions extends LocalizedOptions<'options'>, WeekOpt
  * The result will be in the local timezone.
  *
  * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
  *
  * @param date - The original date
  * @param options - An object with options
@@ -33,10 +42,13 @@ export interface StartOfWeekOptions extends LocalizedOptions<'options'>, WeekOpt
  * const result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0), { weekStartsOn: 1 })
  * //=> Mon Sep 01 2014 00:00:00
  */
-export function startOfWeek<DateType extends Date>(
-  date: DateType | number | string,
-  options?: StartOfWeekOptions,
-): DateType {
+export function startOfWeek<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
+  date: DateArg<DateType>,
+  options?: StartOfWeekOptions<ResultDate>,
+): ResultDate {
   const defaultOptions = getDefaultOptions();
   const weekStartsOn =
     options?.weekStartsOn ??
@@ -45,7 +57,7 @@ export function startOfWeek<DateType extends Date>(
     defaultOptions.locale?.options?.weekStartsOn ??
     0;
 
-  const _date = toDate(date);
+  const _date = toDate(date, options?.in);
   const day = _date.getDay();
   const diff = (day < weekStartsOn ? 7 : 0) + day - weekStartsOn;
 

@@ -1,4 +1,7 @@
-import { addLeadingZeros } from '../../addLeadingZeros/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+import { addLeadingZeros } from '../../addLeadingZeros/index.ts';
 
 /*
  * |     | Unit                           |     | Unit                           |
@@ -56,7 +59,7 @@ export const lightFormatters = {
       case 'aaa':
         return dayPeriodEnumValue;
       case 'aaaaa':
-        return dayPeriodEnumValue[0]!;
+        return dayPeriodEnumValue[0];
       case 'aaaa':
       default:
         return dayPeriodEnumValue === 'am' ? 'a.m.' : 'p.m.';
@@ -97,3 +100,4 @@ export const lightFormatters = {
     return addLeadingZeros(fractionalSeconds, token.length);
   },
 };
+/* eslint-enable */

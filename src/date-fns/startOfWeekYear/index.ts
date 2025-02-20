@@ -1,16 +1,23 @@
-import { constructFrom } from '../constructFrom/index';
-import { getWeekYear } from '../getWeekYear/index';
-import { startOfWeek } from '../startOfWeek/index';
-import type { FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
+import { getDefaultOptions } from "../_lib/defaultOptions/index.ts";
+import { constructFrom } from "../constructFrom/index.ts";
+import { getWeekYear } from "../getWeekYear/index.ts";
+import { startOfWeek } from "../startOfWeek/index.ts";
+import type {
+  ContextOptions,
+  DateArg,
+  FirstWeekContainsDateOptions,
+  LocalizedOptions,
+  WeekOptions,
+} from "../types.ts";
 
 /**
  * The {@link startOfWeekYear} function options.
  */
-export interface StartOfWeekYearOptions
-  extends LocalizedOptions<'options'>,
+export interface StartOfWeekYearOptions<DateType extends Date = Date>
+  extends LocalizedOptions<"options">,
     FirstWeekContainsDateOptions,
-    WeekOptions {}
+    WeekOptions,
+    ContextOptions<DateType> {}
 
 /**
  * @name startOfWeekYear
@@ -27,6 +34,7 @@ export interface StartOfWeekYearOptions
  * Week numbering: https://en.wikipedia.org/wiki/Week#The_ISO_week_date_system
  *
  * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type.
  *
  * @param date - The original date
  * @param options - An object with options
@@ -48,10 +56,13 @@ export interface StartOfWeekYearOptions
  * })
  * //=> Mon Jan 03 2005 00:00:00
  */
-export function startOfWeekYear<DateType extends Date>(
-  date: DateType | number | string,
-  options?: StartOfWeekYearOptions,
-): DateType {
+export function startOfWeekYear<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
+  date: DateArg<DateType>,
+  options?: StartOfWeekYearOptions<ResultDate>,
+): ResultDate {
   const defaultOptions = getDefaultOptions();
   const firstWeekContainsDate =
     options?.firstWeekContainsDate ??
@@ -61,7 +72,7 @@ export function startOfWeekYear<DateType extends Date>(
     1;
 
   const year = getWeekYear(date, options);
-  const firstWeek = constructFrom(date, 0);
+  const firstWeek = constructFrom(options?.in || date, 0);
   firstWeek.setFullYear(year, 0, firstWeekContainsDate);
   firstWeek.setHours(0, 0, 0, 0);
   const _date = startOfWeek(firstWeek, options);

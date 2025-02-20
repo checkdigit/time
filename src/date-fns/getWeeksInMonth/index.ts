@@ -1,12 +1,21 @@
-import { differenceInCalendarWeeks } from '../differenceInCalendarWeeks/index';
-import { lastDayOfMonth } from '../lastDayOfMonth/index';
-import { startOfMonth } from '../startOfMonth/index';
-import type { LocalizedOptions, WeekOptions } from '../types';
+import { differenceInCalendarWeeks } from "../differenceInCalendarWeeks/index.ts";
+import { lastDayOfMonth } from "../lastDayOfMonth/index.ts";
+import { startOfMonth } from "../startOfMonth/index.ts";
+import { toDate } from "../toDate/index.ts";
+import type {
+  ContextOptions,
+  DateArg,
+  LocalizedOptions,
+  WeekOptions,
+} from "../types.ts";
 
 /**
  * The {@link getWeeksInMonth} function options.
  */
-export interface GetWeeksInMonthOptions extends LocalizedOptions<'options'>, WeekOptions {}
+export interface GetWeeksInMonthOptions
+  extends LocalizedOptions<"options">,
+    WeekOptions,
+    ContextOptions<Date> {}
 
 /**
  * @name getWeeksInMonth
@@ -15,8 +24,6 @@ export interface GetWeeksInMonthOptions extends LocalizedOptions<'options'>, Wee
  *
  * @description
  * Get the number of calendar weeks the month in the given date spans.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
  * @param date - The given date
  * @param options - An object with options.
@@ -34,9 +41,16 @@ export interface GetWeeksInMonthOptions extends LocalizedOptions<'options'>, Wee
  * const result = getWeeksInMonth(new Date(2017, 6, 5), { weekStartsOn: 1 })
  * //=> 6
  */
-export function getWeeksInMonth<DateType extends Date>(
-  date: DateType | number | string,
-  options?: GetWeeksInMonthOptions,
+export function getWeeksInMonth(
+  date: DateArg<Date> & {},
+  options?: GetWeeksInMonthOptions | undefined,
 ): number {
-  return differenceInCalendarWeeks(lastDayOfMonth(date), startOfMonth(date), options) + 1;
+  const contextDate = toDate(date, options?.in);
+  return (
+    differenceInCalendarWeeks(
+      lastDayOfMonth(contextDate, options),
+      startOfMonth(contextDate, options),
+      options,
+    ) + 1
+  );
 }

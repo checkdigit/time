@@ -1,5 +1,12 @@
-import { constructNow } from '../constructNow/index';
-import { isSameYear } from '../isSameYear/index';
+import { constructFrom } from "../constructFrom/index.ts";
+import { constructNow } from "../constructNow/index.ts";
+import { isSameYear } from "../isSameYear/index.ts";
+import type { ContextOptions, DateArg } from "../types.ts";
+
+/**
+ * The {@link isThisYear} function options.
+ */
+export interface IsThisYearOptions extends ContextOptions<Date> {}
 
 /**
  * @name isThisYear
@@ -10,9 +17,8 @@ import { isSameYear } from '../isSameYear/index';
  * @description
  * Is the given date in the same year as the current date?
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The date to check
+ * @param options - An object with options
  *
  * @returns The date is in this year
  *
@@ -21,6 +27,12 @@ import { isSameYear } from '../isSameYear/index';
  * const result = isThisYear(new Date(2014, 6, 2))
  * //=> true
  */
-export function isThisYear<DateType extends Date>(date: DateType | number | string): boolean {
-  return isSameYear(date, constructNow(date));
+export function isThisYear(
+  date: DateArg<Date> & {},
+  options?: IsThisYearOptions | undefined,
+): boolean {
+  return isSameYear(
+    constructFrom(options?.in || date, date),
+    constructNow(options?.in || date),
+  );
 }

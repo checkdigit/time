@@ -1,4 +1,10 @@
-import { toDate } from '../toDate/index';
+import { toDate } from "../toDate/index.ts";
+import type { ContextOptions, DateArg } from "../types.ts";
+
+/**
+ * The {@link getHours} function options.
+ */
+export interface GetHoursOptions extends ContextOptions<Date> {}
 
 /**
  * @name getHours
@@ -8,9 +14,8 @@ import { toDate } from '../toDate/index';
  * @description
  * Get the hours of the given date.
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The given date
+ * @param options - An object with options
  *
  * @returns The hours
  *
@@ -19,8 +24,9 @@ import { toDate } from '../toDate/index';
  * const result = getHours(new Date(2012, 1, 29, 11, 45))
  * //=> 11
  */
-export function getHours<DateType extends Date>(date: DateType | number | string): number {
-  const _date = toDate(date);
-  const hours = _date.getHours();
-  return hours;
+export function getHours(
+  date: DateArg<Date> & {},
+  options?: GetHoursOptions | undefined,
+): number {
+  return toDate(date, options?.in).getHours();
 }

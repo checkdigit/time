@@ -1,9 +1,23 @@
-/* eslint-disable no-unused-vars */
+import { type constructFromSymbol } from "./constants/index.ts";
+import type { Locale } from "./locale/types.ts";
 
-import type { Locale } from './locale/types';
+export type * from "./locale/types.ts";
 
-export type * from './locale/types';
-export type * from './fp/types';
+/**
+ * The argument type.
+ */
+export type DateArg<DateType extends Date> = DateType | number | string;
+
+/**
+ * Date extension interface that allows to transfer extra properties from
+ * the reference date to the new date. It's useful for extensions like [`TZDate`](https://github.com/date-fns/tz)
+ * that accept a time zone as a constructor argument.
+ */
+export interface ConstructableDate extends Date {
+  [constructFromSymbol]: <DateType extends Date = Date>(
+    value: DateArg<Date> & {},
+  ) => DateType;
+}
 
 /**
  * The generic date constructor. Replicates the Date constructor. Used to build
@@ -27,7 +41,7 @@ export interface GenericDateConstructor<DateType extends Date = Date> {
    *
    * @returns The date instance
    */
-  new (value: Date | number | string): DateType;
+  new (value: DateArg<Date> & {}): DateType;
 
   /**
    * The date constructor. Creates date with the passed date values (year,
@@ -83,24 +97,26 @@ export type DurationUnit = keyof Duration;
 /**
  * An object that combines two dates to represent the time interval.
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam StartDate - The start `Date` type.
+ * @typeParam EndDate - The end `Date` type.
  */
-export interface Interval<DateType extends Date = Date> {
+export interface Interval<
+  StartType extends DateArg<Date> = DateArg<Date>,
+  EndType extends DateArg<Date> = DateArg<Date>,
+> {
   /** The start of the interval. */
-  start: DateType | number | string;
+  start: StartType;
   /** The end of the interval. */
-  end: DateType | number | string;
+  end: EndType;
 }
 
 /**
  * A version of {@link Interval} that has both start and end resolved to Date.
  */
-export interface NormalizedInterval<DateType extends Date = Date> {
-  /** The start of the interval. */
-  start: DateType;
-  /** The end of the interval. */
-  end: DateType;
-}
+export type NormalizedInterval<DateType extends Date = Date> = Interval<
+  DateType,
+  DateType
+>;
 
 /**
  * The era. Can be either 0 (AD - Anno Domini) or 1 (BC - Before Christ).
@@ -160,7 +176,7 @@ export interface DateValues {
 /**
  * The number rounding method.
  */
-export type RoundingMethod = 'ceil' | 'floor' | 'round' | 'trunc';
+export type RoundingMethod = "ceil" | "floor" | "round" | "trunc";
 
 /**
  * The ISO string format.
@@ -168,13 +184,13 @@ export type RoundingMethod = 'ceil' | 'floor' | 'round' | 'trunc';
  * - basic: Minimal number of separators
  * - extended: With separators added to enhance human readability
  */
-export type ISOStringFormat = 'extended' | 'basic';
+export type ISOStringFormat = "extended" | "basic";
 
 /**
  * The ISO date representation. Represents which component the string includes,
  * date, time or both.
  */
-export type ISOStringRepresentation = 'complete' | 'date' | 'time';
+export type ISOStringRepresentation = "complete" | "date" | "time";
 
 /// Function options types
 
@@ -301,3 +317,28 @@ export interface NearestToUnitOptions<Unit extends number> {
    * hours. */
   nearestTo?: Unit;
 }
+
+/**
+ * The context options. Used to build function options.
+ */
+export interface ContextOptions<DateType extends Date> {
+  /**
+   * The context to use in the function. It allows to normalize the arguments
+   * to a specific date instance, which is useful for extensions like [`TZDate`](https://github.com/date-fns/tz).
+   */
+  in?: ContextFn<DateType> | undefined;
+}
+
+/**
+  /**
+   * The context function type. It's used to normalize the input arguments to
+   * a specific date instance, which is useful for extensions like [`TZDate`](https://github.com/date-fns/tz).
+   */
+export type ContextFn<DateType extends Date> = (
+  value: DateArg<Date> & {},
+) => DateType;
+
+/**
+ * Resolves passed type or array of types.
+ */
+export type MaybeArray<Type> = Type | Type[];

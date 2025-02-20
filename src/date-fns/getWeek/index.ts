@@ -1,13 +1,23 @@
-import { millisecondsInWeek } from '../constants/index';
-import { startOfWeek } from '../startOfWeek/index';
-import { startOfWeekYear } from '../startOfWeekYear/index';
-import { toDate } from '../toDate/index';
-import type { FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types';
+import { millisecondsInWeek } from "../constants/index.ts";
+import { startOfWeek } from "../startOfWeek/index.ts";
+import { startOfWeekYear } from "../startOfWeekYear/index.ts";
+import { toDate } from "../toDate/index.ts";
+import type {
+  ContextOptions,
+  DateArg,
+  FirstWeekContainsDateOptions,
+  LocalizedOptions,
+  WeekOptions,
+} from "../types.ts";
 
 /**
  * The {@link getWeek} function options.
  */
-export interface GetWeekOptions extends LocalizedOptions<'options'>, WeekOptions, FirstWeekContainsDateOptions {}
+export interface GetWeekOptions
+  extends LocalizedOptions<"options">,
+    WeekOptions,
+    FirstWeekContainsDateOptions,
+    ContextOptions<Date> {}
 
 /**
  * @name getWeek
@@ -22,8 +32,6 @@ export interface GetWeekOptions extends LocalizedOptions<'options'>, WeekOptions
  * the first week of the week-numbering year)
  *
  * Week numbering: https://en.wikipedia.org/wiki/Week#The_ISO_week_date_system
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
  * @param date - The given date
  * @param options - An object with options
@@ -45,9 +53,11 @@ export interface GetWeekOptions extends LocalizedOptions<'options'>, WeekOptions
  * })
  * //=> 53
  */
-
-export function getWeek<DateType extends Date>(date: DateType | number | string, options?: GetWeekOptions): number {
-  const _date = toDate(date);
+export function getWeek(
+  date: DateArg<Date> & {},
+  options?: GetWeekOptions | undefined,
+): number {
+  const _date = toDate(date, options?.in);
   const diff = +startOfWeek(_date, options) - +startOfWeekYear(_date, options);
 
   // Round the number of weeks to the nearest integer because the number of

@@ -1,6 +1,12 @@
-import { addDays } from '../addDays/index';
-import { constructNow } from '../constructNow/index';
-import { isSameDay } from '../isSameDay/index';
+import { addDays } from "../addDays/index.ts";
+import { constructNow } from "../constructNow/index.ts";
+import { isSameDay } from "../isSameDay/index.ts";
+import type { ContextOptions, DateArg } from "../types.ts";
+
+/**
+ * The {@link isTomorrow} function options.
+ */
+export interface IsTomorrowOptions extends ContextOptions<Date> {}
 
 /**
  * @name isTomorrow
@@ -11,9 +17,8 @@ import { isSameDay } from '../isSameDay/index';
  * @description
  * Is the given date tomorrow?
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The date to check
+ * @param options - An object with options
  *
  * @returns The date is tomorrow
  *
@@ -22,6 +27,13 @@ import { isSameDay } from '../isSameDay/index';
  * const result = isTomorrow(new Date(2014, 9, 7, 14, 0))
  * //=> true
  */
-export function isTomorrow<DateType extends Date>(date: DateType | number | string): boolean {
-  return isSameDay(date, addDays(constructNow(date), 1));
+export function isTomorrow(
+  date: DateArg<Date> & {},
+  options?: IsTomorrowOptions | undefined,
+): boolean {
+  return isSameDay(
+    date,
+    addDays(constructNow(options?.in || date), 1),
+    options,
+  );
 }

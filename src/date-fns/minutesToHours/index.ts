@@ -1,4 +1,4 @@
-import { minutesInHour } from '../constants/index';
+import { minutesInHour } from "../constants/index.ts";
 
 /**
  * @name minutesToHours

@@ -1,4 +1,4 @@
-import { monthsInQuarter } from '../constants/index';
+import { monthsInQuarter } from "../constants/index.ts";
 
 /**
  * @name monthsToQuarters

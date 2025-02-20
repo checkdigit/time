@@ -1,4 +1,4 @@
-import { monthsInQuarter } from '../constants/index';
+import { monthsInQuarter } from "../constants/index.ts";
 
 /**
  * @name quartersToMonths
@@ -7,8 +7,6 @@ import { monthsInQuarter } from '../constants/index';
  *
  * @description
  * Convert a number of quarters to a full number of months.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
  * @param quarters - The number of quarters to be converted
  *

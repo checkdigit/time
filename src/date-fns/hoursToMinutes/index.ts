@@ -1,4 +1,4 @@
-import { minutesInHour } from '../constants/index';
+import { minutesInHour } from "../constants/index.ts";
 
 /**
  * @name hoursToMinutes
@@ -7,8 +7,6 @@ import { minutesInHour } from '../constants/index';
  *
  * @description
  * Convert a number of hours to a full number of minutes.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
  * @param hours - number of hours to be converted
  *

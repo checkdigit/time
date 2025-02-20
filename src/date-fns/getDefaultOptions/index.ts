@@ -1,5 +1,8 @@
-import type { DefaultOptions } from '../_lib/defaultOptions/index';
-import { getDefaultOptions as getInternalDefaultOptions } from '../_lib/defaultOptions/index';
+import type {
+  DefaultOptions} from "../_lib/defaultOptions/index.ts";
+import {
+  getDefaultOptions as getInternalDefaultOptions,
+} from "../_lib/defaultOptions/index.ts";
 
 /**
  * @name getDefaultOptions

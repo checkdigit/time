@@ -1,5 +1,6 @@
-import { constructNow } from '../constructNow/index';
-import { isSameMinute } from '../isSameMinute/index';
+import { constructNow } from "../constructNow/index.ts";
+import { isSameMinute } from "../isSameMinute/index.ts";
+import type { DateArg } from "../types.ts";
 
 /**
  * @name isThisMinute
@@ -9,8 +10,6 @@ import { isSameMinute } from '../isSameMinute/index';
  *
  * @description
  * Is the given date in the same minute as the current date?
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
  * @param date - The date to check
  *
@@ -23,6 +22,6 @@ import { isSameMinute } from '../isSameMinute/index';
  * //=> true
  */
 
-export function isThisMinute<DateType extends Date>(date: DateType | number | string): boolean {
+export function isThisMinute(date: DateArg<Date> & {}): boolean {
   return isSameMinute(date, constructNow(date));
 }

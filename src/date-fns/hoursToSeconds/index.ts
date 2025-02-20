@@ -1,4 +1,4 @@
-import { secondsInHour } from '../constants/index';
+import { secondsInHour } from "../constants/index.ts";
 
 /**
  * @name hoursToSeconds
@@ -7,8 +7,6 @@ import { secondsInHour } from '../constants/index';
  *
  * @description
  * Convert a number of hours to a full number of seconds.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
  * @param hours - The number of hours to be converted
  *

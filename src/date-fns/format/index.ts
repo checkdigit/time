@@ -1,21 +1,23 @@
-import { defaultLocale } from '../_lib/defaultLocale/index';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
-import { formatters } from '../_lib/format/formatters/index';
-import { longFormatters } from '../_lib/format/longFormatters/index';
+import { defaultLocale } from "../_lib/defaultLocale/index.ts";
+import { getDefaultOptions } from "../_lib/defaultOptions/index.ts";
+import { formatters } from "../_lib/format/formatters/index.ts";
+import { longFormatters } from "../_lib/format/longFormatters/index.ts";
 import {
   isProtectedDayOfYearToken,
   isProtectedWeekYearToken,
   warnOrThrowProtectedError,
-} from '../_lib/protectedTokens/index';
-import { isValid } from '../isValid/index';
-import { toDate } from '../toDate/index';
+} from "../_lib/protectedTokens/index.ts";
+import { isValid } from "../isValid/index.ts";
+import { toDate } from "../toDate/index.ts";
 import type {
   AdditionalTokensOptions,
+  ContextOptions,
+  DateArg,
   FirstWeekContainsDateOptions,
   FormatPart,
   LocalizedOptions,
   WeekOptions,
-} from '../types';
+} from "../types.ts";
 
 // Rexports of internal for libraries to use.
 // See: https://github.com/date-fns/date-fns/issues/3638#issuecomment-1877082874
@@ -32,7 +34,8 @@ export { formatters, longFormatters };
 //   If there is no matching single quote
 //   then the sequence will continue until the end of the string.
 // - . matches any single character unmatched by previous parts of the RegExps
-const formattingTokensRegExp = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
+const formattingTokensRegExp =
+  /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
 
 // This RegExp catches symbols escaped by quotes, and also
 // sequences of symbols P, p, and the combinations like `PPPPPPPppppp`
@@ -49,10 +52,11 @@ export type { FormatOptions as FormatDateOptions };
  * The {@link format} function options.
  */
 export interface FormatOptions
-  extends LocalizedOptions<'options' | 'localize' | 'formatLong'>,
+  extends LocalizedOptions<"options" | "localize" | "formatLong">,
     WeekOptions,
     FirstWeekContainsDateOptions,
-    AdditionalTokensOptions {}
+    AdditionalTokensOptions,
+    ContextOptions<Date> {}
 
 /**
  * @name format
@@ -305,8 +309,6 @@ export interface FormatOptions
  * 9. `D` and `DD` tokens represent days of the year but they are often confused with days of the month.
  *    You should enable `options.useAdditionalDayOfYearTokens` to use them. See: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The original date
  * @param format - The string of tokens
  * @param options - An object with options
@@ -340,8 +342,8 @@ export interface FormatOptions
  * const result = format(new Date(2014, 6, 2, 15), "h 'o''clock'")
  * //=> "3 o'clock"
  */
-export function format<DateType extends Date>(
-  date: DateType | number | string,
+export function format(
+  date: DateArg<Date> & {},
   formatStr: string,
   options?: FormatOptions,
 ): string {
@@ -362,23 +364,23 @@ export function format<DateType extends Date>(
     defaultOptions.locale?.options?.weekStartsOn ??
     0;
 
-  const originalDate = toDate(date);
+  const originalDate = toDate(date, options?.in);
 
   if (!isValid(originalDate)) {
-    throw new RangeError('Invalid time value');
+    throw new RangeError("Invalid time value");
   }
 
   let parts: FormatPart[] = formatStr
     .match(longFormattingTokensRegExp)!
     .map((substring) => {
       const firstCharacter = substring[0];
-      if (firstCharacter === 'p' || firstCharacter === 'P') {
+      if (firstCharacter === "p" || firstCharacter === "P") {
         const longFormatter = longFormatters[firstCharacter];
-        return longFormatter!(substring, locale.formatLong);
+        return longFormatter(substring, locale.formatLong);
       }
       return substring;
     })
-    .join('')
+    .join("")
     .match(formattingTokensRegExp)!
     .map((substring) => {
       // Replace two single quote characters with one single quote character
@@ -391,12 +393,16 @@ export function format<DateType extends Date>(
         return { isToken: false, value: cleanEscapedString(substring) };
       }
 
-      if (formatters[firstCharacter!]) {
+      if (formatters[firstCharacter]) {
         return { isToken: true, value: substring };
       }
 
-      if (firstCharacter!.match(unescapedLatinCharacterRegExp)) {
-        throw new RangeError('Format string contains an unescaped latin alphabet character `' + firstCharacter + '`');
+      if (firstCharacter.match(unescapedLatinCharacterRegExp)) {
+        throw new RangeError(
+          "Format string contains an unescaped latin alphabet character `" +
+            firstCharacter +
+            "`",
+        );
       }
 
       return { isToken: false, value: substring };
@@ -420,16 +426,18 @@ export function format<DateType extends Date>(
       const token = part.value;
 
       if (
-        (!options?.useAdditionalWeekYearTokens && isProtectedWeekYearToken(token)) ||
-        (!options?.useAdditionalDayOfYearTokens && isProtectedDayOfYearToken(token))
+        (!options?.useAdditionalWeekYearTokens &&
+          isProtectedWeekYearToken(token)) ||
+        (!options?.useAdditionalDayOfYearTokens &&
+          isProtectedDayOfYearToken(token))
       ) {
         warnOrThrowProtectedError(token, formatStr, String(date));
       }
 
-      const formatter = formatters[token[0]!];
-      return formatter!(originalDate, token, locale.localize, formatterOptions);
+      const formatter = formatters[token[0]];
+      return formatter(originalDate, token, locale.localize, formatterOptions);
     })
-    .join('');
+    .join("");
 }
 
 function cleanEscapedString(input: string): string {
@@ -439,5 +447,5 @@ function cleanEscapedString(input: string): string {
     return input;
   }
 
-  return matched[1]!.replace(doubleQuoteRegExp, "'");
+  return matched[1].replace(doubleQuoteRegExp, "'");
 }
