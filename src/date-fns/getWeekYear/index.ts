@@ -2,23 +2,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { getDefaultOptions } from "../_lib/defaultOptions/index.ts";
-import { constructFrom } from "../constructFrom/index.ts";
-import { startOfWeek } from "../startOfWeek/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type {
-  ContextOptions,
-  DateArg,
-  FirstWeekContainsDateOptions,
-  LocalizedOptions,
-  WeekOptions,
-} from "../types.ts";
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
+import { constructFrom } from '../constructFrom/index.ts';
+import { startOfWeek } from '../startOfWeek/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg, FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link getWeekYear} function options.
  */
 export interface GetWeekYearOptions
-  extends LocalizedOptions<"options">,
+  extends LocalizedOptions<'options'>,
     WeekOptions,
     FirstWeekContainsDateOptions,
     ContextOptions<Date> {}
@@ -57,10 +51,7 @@ export interface GetWeekYearOptions
  * const result = getWeekYear(new Date(2004, 11, 26), { firstWeekContainsDate: 4 })
  * //=> 2004
  */
-export function getWeekYear(
-  date: DateArg<Date> & {},
-  options?: GetWeekYearOptions,
-): number {
+export function getWeekYear(date: DateArg<Date> & {}, options?: GetWeekYearOptions): number {
   const _date = toDate(date, options?.in);
   const year = _date.getFullYear();
 

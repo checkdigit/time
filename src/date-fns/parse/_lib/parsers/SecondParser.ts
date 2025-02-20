@@ -2,21 +2,21 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { Match } from "../../../locale/types.ts";
-import { numericPatterns } from "../constants.ts";
-import { Parser } from "../Parser.ts";
-import type { ParseFlags, ParseResult } from "../types.ts";
-import { parseNDigits, parseNumericPattern } from "../utils.ts";
+import type { Match } from '../../../locale/types.ts';
+import { numericPatterns } from '../constants.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { parseNDigits, parseNumericPattern } from '../utils.ts';
 
 export class SecondParser extends Parser<number> {
   priority = 50;
 
   parse(dateString: string, token: string, match: Match): ParseResult<number> {
     switch (token) {
-      case "s":
+      case 's':
         return parseNumericPattern(numericPatterns.second, dateString);
-      case "so":
-        return match.ordinalNumber(dateString, { unit: "second" });
+      case 'so':
+        return match.ordinalNumber(dateString, { unit: 'second' });
       default:
         return parseNDigits(token.length, dateString);
     }
@@ -26,16 +26,12 @@ export class SecondParser extends Parser<number> {
     return value >= 0 && value <= 59;
   }
 
-  set<DateType extends Date>(
-    date: DateType,
-    _flags: ParseFlags,
-    value: number,
-  ): DateType {
+  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
     date.setSeconds(value, 0);
     return date;
   }
 
-  incompatibleTokens = ["t", "T"];
+  incompatibleTokens = ['t', 'T'];
 }
 
 /* eslint-enable */

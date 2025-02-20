@@ -2,14 +2,13 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { addMinutes } from "../addMinutes/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { addMinutes } from '../addMinutes/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link subMinutes} function options.
  */
-export interface SubMinutesOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface SubMinutesOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name subMinutes
@@ -33,10 +32,7 @@ export interface SubMinutesOptions<DateType extends Date = Date>
  * const result = subMinutes(new Date(2014, 6, 10, 12, 0), 30)
  * //=> Thu Jul 10 2014 11:30:00
  */
-export function subMinutes<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function subMinutes<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   amount: number,
   options?: SubMinutesOptions<ResultDate> | undefined,

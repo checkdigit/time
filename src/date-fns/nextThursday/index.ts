@@ -2,14 +2,13 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { nextDay } from "../nextDay/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { nextDay } from '../nextDay/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link nextThursday} function options.
  */
-export interface NextThursdayOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface NextThursdayOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name nextThursday
@@ -32,10 +31,7 @@ export interface NextThursdayOptions<DateType extends Date = Date>
  * const result = nextThursday(new Date(2020, 2, 22))
  * //=> Thur Mar 26 2020 00:00:00
  */
-export function nextThursday<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function nextThursday<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   options?: NextThursdayOptions<ResultDate> | undefined,
 ): ResultDate {

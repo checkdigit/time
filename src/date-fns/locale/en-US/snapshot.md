@@ -1,5 +1,5 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
-/* eslint-disable */
+/_ eslint-disable eslint-comments/no-unlimited-disable _/
+/_ eslint-disable _/
 // @ts-nocheck
 
 # English (en-US) locale
@@ -537,4 +537,4 @@ If now is January 1st, 2000, 00:00.
 | {"seconds":1} | 1 second  |
 | {"seconds":2} | 2 seconds |
 
-/* eslint-enable */
+/_ eslint-enable _/

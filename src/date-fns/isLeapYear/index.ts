@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 export interface IsLeapYearOptions extends ContextOptions<Date> {}
 
@@ -25,10 +25,7 @@ export interface IsLeapYearOptions extends ContextOptions<Date> {}
  * const result = isLeapYear(new Date(2012, 8, 1))
  * //=> true
  */
-export function isLeapYear(
-  date: DateArg<Date> & {},
-  options?: IsLeapYearOptions | undefined,
-): boolean {
+export function isLeapYear(date: DateArg<Date> & {}, options?: IsLeapYearOptions | undefined): boolean {
   const _date = toDate(date, options?.in);
   const year = _date.getFullYear();
   return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);

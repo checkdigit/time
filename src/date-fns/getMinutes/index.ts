@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link getMinutes} function options.
@@ -28,10 +28,7 @@ export interface GetMinutesOptions extends ContextOptions<Date> {}
  * const result = getMinutes(new Date(2012, 1, 29, 11, 45, 5))
  * //=> 45
  */
-export function getMinutes(
-  date: DateArg<Date> & {},
-  options?: GetMinutesOptions | undefined,
-): number {
+export function getMinutes(date: DateArg<Date> & {}, options?: GetMinutesOptions | undefined): number {
   return toDate(date, options?.in).getMinutes();
 }
 

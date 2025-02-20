@@ -2,22 +2,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { Match } from "../../../locale/types.ts";
-import { setDay } from "../../../setDay/index.ts";
-import { Parser } from "../Parser.ts";
-import type { ParseFlags, ParseResult, ParserOptions } from "../types.ts";
-import { mapValue, parseNDigits } from "../utils.ts";
+import type { Match } from '../../../locale/types.ts';
+import { setDay } from '../../../setDay/index.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult, ParserOptions } from '../types.ts';
+import { mapValue, parseNDigits } from '../utils.ts';
 
 // Stand-alone local day of week
 export class StandAloneLocalDayParser extends Parser<number> {
   priority = 90;
 
-  parse(
-    dateString: string,
-    token: string,
-    match: Match,
-    options: ParserOptions,
-  ): ParseResult<number> {
+  parse(dateString: string, token: string, match: Match, options: ParserOptions): ParseResult<number> {
     const valueCallback = (value: number) => {
       // We want here floor instead of trunc, so we get -7 for value 0 instead of 0
       const wholeWeekDays = Math.floor((value - 1) / 7) * 7;
@@ -26,50 +21,50 @@ export class StandAloneLocalDayParser extends Parser<number> {
 
     switch (token) {
       // 3
-      case "c":
-      case "cc": // 03
+      case 'c':
+      case 'cc': // 03
         return mapValue(parseNDigits(token.length, dateString), valueCallback);
       // 3rd
-      case "co":
+      case 'co':
         return mapValue(
           match.ordinalNumber(dateString, {
-            unit: "day",
+            unit: 'day',
           }),
           valueCallback,
         );
       // Tue
-      case "ccc":
+      case 'ccc':
         return (
           match.day(dateString, {
-            width: "abbreviated",
-            context: "standalone",
+            width: 'abbreviated',
+            context: 'standalone',
           }) ||
-          match.day(dateString, { width: "short", context: "standalone" }) ||
-          match.day(dateString, { width: "narrow", context: "standalone" })
+          match.day(dateString, { width: 'short', context: 'standalone' }) ||
+          match.day(dateString, { width: 'narrow', context: 'standalone' })
         );
       // T
-      case "ccccc":
+      case 'ccccc':
         return match.day(dateString, {
-          width: "narrow",
-          context: "standalone",
+          width: 'narrow',
+          context: 'standalone',
         });
       // Tu
-      case "cccccc":
+      case 'cccccc':
         return (
-          match.day(dateString, { width: "short", context: "standalone" }) ||
-          match.day(dateString, { width: "narrow", context: "standalone" })
+          match.day(dateString, { width: 'short', context: 'standalone' }) ||
+          match.day(dateString, { width: 'narrow', context: 'standalone' })
         );
       // Tuesday
-      case "cccc":
+      case 'cccc':
       default:
         return (
-          match.day(dateString, { width: "wide", context: "standalone" }) ||
+          match.day(dateString, { width: 'wide', context: 'standalone' }) ||
           match.day(dateString, {
-            width: "abbreviated",
-            context: "standalone",
+            width: 'abbreviated',
+            context: 'standalone',
           }) ||
-          match.day(dateString, { width: "short", context: "standalone" }) ||
-          match.day(dateString, { width: "narrow", context: "standalone" })
+          match.day(dateString, { width: 'short', context: 'standalone' }) ||
+          match.day(dateString, { width: 'narrow', context: 'standalone' })
         );
     }
   }
@@ -78,34 +73,13 @@ export class StandAloneLocalDayParser extends Parser<number> {
     return value >= 0 && value <= 6;
   }
 
-  set<DateType extends Date>(
-    date: DateType,
-    _flags: ParseFlags,
-    value: number,
-    options: ParserOptions,
-  ): DateType {
+  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number, options: ParserOptions): DateType {
     date = setDay(date, value, options);
     date.setHours(0, 0, 0, 0);
     return date;
   }
 
-  incompatibleTokens = [
-    "y",
-    "R",
-    "u",
-    "q",
-    "Q",
-    "M",
-    "L",
-    "I",
-    "d",
-    "D",
-    "E",
-    "i",
-    "e",
-    "t",
-    "T",
-  ];
+  incompatibleTokens = ['y', 'R', 'u', 'q', 'Q', 'M', 'L', 'I', 'd', 'D', 'E', 'i', 'e', 't', 'T'];
 }
 
 /* eslint-enable */

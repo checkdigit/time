@@ -2,10 +2,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { addWeeks } from "../addWeeks/index.ts";
-import { millisecondsInWeek } from "../constants/index.ts";
-import { startOfISOWeekYear } from "../startOfISOWeekYear/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { addWeeks } from '../addWeeks/index.ts';
+import { millisecondsInWeek } from '../constants/index.ts';
+import { startOfISOWeekYear } from '../startOfISOWeekYear/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link getISOWeeksInYear} function options.
@@ -32,10 +32,7 @@ export interface GetISOWeeksInYearOptions extends ContextOptions<Date> {}
  * const result = getISOWeeksInYear(new Date(2015, 1, 11))
  * //=> 53
  */
-export function getISOWeeksInYear(
-  date: DateArg<Date> & {},
-  options?: GetISOWeeksInYearOptions | undefined,
-): number {
+export function getISOWeeksInYear(date: DateArg<Date> & {}, options?: GetISOWeeksInYearOptions | undefined): number {
   const thisYear = startOfISOWeekYear(date, options);
   const nextYear = startOfISOWeekYear(addWeeks(thisYear, 60));
   const diff = +nextYear - +thisYear;

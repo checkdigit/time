@@ -2,9 +2,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { format } from '../format/index.js'
-import { toZonedTime } from '../toZonedTime/index.js'
-import type { FormatOptionsWithTZ } from '../index.js'
+import { format } from '../format/index.ts';
+import { toZonedTime } from '../toZonedTime/index.ts';
+import type { FormatOptionsWithTZ } from '../index.ts';
 
 /**
  * @name formatInTimeZone
@@ -31,14 +31,14 @@ export function formatInTimeZone(
   date: Date | string | number,
   timeZone: string,
   formatStr: string,
-  options?: FormatOptionsWithTZ
+  options?: FormatOptionsWithTZ,
 ): string {
   options = {
     ...options,
     timeZone,
     originalDate: date,
-  }
-  return format(toZonedTime(date, timeZone, { timeZone: options.timeZone }), formatStr, options)
+  };
+  return format(toZonedTime(date, timeZone, { timeZone: options.timeZone }), formatStr, options);
 }
 
 /* eslint-enable */

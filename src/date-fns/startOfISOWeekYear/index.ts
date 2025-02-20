@@ -2,16 +2,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFrom } from "../constructFrom/index.ts";
-import { getISOWeekYear } from "../getISOWeekYear/index.ts";
-import { startOfISOWeek } from "../startOfISOWeek/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { constructFrom } from '../constructFrom/index.ts';
+import { getISOWeekYear } from '../getISOWeekYear/index.ts';
+import { startOfISOWeek } from '../startOfISOWeek/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link startOfISOWeekYear} function options.
  */
-export interface StartOfISOWeekYearOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface StartOfISOWeekYearOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name startOfISOWeekYear
@@ -38,10 +37,7 @@ export interface StartOfISOWeekYearOptions<DateType extends Date = Date>
  * const result = startOfISOWeekYear(new Date(2005, 6, 2))
  * //=> Mon Jan 03 2005 00:00:00
  */
-export function startOfISOWeekYear<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function startOfISOWeekYear<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   options?: StartOfISOWeekYearOptions<ResultDate> | undefined,
 ): ResultDate {

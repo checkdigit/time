@@ -2,10 +2,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { endOfDay } from "../endOfDay/index.ts";
-import { endOfMonth } from "../endOfMonth/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { endOfDay } from '../endOfDay/index.ts';
+import { endOfMonth } from '../endOfMonth/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 export interface IsLastDayOfMonthOptions extends ContextOptions<Date> {}
 
@@ -27,10 +27,7 @@ export interface IsLastDayOfMonthOptions extends ContextOptions<Date> {}
  * const result = isLastDayOfMonth(new Date(2014, 1, 28))
  * //=> true
  */
-export function isLastDayOfMonth(
-  date: DateArg<Date> & {},
-  options?: IsLastDayOfMonthOptions | undefined,
-): boolean {
+export function isLastDayOfMonth(date: DateArg<Date> & {}, options?: IsLastDayOfMonthOptions | undefined): boolean {
   const _date = toDate(date, options?.in);
   return +endOfDay(_date, options) === +endOfMonth(_date, options);
 }

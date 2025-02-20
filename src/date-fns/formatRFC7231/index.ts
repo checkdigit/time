@@ -2,27 +2,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { addLeadingZeros } from "../_lib/addLeadingZeros/index.ts";
-import { isValid } from "../isValid/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type { DateArg } from "../types.ts";
+import { addLeadingZeros } from '../_lib/addLeadingZeros/index.ts';
+import { isValid } from '../isValid/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { DateArg } from '../types.ts';
 
-const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 /**
  * @name formatRFC7231
@@ -48,7 +35,7 @@ export function formatRFC7231(date: DateArg<Date> & {}): string {
   const _date = toDate(date);
 
   if (!isValid(_date)) {
-    throw new RangeError("Invalid time value");
+    throw new RangeError('Invalid time value');
   }
 
   const dayName = days[_date.getUTCDay()];

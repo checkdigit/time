@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeDates } from "../_lib/normalizeDates/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link isSameYear} function options.
@@ -34,11 +34,7 @@ export function isSameYear(
   earlierDate: DateArg<Date> & {},
   options?: IsSameYearOptions | undefined,
 ): boolean {
-  const [laterDate_, earlierDate_] = normalizeDates(
-    options?.in,
-    laterDate,
-    earlierDate,
-  );
+  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
   return laterDate_.getFullYear() === earlierDate_.getFullYear();
 }
 

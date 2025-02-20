@@ -2,7 +2,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { secondsInHour } from "../constants/index.ts";
+import { secondsInHour } from '../constants/index.ts';
 
 /**
  * @name secondsToHours

@@ -2,14 +2,13 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeDates } from "../_lib/normalizeDates/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link differenceInCalendarYears} function options.
  */
-export interface DifferenceInCalendarYearsOptions
-  extends ContextOptions<Date> {}
+export interface DifferenceInCalendarYearsOptions extends ContextOptions<Date> {}
 
 /**
  * @name differenceInCalendarYears
@@ -38,11 +37,7 @@ export function differenceInCalendarYears(
   earlierDate: DateArg<Date> & {},
   options?: DifferenceInCalendarYearsOptions | undefined,
 ): number {
-  const [laterDate_, earlierDate_] = normalizeDates(
-    options?.in,
-    laterDate,
-    earlierDate,
-  );
+  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
   return laterDate_.getFullYear() - earlierDate_.getFullYear();
 }
 

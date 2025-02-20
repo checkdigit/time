@@ -5,19 +5,11 @@ export default [
   {
     rules: {
       '@checkdigit/file-path-comment': 'off',
+      '@checkdigit/no-side-effects': 'off',
       '@checkdigit/require-assert-predicate-rejects-throws': 'off',
-      // 'yml/no-empty-mapping-value': 'off',
-      // 'markdown/fenced-code-language': 'off',
-      // 'markdown/no-missing-label-refs': 'off',
-      // '@checkdigit/object-literal-response': 'off',
-      // '@typescript-eslint/no-deprecated': 'off',
-      // 'unicorn/import-style': 'off',
-      // '@checkdigit/invalid-json-stringify': 'off',
-      // 'unicorn/prefer-math-min-max': 'off',
-      // 'unicorn/no-length-as-slice-end': 'off',
-      // 'no-useless-assignment': 'off',
-      // 'no-secrets/no-secrets': 'off',
-      // 'unicorn/no-await-expression-member': 'off',
+      'markdown/no-missing-label-refs': 'off',
+      'markdown/fenced-code-language': 'off',
+      'unicorn/filename-case': 'off',
     },
   },
 ];

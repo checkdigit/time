@@ -2,11 +2,11 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from '../toDate/index.js'
-import { tzPattern } from '../_lib/tzPattern/index.js'
-import { tzParseTimezone } from '../_lib/tzParseTimezone/index.js'
-import { newDateUTC } from '../_lib/newDateUTC/index.js'
-import { ToDateOptionsWithTZ } from '../index.js'
+import { toDate } from '../toDate/index.ts';
+import { tzPattern } from '../_lib/tzPattern/index.ts';
+import { tzParseTimezone } from '../_lib/tzParseTimezone/index.ts';
+import { newDateUTC } from '../_lib/newDateUTC/index.ts';
+import type { ToDateOptionsWithTZ } from '../index.ts';
 
 /**
  * @name fromZonedTime
@@ -31,16 +31,12 @@ import { ToDateOptionsWithTZ } from '../index.js'
  * const result = fromZonedTime(new Date(2014, 5, 25, 10, 0, 0), 'America/Los_Angeles')
  * //=> 2014-06-25T17:00:00.000Z
  */
-export function fromZonedTime(
-  date: Date | string | number,
-  timeZone: string,
-  options?: ToDateOptionsWithTZ
-): Date {
+export function fromZonedTime(date: Date | string | number, timeZone: string, options?: ToDateOptionsWithTZ): Date {
   if (typeof date === 'string' && !date.match(tzPattern)) {
-    return toDate(date, { ...options, timeZone })
+    return toDate(date, { ...options, timeZone });
   }
 
-  date = toDate(date, options)
+  date = toDate(date, options);
 
   const utc = newDateUTC(
     date.getFullYear(),
@@ -49,12 +45,12 @@ export function fromZonedTime(
     date.getHours(),
     date.getMinutes(),
     date.getSeconds(),
-    date.getMilliseconds()
-  ).getTime()
+    date.getMilliseconds(),
+  ).getTime();
 
-  const offsetMilliseconds = tzParseTimezone(timeZone, new Date(utc))
+  const offsetMilliseconds = tzParseTimezone(timeZone, new Date(utc));
 
-  return new Date(utc + offsetMilliseconds)
+  return new Date(utc + offsetMilliseconds);
 }
 
 /* eslint-enable */

@@ -2,10 +2,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { getRoundingMethod } from "../_lib/getRoundingMethod/index.ts";
-import { millisecondsInMinute } from "../constants/index.ts";
-import { differenceInMilliseconds } from "../differenceInMilliseconds/index.ts";
-import type { DateArg, RoundingOptions } from "../types.ts";
+import { getRoundingMethod } from '../_lib/getRoundingMethod/index.ts';
+import { millisecondsInMinute } from '../constants/index.ts';
+import { differenceInMilliseconds } from '../differenceInMilliseconds/index.ts';
+import type { DateArg, RoundingOptions } from '../types.ts';
 
 /**
  * The {@link differenceInMinutes} function options.
@@ -47,8 +47,7 @@ export function differenceInMinutes(
   dateRight: DateArg<Date> & {},
   options?: DifferenceInMinutesOptions,
 ): number {
-  const diff =
-    differenceInMilliseconds(dateLeft, dateRight) / millisecondsInMinute;
+  const diff = differenceInMilliseconds(dateLeft, dateRight) / millisecondsInMinute;
   return getRoundingMethod(options?.roundingMethod)(diff);
 }
 

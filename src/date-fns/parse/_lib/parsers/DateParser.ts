@@ -2,20 +2,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { Match } from "../../../locale/types.ts";
-import { numericPatterns } from "../constants.ts";
-import { Parser } from "../Parser.ts";
-import type { ParseFlags, ParseResult } from "../types.ts";
-import {
-  isLeapYearIndex,
-  parseNDigits,
-  parseNumericPattern,
-} from "../utils.ts";
+import type { Match } from '../../../locale/types.ts';
+import { numericPatterns } from '../constants.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { isLeapYearIndex, parseNDigits, parseNumericPattern } from '../utils.ts';
 
 const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-const DAYS_IN_MONTH_LEAP_YEAR = [
-  31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,
-];
+const DAYS_IN_MONTH_LEAP_YEAR = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 // Day of the month
 export class DateParser extends Parser<number> {
@@ -24,10 +18,10 @@ export class DateParser extends Parser<number> {
 
   parse(dateString: string, token: string, match: Match): ParseResult<number> {
     switch (token) {
-      case "d":
+      case 'd':
         return parseNumericPattern(numericPatterns.date, dateString);
-      case "do":
-        return match.ordinalNumber(dateString, { unit: "date" });
+      case 'do':
+        return match.ordinalNumber(dateString, { unit: 'date' });
       default:
         return parseNDigits(token.length, dateString);
     }
@@ -44,30 +38,13 @@ export class DateParser extends Parser<number> {
     }
   }
 
-  set<DateType extends Date>(
-    date: DateType,
-    _flags: ParseFlags,
-    value: number,
-  ): DateType {
+  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
     date.setDate(value);
     date.setHours(0, 0, 0, 0);
     return date;
   }
 
-  incompatibleTokens = [
-    "Y",
-    "R",
-    "q",
-    "Q",
-    "w",
-    "I",
-    "D",
-    "i",
-    "e",
-    "c",
-    "t",
-    "T",
-  ];
+  incompatibleTokens = ['Y', 'R', 'q', 'Q', 'w', 'I', 'D', 'i', 'e', 'c', 't', 'T'];
 }
 
 /* eslint-enable */

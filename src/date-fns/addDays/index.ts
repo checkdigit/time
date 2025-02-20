@@ -2,15 +2,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFrom } from "../constructFrom/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { constructFrom } from '../constructFrom/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link addDays} function options.
  */
-export interface AddDaysOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface AddDaysOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name addDays
@@ -34,10 +33,7 @@ export interface AddDaysOptions<DateType extends Date = Date>
  * const result = addDays(new Date(2014, 8, 1), 10)
  * //=> Thu Sep 11 2014 00:00:00
  */
-export function addDays<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function addDays<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   amount: number,
   options?: AddDaysOptions<ResultDate> | undefined,

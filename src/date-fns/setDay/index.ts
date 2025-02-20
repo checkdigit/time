@@ -2,21 +2,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { getDefaultOptions } from "../_lib/defaultOptions/index.ts";
-import { addDays } from "../addDays/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type {
-  ContextOptions,
-  DateArg,
-  LocalizedOptions,
-  WeekOptions,
-} from "../types.ts";
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
+import { addDays } from '../addDays/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg, LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link setDay} function options.
  */
 export interface SetDayOptions<DateType extends Date = Date>
-  extends LocalizedOptions<"options">,
+  extends LocalizedOptions<'options'>,
     WeekOptions,
     ContextOptions<DateType> {}
 
@@ -47,10 +42,7 @@ export interface SetDayOptions<DateType extends Date = Date>
  * const result = setDay(new Date(2014, 8, 1), 0, { weekStartsOn: 1 })
  * //=> Sun Sep 07 2014 00:00:00
  */
-export function setDay<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function setDay<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   day: number,
   options?: SetDayOptions<ResultDate>,
@@ -71,9 +63,7 @@ export function setDay<
 
   const delta = 7 - weekStartsOn;
   const diff =
-    day < 0 || day > 6
-      ? day - ((currentDay + delta) % 7)
-      : ((dayIndex + delta) % 7) - ((currentDay + delta) % 7);
+    day < 0 || day > 6 ? day - ((currentDay + delta) % 7) : ((dayIndex + delta) % 7) - ((currentDay + delta) % 7);
   return addDays(date_, diff, options);
 }
 

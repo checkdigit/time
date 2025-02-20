@@ -2,11 +2,11 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeDates } from "../_lib/normalizeDates/index.ts";
-import { compareAsc } from "../compareAsc/index.ts";
-import { differenceInCalendarISOWeekYears } from "../differenceInCalendarISOWeekYears/index.ts";
-import { subISOWeekYears } from "../subISOWeekYears/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import { compareAsc } from '../compareAsc/index.ts';
+import { differenceInCalendarISOWeekYears } from '../differenceInCalendarISOWeekYears/index.ts';
+import { subISOWeekYears } from '../subISOWeekYears/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link differenceInISOWeekYears} function options.
@@ -42,22 +42,14 @@ export function differenceInISOWeekYears(
   earlierDate: DateArg<Date> & {},
   options?: DifferenceInISOWeekYearsOptions | undefined,
 ): number {
-  const [laterDate_, earlierDate_] = normalizeDates(
-    options?.in,
-    laterDate,
-    earlierDate,
-  );
+  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
 
   const sign = compareAsc(laterDate_, earlierDate_);
-  const diff = Math.abs(
-    differenceInCalendarISOWeekYears(laterDate_, earlierDate_, options),
-  );
+  const diff = Math.abs(differenceInCalendarISOWeekYears(laterDate_, earlierDate_, options));
 
   const adjustedDate = subISOWeekYears(laterDate_, sign * diff, options);
 
-  const isLastISOWeekYearNotFull = Number(
-    compareAsc(adjustedDate, earlierDate_) === -sign,
-  );
+  const isLastISOWeekYearNotFull = Number(compareAsc(adjustedDate, earlierDate_) === -sign);
   const result = sign * (diff - isLastISOWeekYearNotFull);
 
   // Prevent negative zero

@@ -2,21 +2,21 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { Match } from "../../../locale/types.ts";
-import { numericPatterns } from "../constants.ts";
-import { Parser } from "../Parser.ts";
-import type { ParseFlags, ParseResult } from "../types.ts";
-import { parseNDigits, parseNumericPattern } from "../utils.ts";
+import type { Match } from '../../../locale/types.ts';
+import { numericPatterns } from '../constants.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { parseNDigits, parseNumericPattern } from '../utils.ts';
 
 export class Hour1to12Parser extends Parser<number> {
   priority = 70;
 
   parse(dateString: string, token: string, match: Match): ParseResult<number> {
     switch (token) {
-      case "h":
+      case 'h':
         return parseNumericPattern(numericPatterns.hour12h, dateString);
-      case "ho":
-        return match.ordinalNumber(dateString, { unit: "hour" });
+      case 'ho':
+        return match.ordinalNumber(dateString, { unit: 'hour' });
       default:
         return parseNDigits(token.length, dateString);
     }
@@ -26,11 +26,7 @@ export class Hour1to12Parser extends Parser<number> {
     return value >= 1 && value <= 12;
   }
 
-  set<DateType extends Date>(
-    date: DateType,
-    _flags: ParseFlags,
-    value: number,
-  ): DateType {
+  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
     const isPM = date.getHours() >= 12;
     if (isPM && value < 12) {
       date.setHours(value + 12, 0, 0, 0);
@@ -42,7 +38,7 @@ export class Hour1to12Parser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ["H", "K", "k", "t", "T"];
+  incompatibleTokens = ['H', 'K', 'k', 't', 'T'];
 }
 
 /* eslint-enable */

@@ -2,9 +2,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { startOfISOWeekYear } from "../startOfISOWeekYear/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
-import { normalizeDates } from "../_lib/normalizeDates/index.ts";
+import { startOfISOWeekYear } from '../startOfISOWeekYear/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
 
 /**
  * The {@link isSameISOWeekYear} function options.
@@ -37,11 +37,7 @@ export function isSameISOWeekYear(
   earlierDate: DateArg<Date> & {},
   options?: IsSameISOWeekYearOptions | undefined,
 ): boolean {
-  const [laterDate_, earlierDate_] = normalizeDates(
-    options?.in,
-    laterDate,
-    earlierDate,
-  );
+  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
   return +startOfISOWeekYear(laterDate_) === +startOfISOWeekYear(earlierDate_);
 }
 

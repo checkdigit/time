@@ -2,14 +2,13 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link endOfDecade} function options.
  */
-export interface EndOfDecadeOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface EndOfDecadeOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name endOfDecade
@@ -32,10 +31,7 @@ export interface EndOfDecadeOptions<DateType extends Date = Date>
  * const result = endOfDecade(new Date(1984, 4, 12, 00, 00, 00))
  * //=> Dec 31 1989 23:59:59.999
  */
-export function endOfDecade<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function endOfDecade<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   options?: EndOfDecadeOptions<ResultDate> | undefined,
 ): ResultDate {

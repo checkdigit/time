@@ -2,14 +2,13 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link startOfMinute} function options.
  */
-export interface StartOfMinuteOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface StartOfMinuteOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name startOfMinute
@@ -33,10 +32,7 @@ export interface StartOfMinuteOptions<DateType extends Date = Date>
  * const result = startOfMinute(new Date(2014, 11, 1, 22, 15, 45, 400))
  * //=> Mon Dec 01 2014 22:15:00
  */
-export function startOfMinute<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function startOfMinute<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   options?: StartOfMinuteOptions<ResultDate> | undefined,
 ): ResultDate {

@@ -2,17 +2,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { getTimezoneOffsetInMilliseconds } from "../_lib/getTimezoneOffsetInMilliseconds/index.ts";
-import { normalizeDates } from "../_lib/normalizeDates/index.ts";
-import { millisecondsInWeek } from "../constants/index.ts";
-import { startOfISOWeek } from "../startOfISOWeek/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index.ts';
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import { millisecondsInWeek } from '../constants/index.ts';
+import { startOfISOWeek } from '../startOfISOWeek/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link differenceInCalendarISOWeeks} function options.
  */
-export interface DifferenceInCalendarISOWeeksOptions
-  extends ContextOptions<Date> {}
+export interface DifferenceInCalendarISOWeeksOptions extends ContextOptions<Date> {}
 
 /**
  * @name differenceInCalendarISOWeeks
@@ -43,19 +42,13 @@ export function differenceInCalendarISOWeeks(
   earlierDate: DateArg<Date> & {},
   options?: DifferenceInCalendarISOWeeksOptions | undefined,
 ): number {
-  const [laterDate_, earlierDate_] = normalizeDates(
-    options?.in,
-    laterDate,
-    earlierDate,
-  );
+  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
 
   const startOfISOWeekLeft = startOfISOWeek(laterDate_);
   const startOfISOWeekRight = startOfISOWeek(earlierDate_);
 
-  const timestampLeft =
-    +startOfISOWeekLeft - getTimezoneOffsetInMilliseconds(startOfISOWeekLeft);
-  const timestampRight =
-    +startOfISOWeekRight - getTimezoneOffsetInMilliseconds(startOfISOWeekRight);
+  const timestampLeft = +startOfISOWeekLeft - getTimezoneOffsetInMilliseconds(startOfISOWeekLeft);
+  const timestampRight = +startOfISOWeekRight - getTimezoneOffsetInMilliseconds(startOfISOWeekRight);
 
   // Round the number of weeks to the nearest integer because the number of
   // milliseconds in a week is not constant (e.g. it's different in the week of

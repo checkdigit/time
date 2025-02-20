@@ -2,15 +2,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeInterval } from "../_lib/normalizeInterval/index.ts";
-import { add } from "../add/index.ts";
-import { differenceInDays } from "../differenceInDays/index.ts";
-import { differenceInHours } from "../differenceInHours/index.ts";
-import { differenceInMinutes } from "../differenceInMinutes/index.ts";
-import { differenceInMonths } from "../differenceInMonths/index.ts";
-import { differenceInSeconds } from "../differenceInSeconds/index.ts";
-import { differenceInYears } from "../differenceInYears/index.ts";
-import type { ContextOptions, Duration, Interval } from "../types.ts";
+import { normalizeInterval } from '../_lib/normalizeInterval/index.ts';
+import { add } from '../add/index.ts';
+import { differenceInDays } from '../differenceInDays/index.ts';
+import { differenceInHours } from '../differenceInHours/index.ts';
+import { differenceInMinutes } from '../differenceInMinutes/index.ts';
+import { differenceInMonths } from '../differenceInMonths/index.ts';
+import { differenceInSeconds } from '../differenceInSeconds/index.ts';
+import { differenceInYears } from '../differenceInYears/index.ts';
+import type { ContextOptions, Duration, Interval } from '../types.ts';
 
 /**
  * The {@link intervalToDuration} function options.
@@ -38,10 +38,7 @@ export interface IntervalToDurationOptions extends ContextOptions<Date> {}
  * });
  * //=> { years: 39, months: 2, days: 20, hours: 7, minutes: 5, seconds: 0 }
  */
-export function intervalToDuration(
-  interval: Interval,
-  options?: IntervalToDurationOptions | undefined,
-): Duration {
+export function intervalToDuration(interval: Interval, options?: IntervalToDurationOptions | undefined): Duration {
   const { start, end } = normalizeInterval(options?.in, interval);
   const duration: Duration = {};
 

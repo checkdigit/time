@@ -2,7 +2,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { monthsInQuarter } from "../constants/index.ts";
+import { monthsInQuarter } from '../constants/index.ts';
 
 /**
  * @name monthsToQuarters

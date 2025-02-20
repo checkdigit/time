@@ -2,15 +2,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFrom } from "../constructFrom/index.ts";
-import { constructNow } from "../constructNow/index.ts";
-import type { ContextOptions } from "../types.ts";
+import { constructFrom } from '../constructFrom/index.ts';
+import { constructNow } from '../constructNow/index.ts';
+import type { ContextOptions } from '../types.ts';
 
 /**
  * The {@link endOfYesterday} function options.
  */
-export interface EndOfYesterdayOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface EndOfYesterdayOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name endOfYesterday
@@ -31,10 +30,9 @@ export interface EndOfYesterdayOptions<DateType extends Date = Date>
  * const result = endOfYesterday()
  * //=> Sun Oct 5 2014 23:59:59.999
  */
-export function endOfYesterday<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(options?: EndOfYesterdayOptions<ResultDate> | undefined): ResultDate {
+export function endOfYesterday<DateType extends Date, ResultDate extends Date = DateType>(
+  options?: EndOfYesterdayOptions<ResultDate> | undefined,
+): ResultDate {
   const now = constructNow(options?.in);
   const date = constructFrom(options?.in, 0);
   date.setFullYear(now.getFullYear(), now.getMonth(), now.getDate() - 1);

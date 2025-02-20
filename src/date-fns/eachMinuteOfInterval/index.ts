@@ -2,10 +2,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeInterval } from "../_lib/normalizeInterval/index.ts";
-import { addMinutes } from "../addMinutes/index.ts";
-import { constructFrom } from "../constructFrom/index.ts";
-import type { ContextOptions, Interval, StepOptions } from "../types.ts";
+import { normalizeInterval } from '../_lib/normalizeInterval/index.ts';
+import { addMinutes } from '../addMinutes/index.ts';
+import { constructFrom } from '../constructFrom/index.ts';
+import type { ContextOptions, Interval, StepOptions } from '../types.ts';
 
 /**
  * The {@link eachMinuteOfInterval} function options.
@@ -26,10 +26,10 @@ export type EachMinuteOfIntervalResult<
 > = Array<
   Options extends EachMinuteOfIntervalOptions<infer DateType>
     ? DateType
-    : IntervalType["start"] extends Date
-      ? IntervalType["start"]
-      : IntervalType["end"] extends Date
-        ? IntervalType["end"]
+    : IntervalType['start'] extends Date
+      ? IntervalType['start']
+      : IntervalType['end'] extends Date
+        ? IntervalType['end']
         : Date
 >;
 
@@ -65,10 +65,7 @@ export type EachMinuteOfIntervalResult<
 export function eachMinuteOfInterval<
   IntervalType extends Interval,
   Options extends EachMinuteOfIntervalOptions | undefined = undefined,
->(
-  interval: IntervalType,
-  options?: Options,
-): EachMinuteOfIntervalResult<IntervalType, Options> {
+>(interval: IntervalType, options?: Options): EachMinuteOfIntervalResult<IntervalType, Options> {
   const { start, end } = normalizeInterval(options?.in, interval);
   // Set to the start of the minute
   start.setSeconds(0, 0);

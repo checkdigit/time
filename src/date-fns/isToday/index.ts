@@ -2,10 +2,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFrom } from "../constructFrom/index.ts";
-import { constructNow } from "../constructNow/index.ts";
-import { isSameDay } from "../isSameDay/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { constructFrom } from '../constructFrom/index.ts';
+import { constructNow } from '../constructNow/index.ts';
+import { isSameDay } from '../isSameDay/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link isToday} function options.
@@ -31,14 +31,8 @@ export interface IsTodayOptions extends ContextOptions<Date> {}
  * const result = isToday(new Date(2014, 9, 6, 14, 0))
  * //=> true
  */
-export function isToday(
-  date: DateArg<Date> & {},
-  options?: IsTodayOptions | undefined,
-): boolean {
-  return isSameDay(
-    constructFrom(options?.in || date, date),
-    constructNow(options?.in || date),
-  );
+export function isToday(date: DateArg<Date> & {}, options?: IsTodayOptions | undefined): boolean {
+  return isSameDay(constructFrom(options?.in || date, date), constructNow(options?.in || date));
 }
 
 /* eslint-enable */

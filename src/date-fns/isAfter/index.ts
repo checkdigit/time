@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { DateArg } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { DateArg } from '../types.ts';
 
 /**
  * @name isAfter
@@ -23,10 +23,7 @@ import type { DateArg } from "../types.ts";
  * const result = isAfter(new Date(1989, 6, 10), new Date(1987, 1, 11))
  * //=> true
  */
-export function isAfter(
-  date: DateArg<Date> & {},
-  dateToCompare: DateArg<Date> & {},
-): boolean {
+export function isAfter(date: DateArg<Date> & {}, dateToCompare: DateArg<Date> & {}): boolean {
   return +toDate(date) > +toDate(dateToCompare);
 }
 

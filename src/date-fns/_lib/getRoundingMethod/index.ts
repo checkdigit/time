@@ -2,7 +2,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { RoundingMethod } from "../../types.ts";
+import type { RoundingMethod } from '../../types.ts';
 
 export function getRoundingMethod(method: RoundingMethod | undefined) {
   return (number: number) => {

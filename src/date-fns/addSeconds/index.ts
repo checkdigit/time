@@ -2,14 +2,13 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { addMilliseconds } from "../addMilliseconds/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { addMilliseconds } from '../addMilliseconds/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link addSeconds} function options.
  */
-export interface AddSecondsOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface AddSecondsOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name addSeconds
@@ -33,10 +32,7 @@ export interface AddSecondsOptions<DateType extends Date = Date>
  * const result = addSeconds(new Date(2014, 6, 10, 12, 45, 0), 30)
  * //=> Thu Jul 10 2014 12:45:30
  */
-export function addSeconds<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function addSeconds<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   amount: number,
   options?: AddSecondsOptions<ResultDate> | undefined,

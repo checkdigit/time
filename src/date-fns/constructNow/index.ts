@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFrom } from "../constructFrom/index.ts";
-import type { ContextFn, DateArg } from "../types.ts";
+import { constructFrom } from '../constructFrom/index.ts';
+import type { ContextFn, DateArg } from '../types.ts';
 
 /**
  * @name constructNow
@@ -33,10 +33,9 @@ import type { ContextFn, DateArg } from "../types.ts";
  *   return isSameDay(date, constructNow(date));
  * }
  */
-export function constructNow<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(date: DateArg<DateType> | ContextFn<ResultDate> | undefined): ResultDate {
+export function constructNow<DateType extends Date, ResultDate extends Date = DateType>(
+  date: DateArg<DateType> | ContextFn<ResultDate> | undefined,
+): ResultDate {
   return constructFrom(date, Date.now());
 }
 

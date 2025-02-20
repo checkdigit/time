@@ -2,11 +2,11 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { millisecondsInWeek } from "../constants/index.ts";
-import { startOfISOWeek } from "../startOfISOWeek/index.ts";
-import { startOfISOWeekYear } from "../startOfISOWeekYear/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { millisecondsInWeek } from '../constants/index.ts';
+import { startOfISOWeek } from '../startOfISOWeek/index.ts';
+import { startOfISOWeekYear } from '../startOfISOWeekYear/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link getISOWeek} function options.
@@ -33,10 +33,7 @@ export interface GetISOWeekOptions extends ContextOptions<Date> {}
  * const result = getISOWeek(new Date(2005, 0, 2))
  * //=> 53
  */
-export function getISOWeek(
-  date: DateArg<Date> & {},
-  options?: GetISOWeekOptions | undefined,
-): number {
+export function getISOWeek(date: DateArg<Date> & {}, options?: GetISOWeekOptions | undefined): number {
   const _date = toDate(date, options?.in);
   const diff = +startOfISOWeek(_date) - +startOfISOWeekYear(_date);
 

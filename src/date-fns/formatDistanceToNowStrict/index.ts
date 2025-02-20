@@ -2,17 +2,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructNow } from "../constructNow/index.ts";
-import type { FormatDistanceStrictOptions } from "../formatDistanceStrict/index.ts";
-import { formatDistanceStrict } from "../formatDistanceStrict/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { constructNow } from '../constructNow/index.ts';
+import type { FormatDistanceStrictOptions } from '../formatDistanceStrict/index.ts';
+import { formatDistanceStrict } from '../formatDistanceStrict/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link formatDistanceToNowStrict} function options.
  */
-export interface FormatDistanceToNowStrictOptions
-  extends FormatDistanceStrictOptions,
-    ContextOptions<Date> {}
+export interface FormatDistanceToNowStrictOptions extends FormatDistanceStrictOptions, ContextOptions<Date> {}
 
 /**
  * @name formatDistanceToNowStrict

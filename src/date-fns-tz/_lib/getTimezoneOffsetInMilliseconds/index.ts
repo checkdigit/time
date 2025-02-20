@@ -22,11 +22,11 @@ export function getTimezoneOffsetInMilliseconds(date: Date): number {
       date.getHours(),
       date.getMinutes(),
       date.getSeconds(),
-      date.getMilliseconds()
-    )
-  )
-  utcDate.setUTCFullYear(date.getFullYear())
-  return +date - +utcDate
+      date.getMilliseconds(),
+    ),
+  );
+  utcDate.setUTCFullYear(date.getFullYear());
+  return +date - +utcDate;
 }
 
 /* eslint-enable */

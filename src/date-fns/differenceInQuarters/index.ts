@@ -2,16 +2,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { getRoundingMethod } from "../_lib/getRoundingMethod/index.ts";
-import { differenceInMonths } from "../differenceInMonths/index.ts";
-import type { ContextOptions, DateArg, RoundingOptions } from "../types.ts";
+import { getRoundingMethod } from '../_lib/getRoundingMethod/index.ts';
+import { differenceInMonths } from '../differenceInMonths/index.ts';
+import type { ContextOptions, DateArg, RoundingOptions } from '../types.ts';
 
 /**
  * The {@link differenceInQuarters} function options.
  */
-export interface DifferenceInQuartersOptions
-  extends RoundingOptions,
-    ContextOptions<Date> {}
+export interface DifferenceInQuartersOptions extends RoundingOptions, ContextOptions<Date> {}
 
 /**
  * @name differenceInQuarters

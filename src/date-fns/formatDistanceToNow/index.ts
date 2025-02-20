@@ -2,17 +2,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructNow } from "../constructNow/index.ts";
-import type { FormatDistanceOptions } from "../formatDistance/index.ts";
-import { formatDistance } from "../formatDistance/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { constructNow } from '../constructNow/index.ts';
+import type { FormatDistanceOptions } from '../formatDistance/index.ts';
+import { formatDistance } from '../formatDistance/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link formatDistanceToNow} function options.
  */
-export interface FormatDistanceToNowOptions
-  extends FormatDistanceOptions,
-    ContextOptions<Date> {}
+export interface FormatDistanceToNowOptions extends FormatDistanceOptions, ContextOptions<Date> {}
 
 /**
  * @name formatDistanceToNow
@@ -95,10 +93,7 @@ export interface FormatDistanceToNowOptions
  * )
  * //=> 'pli ol 1 jaro'
  */
-export function formatDistanceToNow(
-  date: DateArg<Date> & {},
-  options?: FormatDistanceToNowOptions,
-): string {
+export function formatDistanceToNow(date: DateArg<Date> & {}, options?: FormatDistanceToNowOptions): string {
   return formatDistance(date, constructNow(date), options);
 }
 

@@ -2,14 +2,13 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { previousDay } from "../previousDay/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { previousDay } from '../previousDay/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link previousFriday} function options.
  */
-export interface PreviousFridayOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface PreviousFridayOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name previousFriday
@@ -32,10 +31,7 @@ export interface PreviousFridayOptions<DateType extends Date = Date>
  * const result = previousFriday(new Date(2021, 5, 19))
  * //=> Fri June 18 2021 00:00:00
  */
-export function previousFriday<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function previousFriday<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   options?: PreviousFridayOptions<ResultDate> | undefined,
 ): ResultDate {

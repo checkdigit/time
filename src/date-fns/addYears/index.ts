@@ -2,14 +2,13 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { addMonths } from "../addMonths/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { addMonths } from '../addMonths/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link addYears} function options.
  */
-export interface AddYearsOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface AddYearsOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name addYears
@@ -33,10 +32,7 @@ export interface AddYearsOptions<DateType extends Date = Date>
  * const result = addYears(new Date(2014, 8, 1), 5)
  * //=> Sun Sep 01 2019 00:00:00
  */
-export function addYears<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function addYears<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   amount: number,
   options?: AddYearsOptions<ResultDate> | undefined,

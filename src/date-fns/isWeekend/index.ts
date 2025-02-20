@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link isWeekend} function options.
@@ -28,10 +28,7 @@ export interface IsWeekendOptions extends ContextOptions<Date> {}
  * const result = isWeekend(new Date(2014, 9, 5))
  * //=> true
  */
-export function isWeekend(
-  date: DateArg<Date> & {},
-  options?: IsWeekendOptions | undefined,
-): boolean {
+export function isWeekend(date: DateArg<Date> & {}, options?: IsWeekendOptions | undefined): boolean {
   const day = toDate(date, options?.in).getDay();
   return day === 0 || day === 6;
 }

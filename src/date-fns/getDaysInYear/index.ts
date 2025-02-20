@@ -2,9 +2,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { isLeapYear } from "../isLeapYear/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { isLeapYear } from '../isLeapYear/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link getDaysInYear} function options.
@@ -29,10 +29,7 @@ export interface GetDaysInYearOptions extends ContextOptions<Date> {}
  * const result = getDaysInYear(new Date(2012, 0, 1))
  * //=> 366
  */
-export function getDaysInYear(
-  date: DateArg<Date> & {},
-  options?: GetDaysInYearOptions | undefined,
-): number {
+export function getDaysInYear(date: DateArg<Date> & {}, options?: GetDaysInYearOptions | undefined): number {
   const _date = toDate(date, options?.in);
   if (Number.isNaN(+_date)) return NaN;
   return isLeapYear(_date) ? 366 : 365;

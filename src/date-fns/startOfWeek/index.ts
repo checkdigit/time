@@ -2,20 +2,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { getDefaultOptions } from "../_lib/defaultOptions/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type {
-  ContextOptions,
-  DateArg,
-  LocalizedOptions,
-  WeekOptions,
-} from "../types.ts";
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg, LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link startOfWeek} function options.
  */
 export interface StartOfWeekOptions<DateType extends Date = Date>
-  extends LocalizedOptions<"options">,
+  extends LocalizedOptions<'options'>,
     WeekOptions,
     ContextOptions<DateType> {}
 
@@ -46,10 +41,7 @@ export interface StartOfWeekOptions<DateType extends Date = Date>
  * const result = startOfWeek(new Date(2014, 8, 2, 11, 55, 0), { weekStartsOn: 1 })
  * //=> Mon Sep 01 2014 00:00:00
  */
-export function startOfWeek<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function startOfWeek<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   options?: StartOfWeekOptions<ResultDate>,
 ): ResultDate {

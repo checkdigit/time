@@ -2,16 +2,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFrom } from "../constructFrom/index.ts";
-import { setMonth } from "../setMonth/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg, DateValues } from "../types.ts";
+import { constructFrom } from '../constructFrom/index.ts';
+import { setMonth } from '../setMonth/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg, DateValues } from '../types.ts';
 
 /**
  * The {@link set} function options.
  */
-export interface SetOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface SetOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name set

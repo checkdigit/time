@@ -2,7 +2,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { monthsInYear } from "../constants/index.ts";
+import { monthsInYear } from '../constants/index.ts';
 
 /**
  * @name monthsToYears

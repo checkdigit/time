@@ -2,10 +2,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFrom } from "../constructFrom/index.ts";
-import { constructNow } from "../constructNow/index.ts";
-import { isSameISOWeek } from "../isSameISOWeek/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { constructFrom } from '../constructFrom/index.ts';
+import { constructNow } from '../constructNow/index.ts';
+import { isSameISOWeek } from '../isSameISOWeek/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link isThisISOWeek} function options.
@@ -33,14 +33,8 @@ export interface IsThisISOWeekOptions extends ContextOptions<Date> {}
  * const result = isThisISOWeek(new Date(2014, 8, 22))
  * //=> true
  */
-export function isThisISOWeek(
-  date: DateArg<Date> & {},
-  options?: IsThisISOWeekOptions | undefined,
-): boolean {
-  return isSameISOWeek(
-    constructFrom(options?.in || date, date),
-    constructNow(options?.in || date),
-  );
+export function isThisISOWeek(date: DateArg<Date> & {}, options?: IsThisISOWeekOptions | undefined): boolean {
+  return isSameISOWeek(constructFrom(options?.in || date, date), constructNow(options?.in || date));
 }
 
 /* eslint-enable */

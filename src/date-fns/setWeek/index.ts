@@ -2,21 +2,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { getWeek } from "../getWeek/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type {
-  ContextOptions,
-  DateArg,
-  FirstWeekContainsDateOptions,
-  LocalizedOptions,
-  WeekOptions,
-} from "../types.ts";
+import { getWeek } from '../getWeek/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg, FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link setWeek} function options.
  */
 export interface SetWeekOptions<DateType extends Date = Date>
-  extends LocalizedOptions<"options">,
+  extends LocalizedOptions<'options'>,
     WeekOptions,
     FirstWeekContainsDateOptions,
     ContextOptions<DateType> {}
@@ -59,10 +53,7 @@ export interface SetWeekOptions<DateType extends Date = Date>
  * })
  * //=> Sun Jan 4 2004 00:00:00
  */
-export function setWeek<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function setWeek<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   week: number,
   options?: SetWeekOptions<ResultDate>,

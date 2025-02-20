@@ -2,9 +2,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeDates } from "../_lib/normalizeDates/index.ts";
-import { startOfDay } from "../startOfDay/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import { startOfDay } from '../startOfDay/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link isSameDay} function options.
@@ -45,11 +45,7 @@ export function isSameDay(
   earlierDate: DateArg<Date> & {},
   options?: IsSameDayOptions | undefined,
 ): boolean {
-  const [dateLeft_, dateRight_] = normalizeDates(
-    options?.in,
-    laterDate,
-    earlierDate,
-  );
+  const [dateLeft_, dateRight_] = normalizeDates(options?.in, laterDate, earlierDate);
   return +startOfDay(dateLeft_) === +startOfDay(dateRight_);
 }
 

@@ -2,10 +2,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeDates } from "../_lib/normalizeDates/index.ts";
-import { compareAsc } from "../compareAsc/index.ts";
-import { differenceInCalendarYears } from "../differenceInCalendarYears/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import { compareAsc } from '../compareAsc/index.ts';
+import { differenceInCalendarYears } from '../differenceInCalendarYears/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link differenceInYears} function options.
@@ -36,11 +36,7 @@ export function differenceInYears(
   earlierDate: DateArg<Date> & {},
   options?: DifferenceInYearsOptions | undefined,
 ): number {
-  const [laterDate_, earlierDate_] = normalizeDates(
-    options?.in,
-    laterDate,
-    earlierDate,
-  );
+  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
 
   // -1 if the left date is earlier than the right date
   // 2023-12-31 - 2024-01-01 = -1

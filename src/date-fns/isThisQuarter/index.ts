@@ -2,10 +2,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFrom } from "../constructFrom/index.ts";
-import { constructNow } from "../constructNow/index.ts";
-import { isSameQuarter } from "../isSameQuarter/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { constructFrom } from '../constructFrom/index.ts';
+import { constructNow } from '../constructNow/index.ts';
+import { isSameQuarter } from '../isSameQuarter/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link isThisQuarter} function options.
@@ -31,14 +31,8 @@ export interface IsThisQuarterOptions extends ContextOptions<Date> {}
  * const result = isThisQuarter(new Date(2014, 6, 2))
  * //=> true
  */
-export function isThisQuarter(
-  date: DateArg<Date> & {},
-  options?: IsThisQuarterOptions,
-): boolean {
-  return isSameQuarter(
-    constructFrom(options?.in || date, date),
-    constructNow(options?.in || date),
-  );
+export function isThisQuarter(date: DateArg<Date> & {}, options?: IsThisQuarterOptions): boolean {
+  return isSameQuarter(constructFrom(options?.in || date, date), constructNow(options?.in || date));
 }
 
 /* eslint-enable */

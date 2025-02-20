@@ -2,14 +2,13 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeDates } from "../_lib/normalizeDates/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link differenceInCalendarMonths} function options.
  */
-export interface DifferenceInCalendarMonthsOptions
-  extends ContextOptions<Date> {}
+export interface DifferenceInCalendarMonthsOptions extends ContextOptions<Date> {}
 
 /**
  * @name differenceInCalendarMonths
@@ -38,11 +37,7 @@ export function differenceInCalendarMonths(
   earlierDate: DateArg<Date> & {},
   options?: DifferenceInCalendarMonthsOptions | undefined,
 ): number {
-  const [laterDate_, earlierDate_] = normalizeDates(
-    options?.in,
-    laterDate,
-    earlierDate,
-  );
+  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
 
   const yearsDiff = laterDate_.getFullYear() - earlierDate_.getFullYear();
   const monthsDiff = laterDate_.getMonth() - earlierDate_.getMonth();

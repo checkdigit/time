@@ -2,16 +2,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { addLeadingZeros } from "../_lib/addLeadingZeros/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg, ISOFormatOptions } from "../types.ts";
+import { addLeadingZeros } from '../_lib/addLeadingZeros/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg, ISOFormatOptions } from '../types.ts';
 
 /**
  * The {@link formatISO} function options.
  */
-export interface FormatISOOptions
-  extends ISOFormatOptions,
-    ContextOptions<Date> {}
+export interface FormatISOOptions extends ISOFormatOptions, ContextOptions<Date> {}
 
 /**
  * @name formatISO
@@ -48,27 +46,24 @@ export interface FormatISOOptions
  * const result = formatISO(new Date(2019, 8, 18, 19, 0, 52), { representation: 'time' })
  * //=> '19:00:52Z'
  */
-export function formatISO(
-  date: DateArg<Date> & {},
-  options?: FormatISOOptions,
-): string {
+export function formatISO(date: DateArg<Date> & {}, options?: FormatISOOptions): string {
   const date_ = toDate(date, options?.in);
 
   if (isNaN(+date_)) {
-    throw new RangeError("Invalid time value");
+    throw new RangeError('Invalid time value');
   }
 
-  const format = options?.format ?? "extended";
-  const representation = options?.representation ?? "complete";
+  const format = options?.format ?? 'extended';
+  const representation = options?.representation ?? 'complete';
 
-  let result = "";
-  let tzOffset = "";
+  let result = '';
+  let tzOffset = '';
 
-  const dateDelimiter = format === "extended" ? "-" : "";
-  const timeDelimiter = format === "extended" ? ":" : "";
+  const dateDelimiter = format === 'extended' ? '-' : '';
+  const timeDelimiter = format === 'extended' ? ':' : '';
 
   // Representation is either 'date' or 'complete'
-  if (representation !== "time") {
+  if (representation !== 'time') {
     const day = addLeadingZeros(date_.getDate(), 2);
     const month = addLeadingZeros(date_.getMonth() + 1, 2);
     const year = addLeadingZeros(date_.getFullYear(), 4);
@@ -78,7 +73,7 @@ export function formatISO(
   }
 
   // Representation is either 'time' or 'complete'
-  if (representation !== "date") {
+  if (representation !== 'date') {
     // Add the timezone.
     const offset = date_.getTimezoneOffset();
 
@@ -87,11 +82,11 @@ export function formatISO(
       const hourOffset = addLeadingZeros(Math.trunc(absoluteOffset / 60), 2);
       const minuteOffset = addLeadingZeros(absoluteOffset % 60, 2);
       // If less than 0, the sign is +, because it is ahead of time.
-      const sign = offset < 0 ? "+" : "-";
+      const sign = offset < 0 ? '+' : '-';
 
       tzOffset = `${sign}${hourOffset}:${minuteOffset}`;
     } else {
-      tzOffset = "Z";
+      tzOffset = 'Z';
     }
 
     const hour = addLeadingZeros(date_.getHours(), 2);
@@ -99,7 +94,7 @@ export function formatISO(
     const second = addLeadingZeros(date_.getSeconds(), 2);
 
     // If there's also date, separate it with time with 'T'
-    const separator = result === "" ? "" : "T";
+    const separator = result === '' ? '' : 'T';
 
     // Creates a time string consisting of hour, minute, and second, separated by delimiters, if defined.
     const time = [hour, minute, second].join(timeDelimiter);

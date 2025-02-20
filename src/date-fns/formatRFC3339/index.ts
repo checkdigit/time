@@ -2,10 +2,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { addLeadingZeros } from "../_lib/addLeadingZeros/index.ts";
-import { isValid } from "../isValid/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { addLeadingZeros } from '../_lib/addLeadingZeros/index.ts';
+import { isValid } from '../isValid/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link formatRFC3339} function options.
@@ -42,14 +42,11 @@ export interface FormatRFC3339Options extends ContextOptions<Date> {
  * })
  * //=> '2019-09-18T19:00:52.234Z'
  */
-export function formatRFC3339(
-  date: DateArg<Date> & {},
-  options?: FormatRFC3339Options,
-): string {
+export function formatRFC3339(date: DateArg<Date> & {}, options?: FormatRFC3339Options): string {
   const date_ = toDate(date, options?.in);
 
   if (!isValid(date_)) {
-    throw new RangeError("Invalid time value");
+    throw new RangeError('Invalid time value');
   }
 
   const fractionDigits = options?.fractionDigits ?? 0;
@@ -62,16 +59,14 @@ export function formatRFC3339(
   const minute = addLeadingZeros(date_.getMinutes(), 2);
   const second = addLeadingZeros(date_.getSeconds(), 2);
 
-  let fractionalSecond = "";
+  let fractionalSecond = '';
   if (fractionDigits > 0) {
     const milliseconds = date_.getMilliseconds();
-    const fractionalSeconds = Math.trunc(
-      milliseconds * Math.pow(10, fractionDigits - 3),
-    );
-    fractionalSecond = "." + addLeadingZeros(fractionalSeconds, fractionDigits);
+    const fractionalSeconds = Math.trunc(milliseconds * Math.pow(10, fractionDigits - 3));
+    fractionalSecond = '.' + addLeadingZeros(fractionalSeconds, fractionDigits);
   }
 
-  let offset = "";
+  let offset = '';
   const tzOffset = date_.getTimezoneOffset();
 
   if (tzOffset !== 0) {
@@ -79,11 +74,11 @@ export function formatRFC3339(
     const hourOffset = addLeadingZeros(Math.trunc(absoluteOffset / 60), 2);
     const minuteOffset = addLeadingZeros(absoluteOffset % 60, 2);
     // If less than 0, the sign is +, because it is ahead of time.
-    const sign = tzOffset < 0 ? "+" : "-";
+    const sign = tzOffset < 0 ? '+' : '-';
 
     offset = `${sign}${hourOffset}:${minuteOffset}`;
   } else {
-    offset = "Z";
+    offset = 'Z';
   }
 
   return `${year}-${month}-${day}T${hour}:${minute}:${second}${fractionalSecond}${offset}`;

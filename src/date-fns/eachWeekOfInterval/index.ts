@@ -2,17 +2,11 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeInterval } from "../_lib/normalizeInterval/index.ts";
-import { addWeeks } from "../addWeeks/index.ts";
-import { constructFrom } from "../constructFrom/index.ts";
-import { startOfWeek } from "../startOfWeek/index.ts";
-import type {
-  ContextOptions,
-  Interval,
-  LocalizedOptions,
-  StepOptions,
-  WeekOptions,
-} from "../types.ts";
+import { normalizeInterval } from '../_lib/normalizeInterval/index.ts';
+import { addWeeks } from '../addWeeks/index.ts';
+import { constructFrom } from '../constructFrom/index.ts';
+import { startOfWeek } from '../startOfWeek/index.ts';
+import type { ContextOptions, Interval, LocalizedOptions, StepOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link eachWeekOfInterval} function options.
@@ -20,7 +14,7 @@ import type {
 export interface EachWeekOfIntervalOptions<DateType extends Date = Date>
   extends StepOptions,
     WeekOptions,
-    LocalizedOptions<"options">,
+    LocalizedOptions<'options'>,
     ContextOptions<DateType> {}
 
 /**
@@ -34,10 +28,10 @@ export type EachWeekOfIntervalResult<
 > = Array<
   Options extends EachWeekOfIntervalOptions<infer DateType>
     ? DateType
-    : IntervalType["start"] extends Date
-      ? IntervalType["start"]
-      : IntervalType["end"] extends Date
-        ? IntervalType["end"]
+    : IntervalType['start'] extends Date
+      ? IntervalType['start']
+      : IntervalType['end'] extends Date
+        ? IntervalType['end']
         : Date
 >;
 
@@ -74,19 +68,12 @@ export type EachWeekOfIntervalResult<
 export function eachWeekOfInterval<
   IntervalType extends Interval,
   Options extends EachWeekOfIntervalOptions | undefined = undefined,
->(
-  interval: IntervalType,
-  options?: Options,
-): EachWeekOfIntervalResult<IntervalType, Options> {
+>(interval: IntervalType, options?: Options): EachWeekOfIntervalResult<IntervalType, Options> {
   const { start, end } = normalizeInterval(options?.in, interval);
 
   let reversed = +start > +end;
-  const startDateWeek = reversed
-    ? startOfWeek(end, options)
-    : startOfWeek(start, options);
-  const endDateWeek = reversed
-    ? startOfWeek(start, options)
-    : startOfWeek(end, options);
+  const startDateWeek = reversed ? startOfWeek(end, options) : startOfWeek(start, options);
+  const endDateWeek = reversed ? startOfWeek(start, options) : startOfWeek(end, options);
 
   startDateWeek.setHours(15);
   endDateWeek.setHours(15);

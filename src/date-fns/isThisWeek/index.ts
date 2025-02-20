@@ -2,23 +2,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFrom } from "../constructFrom/index.ts";
-import { constructNow } from "../constructNow/index.ts";
-import { isSameWeek } from "../isSameWeek/index.ts";
-import type {
-  ContextOptions,
-  DateArg,
-  LocalizedOptions,
-  WeekOptions,
-} from "../types.ts";
+import { constructFrom } from '../constructFrom/index.ts';
+import { constructNow } from '../constructNow/index.ts';
+import { isSameWeek } from '../isSameWeek/index.ts';
+import type { ContextOptions, DateArg, LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link isThisWeek} function options.
  */
-export interface IsThisWeekOptions
-  extends WeekOptions,
-    LocalizedOptions<"options">,
-    ContextOptions<Date> {}
+export interface IsThisWeekOptions extends WeekOptions, LocalizedOptions<'options'>, ContextOptions<Date> {}
 
 /**
  * @name isThisWeek
@@ -45,15 +37,8 @@ export interface IsThisWeekOptions
  * const result = isThisWeek(new Date(2014, 8, 21), { weekStartsOn: 1 })
  * //=> false
  */
-export function isThisWeek(
-  date: DateArg<Date> & {},
-  options?: IsThisWeekOptions,
-): boolean {
-  return isSameWeek(
-    constructFrom(options?.in || date, date),
-    constructNow(options?.in || date),
-    options,
-  );
+export function isThisWeek(date: DateArg<Date> & {}, options?: IsThisWeekOptions): boolean {
+  return isSameWeek(constructFrom(options?.in || date, date), constructNow(options?.in || date), options);
 }
 
 /* eslint-enable */

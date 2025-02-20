@@ -2,15 +2,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { setMonth } from "../setMonth/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { setMonth } from '../setMonth/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link setQuarter} function options.
  */
-export interface SetQuarterOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface SetQuarterOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name setQuarter
@@ -34,10 +33,7 @@ export interface SetQuarterOptions<DateType extends Date = Date>
  * const result = setQuarter(new Date(2014, 6, 2), 2)
  * //=> Wed Apr 02 2014 00:00:00
  */
-export function setQuarter<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function setQuarter<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   quarter: number,
   options?: SetQuarterOptions<ResultDate>,

@@ -2,7 +2,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { daysInWeek } from "../constants/index.ts";
+import { daysInWeek } from '../constants/index.ts';
 
 /**
  * @name weeksToDays

@@ -2,23 +2,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { millisecondsInWeek } from "../constants/index.ts";
-import { startOfWeek } from "../startOfWeek/index.ts";
-import { startOfWeekYear } from "../startOfWeekYear/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type {
-  ContextOptions,
-  DateArg,
-  FirstWeekContainsDateOptions,
-  LocalizedOptions,
-  WeekOptions,
-} from "../types.ts";
+import { millisecondsInWeek } from '../constants/index.ts';
+import { startOfWeek } from '../startOfWeek/index.ts';
+import { startOfWeekYear } from '../startOfWeekYear/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg, FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link getWeek} function options.
  */
 export interface GetWeekOptions
-  extends LocalizedOptions<"options">,
+  extends LocalizedOptions<'options'>,
     WeekOptions,
     FirstWeekContainsDateOptions,
     ContextOptions<Date> {}
@@ -57,10 +51,7 @@ export interface GetWeekOptions
  * })
  * //=> 53
  */
-export function getWeek(
-  date: DateArg<Date> & {},
-  options?: GetWeekOptions | undefined,
-): number {
+export function getWeek(date: DateArg<Date> & {}, options?: GetWeekOptions | undefined): number {
   const _date = toDate(date, options?.in);
   const diff = +startOfWeek(_date, options) - +startOfWeekYear(_date, options);
 

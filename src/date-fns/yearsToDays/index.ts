@@ -2,7 +2,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { daysInYear } from "../constants/index.ts";
+import { daysInYear } from '../constants/index.ts';
 
 /**
  * @name yearsToDays

@@ -2,7 +2,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { quartersInYear } from "../constants/index.ts";
+import { quartersInYear } from '../constants/index.ts';
 
 /**
  * @name yearsToQuarters

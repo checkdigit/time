@@ -2,10 +2,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { Match } from "../../../locale/types.ts";
-import { Parser } from "../Parser.ts";
-import type { ParseFlags, ParseResult } from "../types.ts";
-import { mapValue, normalizeTwoDigitYear, parseNDigits } from "../utils.ts";
+import type { Match } from '../../../locale/types.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { mapValue, normalizeTwoDigitYear, parseNDigits } from '../utils.ts';
 
 export interface YearParserValue {
   year: number;
@@ -22,25 +22,21 @@ export interface YearParserValue {
 // | AD 12345 | 12345 | 45 | 12345 | 12345 | 12345 |
 export class YearParser extends Parser<YearParserValue> {
   priority = 130;
-  incompatibleTokens = ["Y", "R", "u", "w", "I", "i", "e", "c", "t", "T"];
+  incompatibleTokens = ['Y', 'R', 'u', 'w', 'I', 'i', 'e', 'c', 't', 'T'];
 
-  parse(
-    dateString: string,
-    token: string,
-    match: Match,
-  ): ParseResult<YearParserValue> {
+  parse(dateString: string, token: string, match: Match): ParseResult<YearParserValue> {
     const valueCallback = (year: number) => ({
       year,
-      isTwoDigitYear: token === "yy",
+      isTwoDigitYear: token === 'yy',
     });
 
     switch (token) {
-      case "y":
+      case 'y':
         return mapValue(parseNDigits(4, dateString), valueCallback);
-      case "yo":
+      case 'yo':
         return mapValue(
           match.ordinalNumber(dateString, {
-            unit: "year",
+            unit: 'year',
           }),
           valueCallback,
         );
@@ -49,32 +45,21 @@ export class YearParser extends Parser<YearParserValue> {
     }
   }
 
-  validate<DateType extends Date>(
-    _date: DateType,
-    value: YearParserValue,
-  ): boolean {
+  validate<DateType extends Date>(_date: DateType, value: YearParserValue): boolean {
     return value.isTwoDigitYear || value.year > 0;
   }
 
-  set<DateType extends Date>(
-    date: DateType,
-    flags: ParseFlags,
-    value: YearParserValue,
-  ): DateType {
+  set<DateType extends Date>(date: DateType, flags: ParseFlags, value: YearParserValue): DateType {
     const currentYear = date.getFullYear();
 
     if (value.isTwoDigitYear) {
-      const normalizedTwoDigitYear = normalizeTwoDigitYear(
-        value.year,
-        currentYear,
-      );
+      const normalizedTwoDigitYear = normalizeTwoDigitYear(value.year, currentYear);
       date.setFullYear(normalizedTwoDigitYear, 0, 1);
       date.setHours(0, 0, 0, 0);
       return date;
     }
 
-    const year =
-      !("era" in flags) || flags.era === 1 ? value.year : 1 - value.year;
+    const year = !('era' in flags) || flags.era === 1 ? value.year : 1 - value.year;
     date.setFullYear(year, 0, 1);
     date.setHours(0, 0, 0, 0);
     return date;

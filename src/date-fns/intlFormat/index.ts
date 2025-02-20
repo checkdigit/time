@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { DateArg, MaybeArray } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { DateArg, MaybeArray } from '../types.ts';
 
 /**
  * The locale string (see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument).
@@ -11,7 +11,7 @@ import type { DateArg, MaybeArray } from "../types.ts";
  *
  * [TODO] Remove in v4
  */
-export type IntlFormatLocale = Intl.ResolvedDateTimeFormatOptions["locale"];
+export type IntlFormatLocale = Intl.ResolvedDateTimeFormatOptions['locale'];
 
 /**
  * The format options (see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat#options)
@@ -23,7 +23,7 @@ export type IntlFormatFormatOptions = Intl.DateTimeFormatOptions;
  */
 export interface IntlFormatLocaleOptions {
   /** The locales to use (see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument) */
-  locale: MaybeArray<Intl.ResolvedDateTimeFormatOptions["locale"]>;
+  locale: MaybeArray<Intl.ResolvedDateTimeFormatOptions['locale']>;
 }
 
 /**
@@ -67,10 +67,7 @@ export function intlFormat(date: DateArg<Date> & {}): string;
  * })
  * //=> 2019. 10. 4.
  */
-export function intlFormat(
-  date: DateArg<Date> & {},
-  localeOptions: IntlFormatLocaleOptions,
-): string;
+export function intlFormat(date: DateArg<Date> & {}, localeOptions: IntlFormatLocaleOptions): string;
 
 /**
  * @param date - The date to format
@@ -91,10 +88,7 @@ export function intlFormat(
  * })
  * //=> 10/4/2019, 12 PM
  */
-export function intlFormat(
-  date: DateArg<Date> & {},
-  formatOptions: IntlFormatFormatOptions,
-): string;
+export function intlFormat(date: DateArg<Date> & {}, formatOptions: IntlFormatFormatOptions): string;
 
 /**
  * @param date - The date to format
@@ -137,15 +131,13 @@ export function intlFormat(
     localeOptions = formatOrLocale;
   }
 
-  return new Intl.DateTimeFormat(localeOptions?.locale, formatOptions).format(
-    toDate(date),
-  );
+  return new Intl.DateTimeFormat(localeOptions?.locale, formatOptions).format(toDate(date));
 }
 
 function isFormatOptions(
   opts: IntlFormatLocaleOptions | IntlFormatFormatOptions | undefined,
 ): opts is IntlFormatFormatOptions {
-  return opts !== undefined && !("locale" in opts);
+  return opts !== undefined && !('locale' in opts);
 }
 
 /* eslint-enable */

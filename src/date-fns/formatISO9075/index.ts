@@ -2,17 +2,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { addLeadingZeros } from "../_lib/addLeadingZeros/index.ts";
-import { isValid } from "../isValid/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg, ISOFormatOptions } from "../types.ts";
+import { addLeadingZeros } from '../_lib/addLeadingZeros/index.ts';
+import { isValid } from '../isValid/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg, ISOFormatOptions } from '../types.ts';
 
 /**
  * The {@link formatISO9075} function options.
  */
-export interface FormatISO9075Options
-  extends ISOFormatOptions,
-    ContextOptions<Date> {}
+export interface FormatISO9075Options extends ISOFormatOptions, ContextOptions<Date> {}
 
 /**
  * @name formatISO9075
@@ -49,26 +47,23 @@ export interface FormatISO9075Options
  * const result = formatISO9075(new Date(2019, 8, 18, 19, 0, 52), { representation: 'time' })
  * //=> '19:00:52'
  */
-export function formatISO9075(
-  date: DateArg<Date> & {},
-  options?: FormatISO9075Options,
-): string {
+export function formatISO9075(date: DateArg<Date> & {}, options?: FormatISO9075Options): string {
   const date_ = toDate(date, options?.in);
 
   if (!isValid(date_)) {
-    throw new RangeError("Invalid time value");
+    throw new RangeError('Invalid time value');
   }
 
-  const format = options?.format ?? "extended";
-  const representation = options?.representation ?? "complete";
+  const format = options?.format ?? 'extended';
+  const representation = options?.representation ?? 'complete';
 
-  let result = "";
+  let result = '';
 
-  const dateDelimiter = format === "extended" ? "-" : "";
-  const timeDelimiter = format === "extended" ? ":" : "";
+  const dateDelimiter = format === 'extended' ? '-' : '';
+  const timeDelimiter = format === 'extended' ? ':' : '';
 
   // Representation is either 'date' or 'complete'
-  if (representation !== "time") {
+  if (representation !== 'time') {
     const day = addLeadingZeros(date_.getDate(), 2);
     const month = addLeadingZeros(date_.getMonth() + 1, 2);
     const year = addLeadingZeros(date_.getFullYear(), 4);
@@ -78,13 +73,13 @@ export function formatISO9075(
   }
 
   // Representation is either 'time' or 'complete'
-  if (representation !== "date") {
+  if (representation !== 'date') {
     const hour = addLeadingZeros(date_.getHours(), 2);
     const minute = addLeadingZeros(date_.getMinutes(), 2);
     const second = addLeadingZeros(date_.getSeconds(), 2);
 
     // If there's also date, separate it with time with a space
-    const separator = result === "" ? "" : " ";
+    const separator = result === '' ? '' : ' ';
 
     // HHmmss or HH:mm:ss.
     result = `${result}${separator}${hour}${timeDelimiter}${minute}${timeDelimiter}${second}`;

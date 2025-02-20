@@ -2,13 +2,13 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeDates } from "../_lib/normalizeDates/index.ts";
-import { addDays } from "../addDays/index.ts";
-import { differenceInCalendarDays } from "../differenceInCalendarDays/index.ts";
-import { isSameDay } from "../isSameDay/index.ts";
-import { isValid } from "../isValid/index.ts";
-import { isWeekend } from "../isWeekend/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import { addDays } from '../addDays/index.ts';
+import { differenceInCalendarDays } from '../differenceInCalendarDays/index.ts';
+import { isSameDay } from '../isSameDay/index.ts';
+import { isValid } from '../isValid/index.ts';
+import { isWeekend } from '../isWeekend/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link differenceInBusinessDays} function options.
@@ -70,11 +70,7 @@ export function differenceInBusinessDays(
   earlierDate: DateArg<Date> & {},
   options?: DifferenceInBusinessDaysOptions | undefined,
 ): number {
-  const [laterDate_, earlierDate_] = normalizeDates(
-    options?.in,
-    laterDate,
-    earlierDate,
-  );
+  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
 
   if (!isValid(laterDate_) || !isValid(earlierDate_)) return NaN;
 

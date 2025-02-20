@@ -2,9 +2,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeInterval } from "../_lib/normalizeInterval/index.ts";
-import { constructFrom } from "../constructFrom/index.ts";
-import type { ContextOptions, Interval, StepOptions } from "../types.ts";
+import { normalizeInterval } from '../_lib/normalizeInterval/index.ts';
+import { constructFrom } from '../constructFrom/index.ts';
+import type { ContextOptions, Interval, StepOptions } from '../types.ts';
 
 /**
  * The {@link eachHourOfInterval} function options.
@@ -23,10 +23,10 @@ export type EachHourOfIntervalResult<
 > = Array<
   Options extends EachHourOfIntervalOptions<infer DateType>
     ? DateType
-    : IntervalType["start"] extends Date
-      ? IntervalType["start"]
-      : IntervalType["end"] extends Date
-        ? IntervalType["end"]
+    : IntervalType['start'] extends Date
+      ? IntervalType['start']
+      : IntervalType['end'] extends Date
+        ? IntervalType['end']
         : Date
 >;
 
@@ -62,10 +62,7 @@ export type EachHourOfIntervalResult<
 export function eachHourOfInterval<
   IntervalType extends Interval,
   Options extends EachHourOfIntervalOptions | undefined = undefined,
->(
-  interval: IntervalType,
-  options?: Options,
-): EachHourOfIntervalResult<IntervalType, Options> {
+>(interval: IntervalType, options?: Options): EachHourOfIntervalResult<IntervalType, Options> {
   const { start, end } = normalizeInterval(options?.in, interval);
 
   let reversed = +start > +end;

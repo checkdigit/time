@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link isSaturday} function options.
@@ -28,10 +28,7 @@ export interface IsSaturdayOptions extends ContextOptions<Date> {}
  * const result = isSaturday(new Date(2014, 8, 27))
  * //=> true
  */
-export function isSaturday(
-  date: DateArg<Date> & {},
-  options?: IsSaturdayOptions | undefined,
-): boolean {
+export function isSaturday(date: DateArg<Date> & {}, options?: IsSaturdayOptions | undefined): boolean {
   return toDate(date, options?.in).getDay() === 6;
 }
 

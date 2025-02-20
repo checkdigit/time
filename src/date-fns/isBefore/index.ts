@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { DateArg } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { DateArg } from '../types.ts';
 
 /**
  * @name isBefore
@@ -23,10 +23,7 @@ import type { DateArg } from "../types.ts";
  * const result = isBefore(new Date(1989, 6, 10), new Date(1987, 1, 11))
  * //=> false
  */
-export function isBefore(
-  date: DateArg<Date> & {},
-  dateToCompare: DateArg<Date> & {},
-): boolean {
+export function isBefore(date: DateArg<Date> & {}, dateToCompare: DateArg<Date> & {}): boolean {
   return +toDate(date) < +toDate(dateToCompare);
 }
 

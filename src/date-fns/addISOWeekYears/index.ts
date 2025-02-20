@@ -2,15 +2,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { getISOWeekYear } from "../getISOWeekYear/index.ts";
-import { setISOWeekYear } from "../setISOWeekYear/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { getISOWeekYear } from '../getISOWeekYear/index.ts';
+import { setISOWeekYear } from '../setISOWeekYear/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link addISOWeekYears} function options.
  */
-export interface AddISOWeekYearsOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface AddISOWeekYearsOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name addISOWeekYears
@@ -35,10 +34,7 @@ export interface AddISOWeekYearsOptions<DateType extends Date = Date>
  * const result = addISOWeekYears(new Date(2010, 6, 2), 5)
  * //=> Fri Jun 26 2015 00:00:00
  */
-export function addISOWeekYears<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function addISOWeekYears<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   amount: number,
   options?: AddISOWeekYearsOptions<ResultDate> | undefined,

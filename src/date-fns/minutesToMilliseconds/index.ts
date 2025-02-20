@@ -2,7 +2,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { millisecondsInMinute } from "../constants/index.ts";
+import { millisecondsInMinute } from '../constants/index.ts';
 
 /**
  * @name minutesToMilliseconds

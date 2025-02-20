@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link getISODay} function options.
@@ -31,10 +31,7 @@ export interface GetISODayOptions extends ContextOptions<Date> {}
  * const result = getISODay(new Date(2012, 1, 26))
  * //=> 7
  */
-export function getISODay(
-  date: DateArg<Date> & {},
-  options?: GetISODayOptions,
-): number {
+export function getISODay(date: DateArg<Date> & {}, options?: GetISODayOptions): number {
   const day = toDate(date, options?.in).getDay();
   return day === 0 ? 7 : day;
 }

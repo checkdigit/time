@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../../toDate/index.ts";
-import type { DateArg } from "../../types.ts";
+import { toDate } from '../../toDate/index.ts';
+import type { DateArg } from '../../types.ts';
 
 /**
  * Google Chrome as of 67.0.3396.87 introduced timezones with offset that includes seconds.
@@ -16,9 +16,7 @@ import type { DateArg } from "../../types.ts";
  *
  * This function returns the timezone offset in milliseconds that takes seconds in account.
  */
-export function getTimezoneOffsetInMilliseconds(
-  date: DateArg<Date> & {},
-): number {
+export function getTimezoneOffsetInMilliseconds(date: DateArg<Date> & {}): number {
   const _date = toDate(date);
   const utcDate = new Date(
     Date.UTC(

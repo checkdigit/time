@@ -2,16 +2,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { getRoundingMethod } from "../_lib/getRoundingMethod/index.ts";
-import { differenceInDays } from "../differenceInDays/index.ts";
-import type { ContextOptions, DateArg, RoundingOptions } from "../types.ts";
+import { getRoundingMethod } from '../_lib/getRoundingMethod/index.ts';
+import { differenceInDays } from '../differenceInDays/index.ts';
+import type { ContextOptions, DateArg, RoundingOptions } from '../types.ts';
 
 /**
  * The {@link differenceInWeeks} function options.
  */
-export interface DifferenceInWeeksOptions
-  extends RoundingOptions,
-    ContextOptions<Date> {}
+export interface DifferenceInWeeksOptions extends RoundingOptions, ContextOptions<Date> {}
 
 /**
  * @name differenceInWeeks

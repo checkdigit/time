@@ -2,16 +2,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { getRoundingMethod } from "../_lib/getRoundingMethod/index.ts";
-import { constructFrom } from "../constructFrom/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type {
-  ContextOptions,
-  DateArg,
-  NearestMinutes,
-  NearestToUnitOptions,
-  RoundingOptions,
-} from "../types.ts";
+import { getRoundingMethod } from '../_lib/getRoundingMethod/index.ts';
+import { constructFrom } from '../constructFrom/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg, NearestMinutes, NearestToUnitOptions, RoundingOptions } from '../types.ts';
 
 /**
  * The {@link roundToNearestMinutes} function options.
@@ -58,10 +52,7 @@ export interface RoundToNearestMinutesOptions<DateType extends Date = Date>
  * const result = roundToNearestMinutes(new Date(2014, 6, 10, 12, 12, 34), { roundingMethod: 'ceil', nearestTo: 30 })
  * //=> Thu Jul 10 2014 12:30:00
  */
-export function roundToNearestMinutes<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function roundToNearestMinutes<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   options?: RoundToNearestMinutesOptions<ResultDate>,
 ): ResultDate {
@@ -72,10 +63,9 @@ export function roundToNearestMinutes<
   const date_ = toDate(date, options?.in);
   const fractionalSeconds = date_.getSeconds() / 60;
   const fractionalMilliseconds = date_.getMilliseconds() / 1000 / 60;
-  const minutes =
-    date_.getMinutes() + fractionalSeconds + fractionalMilliseconds;
+  const minutes = date_.getMinutes() + fractionalSeconds + fractionalMilliseconds;
 
-  const method = options?.roundingMethod ?? "round";
+  const method = options?.roundingMethod ?? 'round';
   const roundingMethod = getRoundingMethod(method);
 
   const roundedMinutes = roundingMethod(minutes / nearestTo) * nearestTo;

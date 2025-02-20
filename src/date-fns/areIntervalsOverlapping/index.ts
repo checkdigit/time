@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, Interval } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, Interval } from '../types.ts';
 
 /**
  * The {@link areIntervalsOverlapping} function options.
@@ -74,8 +74,7 @@ export function areIntervalsOverlapping(
     +toDate(intervalRight.end, options?.in),
   ].sort((a, b) => a - b);
 
-  if (options?.inclusive)
-    return leftStartTime <= rightEndTime && rightStartTime <= leftEndTime;
+  if (options?.inclusive) return leftStartTime <= rightEndTime && rightStartTime <= leftEndTime;
 
   return leftStartTime < rightEndTime && rightStartTime < leftEndTime;
 }

@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { isSameWeek } from "../isSameWeek/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { isSameWeek } from '../isSameWeek/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link isSameISOWeek} function options.

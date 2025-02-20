@@ -2,17 +2,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFrom } from "../constructFrom/index.ts";
-import { differenceInCalendarDays } from "../differenceInCalendarDays/index.ts";
-import { startOfISOWeekYear } from "../startOfISOWeekYear/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { constructFrom } from '../constructFrom/index.ts';
+import { differenceInCalendarDays } from '../differenceInCalendarDays/index.ts';
+import { startOfISOWeekYear } from '../startOfISOWeekYear/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link setISOWeekYear} function options.
  */
-export interface SetISOWeekYearOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface SetISOWeekYearOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name setISOWeekYear
@@ -39,19 +38,13 @@ export interface SetISOWeekYearOptions<DateType extends Date = Date>
  * const result = setISOWeekYear(new Date(2008, 11, 29), 2007)
  * //=> Mon Jan 01 2007 00:00:00
  */
-export function setISOWeekYear<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function setISOWeekYear<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   weekYear: number,
   options?: SetISOWeekYearOptions<ResultDate> | undefined,
 ): ResultDate {
   let _date = toDate(date, options?.in);
-  const diff = differenceInCalendarDays(
-    _date,
-    startOfISOWeekYear(_date, options),
-  );
+  const diff = differenceInCalendarDays(_date, startOfISOWeekYear(_date, options));
   const fourthOfJanuary = constructFrom(options?.in || date, 0);
   fourthOfJanuary.setFullYear(weekYear, 0, 4);
   fourthOfJanuary.setHours(0, 0, 0, 0);

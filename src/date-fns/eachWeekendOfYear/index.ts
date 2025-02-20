@@ -2,16 +2,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { eachWeekendOfInterval } from "../eachWeekendOfInterval/index.ts";
-import { endOfYear } from "../endOfYear/index.ts";
-import { startOfYear } from "../startOfYear/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { eachWeekendOfInterval } from '../eachWeekendOfInterval/index.ts';
+import { endOfYear } from '../endOfYear/index.ts';
+import { startOfYear } from '../startOfYear/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link eachWeekendOfYear} function options.
  */
-export interface EachWeekendOfYearOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface EachWeekendOfYearOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name eachWeekendOfYear
@@ -40,10 +39,7 @@ export interface EachWeekendOfYearOptions<DateType extends Date = Date>
  * // ]
  * ]
  */
-export function eachWeekendOfYear<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function eachWeekendOfYear<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   options?: EachWeekendOfYearOptions<ResultDate>,
 ): ResultDate[] {

@@ -16,12 +16,12 @@ export function newDateUTC(
   hour: number,
   minute: number,
   second: number,
-  millisecond: number
+  millisecond: number,
 ): Date {
-  const utcDate = new Date(0)
-  utcDate.setUTCFullYear(fullYear, month, day)
-  utcDate.setUTCHours(hour, minute, second, millisecond)
-  return utcDate
+  const utcDate = new Date(0);
+  utcDate.setUTCFullYear(fullYear, month, day);
+  utcDate.setUTCHours(hour, minute, second, millisecond);
+  return utcDate;
 }
 
 /* eslint-enable */

@@ -217,6 +217,6 @@ export const secondsInQuarter = secondsInMonth * 3;
  * [`TZDate`](https://github.com/date-fns/tz) that accept a time zone as
  * a constructor argument.
  */
-export const constructFromSymbol = Symbol.for("constructDateFrom");
+export const constructFromSymbol = Symbol.for('constructDateFrom');
 
 /* eslint-enable */

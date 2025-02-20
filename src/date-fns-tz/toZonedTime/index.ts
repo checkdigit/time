@@ -2,9 +2,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { tzParseTimezone } from '../_lib/tzParseTimezone/index.js'
-import { toDate } from '../toDate/index.js'
-import { ToDateOptionsWithTZ } from '../index.js'
+import { tzParseTimezone } from '../_lib/tzParseTimezone/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ToDateOptionsWithTZ } from '../index.ts';
 
 /**
  * @name toZonedTime
@@ -30,24 +30,23 @@ import { ToDateOptionsWithTZ } from '../index.js'
  * const result = toZonedTime('2014-06-25T10:00:00.000Z', 'America/New_York')
  * //=> Jun 25 2014 06:00:00
  */
-export function toZonedTime(
-  date: Date | string | number,
-  timeZone: string,
-  options?: ToDateOptionsWithTZ
-): Date {
-  date = toDate(date, options)
+export function toZonedTime(date: Date | string | number, timeZone: string, options?: ToDateOptionsWithTZ): Date {
+  date = toDate(date, options);
 
-  const offsetMilliseconds = tzParseTimezone(timeZone, date, true)
+  const offsetMilliseconds = tzParseTimezone(timeZone, date, true);
 
-  const d = new Date(date.getTime() - offsetMilliseconds)
+  const d = new Date(date.getTime() - offsetMilliseconds);
 
-  const resultDate = new Date(0)
+  const resultDate = new Date(0);
 
-  resultDate.setFullYear(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())
+  resultDate.setFullYear(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
 
-  resultDate.setHours(d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds(), d.getUTCMilliseconds())
+  resultDate.setHours(d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds(), d.getUTCMilliseconds());
 
-  return resultDate
+  // [PATCH:] this hack is required because setHours doesn't work for hours that are spring-forward
+  (resultDate as any)[Symbol.for('UTCHours')] = d.getUTCHours();
+
+  return resultDate;
 }
 
 /* eslint-enable */

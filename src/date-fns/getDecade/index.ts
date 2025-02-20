@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link getDecade} function options.
@@ -28,10 +28,7 @@ export interface GetDecadeOptions extends ContextOptions<Date> {}
  * const result = getDecade(new Date(1942, 10, 27))
  * //=> 1940
  */
-export function getDecade(
-  date: DateArg<Date> & {},
-  options?: GetDecadeOptions | undefined,
-): number {
+export function getDecade(date: DateArg<Date> & {}, options?: GetDecadeOptions | undefined): number {
   // TODO: Switch to more technical definition in of decades that start with 1
   // end with 0. I.e. 2001-2010 instead of current 2000-2009. It's a breaking
   // change, so it can only be done in 4.0.

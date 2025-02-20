@@ -2,24 +2,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { differenceInCalendarWeeks } from "../differenceInCalendarWeeks/index.ts";
-import { lastDayOfMonth } from "../lastDayOfMonth/index.ts";
-import { startOfMonth } from "../startOfMonth/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type {
-  ContextOptions,
-  DateArg,
-  LocalizedOptions,
-  WeekOptions,
-} from "../types.ts";
+import { differenceInCalendarWeeks } from '../differenceInCalendarWeeks/index.ts';
+import { lastDayOfMonth } from '../lastDayOfMonth/index.ts';
+import { startOfMonth } from '../startOfMonth/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg, LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link getWeeksInMonth} function options.
  */
-export interface GetWeeksInMonthOptions
-  extends LocalizedOptions<"options">,
-    WeekOptions,
-    ContextOptions<Date> {}
+export interface GetWeeksInMonthOptions extends LocalizedOptions<'options'>, WeekOptions, ContextOptions<Date> {}
 
 /**
  * @name getWeeksInMonth
@@ -45,17 +37,10 @@ export interface GetWeeksInMonthOptions
  * const result = getWeeksInMonth(new Date(2017, 6, 5), { weekStartsOn: 1 })
  * //=> 6
  */
-export function getWeeksInMonth(
-  date: DateArg<Date> & {},
-  options?: GetWeeksInMonthOptions | undefined,
-): number {
+export function getWeeksInMonth(date: DateArg<Date> & {}, options?: GetWeeksInMonthOptions | undefined): number {
   const contextDate = toDate(date, options?.in);
   return (
-    differenceInCalendarWeeks(
-      lastDayOfMonth(contextDate, options),
-      startOfMonth(contextDate, options),
-      options,
-    ) + 1
+    differenceInCalendarWeeks(lastDayOfMonth(contextDate, options), startOfMonth(contextDate, options), options) + 1
   );
 }
 

@@ -1,6 +1,6 @@
 // holidays/united-states/federal-reserve-bank/get-all-us-federal-reserve-bank-holidays.ts
 
-import { formatUtc } from '../../../index';
+import { formatUtc } from '../../../index.ts';
 
 const YYYY_MM_DD_FORMAT = 'yyyy-MM-dd';
 

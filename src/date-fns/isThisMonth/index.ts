@@ -2,10 +2,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFrom } from "../constructFrom/index.ts";
-import { constructNow } from "../constructNow/index.ts";
-import { isSameMonth } from "../isSameMonth/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { constructFrom } from '../constructFrom/index.ts';
+import { constructNow } from '../constructNow/index.ts';
+import { isSameMonth } from '../isSameMonth/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link isThisMonth} function options.
@@ -31,14 +31,8 @@ export interface IsThisMonthOptions extends ContextOptions<Date> {}
  * const result = isThisMonth(new Date(2014, 8, 15))
  * //=> true
  */
-export function isThisMonth(
-  date: DateArg<Date> & {},
-  options?: IsThisMonthOptions | undefined,
-): boolean {
-  return isSameMonth(
-    constructFrom(options?.in || date, date),
-    constructNow(options?.in || date),
-  );
+export function isThisMonth(date: DateArg<Date> & {}, options?: IsThisMonthOptions | undefined): boolean {
+  return isSameMonth(constructFrom(options?.in || date, date), constructNow(options?.in || date));
 }
 
 /* eslint-enable */

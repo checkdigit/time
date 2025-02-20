@@ -2,7 +2,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { tzParseTimezone } from '../_lib/tzParseTimezone/index.js'
+import { tzParseTimezone } from '../_lib/tzParseTimezone/index.ts';
 
 /**
  * @name getTimezoneOffset
@@ -31,7 +31,7 @@ import { tzParseTimezone } from '../_lib/tzParseTimezone/index.js'
  *   //=> -14400000 (-4 * 60 * 60 * 1000)
  */
 export function getTimezoneOffset(timeZone: string, date?: Date | number): number {
-  return -tzParseTimezone(timeZone, date)
+  return -tzParseTimezone(timeZone, date);
 }
 
 /* eslint-enable */

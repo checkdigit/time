@@ -2,11 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import type { DefaultOptions } from "../_lib/defaultOptions/index.ts";
-import {
-  getDefaultOptions,
-  setDefaultOptions as setInternalDefaultOptions,
-} from "../_lib/defaultOptions/index.ts";
+import type { DefaultOptions } from '../_lib/defaultOptions/index.ts';
+import { getDefaultOptions, setDefaultOptions as setInternalDefaultOptions } from '../_lib/defaultOptions/index.ts';
 
 /**
  * @name setDefaultOptions
@@ -60,8 +57,7 @@ export function setDefaultOptions(options: DefaultOptions): void {
   for (const property in defaultOptions) {
     if (Object.prototype.hasOwnProperty.call(defaultOptions, property)) {
       // [TODO] I challenge you to fix the type
-      (result as any)[property] =
-        defaultOptions[property as keyof DefaultOptions];
+      (result as any)[property] = defaultOptions[property as keyof DefaultOptions];
     }
   }
 

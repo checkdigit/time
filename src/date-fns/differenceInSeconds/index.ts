@@ -2,9 +2,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { getRoundingMethod } from "../_lib/getRoundingMethod/index.ts";
-import { differenceInMilliseconds } from "../differenceInMilliseconds/index.ts";
-import type { DateArg, RoundingOptions } from "../types.ts";
+import { getRoundingMethod } from '../_lib/getRoundingMethod/index.ts';
+import { differenceInMilliseconds } from '../differenceInMilliseconds/index.ts';
+import type { DateArg, RoundingOptions } from '../types.ts';
 
 /**
  * The {@link differenceInSeconds} function options.

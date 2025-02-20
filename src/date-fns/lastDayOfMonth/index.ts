@@ -2,14 +2,13 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link lastDayOfMonth} function options.
  */
-export interface LastDayOfMonthOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface LastDayOfMonthOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name lastDayOfMonth
@@ -33,10 +32,7 @@ export interface LastDayOfMonthOptions<DateType extends Date = Date>
  * const result = lastDayOfMonth(new Date(2014, 8, 2, 11, 55, 0))
  * //=> Tue Sep 30 2014 00:00:00
  */
-export function lastDayOfMonth<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function lastDayOfMonth<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   options?: LastDayOfMonthOptions<ResultDate> | undefined,
 ): ResultDate {

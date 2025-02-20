@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link getQuarter} function options.
@@ -28,10 +28,7 @@ export interface GetQuarterOptions extends ContextOptions<Date> {}
  * const result = getQuarter(new Date(2014, 6, 2));
  * //=> 3
  */
-export function getQuarter(
-  date: DateArg<Date> & {},
-  options?: GetQuarterOptions | undefined,
-): number {
+export function getQuarter(date: DateArg<Date> & {}, options?: GetQuarterOptions | undefined): number {
   const _date = toDate(date, options?.in);
   const quarter = Math.trunc(_date.getMonth() / 3) + 1;
   return quarter;

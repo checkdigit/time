@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeDates } from "../_lib/normalizeDates/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link isSameMonth} function options.
@@ -39,15 +39,8 @@ export function isSameMonth(
   earlierDate: DateArg<Date> & {},
   options?: IsSameMonthOptions | undefined,
 ): boolean {
-  const [laterDate_, earlierDate_] = normalizeDates(
-    options?.in,
-    laterDate,
-    earlierDate,
-  );
-  return (
-    laterDate_.getFullYear() === earlierDate_.getFullYear() &&
-    laterDate_.getMonth() === earlierDate_.getMonth()
-  );
+  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
+  return laterDate_.getFullYear() === earlierDate_.getFullYear() && laterDate_.getMonth() === earlierDate_.getMonth();
 }
 
 /* eslint-enable */

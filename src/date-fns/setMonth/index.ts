@@ -2,16 +2,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFrom } from "../constructFrom/index.ts";
-import { getDaysInMonth } from "../getDaysInMonth/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { constructFrom } from '../constructFrom/index.ts';
+import { getDaysInMonth } from '../getDaysInMonth/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link setMonth} function options.
  */
-export interface SetMonthOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface SetMonthOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name setMonth
@@ -35,10 +34,7 @@ export interface SetMonthOptions<DateType extends Date = Date>
  * const result = setMonth(new Date(2014, 8, 1), 1)
  * //=> Sat Feb 01 2014 00:00:00
  */
-export function setMonth<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function setMonth<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   month: number,
   options?: SetMonthOptions<ResultDate> | undefined,

@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg, Interval } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg, Interval } from '../types.ts';
 
 /**
  * The {@link isWithinInterval} function options.
@@ -56,10 +56,9 @@ export function isWithinInterval(
   options?: IsWithinIntervalOptions | undefined,
 ): boolean {
   const time = +toDate(date, options?.in);
-  const [startTime, endTime] = [
-    +toDate(interval.start, options?.in),
-    +toDate(interval.end, options?.in),
-  ].sort((a, b) => a - b);
+  const [startTime, endTime] = [+toDate(interval.start, options?.in), +toDate(interval.end, options?.in)].sort(
+    (a, b) => a - b,
+  );
 
   return time >= startTime && time <= endTime;
 }

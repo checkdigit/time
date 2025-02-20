@@ -2,10 +2,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFrom } from "../../../constructFrom/index.ts";
-import { Parser } from "../Parser.ts";
-import type { ParseFlags, ParseResult } from "../types.ts";
-import { parseAnyDigitsSigned } from "../utils.ts";
+import { constructFrom } from '../../../constructFrom/index.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { parseAnyDigitsSigned } from '../utils.ts';
 
 export class TimestampSecondsParser extends Parser<number> {
   priority = 40;
@@ -14,15 +14,11 @@ export class TimestampSecondsParser extends Parser<number> {
     return parseAnyDigitsSigned(dateString);
   }
 
-  set<DateType extends Date>(
-    date: DateType,
-    _flags: ParseFlags,
-    value: number,
-  ): [DateType, ParseFlags] {
+  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): [DateType, ParseFlags] {
     return [constructFrom(date, value * 1000), { timestampIsSet: true }];
   }
 
-  incompatibleTokens = "*" as const;
+  incompatibleTokens = '*' as const;
 }
 
 /* eslint-enable */

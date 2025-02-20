@@ -2,24 +2,18 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { getDefaultOptions } from "../_lib/defaultOptions/index.ts";
-import { constructFrom } from "../constructFrom/index.ts";
-import { differenceInCalendarDays } from "../differenceInCalendarDays/index.ts";
-import { startOfWeekYear } from "../startOfWeekYear/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type {
-  ContextOptions,
-  DateArg,
-  FirstWeekContainsDateOptions,
-  LocalizedOptions,
-  WeekOptions,
-} from "../types.ts";
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
+import { constructFrom } from '../constructFrom/index.ts';
+import { differenceInCalendarDays } from '../differenceInCalendarDays/index.ts';
+import { startOfWeekYear } from '../startOfWeekYear/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg, FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link setWeekYear} function options.
  */
 export interface SetWeekYearOptions<DateType extends Date = Date>
-  extends LocalizedOptions<"options">,
+  extends LocalizedOptions<'options'>,
     WeekOptions,
     FirstWeekContainsDateOptions,
     ContextOptions<DateType> {}
@@ -63,10 +57,7 @@ export interface SetWeekYearOptions<DateType extends Date = Date>
  * })
  * //=> Sat Jan 01 2005 00:00:00
  */
-export function setWeekYear<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function setWeekYear<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   weekYear: number,
   options?: SetWeekYearOptions<ResultDate>,
@@ -79,11 +70,7 @@ export function setWeekYear<
     defaultOptions.locale?.options?.firstWeekContainsDate ??
     1;
 
-  const diff = differenceInCalendarDays(
-    toDate(date, options?.in),
-    startOfWeekYear(date, options),
-    options,
-  );
+  const diff = differenceInCalendarDays(toDate(date, options?.in), startOfWeekYear(date, options), options);
 
   const firstWeek = constructFrom(options?.in || date, 0);
   firstWeek.setFullYear(weekYear, 0, firstWeekContainsDate);

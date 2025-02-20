@@ -2,15 +2,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFrom } from "../constructFrom/index.ts";
-import { constructNow } from "../constructNow/index.ts";
-import type { ContextOptions } from "../types.ts";
+import { constructFrom } from '../constructFrom/index.ts';
+import { constructNow } from '../constructNow/index.ts';
+import type { ContextOptions } from '../types.ts';
 
 /**
  * The {@link startOfTomorrow} function options.
  */
-export interface StartOfTomorrowOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface StartOfTomorrowOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name startOfTomorrow

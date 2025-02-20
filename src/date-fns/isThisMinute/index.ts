@@ -2,9 +2,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructNow } from "../constructNow/index.ts";
-import { isSameMinute } from "../isSameMinute/index.ts";
-import type { DateArg } from "../types.ts";
+import { constructNow } from '../constructNow/index.ts';
+import { isSameMinute } from '../isSameMinute/index.ts';
+import type { DateArg } from '../types.ts';
 
 /**
  * @name isThisMinute

@@ -2,22 +2,17 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { getTimezoneOffsetInMilliseconds } from "../_lib/getTimezoneOffsetInMilliseconds/index.ts";
-import { normalizeDates } from "../_lib/normalizeDates/index.ts";
-import { millisecondsInWeek } from "../constants/index.ts";
-import { startOfWeek } from "../startOfWeek/index.ts";
-import type {
-  ContextOptions,
-  DateArg,
-  LocalizedOptions,
-  WeekOptions,
-} from "../types.ts";
+import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index.ts';
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import { millisecondsInWeek } from '../constants/index.ts';
+import { startOfWeek } from '../startOfWeek/index.ts';
+import type { ContextOptions, DateArg, LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link differenceInCalendarWeeks} function options.
  */
 export interface DifferenceInCalendarWeeksOptions
-  extends LocalizedOptions<"options">,
+  extends LocalizedOptions<'options'>,
     WeekOptions,
     ContextOptions<Date> {}
 
@@ -58,19 +53,13 @@ export function differenceInCalendarWeeks(
   earlierDate: DateArg<Date> & {},
   options?: DifferenceInCalendarWeeksOptions | undefined,
 ): number {
-  const [laterDate_, earlierDate_] = normalizeDates(
-    options?.in,
-    laterDate,
-    earlierDate,
-  );
+  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
 
   const laterStartOfWeek = startOfWeek(laterDate_, options);
   const earlierStartOfWeek = startOfWeek(earlierDate_, options);
 
-  const laterTimestamp =
-    +laterStartOfWeek - getTimezoneOffsetInMilliseconds(laterStartOfWeek);
-  const earlierTimestamp =
-    +earlierStartOfWeek - getTimezoneOffsetInMilliseconds(earlierStartOfWeek);
+  const laterTimestamp = +laterStartOfWeek - getTimezoneOffsetInMilliseconds(laterStartOfWeek);
+  const earlierTimestamp = +earlierStartOfWeek - getTimezoneOffsetInMilliseconds(earlierStartOfWeek);
 
   return Math.round((laterTimestamp - earlierTimestamp) / millisecondsInWeek);
 }

@@ -2,26 +2,19 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { defaultLocale } from "../_lib/defaultLocale/index.ts";
-import { getDefaultOptions } from "../_lib/defaultOptions/index.ts";
-import { normalizeDates } from "../_lib/normalizeDates/index.ts";
-import { differenceInCalendarDays } from "../differenceInCalendarDays/index.ts";
-import { format } from "../format/index.ts";
-import type { FormatRelativeToken } from "../locale/types.ts";
-import type {
-  ContextOptions,
-  DateArg,
-  LocalizedOptions,
-  WeekOptions,
-} from "../types.ts";
+import { defaultLocale } from '../_lib/defaultLocale/index.ts';
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import { differenceInCalendarDays } from '../differenceInCalendarDays/index.ts';
+import { format } from '../format/index.ts';
+import type { FormatRelativeToken } from '../locale/types.ts';
+import type { ContextOptions, DateArg, LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link formatRelative} function options.
  */
 export interface FormatRelativeOptions
-  extends LocalizedOptions<
-      "options" | "localize" | "formatLong" | "formatRelative"
-    >,
+  extends LocalizedOptions<'options' | 'localize' | 'formatLong' | 'formatRelative'>,
     WeekOptions,
     ContextOptions<Date> {}
 
@@ -78,24 +71,24 @@ export function formatRelative(
   const diff = differenceInCalendarDays(date_, baseDate_);
 
   if (isNaN(diff)) {
-    throw new RangeError("Invalid time value");
+    throw new RangeError('Invalid time value');
   }
 
   let token: FormatRelativeToken;
   if (diff < -6) {
-    token = "other";
+    token = 'other';
   } else if (diff < -1) {
-    token = "lastWeek";
+    token = 'lastWeek';
   } else if (diff < 0) {
-    token = "yesterday";
+    token = 'yesterday';
   } else if (diff < 1) {
-    token = "today";
+    token = 'today';
   } else if (diff < 2) {
-    token = "tomorrow";
+    token = 'tomorrow';
   } else if (diff < 7) {
-    token = "nextWeek";
+    token = 'nextWeek';
   } else {
-    token = "other";
+    token = 'other';
   }
 
   const formatStr = locale.formatRelative(token, date_, baseDate_, {

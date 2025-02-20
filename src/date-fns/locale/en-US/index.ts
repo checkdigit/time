@@ -2,12 +2,12 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { formatDistance } from "./_lib/formatDistance/index.ts";
-import { formatLong } from "./_lib/formatLong/index.ts";
-import { formatRelative } from "./_lib/formatRelative/index.ts";
-import { localize } from "./_lib/localize/index.ts";
-import { match } from "./_lib/match/index.ts";
-import type { Locale } from "../types.ts";
+import { formatDistance } from './_lib/formatDistance/index.ts';
+import { formatLong } from './_lib/formatLong/index.ts';
+import { formatRelative } from './_lib/formatRelative/index.ts';
+import { localize } from './_lib/localize/index.ts';
+import { match } from './_lib/match/index.ts';
+import type { Locale } from '../types.ts';
 
 /**
  * @category Locales
@@ -18,7 +18,7 @@ import type { Locale } from "../types.ts";
  * @author Lesha Koss [@leshakoss](https://github.com/leshakoss)
  */
 export const enUS: Locale = {
-  code: "en-US",
+  code: 'en-US',
   formatDistance: formatDistance,
   formatLong: formatLong,
   formatRelative: formatRelative,

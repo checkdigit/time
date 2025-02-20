@@ -2,9 +2,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeInterval } from "../_lib/normalizeInterval/index.ts";
-import { constructFrom } from "../constructFrom/index.ts";
-import type { ContextOptions, Interval, StepOptions } from "../types.ts";
+import { normalizeInterval } from '../_lib/normalizeInterval/index.ts';
+import { constructFrom } from '../constructFrom/index.ts';
+import type { ContextOptions, Interval, StepOptions } from '../types.ts';
 
 /**
  * The {@link eachMonthOfInterval} function options.
@@ -22,10 +22,10 @@ export type EachMonthOfIntervalResult<
 > = Array<
   Options extends EachMonthOfIntervalOptions<infer DateType>
     ? DateType
-    : IntervalType["start"] extends Date
-      ? IntervalType["start"]
-      : IntervalType["end"] extends Date
-        ? IntervalType["end"]
+    : IntervalType['start'] extends Date
+      ? IntervalType['start']
+      : IntervalType['end'] extends Date
+        ? IntervalType['end']
         : Date
 >;
 
@@ -64,10 +64,7 @@ export type EachMonthOfIntervalResult<
 export function eachMonthOfInterval<
   IntervalType extends Interval,
   Options extends EachMonthOfIntervalOptions | undefined = undefined,
->(
-  interval: IntervalType,
-  options?: Options,
-): EachMonthOfIntervalResult<IntervalType, Options> {
+>(interval: IntervalType, options?: Options): EachMonthOfIntervalResult<IntervalType, Options> {
   const { start, end } = normalizeInterval(options?.in, interval);
 
   let reversed = +start > +end;

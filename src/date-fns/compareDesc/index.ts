@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { DateArg } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { DateArg } from '../types.ts';
 
 /**
  * @name compareDesc
@@ -37,10 +37,7 @@ import type { DateArg } from "../types.ts";
  * //   Wed Feb 11 1987 00:00:00
  * // ]
  */
-export function compareDesc(
-  dateLeft: DateArg<Date> & {},
-  dateRight: DateArg<Date> & {},
-): number {
+export function compareDesc(dateLeft: DateArg<Date> & {}, dateRight: DateArg<Date> & {}): number {
   const diff = +toDate(dateLeft) - +toDate(dateRight);
 
   if (diff > 0) return -1;

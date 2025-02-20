@@ -2,9 +2,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeDates } from "../_lib/normalizeDates/index.ts";
-import { startOfQuarter } from "../startOfQuarter/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import { startOfQuarter } from '../startOfQuarter/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link isSameQuarter} function options.
@@ -40,11 +40,7 @@ export function isSameQuarter(
   earlierDate: DateArg<Date> & {},
   options?: IsSameQuarterOptions | undefined,
 ): boolean {
-  const [dateLeft_, dateRight_] = normalizeDates(
-    options?.in,
-    laterDate,
-    earlierDate,
-  );
+  const [dateLeft_, dateRight_] = normalizeDates(options?.in, laterDate, earlierDate);
   return +startOfQuarter(dateLeft_) === +startOfQuarter(dateRight_);
 }
 

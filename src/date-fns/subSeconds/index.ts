@@ -2,14 +2,13 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { addSeconds } from "../addSeconds/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { addSeconds } from '../addSeconds/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link subSeconds} function options.
  */
-export interface SubSecondsOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface SubSecondsOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * Subtract the specified number of seconds from the given date.
@@ -28,10 +27,7 @@ export interface SubSecondsOptions<DateType extends Date = Date>
  * const result = subSeconds(new Date(2014, 6, 10, 12, 45, 0), 30)
  * //=> Thu Jul 10 2014 12:44:30
  */
-export function subSeconds<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function subSeconds<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   amount: number,
   options?: SubSecondsOptions<ResultDate> | undefined,

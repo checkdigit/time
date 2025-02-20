@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { isDate } from "../isDate/index.ts";
-import { toDate } from "../toDate/index.ts";
+import { isDate } from '../isDate/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name isValid
@@ -37,7 +37,7 @@ import { toDate } from "../toDate/index.ts";
  * //=> false
  */
 export function isValid(date: unknown): boolean {
-  return !((!isDate(date) && typeof date !== "number") || isNaN(+toDate(date)));
+  return !((!isDate(date) && typeof date !== 'number') || isNaN(+toDate(date)));
 }
 
 /* eslint-enable */

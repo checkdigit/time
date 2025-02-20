@@ -2,18 +2,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeDates } from "../_lib/normalizeDates/index.ts";
-import { startOfWeek } from "../startOfWeek/index.ts";
-import type { LocalizedOptions, WeekOptions } from "../types.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import { startOfWeek } from '../startOfWeek/index.ts';
+import type { LocalizedOptions, WeekOptions } from '../types.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link isSameWeek} function options.
  */
-export interface IsSameWeekOptions
-  extends WeekOptions,
-    LocalizedOptions<"options">,
-    ContextOptions<Date> {}
+export interface IsSameWeekOptions extends WeekOptions, LocalizedOptions<'options'>, ContextOptions<Date> {}
 
 /**
  * @name isSameWeek
@@ -52,14 +49,8 @@ export function isSameWeek(
   earlierDate: DateArg<Date> & {},
   options?: IsSameWeekOptions,
 ): boolean {
-  const [laterDate_, earlierDate_] = normalizeDates(
-    options?.in,
-    laterDate,
-    earlierDate,
-  );
-  return (
-    +startOfWeek(laterDate_, options) === +startOfWeek(earlierDate_, options)
-  );
+  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
+  return +startOfWeek(laterDate_, options) === +startOfWeek(earlierDate_, options);
 }
 
 /* eslint-enable */

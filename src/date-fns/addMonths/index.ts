@@ -2,15 +2,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFrom } from "../constructFrom/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { constructFrom } from '../constructFrom/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link addMonths} function options.
  */
-export interface AddMonthsOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface AddMonthsOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name addMonths
@@ -38,10 +37,7 @@ export interface AddMonthsOptions<DateType extends Date = Date>
  * const result = addMonths(new Date(2023, 0, 30), 1)
  * //=> Tue Feb 28 2023 00:00:00
  */
-export function addMonths<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function addMonths<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   amount: number,
   options?: AddMonthsOptions<ResultDate> | undefined,
@@ -77,11 +73,7 @@ export function addMonths<
     // the last day of the month and its local time was in the hour skipped or
     // repeated next to a DST transition.  So we use `date` instead which is
     // guaranteed to still have the original time.
-    _date.setFullYear(
-      endOfDesiredMonth.getFullYear(),
-      endOfDesiredMonth.getMonth(),
-      dayOfMonth,
-    );
+    _date.setFullYear(endOfDesiredMonth.getFullYear(), endOfDesiredMonth.getMonth(), dayOfMonth);
     return _date;
   }
 }

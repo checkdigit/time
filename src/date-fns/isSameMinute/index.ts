@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { startOfMinute } from "../startOfMinute/index.ts";
-import type { DateArg } from "../types.ts";
+import { startOfMinute } from '../startOfMinute/index.ts';
+import type { DateArg } from '../types.ts';
 
 /**
  * @name isSameMinute
@@ -34,10 +34,7 @@ import type { DateArg } from "../types.ts";
  * )
  * //=> false
  */
-export function isSameMinute(
-  laterDate: DateArg<Date> & {},
-  earlierDate: DateArg<Date> & {},
-): boolean {
+export function isSameMinute(laterDate: DateArg<Date> & {}, earlierDate: DateArg<Date> & {}): boolean {
   return +startOfMinute(laterDate) === +startOfMinute(earlierDate);
 }
 

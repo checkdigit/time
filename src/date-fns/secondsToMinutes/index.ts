@@ -2,7 +2,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { secondsInMinute } from "../constants/index.ts";
+import { secondsInMinute } from '../constants/index.ts';
 
 /**
  * @name secondsToMinutes

@@ -2,14 +2,13 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { addHours } from "../addHours/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { addHours } from '../addHours/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link subHours} function options.
  */
-export interface SubHoursOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface SubHoursOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name subHours
@@ -33,10 +32,7 @@ export interface SubHoursOptions<DateType extends Date = Date>
  * const result = subHours(new Date(2014, 6, 11, 1, 0), 2)
  * //=> Thu Jul 10 2014 23:00:00
  */
-export function subHours<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function subHours<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   amount: number,
   options?: SubHoursOptions<ResultDate> | undefined,

@@ -2,11 +2,11 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeInterval } from "../_lib/normalizeInterval/index.ts";
-import { addQuarters } from "../addQuarters/index.ts";
-import { constructFrom } from "../constructFrom/index.ts";
-import { startOfQuarter } from "../startOfQuarter/index.ts";
-import type { ContextOptions, Interval, StepOptions } from "../types.ts";
+import { normalizeInterval } from '../_lib/normalizeInterval/index.ts';
+import { addQuarters } from '../addQuarters/index.ts';
+import { constructFrom } from '../constructFrom/index.ts';
+import { startOfQuarter } from '../startOfQuarter/index.ts';
+import type { ContextOptions, Interval, StepOptions } from '../types.ts';
 
 /**
  * The {@link eachQuarterOfInterval} function options.
@@ -27,10 +27,10 @@ export type EachQuarterOfIntervalResult<
 > = Array<
   Options extends EachQuarterOfIntervalOptions<infer DateType>
     ? DateType
-    : IntervalType["start"] extends Date
-      ? IntervalType["start"]
-      : IntervalType["end"] extends Date
-        ? IntervalType["end"]
+    : IntervalType['start'] extends Date
+      ? IntervalType['start']
+      : IntervalType['end'] extends Date
+        ? IntervalType['end']
         : Date
 >;
 
@@ -65,10 +65,7 @@ export type EachQuarterOfIntervalResult<
 export function eachQuarterOfInterval<
   IntervalType extends Interval,
   Options extends EachQuarterOfIntervalOptions | undefined = undefined,
->(
-  interval: IntervalType,
-  options?: Options,
-): EachQuarterOfIntervalResult<IntervalType, Options> {
+>(interval: IntervalType, options?: Options): EachQuarterOfIntervalResult<IntervalType, Options> {
   const { start, end } = normalizeInterval(options?.in, interval);
 
   let reversed = +start > +end;

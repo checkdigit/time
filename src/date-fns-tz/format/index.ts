@@ -2,12 +2,12 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { format as dateFnsFormat } from '../../date-fns/format/index.js';
-import { formatters } from './formatters/index.js'
-import { toDate } from '../toDate/index.js'
-import type { FormatOptionsWithTZ } from '../index.js'
+import { format as dateFnsFormat } from '../../date-fns/format/index.ts';
+import { formatters } from './formatters/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { FormatOptionsWithTZ } from '../index.ts';
 
-const tzFormattingTokensRegExp = /([xXOz]+)|''|'(''|[^'])+('|$)/g
+const tzFormattingTokensRegExp = /([xXOz]+)|''|'(''|[^'])+('|$)/g;
 
 /**
  * @name format
@@ -320,34 +320,28 @@ const tzFormattingTokensRegExp = /([xXOz]+)|''|'(''|[^'])+('|$)/g
  * const result = format(new Date(2014, 6, 2, 15), "h 'o''clock'")
  * //=> "3 o'clock"
  */
-export function format(
-  date: Date | string | number,
-  formatStr: string,
-  options: FormatOptionsWithTZ = {}
-): string {
-  formatStr = String(formatStr)
+export function format(date: Date | string | number, formatStr: string, options: FormatOptionsWithTZ = {}): string {
+  formatStr = String(formatStr);
 
-  const matches = formatStr.match(tzFormattingTokensRegExp)
+  const matches = formatStr.match(tzFormattingTokensRegExp);
   if (matches) {
-    const d = toDate(options.originalDate || date, options)
+    const d = toDate(options.originalDate || date, options);
     // Work through each match and replace the tz token in the format string with the quoted
     // formatted time zone so the remaining tokens can be filled in by date-fns#format.
     formatStr = matches.reduce(function (result, token) {
       if (token[0] === "'") {
-        return result // This is a quoted portion, matched only to ensure we don't match inside it
+        return result; // This is a quoted portion, matched only to ensure we don't match inside it
       }
-      const pos = result.indexOf(token)
-      const precededByQuotedSection = result[pos - 1] === "'"
-      const replaced = result.replace(token, "'" + formatters[token[0]](d, token, options) + "'")
+      const pos = result.indexOf(token);
+      const precededByQuotedSection = result[pos - 1] === "'";
+      const replaced = result.replace(token, "'" + formatters[token[0]](d, token, options) + "'");
       // If the replacement results in two adjoining quoted strings, the back to back quotes
       // are removed, so it doesn't look like an escaped quote.
-      return precededByQuotedSection
-        ? replaced.substring(0, pos - 1) + replaced.substring(pos + 1)
-        : replaced
-    }, formatStr)
+      return precededByQuotedSection ? replaced.substring(0, pos - 1) + replaced.substring(pos + 1) : replaced;
+    }, formatStr);
   }
 
-  return dateFnsFormat(date, formatStr, options)
+  return dateFnsFormat(date, formatStr, options);
 }
 
 /* eslint-enable */

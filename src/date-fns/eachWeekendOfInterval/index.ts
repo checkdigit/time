@@ -2,17 +2,16 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeInterval } from "../_lib/normalizeInterval/index.ts";
-import { constructFrom } from "../constructFrom/index.ts";
-import { eachDayOfInterval } from "../eachDayOfInterval/index.ts";
-import { isWeekend } from "../isWeekend/index.ts";
-import type { ContextOptions, Interval } from "../types.ts";
+import { normalizeInterval } from '../_lib/normalizeInterval/index.ts';
+import { constructFrom } from '../constructFrom/index.ts';
+import { eachDayOfInterval } from '../eachDayOfInterval/index.ts';
+import { isWeekend } from '../isWeekend/index.ts';
+import type { ContextOptions, Interval } from '../types.ts';
 
 /**
  * The {@link eachWeekendOfInterval} function options.
  */
-export interface EachWeekendOfIntervalOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface EachWeekendOfIntervalOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * The {@link eachWeekendOfInterval} function result type.
@@ -23,10 +22,10 @@ export type EachWeekendOfIntervalResult<
 > = Array<
   Options extends EachWeekendOfIntervalOptions<infer DateType>
     ? DateType
-    : IntervalType["start"] extends Date
-      ? IntervalType["start"]
-      : IntervalType["end"] extends Date
-        ? IntervalType["end"]
+    : IntervalType['start'] extends Date
+      ? IntervalType['start']
+      : IntervalType['end'] extends Date
+        ? IntervalType['end']
         : Date
 >;
 
@@ -62,10 +61,7 @@ export type EachWeekendOfIntervalResult<
 export function eachWeekendOfInterval<
   IntervalType extends Interval,
   Options extends EachWeekendOfIntervalOptions | undefined = undefined,
->(
-  interval: IntervalType,
-  options?: Options,
-): EachWeekendOfIntervalResult<IntervalType, Options> {
+>(interval: IntervalType, options?: Options): EachWeekendOfIntervalResult<IntervalType, Options> {
   const { start, end } = normalizeInterval(options?.in, interval);
   const dateInterval = eachDayOfInterval({ start, end }, options);
   const weekends: EachWeekendOfIntervalResult<IntervalType, Options> = [];

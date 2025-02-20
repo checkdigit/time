@@ -2,7 +2,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { minutesInHour } from "../constants/index.ts";
+import { minutesInHour } from '../constants/index.ts';
 
 /**
  * @name hoursToMinutes

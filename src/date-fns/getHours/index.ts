@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link getHours} function options.
@@ -28,10 +28,7 @@ export interface GetHoursOptions extends ContextOptions<Date> {}
  * const result = getHours(new Date(2012, 1, 29, 11, 45))
  * //=> 11
  */
-export function getHours(
-  date: DateArg<Date> & {},
-  options?: GetHoursOptions | undefined,
-): number {
+export function getHours(date: DateArg<Date> & {}, options?: GetHoursOptions | undefined): number {
   return toDate(date, options?.in).getHours();
 }
 

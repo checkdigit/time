@@ -2,20 +2,15 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { isValid } from "../isValid/index.ts";
-import { parse } from "../parse/index.ts";
-import type {
-  AdditionalTokensOptions,
-  FirstWeekContainsDateOptions,
-  LocalizedOptions,
-  WeekOptions,
-} from "../types.ts";
+import { isValid } from '../isValid/index.ts';
+import { parse } from '../parse/index.ts';
+import type { AdditionalTokensOptions, FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link isMatch} function options.
  */
 export interface IsMatchOptions
-  extends LocalizedOptions<"options" | "match" | "formatLong">,
+  extends LocalizedOptions<'options' | 'match' | 'formatLong'>,
     WeekOptions,
     FirstWeekContainsDateOptions,
     AdditionalTokensOptions {}
@@ -304,11 +299,7 @@ export interface IsMatchOptions
  * })
  * //=> true
  */
-export function isMatch(
-  dateStr: string,
-  formatStr: string,
-  options?: IsMatchOptions,
-): boolean {
+export function isMatch(dateStr: string, formatStr: string, options?: IsMatchOptions): boolean {
   return isValid(parse(dateStr, formatStr, new Date(), options));
 }
 

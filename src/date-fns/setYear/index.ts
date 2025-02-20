@@ -2,15 +2,14 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFrom } from "../constructFrom/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { constructFrom } from '../constructFrom/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link setYear} function options.
  */
-export interface SetYearOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface SetYearOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name setYear
@@ -34,10 +33,7 @@ export interface SetYearOptions<DateType extends Date = Date>
  * const result = setYear(new Date(2014, 8, 1), 2013)
  * //=> Sun Sep 01 2013 00:00:00
  */
-export function setYear<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function setYear<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   year: number,
   options?: SetYearOptions<ResultDate> | undefined,

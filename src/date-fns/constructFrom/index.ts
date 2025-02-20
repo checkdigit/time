@@ -2,13 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFromSymbol } from "../constants/index.ts";
-import type {
-  ConstructableDate,
-  ContextFn,
-  DateArg,
-  GenericDateConstructor,
-} from "../types.ts";
+import { constructFromSymbol } from '../constants/index.ts';
+import type { ConstructableDate, ContextFn, DateArg, GenericDateConstructor } from '../types.ts';
 
 /**
  * @name constructFrom
@@ -45,16 +40,13 @@ import type {
  *   );
  * }
  */
-export function constructFrom<
-  DateType extends Date | ConstructableDate,
-  ResultDate extends Date = DateType,
->(
+export function constructFrom<DateType extends Date | ConstructableDate, ResultDate extends Date = DateType>(
   date: DateArg<DateType> | ContextFn<ResultDate> | undefined,
   value: DateArg<Date> & {},
 ): ResultDate {
-  if (typeof date === "function") return date(value);
+  if (typeof date === 'function') return date(value);
 
-  if (date && typeof date === "object" && constructFromSymbol in date) {
+  if (date && typeof date === 'object' && constructFromSymbol in date) {
     const dateToReturn = date[constructFromSymbol](value);
     // [PATCH:] this hack is required because setHours doesn't work for hours that are spring-forward
     if ((value as any)[Symbol.for('UTCHours')] !== undefined) {

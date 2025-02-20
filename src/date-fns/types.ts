@@ -2,10 +2,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { type constructFromSymbol } from "./constants/index.ts";
-import type { Locale } from "./locale/types.ts";
+import { type constructFromSymbol } from './constants/index.ts';
+import type { Locale } from './locale/types.ts';
 
-export type * from "./locale/types.ts";
+export type * from './locale/types.ts';
 
 /**
  * The argument type.
@@ -18,9 +18,7 @@ export type DateArg<DateType extends Date> = DateType | number | string;
  * that accept a time zone as a constructor argument.
  */
 export interface ConstructableDate extends Date {
-  [constructFromSymbol]: <DateType extends Date = Date>(
-    value: DateArg<Date> & {},
-  ) => DateType;
+  [constructFromSymbol]: <DateType extends Date = Date>(value: DateArg<Date> & {}) => DateType;
 }
 
 /**
@@ -117,10 +115,7 @@ export interface Interval<
 /**
  * A version of {@link Interval} that has both start and end resolved to Date.
  */
-export type NormalizedInterval<DateType extends Date = Date> = Interval<
-  DateType,
-  DateType
->;
+export type NormalizedInterval<DateType extends Date = Date> = Interval<DateType, DateType>;
 
 /**
  * The era. Can be either 0 (AD - Anno Domini) or 1 (BC - Before Christ).
@@ -180,7 +175,7 @@ export interface DateValues {
 /**
  * The number rounding method.
  */
-export type RoundingMethod = "ceil" | "floor" | "round" | "trunc";
+export type RoundingMethod = 'ceil' | 'floor' | 'round' | 'trunc';
 
 /**
  * The ISO string format.
@@ -188,13 +183,13 @@ export type RoundingMethod = "ceil" | "floor" | "round" | "trunc";
  * - basic: Minimal number of separators
  * - extended: With separators added to enhance human readability
  */
-export type ISOStringFormat = "extended" | "basic";
+export type ISOStringFormat = 'extended' | 'basic';
 
 /**
  * The ISO date representation. Represents which component the string includes,
  * date, time or both.
  */
-export type ISOStringRepresentation = "complete" | "date" | "time";
+export type ISOStringRepresentation = 'complete' | 'date' | 'time';
 
 /// Function options types
 
@@ -338,9 +333,7 @@ export interface ContextOptions<DateType extends Date> {
    * The context function type. It's used to normalize the input arguments to
    * a specific date instance, which is useful for extensions like [`TZDate`](https://github.com/date-fns/tz).
    */
-export type ContextFn<DateType extends Date> = (
-  value: DateArg<Date> & {},
-) => DateType;
+export type ContextFn<DateType extends Date> = (value: DateArg<Date> & {}) => DateType;
 
 /**
  * Resolves passed type or array of types.

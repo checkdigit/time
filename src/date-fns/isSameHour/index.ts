@@ -2,9 +2,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { normalizeDates } from "../_lib/normalizeDates/index.ts";
-import { startOfHour } from "../startOfHour/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import { startOfHour } from '../startOfHour/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link isSameHour} function options.
@@ -40,11 +40,7 @@ export function isSameHour(
   dateRight: DateArg<Date> & {},
   options?: IsSameHourOptions | undefined,
 ): boolean {
-  const [dateLeft_, dateRight_] = normalizeDates(
-    options?.in,
-    dateLeft,
-    dateRight,
-  );
+  const [dateLeft_, dateRight_] = normalizeDates(options?.in, dateLeft, dateRight);
   return +startOfHour(dateLeft_) === +startOfHour(dateRight_);
 }
 

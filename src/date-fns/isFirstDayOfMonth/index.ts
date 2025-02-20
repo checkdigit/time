@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link isFirstDayOfMonth} function options.
@@ -28,10 +28,7 @@ export interface IsFirstDayOfMonthOptions extends ContextOptions<Date> {}
  * const result = isFirstDayOfMonth(new Date(2014, 8, 1))
  * //=> true
  */
-export function isFirstDayOfMonth(
-  date: DateArg<Date> & {},
-  options?: IsFirstDayOfMonthOptions | undefined,
-): boolean {
+export function isFirstDayOfMonth(date: DateArg<Date> & {}, options?: IsFirstDayOfMonthOptions | undefined): boolean {
   return toDate(date, options?.in).getDate() === 1;
 }
 

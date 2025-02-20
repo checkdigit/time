@@ -2,10 +2,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructNow } from "../constructNow/index.ts";
-import { isSameHour } from "../isSameHour/index.ts";
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { constructNow } from '../constructNow/index.ts';
+import { isSameHour } from '../isSameHour/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link isThisHour} function options.
@@ -32,14 +32,8 @@ export interface IsThisHourOptions extends ContextOptions<Date> {}
  * const result = isThisHour(new Date(2014, 8, 25, 18))
  * //=> true
  */
-export function isThisHour(
-  date: DateArg<Date> & {},
-  options?: IsThisHourOptions,
-): boolean {
-  return isSameHour(
-    toDate(date, options?.in),
-    constructNow(options?.in || date),
-  );
+export function isThisHour(date: DateArg<Date> & {}, options?: IsThisHourOptions): boolean {
+  return isSameHour(toDate(date, options?.in), constructNow(options?.in || date));
 }
 
 /* eslint-enable */

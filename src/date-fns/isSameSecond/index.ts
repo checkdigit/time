@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { startOfSecond } from "../startOfSecond/index.ts";
-import type { DateArg } from "../types.ts";
+import { startOfSecond } from '../startOfSecond/index.ts';
+import type { DateArg } from '../types.ts';
 
 /**
  * @name isSameSecond
@@ -42,10 +42,7 @@ import type { DateArg } from "../types.ts";
  * )
  * //=> false
  */
-export function isSameSecond(
-  laterDate: DateArg<Date> & {},
-  earlierDate: DateArg<Date> & {},
-): boolean {
+export function isSameSecond(laterDate: DateArg<Date> & {}, earlierDate: DateArg<Date> & {}): boolean {
   return +startOfSecond(laterDate) === +startOfSecond(earlierDate);
 }
 

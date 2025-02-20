@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link getYear} function options.
@@ -28,10 +28,7 @@ export interface GetYearOptions extends ContextOptions<Date> {}
  * const result = getYear(new Date(2014, 6, 2))
  * //=> 2014
  */
-export function getYear(
-  date: DateArg<Date> & {},
-  options?: GetYearOptions | undefined,
-): number {
+export function getYear(date: DateArg<Date> & {}, options?: GetYearOptions | undefined): number {
   return toDate(date, options?.in).getFullYear();
 }
 

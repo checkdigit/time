@@ -63,15 +63,15 @@ to fix ESM imports:
 Before:
 
 ```js
-import { format } from 'date-fns-tz/esm'
-import utcToZonedTime from 'date-fns-tz/esm/utcToZonedTime'
+import { format } from 'date-fns-tz/esm';
+import utcToZonedTime from 'date-fns-tz/esm/utcToZonedTime';
 ```
 
 After:
 
 ```js
-import { format } from 'date-fns-tz'
-import utcToZonedTime from 'date-fns-tz/utcToZonedTime'
+import { format } from 'date-fns-tz';
+import utcToZonedTime from 'date-fns-tz/utcToZonedTime';
 ```
 
 ### v1.3.8 (30 January 2023)

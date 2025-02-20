@@ -2,10 +2,10 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { constructFrom } from "../constructFrom/index.ts";
-import { constructNow } from "../constructNow/index.ts";
-import { isSameYear } from "../isSameYear/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { constructFrom } from '../constructFrom/index.ts';
+import { constructNow } from '../constructNow/index.ts';
+import { isSameYear } from '../isSameYear/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link isThisYear} function options.
@@ -31,14 +31,8 @@ export interface IsThisYearOptions extends ContextOptions<Date> {}
  * const result = isThisYear(new Date(2014, 6, 2))
  * //=> true
  */
-export function isThisYear(
-  date: DateArg<Date> & {},
-  options?: IsThisYearOptions | undefined,
-): boolean {
-  return isSameYear(
-    constructFrom(options?.in || date, date),
-    constructNow(options?.in || date),
-  );
+export function isThisYear(date: DateArg<Date> & {}, options?: IsThisYearOptions | undefined): boolean {
+  return isSameYear(constructFrom(options?.in || date, date), constructNow(options?.in || date));
 }
 
 /* eslint-enable */

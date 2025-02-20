@@ -2,14 +2,13 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { toDate } from "../toDate/index.ts";
-import type { ContextOptions, DateArg } from "../types.ts";
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link lastDayOfYear} function options.
  */
-export interface LastDayOfYearOptions<DateType extends Date = Date>
-  extends ContextOptions<DateType> {}
+export interface LastDayOfYearOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name lastDayOfYear
@@ -33,10 +32,7 @@ export interface LastDayOfYearOptions<DateType extends Date = Date>
  * const result = lastDayOfYear(new Date(2014, 8, 2, 11, 55, 00))
  * //=> Wed Dec 31 2014 00:00:00
  */
-export function lastDayOfYear<
-  DateType extends Date,
-  ResultDate extends Date = DateType,
->(
+export function lastDayOfYear<DateType extends Date, ResultDate extends Date = DateType>(
   date: DateArg<DateType>,
   options?: LastDayOfYearOptions<ResultDate>,
 ): ResultDate {
