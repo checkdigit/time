@@ -1,9 +1,13 @@
-import { format as dateFnsFormat, type FormatOptions } from '../../date-fns/format';
-import type { OptionsWithTZ } from '../types';
-import formatters from './formatters';
-import toDate from '../toDate';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
 
-var tzFormattingTokensRegExp = /([xXOz]+)|''|'(''|[^'])+('|$)/g;
+import { format as dateFnsFormat } from '../../date-fns/format/index.js';
+import { formatters } from './formatters/index.js'
+import { toDate } from '../toDate/index.js'
+import type { FormatOptionsWithTZ } from '../index.js'
+
+const tzFormattingTokensRegExp = /([xXOz]+)|''|'(''|[^'])+('|$)/g
 
 /**
  * @name format
@@ -273,9 +277,9 @@ var tzFormattingTokensRegExp = /([xXOz]+)|''|'(''|[^'])+('|$)/g;
  *
  * - Characters are now escaped using single quote symbols (`'`) instead of square brackets.
  *
- * @param {Date|String|Number} date - the original date
- * @param {String} format - the string of tokens
- * @param {OptionsWithTZ} [options] - the object with options. See [Options]{@link https://date-fns.org/docs/Options}
+ * @param date the original date
+ * @param formatStr the string of tokens
+ * @param options the object with options. See [Options]{@link https://date-fns.org/docs/Options}
  * @param {0|1|2} [options.additionalDigits=2] - passed to `toDate`. See [toDate]{@link
  *   https://date-fns.org/docs/toDate}
  * @param {0|1|2|3|4|5|6} [options.weekStartsOn=0] - the index of the first day of the week (0 - Sunday)
@@ -287,7 +291,8 @@ var tzFormattingTokensRegExp = /([xXOz]+)|''|'(''|[^'])+('|$)/g;
  *   - Some of the local week-numbering year tokens (`YY`, `YYYY`) that are confused with the calendar year tokens
  *   (`yy`, `yyyy`). See: https://git.io/fxCyr
  * @param {String} [options.timeZone=''] - used to specify the IANA time zone offset of a date String.
- * @returns {String} the formatted date string
+ * @param {Date|Number} [options.originalDate] - can be used to pass the original unmodified date to `format` to
+ *   improve correctness of the replaced timezone token close to the DST threshold.
  * @throws {TypeError} 2 arguments required
  * @throws {RangeError} `options.additionalDigits` must be 0, 1 or 2
  * @throws {RangeError} `options.locale` must contain `localize` property
@@ -299,50 +304,50 @@ var tzFormattingTokensRegExp = /([xXOz]+)|''|'(''|[^'])+('|$)/g;
  *
  * @example
  * // Represent 11 February 2014 in middle-endian format:
- * var result = format(new Date(2014, 1, 11), 'MM/dd/yyyy')
+ * const result = format(new Date(2014, 1, 11), 'MM/dd/yyyy')
  * //=> '02/11/2014'
  *
  * @example
  * // Represent 2 July 2014 in Esperanto:
  * import { eoLocale } from 'date-fns/locale/eo'
- * var result = format(new Date(2014, 6, 2), "do 'de' MMMM yyyy", {
+ * const result = format(new Date(2014, 6, 2), "do 'de' MMMM yyyy", {
  *   locale: eoLocale
  * })
  * //=> '2-a de julio 2014'
  *
  * @example
  * // Escape string by single quote characters:
- * var result = format(new Date(2014, 6, 2, 15), "h 'o''clock'")
+ * const result = format(new Date(2014, 6, 2, 15), "h 'o''clock'")
  * //=> "3 o'clock"
  */
-export default function format(
-  dirtyDate: Date | string | number,
-  dirtyFormatStr: string,
-  dirtyOptions?: OptionsWithTZ,
+export function format(
+  date: Date | string | number,
+  formatStr: string,
+  options: FormatOptionsWithTZ = {}
 ): string {
-  var formatStr = String(dirtyFormatStr);
-  var options = dirtyOptions || ({} as OptionsWithTZ);
+  formatStr = String(formatStr)
 
-  var matches = formatStr.match(tzFormattingTokensRegExp);
+  const matches = formatStr.match(tzFormattingTokensRegExp)
   if (matches) {
-    var date = toDate(dirtyDate, options);
+    const d = toDate(options.originalDate || date, options)
     // Work through each match and replace the tz token in the format string with the quoted
     // formatted time zone so the remaining tokens can be filled in by date-fns#format.
     formatStr = matches.reduce(function (result, token) {
       if (token[0] === "'") {
-        return result; // This is a quoted portion, matched only to ensure we don't match inside it
+        return result // This is a quoted portion, matched only to ensure we don't match inside it
       }
-      var pos = result.indexOf(token);
-      var precededByQuotedSection = result[pos - 1] === "'";
-      var replaced = result.replace(
-        token,
-        "'" + formatters[token[0] as keyof typeof formatters](date, token, null, options) + "'",
-      );
+      const pos = result.indexOf(token)
+      const precededByQuotedSection = result[pos - 1] === "'"
+      const replaced = result.replace(token, "'" + formatters[token[0]](d, token, options) + "'")
       // If the replacement results in two adjoining quoted strings, the back to back quotes
       // are removed, so it doesn't look like an escaped quote.
-      return precededByQuotedSection ? replaced.substring(0, pos - 1) + replaced.substring(pos + 1) : replaced;
-    }, formatStr);
+      return precededByQuotedSection
+        ? replaced.substring(0, pos - 1) + replaced.substring(pos + 1)
+        : replaced
+    }, formatStr)
   }
 
-  return dateFnsFormat(dirtyDate as Date, formatStr, options as FormatOptions);
+  return dateFnsFormat(date, formatStr, options)
 }
+
+/* eslint-enable */

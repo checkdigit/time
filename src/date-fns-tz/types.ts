@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import type { Locale } from '../date-fns/locale/types';
 
 export type OptionsWithTZ = {
@@ -12,3 +16,5 @@ export type OptionsWithTZ = {
   roundingMethod?: 'floor' | 'ceil' | 'round';
   awareOfUnicodeTokens?: boolean;
 };
+
+/* eslint-enable */

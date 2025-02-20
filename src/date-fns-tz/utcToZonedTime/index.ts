@@ -1,5 +1,9 @@
-import tzParseTimezone from '../_lib/tzParseTimezone';
-import toDate from '../toDate';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { tzParseTimezone } from '../_lib/tzParseTimezone';
+import { toDate } from '../toDate';
 import type { OptionsWithTZ } from '../types';
 
 /**
@@ -47,3 +51,5 @@ export default function utcToZonedTime(
   (resultDate as any)[Symbol.for('UTCHours')] = d.getUTCHours();
   return resultDate;
 }
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 export default function assign<T, U>(target: T, object: U): T & U {
   if (target == null) {
     throw new TypeError('assign requires that input parameter not be null or undefined');
@@ -11,3 +15,5 @@ export default function assign<T, U>(target: T, object: U): T & U {
 
   return target as T & U;
 }
+
+/* eslint-enable */

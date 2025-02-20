@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import cloneObject from '../date-fns-v2-lib/cloneObject';
 import toDate from '../toDate';
 import tzPattern from '../_lib/tzPattern';
@@ -52,3 +56,5 @@ export default function zonedTimeToUtc(date: Date | string | number, timeZone: s
 
   return new Date(utc + offsetMilliseconds);
 }
+
+/* eslint-enable */

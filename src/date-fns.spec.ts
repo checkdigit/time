@@ -1,10 +1,9 @@
 // date-fns.spec.ts
 
 import { strict as assert } from 'node:assert';
+import { describe, it } from 'node:test';
 
-import { describe, it } from '@jest/globals';
-
-import { add } from './index';
+import { add } from './index.ts';
 
 describe('date-fns', () => {
   it('add works', () => {

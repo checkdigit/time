@@ -1,10 +1,9 @@
 // holidays/united-states/federal-reserve-bank/get-all-us-federal-reserve-bank-holidays.spec.ts
 
 import { strict as assert } from 'node:assert';
+import { describe, it } from 'node:test';
 
-import { describe, it } from '@jest/globals';
-
-import { getAllUSFederalReserveBankHolidays } from './index';
+import { getAllUSFederalReserveBankHolidays } from './index.ts';
 
 describe('get-all-federal-reserve-bank-holidays', () => {
   it('works for 2022 based on the Federal Holidays outlined in https://www.federalreserve.gov/aboutthefed/k8.htm', () => {

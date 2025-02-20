@@ -5,6 +5,7 @@ export default [
   {
     rules: {
       '@checkdigit/file-path-comment': 'off',
+      '@checkdigit/require-assert-predicate-rejects-throws': 'off',
       // 'yml/no-empty-mapping-value': 'off',
       // 'markdown/fenced-code-language': 'off',
       // 'markdown/no-missing-label-refs': 'off',

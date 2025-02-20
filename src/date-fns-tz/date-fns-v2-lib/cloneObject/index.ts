@@ -1,5 +1,11 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 import assign from '../assign/index';
 
 export default function cloneObject<T>(object: T): T {
   return assign({}, object);
 }
+
+/* eslint-enable */

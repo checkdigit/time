@@ -1,11 +1,11 @@
 // now.spec.ts
 
 import { strict as assert } from 'node:assert';
+import { describe, it } from 'node:test';
 
-import { describe, it } from '@jest/globals';
 import { Temporal as TemporalPolyfill } from '@js-temporal/polyfill';
 
-import { Temporal } from './index';
+import { Temporal } from './index.ts';
 
 describe('now', () => {
   it('instant() returns always-increasing values as a nanosecond-precision Instant', () => {

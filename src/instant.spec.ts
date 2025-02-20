@@ -1,11 +1,11 @@
 // instant.spec.ts
 
 import { strict as assert } from 'node:assert';
+import { describe, it } from 'node:test';
 
-import { describe, it } from '@jest/globals';
 import { Temporal as TemporalPolyfill } from '@js-temporal/polyfill';
 
-import { Temporal } from './index';
+import { Temporal } from './index.ts';
 
 describe('instant', () => {
   it('from parses date strings correctly', () => {

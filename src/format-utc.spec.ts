@@ -1,10 +1,9 @@
 // format-utc.spec.ts
 
 import { strict as assert } from 'node:assert';
+import { describe, it } from 'node:test';
 
-import { describe, it } from '@jest/globals';
-
-import { formatUtc } from './index';
+import { formatUtc } from './index.ts';
 
 describe('format-utc', () => {
   it('works', () => {
