@@ -48,7 +48,7 @@ export function constructFrom<DateType extends Date | ConstructableDate, ResultD
 
   if (date && typeof date === 'object' && constructFromSymbol in date) {
     const dateToReturn = date[constructFromSymbol](value);
-    // [PATCH:] this hack is required because setHours doesn't work for hours that are spring-forward
+    // [PATCH:] this hack is required because setHours doesn't work for hours that are close to daylight saving timezone threshold
     if ((value as any)[Symbol.for('UTCHours')] !== undefined) {
       (dateToReturn as any)[Symbol.for('UTCHours')] = (value as any)[Symbol.for('UTCHours')];
     }
@@ -57,7 +57,7 @@ export function constructFrom<DateType extends Date | ConstructableDate, ResultD
 
   if (date instanceof Date) {
     const dateToReturn = new (date.constructor as GenericDateConstructor<ResultDate>)(value);
-    // [PATCH:] this hack is required because setHours doesn't work for hours that are spring-forward
+    // [PATCH:] this hack is required because setHours doesn't work for hours that are close to daylight saving timezone threshold
     if ((date as any)[Symbol.for('UTCHours')] !== undefined) {
       (dateToReturn as any)[Symbol.for('UTCHours')] = (date as any)[Symbol.for('UTCHours')];
     }

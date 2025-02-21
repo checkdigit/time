@@ -43,7 +43,7 @@ export function toZonedTime(date: Date | string | number, timeZone: string, opti
 
   resultDate.setHours(d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds(), d.getUTCMilliseconds());
 
-  // [PATCH:] this hack is required because setHours doesn't work for hours that are spring-forward
+  // [PATCH:] this hack is required because setHours doesn't work for hours that are close to daylight saving timezone threshold
   (resultDate as any)[Symbol.for('UTCHours')] = d.getUTCHours();
 
   return resultDate;

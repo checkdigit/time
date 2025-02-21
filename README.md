@@ -44,7 +44,6 @@ The documentation for `date-fns-tz` is here: https://github.com/marnusw/date-fns
 
 When updating the latest code from the original repositories, except making all the necessary changes to make them fully typescript compatible, please remember to carry over the patches to overcome the following issues:
 
-- spring-forward support
-- nanosecond support
+- hours is incorrect when it's close to daylight saving timezone threshold
 
 Please search for `[PATCH:]` in the existing codebase.

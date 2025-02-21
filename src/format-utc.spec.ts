@@ -15,7 +15,7 @@ describe('format-utc', () => {
   });
 
   it('matches toISOString', () => {
-    // make sure works during EST spring-forward
+    // make sure works during EST close to daylight saving timezone threshold
     assert.equal(
       formatUtc(new Date('2038-03-14T02:07:44.594Z'), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
       '2038-03-14T02:07:44.594Z',
