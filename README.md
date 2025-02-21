@@ -40,6 +40,22 @@ The documentation for `date-fns` is here: https://date-fns.org/
 
 The documentation for `date-fns-tz` is here: https://github.com/marnusw/date-fns-tz
 
+## Migration guide
+
+following are the main steps to sync up with the latest date-fns/date-fns-tz
+
+- clone 3rd party repo
+- remove test/fp stuff
+- copy/override into @checkdigit/time repo's corresponding folder
+- update CHANGELOG.md (it helps to understand the changes since the last update and to prepare accordingly)
+- replace imports from '.js' to '.ts'
+- Add comments in the beginning of the files to silence ts/lint errors if it forces overwhelming changes otherwise
+- check things which compiles but may have other issues, e.g. import { type ZZZ } => import type { ZZZ }
+- adjust tsconfig.json compilerOptions if necessary
+- apply previous patch (e.g. daylight saving timezone, etc.)
+- pass existing local tests
+- beta-test across dependent repos to make sure it still works
+
 ## Critical maintenance notes (VERY IMPORTANT!!!):
 
 When updating the latest code from the original repositories, except making all the necessary changes to make them fully typescript compatible, please remember to carry over the patches to overcome the following issues:
