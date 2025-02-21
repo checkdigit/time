@@ -2,8 +2,8 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { type constructFromSymbol } from './constants/index.ts';
-import type { Locale } from './locale/types.ts';
+import type { constructFromSymbol } from './constants/index.ts';
+import { Locale } from './locale/types.ts';
 
 export type * from './locale/types.ts';
 

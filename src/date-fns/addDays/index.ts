@@ -47,4 +47,5 @@ export function addDays<DateType extends Date, ResultDate extends Date = DateTyp
   _date.setDate(_date.getDate() + amount);
   return _date;
 }
+
 /* eslint-enable */
