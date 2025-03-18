@@ -55,7 +55,7 @@ export const daysInYear = 365.2425;
  * new Date(8640000000000001);
  * //=> Invalid Date
  */
-export const maxTime = Math.pow(10, 8) * 24 * 60 * 60 * 1000;
+export const maxTime: number = Math.pow(10, 8) * 24 * 60 * 60 * 1000;
 
 /**
  * @constant
@@ -71,7 +71,7 @@ export const maxTime = Math.pow(10, 8) * 24 * 60 * 60 * 1000;
  * new Date(-8640000000000001)
  * //=> Invalid Date
  */
-export const minTime = -maxTime;
+export const minTime: number = -maxTime;
 
 /**
  * @constant
@@ -176,35 +176,35 @@ export const secondsInMinute = 60;
  * @name secondsInDay
  * @summary Seconds in 1 day.
  */
-export const secondsInDay = secondsInHour * 24;
+export const secondsInDay: number = secondsInHour * 24;
 
 /**
  * @constant
  * @name secondsInWeek
  * @summary Seconds in 1 week.
  */
-export const secondsInWeek = secondsInDay * 7;
+export const secondsInWeek: number = secondsInDay * 7;
 
 /**
  * @constant
  * @name secondsInYear
  * @summary Seconds in 1 year.
  */
-export const secondsInYear = secondsInDay * daysInYear;
+export const secondsInYear: number = secondsInDay * daysInYear;
 
 /**
  * @constant
  * @name secondsInMonth
  * @summary Seconds in 1 month
  */
-export const secondsInMonth = secondsInYear / 12;
+export const secondsInMonth: number = secondsInYear / 12;
 
 /**
  * @constant
  * @name secondsInQuarter
  * @summary Seconds in 1 quarter.
  */
-export const secondsInQuarter = secondsInMonth * 3;
+export const secondsInQuarter: number = secondsInMonth * 3;
 
 /**
  * @constant
@@ -217,6 +217,6 @@ export const secondsInQuarter = secondsInMonth * 3;
  * [`TZDate`](https://github.com/date-fns/tz) that accept a time zone as
  * a constructor argument.
  */
-export const constructFromSymbol = Symbol.for('constructDateFrom');
+export const constructFromSymbol: unique symbol = Symbol.for('constructDateFrom');
 
 /* eslint-enable */

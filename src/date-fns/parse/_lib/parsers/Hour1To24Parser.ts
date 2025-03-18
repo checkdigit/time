@@ -32,7 +32,7 @@ export class Hour1To24Parser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['a', 'b', 'h', 'H', 'K', 't', 'T'];
+  incompatibleTokens: string[] = ['a', 'b', 'h', 'H', 'K', 't', 'T'];
 }
 
 /* eslint-enable */

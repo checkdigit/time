@@ -33,7 +33,7 @@ export class LocalWeekParser extends Parser<number> {
     return startOfWeek(setWeek(date, value, options), options);
   }
 
-  incompatibleTokens = ['y', 'R', 'u', 'q', 'Q', 'M', 'L', 'I', 'd', 'D', 'i', 't', 'T'];
+  incompatibleTokens: string[] = ['y', 'R', 'u', 'q', 'Q', 'M', 'L', 'I', 'd', 'D', 'i', 't', 'T'];
 }
 
 /* eslint-enable */

@@ -31,7 +31,7 @@ export class MinuteParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['t', 'T'];
+  incompatibleTokens: string[] = ['t', 'T'];
 }
 
 /* eslint-enable */

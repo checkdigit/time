@@ -22,7 +22,7 @@ export interface YearParserValue {
 // | AD 12345 | 12345 | 45 | 12345 | 12345 | 12345 |
 export class YearParser extends Parser<YearParserValue> {
   priority = 130;
-  incompatibleTokens = ['Y', 'R', 'u', 'w', 'I', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['Y', 'R', 'u', 'w', 'I', 'i', 'e', 'c', 't', 'T'];
 
   parse(dateString: string, token: string, match: Match): ParseResult<YearParserValue> {
     const valueCallback = (year: number) => ({

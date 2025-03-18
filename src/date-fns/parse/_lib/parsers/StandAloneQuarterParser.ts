@@ -67,7 +67,7 @@ export class StandAloneQuarterParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['Y', 'R', 'Q', 'M', 'L', 'w', 'I', 'd', 'D', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['Y', 'R', 'Q', 'M', 'L', 'w', 'I', 'd', 'D', 'i', 'e', 'c', 't', 'T'];
 }
 
 /* eslint-enable */

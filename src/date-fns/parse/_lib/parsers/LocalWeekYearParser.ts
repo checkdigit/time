@@ -60,7 +60,7 @@ export class LocalWeekYearParser extends Parser<YearParserValue> {
     return startOfWeek(date, options);
   }
 
-  incompatibleTokens = ['y', 'R', 'u', 'Q', 'q', 'M', 'L', 'I', 'd', 'D', 'i', 't', 'T'];
+  incompatibleTokens: string[] = ['y', 'R', 'u', 'Q', 'q', 'M', 'L', 'I', 'd', 'D', 'i', 't', 'T'];
 }
 
 /* eslint-enable */

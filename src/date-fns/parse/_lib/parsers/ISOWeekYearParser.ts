@@ -27,7 +27,7 @@ export class ISOWeekYearParser extends Parser<number> {
     return startOfISOWeek(firstWeekOfYear);
   }
 
-  incompatibleTokens = ['G', 'y', 'Y', 'u', 'Q', 'q', 'M', 'L', 'w', 'd', 'D', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['G', 'y', 'Y', 'u', 'Q', 'q', 'M', 'L', 'w', 'd', 'D', 'e', 'c', 't', 'T'];
 }
 
 /* eslint-enable */

@@ -7,11 +7,11 @@ const weekYearTokenRE = /^Y+$/;
 
 const throwTokens = ['D', 'DD', 'YY', 'YYYY'];
 
-export function isProtectedDayOfYearToken(token: string) {
+export function isProtectedDayOfYearToken(token: string): boolean {
   return dayOfYearTokenRE.test(token);
 }
 
-export function isProtectedWeekYearToken(token: string) {
+export function isProtectedWeekYearToken(token: string): boolean {
   return weekYearTokenRE.test(token);
 }
 

@@ -9,7 +9,7 @@ import type { ParseFlags, ParseResult } from '../types.ts';
 import { mapValue, parseNDigits, parseNumericPattern } from '../utils.ts';
 
 export class MonthParser extends Parser<number> {
-  incompatibleTokens = ['Y', 'R', 'q', 'Q', 'L', 'w', 'I', 'D', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['Y', 'R', 'q', 'Q', 'L', 'w', 'I', 'D', 'i', 'e', 'c', 't', 'T'];
   priority = 110;
 
   parse(dateString: string, token: string, match: Match): ParseResult<number> {

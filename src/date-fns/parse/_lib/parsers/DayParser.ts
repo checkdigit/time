@@ -62,7 +62,7 @@ export class DayParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['D', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['D', 'i', 'e', 'c', 't', 'T'];
 }
 
 /* eslint-enable */

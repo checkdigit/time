@@ -34,7 +34,7 @@ export class ISOTimezoneParser extends Parser<number> {
     return constructFrom(date, date.getTime() - getTimezoneOffsetInMilliseconds(date) - value);
   }
 
-  incompatibleTokens = ['t', 'T', 'X'];
+  incompatibleTokens: string[] = ['t', 'T', 'X'];
 }
 
 /* eslint-enable */

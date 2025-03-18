@@ -54,7 +54,7 @@ export class AMPMParser extends Parser<LocaleDayPeriod> {
     return date;
   }
 
-  incompatibleTokens = ['b', 'B', 'H', 'k', 't', 'T'];
+  incompatibleTokens: string[] = ['b', 'B', 'H', 'k', 't', 'T'];
 }
 
 /* eslint-enable */

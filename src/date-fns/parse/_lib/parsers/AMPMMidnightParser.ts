@@ -1,6 +1,5 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
-// @ts-nocheck
 
 import type { LocaleDayPeriod, Match } from '../../../locale/types.ts';
 import { Parser } from '../Parser.ts';
@@ -54,7 +53,7 @@ export class AMPMMidnightParser extends Parser<LocaleDayPeriod> {
     return date;
   }
 
-  incompatibleTokens = ['a', 'B', 'H', 'k', 't', 'T'];
+  incompatibleTokens: string[] = ['a', 'B', 'H', 'k', 't', 'T'];
 }
 
 /* eslint-enable */

@@ -74,7 +74,7 @@ export class ValueSetter<Value> extends Setter {
 }
 
 export class DateTimezoneSetter extends Setter {
-  priority = TIMEZONE_UNIT_PRIORITY;
+  priority: number = TIMEZONE_UNIT_PRIORITY;
   subPriority = -1;
   context: ContextFn<Date>;
 

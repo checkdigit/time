@@ -38,7 +38,7 @@ export class EraParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['R', 'u', 't', 'T'];
+  incompatibleTokens: string[] = ['R', 'u', 't', 'T'];
 }
 
 /* eslint-enable */

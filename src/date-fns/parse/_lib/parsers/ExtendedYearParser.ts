@@ -23,7 +23,7 @@ export class ExtendedYearParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['G', 'y', 'Y', 'R', 'w', 'I', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['G', 'y', 'Y', 'R', 'w', 'I', 'i', 'e', 'c', 't', 'T'];
 }
 
 /* eslint-enable */

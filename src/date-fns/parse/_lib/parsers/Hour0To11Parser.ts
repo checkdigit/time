@@ -36,7 +36,7 @@ export class Hour0To11Parser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['h', 'H', 'k', 't', 'T'];
+  incompatibleTokens: string[] = ['h', 'H', 'k', 't', 'T'];
 }
 
 /* eslint-enable */

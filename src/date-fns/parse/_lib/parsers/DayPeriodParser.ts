@@ -55,7 +55,7 @@ export class DayPeriodParser extends Parser<LocaleDayPeriod> {
     return date;
   }
 
-  incompatibleTokens = ['a', 'b', 't', 'T'];
+  incompatibleTokens: string[] = ['a', 'b', 't', 'T'];
 }
 
 /* eslint-enable */
