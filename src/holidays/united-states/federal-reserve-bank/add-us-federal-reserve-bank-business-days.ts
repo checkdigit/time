@@ -19,7 +19,7 @@ export default function (plainDate: PlainDate, amount: number): PlainDate {
     throw new TypeError('Invalid Amount');
   }
 
-  const result = new Date(plainDate.year, plainDate.month, plainDate.date);
+  const result = new Date(Date.UTC(plainDate.year, plainDate.month, plainDate.date));
   result.setUTCHours(0, 0, 0, 0);
 
   let count = 0;
