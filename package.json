@@ -41,8 +41,11 @@
     "ci:lint": "npm run lint",
     "ci:style": "npm run prettier",
     "ci:test": "node --env-file=.env --disable-warning ExperimentalWarning --experimental-strip-types --test-timeout 600000 --test \"src/**/*.spec.ts\"",
+    "clean": "npm cache verify && rimraf coverage node_modules",
+    "coverage": "node --env-file=.env --disable-warning ExperimentalWarning --experimental-strip-types --test-timeout 600000 --experimental-test-coverage --test \"src/**/*.spec.ts\"",
     "lint": "eslint --max-warnings 0 .",
     "lint:fix": "eslint . --fix",
+    "prepare": "",
     "prepublishOnly": "npm run build:dist-types && npm run build:dist-mjs",
     "prettier": "prettier --ignore-path .gitignore --list-different .",
     "prettier:fix": "prettier --ignore-path .gitignore --write .",
@@ -50,12 +53,12 @@
   },
   "prettier": "@checkdigit/prettier-config",
   "devDependencies": {
-    "@checkdigit/eslint-config": "^11.2.0",
+    "@checkdigit/eslint-config": "^11.2.6",
     "@checkdigit/prettier-config": "^6.3.0",
-    "@checkdigit/typescript-config": "^9.1.0",
+    "@checkdigit/typescript-config": "^9.1.1",
     "rimraf": "^6.0.1"
   },
   "engines": {
-    "node": ">=22.11"
+    "node": ">=22.14"
   }
 }
