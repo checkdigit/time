@@ -6,6 +6,8 @@ import { describe, it } from 'node:test';
 import { isUSFederalReserveBankClosed } from './index.ts';
 
 describe('is-us-federal-reserve-bank-holiday', () => {
+  process.loadEnvFile();
+
   it('works for random federal reserve bank business days in 2022', () => {
     assert.equal(isUSFederalReserveBankClosed({ year: 2022, month: 0, date: 10 }), false);
     assert.equal(isUSFederalReserveBankClosed({ year: 2022, month: 1, date: 7 }), false);

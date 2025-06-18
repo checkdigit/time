@@ -6,6 +6,8 @@ import { describe, it } from 'node:test';
 import { formatUtc } from './index.ts';
 
 describe('format-utc', () => {
+  process.loadEnvFile();
+
   it('works', () => {
     assert.equal(formatUtc(new Date('Tue Sep 13 2022 13:38:00 GMT-0400'), 'yyyy-MM-dd'), '2022-09-13');
     assert.equal(

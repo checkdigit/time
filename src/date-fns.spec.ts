@@ -6,6 +6,8 @@ import { describe, it } from 'node:test';
 import { add } from './index.ts';
 
 describe('date-fns', () => {
+  process.loadEnvFile();
+
   it('add works', () => {
     assert.equal(
       add(new Date('2014-09-01T14:19:50.000Z'), {

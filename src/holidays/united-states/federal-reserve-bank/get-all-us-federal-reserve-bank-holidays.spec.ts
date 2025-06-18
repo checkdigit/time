@@ -6,6 +6,8 @@ import { describe, it } from 'node:test';
 import { getAllUSFederalReserveBankHolidays } from './index.ts';
 
 describe('get-all-federal-reserve-bank-holidays', () => {
+  process.loadEnvFile();
+
   it('works for 2022 based on the Federal Holidays outlined in https://www.federalreserve.gov/aboutthefed/k8.htm', () => {
     assert.deepEqual(getAllUSFederalReserveBankHolidays(2022), [
       { name: `New Year's Day`, date: '2022-01-01' },
