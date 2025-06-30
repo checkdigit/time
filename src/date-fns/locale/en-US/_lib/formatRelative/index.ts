@@ -1,4 +1,8 @@
-import type { FormatRelativeFn } from '../../../types';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { FormatRelativeFn } from '../../../types.ts';
 
 const formatRelativeLocale = {
   lastWeek: "'last' eeee 'at' p",
@@ -10,3 +14,5 @@ const formatRelativeLocale = {
 };
 
 export const formatRelative: FormatRelativeFn = (token, _date, _baseDate, _options) => formatRelativeLocale[token];
+
+/* eslint-enable */

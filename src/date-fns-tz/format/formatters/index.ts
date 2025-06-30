@@ -1,17 +1,20 @@
-import tzIntlTimeZoneName from '../../_lib/tzIntlTimeZoneName';
-import tzParseTimezone from '../../_lib/tzParseTimezone';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { tzIntlTimeZoneName } from '../../_lib/tzIntlTimeZoneName/index.ts';
+import { tzParseTimezone } from '../../_lib/tzParseTimezone/index.ts';
+import type { FormatOptionsWithTZ } from '../../index.ts';
 
 const MILLISECONDS_IN_MINUTE = 60 * 1000;
 
-const formatters = {
+export const formatters: Record<
+  string,
+  (date: Date, token: string, options: FormatOptionsWithTZ) => string | undefined
+> = {
   // Timezone (ISO-8601. If offset is 0, output is always `'Z'`)
-  X: function (
-    date: Date,
-    token: string,
-    _localize: boolean | null,
-    options: { timeZone: string; _originalDate?: Date },
-  ) {
-    const timezoneOffset = getTimeZoneOffset(options.timeZone, options._originalDate || date);
+  X: function (date, token, options) {
+    const timezoneOffset = getTimeZoneOffset(options.timeZone, date);
 
     if (timezoneOffset === 0) {
       return 'Z';
@@ -40,13 +43,8 @@ const formatters = {
   },
 
   // Timezone (ISO-8601. If offset is 0, output is `'+00:00'` or equivalent)
-  x: function (
-    date: Date,
-    token: string,
-    _localize: boolean | null,
-    options: { timeZone: string; _originalDate?: Date },
-  ) {
-    const timezoneOffset = getTimeZoneOffset(options.timeZone, options._originalDate || date);
+  x: function (date, token, options) {
+    const timezoneOffset = getTimeZoneOffset(options.timeZone, date);
 
     switch (token) {
       // Hours and optional minutes
@@ -71,13 +69,8 @@ const formatters = {
   },
 
   // Timezone (GMT)
-  O: function (
-    date: Date,
-    token: string,
-    _localize: boolean | null,
-    options: { timeZone: string; _originalDate?: Date },
-  ) {
-    const timezoneOffset = getTimeZoneOffset(options.timeZone, options._originalDate || date);
+  O: function (date, token, options) {
+    const timezoneOffset = getTimeZoneOffset(options.timeZone, date);
 
     switch (token) {
       // Short
@@ -93,65 +86,57 @@ const formatters = {
   },
 
   // Timezone (specific non-location)
-  z: function (
-    date: Date,
-    token: string,
-    _localize: boolean | null,
-    options: { timeZone: string; _originalDate?: Date },
-  ) {
-    const originalDate = options._originalDate || date;
-
+  z: function (date, token, options) {
     switch (token) {
       // Short
       case 'z':
       case 'zz':
       case 'zzz':
-        return tzIntlTimeZoneName('short', originalDate, options);
+        return tzIntlTimeZoneName('short', date, options);
       // Long
       case 'zzzz':
       default:
-        return tzIntlTimeZoneName('long', originalDate, options);
+        return tzIntlTimeZoneName('long', date, options);
     }
   },
 };
 
-function getTimeZoneOffset(timeZone: string, originalDate: Date) {
+function getTimeZoneOffset(timeZone: string | undefined, originalDate?: Date) {
   const timeZoneOffset = timeZone
     ? tzParseTimezone(timeZone, originalDate, true) / MILLISECONDS_IN_MINUTE
-    : originalDate.getTimezoneOffset();
+    : (originalDate?.getTimezoneOffset() ?? 0);
   if (Number.isNaN(timeZoneOffset)) {
     throw new RangeError('Invalid time zone specified: ' + timeZone);
   }
   return timeZoneOffset;
 }
 
-function addLeadingZeros(num: number, targetLength: number) {
-  const sign = num < 0 ? '-' : '';
-  let output = Math.abs(num).toString();
+function addLeadingZeros(number: number, targetLength: number) {
+  const sign = number < 0 ? '-' : '';
+  let output = Math.abs(number).toString();
   while (output.length < targetLength) {
     output = '0' + output;
   }
   return sign + output;
 }
 
-function formatTimezone(offset: number, dirtyDelimeter?: string) {
-  const delimeter = dirtyDelimeter || '';
+function formatTimezone(offset: number, delimiter = '') {
   const sign = offset > 0 ? '-' : '+';
   const absOffset = Math.abs(offset);
   const hours = addLeadingZeros(Math.floor(absOffset / 60), 2);
   const minutes = addLeadingZeros(Math.floor(absOffset % 60), 2);
-  return sign + hours + delimeter + minutes;
+  return sign + hours + delimiter + minutes;
 }
 
-function formatTimezoneWithOptionalMinutes(offset: number, dirtyDelimeter?: string) {
+function formatTimezoneWithOptionalMinutes(offset: number, delimiter?: string) {
   if (offset % 60 === 0) {
     const sign = offset > 0 ? '-' : '+';
     return sign + addLeadingZeros(Math.abs(offset) / 60, 2);
   }
-  return formatTimezone(offset, dirtyDelimeter);
+  return formatTimezone(offset, delimiter);
 }
 
-function formatTimezoneShort(offset: number, dirtyDelimeter: string) {
+function formatTimezoneShort(offset: number, delimiter = '') {
   const sign = offset > 0 ? '-' : '+';
   const absOffset = Math.abs(offset);
   const hours = Math.floor(absOffset / 60);
@@ -159,8 +144,7 @@ function formatTimezoneShort(offset: number, dirtyDelimeter: string) {
   if (minutes === 0) {
     return sign + String(hours);
   }
-  const delimeter = dirtyDelimeter || '';
-  return sign + String(hours) + delimeter + addLeadingZeros(minutes, 2);
+  return sign + String(hours) + delimiter + addLeadingZeros(minutes, 2);
 }
 
-export default formatters;
+/* eslint-enable */

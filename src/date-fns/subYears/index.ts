@@ -1,4 +1,14 @@
-import { addYears } from '../addYears/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { addYears } from '../addYears/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+/**
+ * The {@link subYears} function options.
+ */
+export interface SubYearsOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name subYears
@@ -9,9 +19,11 @@ import { addYears } from '../addYears/index';
  * Subtract the specified number of years from the given date.
  *
  * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
  *
  * @param date - The date to be changed
  * @param amount - The amount of years to be subtracted.
+ * @param options - An object with options
  *
  * @returns The new date with the years subtracted
  *
@@ -20,6 +32,12 @@ import { addYears } from '../addYears/index';
  * const result = subYears(new Date(2014, 8, 1), 5)
  * //=> Tue Sep 01 2009 00:00:00
  */
-export function subYears<DateType extends Date>(date: DateType | number | string, amount: number): DateType {
-  return addYears(date, -amount);
+export function subYears<DateType extends Date, ResultDate extends Date = DateType>(
+  date: DateArg<DateType>,
+  amount: number,
+  options?: SubYearsOptions<ResultDate>,
+): ResultDate {
+  return addYears(date, -amount, options);
 }
+
+/* eslint-enable */

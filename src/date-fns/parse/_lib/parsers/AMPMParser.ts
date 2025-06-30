@@ -1,7 +1,11 @@
-import type { LocaleDayPeriod, Match } from '../../../locale/types';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { dayPeriodEnumToHours } from '../utils';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { LocaleDayPeriod, Match } from '../../../locale/types.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { dayPeriodEnumToHours } from '../utils.ts';
 
 export class AMPMParser extends Parser<LocaleDayPeriod> {
   priority = 80;
@@ -50,5 +54,7 @@ export class AMPMParser extends Parser<LocaleDayPeriod> {
     return date;
   }
 
-  incompatibleTokens = ['b', 'B', 'H', 'k', 't', 'T'];
+  incompatibleTokens: string[] = ['b', 'B', 'H', 'k', 't', 'T'];
 }
+
+/* eslint-enable */

@@ -1,12 +1,13 @@
 // holidays/united-states/federal-reserve-bank/is-us-federal-reserve-bank-closed.spec.ts
 
 import { strict as assert } from 'node:assert';
+import { describe, it } from 'node:test';
 
-import { describe, it } from '@jest/globals';
-
-import { isUSFederalReserveBankClosed } from './index';
+import { isUSFederalReserveBankClosed } from './index.ts';
 
 describe('is-us-federal-reserve-bank-holiday', () => {
+  process.loadEnvFile();
+
   it('works for random federal reserve bank business days in 2022', () => {
     assert.equal(isUSFederalReserveBankClosed({ year: 2022, month: 0, date: 10 }), false);
     assert.equal(isUSFederalReserveBankClosed({ year: 2022, month: 1, date: 7 }), false);

@@ -1,4 +1,14 @@
-import { toDate } from '../toDate/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+/**
+ * The {@link setHours} function options.
+ */
+export interface SetHoursOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name setHours
@@ -9,9 +19,11 @@ import { toDate } from '../toDate/index';
  * Set the hours to the given date.
  *
  * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
  *
  * @param date - The date to be changed
  * @param hours - The hours of the new date
+ * @param options - An object with options
  *
  * @returns The new date with the hours set
  *
@@ -20,8 +32,14 @@ import { toDate } from '../toDate/index';
  * const result = setHours(new Date(2014, 8, 1, 11, 30), 4)
  * //=> Mon Sep 01 2014 04:30:00
  */
-export function setHours<DateType extends Date>(date: DateType | number | string, hours: number): DateType {
-  const _date = toDate(date);
+export function setHours<DateType extends Date, ResultDate extends Date = DateType>(
+  date: DateArg<DateType>,
+  hours: number,
+  options?: SetHoursOptions<ResultDate> | undefined,
+): ResultDate {
+  const _date = toDate(date, options?.in);
   _date.setHours(hours);
   return _date;
 }
+
+/* eslint-enable */

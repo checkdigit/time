@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 /**
  * @name isDate
  * @category Common Helpers
@@ -35,3 +39,5 @@ export function isDate(value: unknown): value is Date {
     value instanceof Date || (typeof value === 'object' && Object.prototype.toString.call(value) === '[object Date]')
   );
 }
+
+/* eslint-enable */

@@ -1,4 +1,9 @@
-import { toDate } from '../toDate/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { toDate } from '../toDate/index.ts';
+import type { DateArg } from '../types.ts';
 
 /**
  * @name differenceInMilliseconds
@@ -8,10 +13,8 @@ import { toDate } from '../toDate/index';
  * @description
  * Get the number of milliseconds between the given dates.
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param dateLeft - The later date
- * @param dateRight - The earlier date
+ * @param laterDate - The later date
+ * @param earlierDate - The earlier date
  *
  * @returns The number of milliseconds
  *
@@ -24,9 +27,8 @@ import { toDate } from '../toDate/index';
  * )
  * //=> 1100
  */
-export function differenceInMilliseconds<DateType extends Date>(
-  dateLeft: DateType | number | string,
-  dateRight: DateType | number | string,
-): number {
-  return +toDate(dateLeft) - +toDate(dateRight);
+export function differenceInMilliseconds(laterDate: DateArg<Date> & {}, earlierDate: DateArg<Date> & {}): number {
+  return +toDate(laterDate) - +toDate(earlierDate);
 }
+
+/* eslint-enable */

@@ -1,3 +1,7 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
 /**
  * @module constants
  * @summary Useful constants
@@ -32,7 +36,7 @@ export const daysInWeek = 7;
  *
  * One years equals 365.2425 days according to the formula:
  *
- * > Leap year occures every 4 years, except for years that are divisable by 100 and not divisable by 400.
+ * > Leap year occurs every 4 years, except for years that are divisible by 100 and not divisible by 400.
  * > 1 mean year = (365+1/4-1/100+1/400) days = 365.2425 days
  */
 export const daysInYear = 365.2425;
@@ -51,7 +55,7 @@ export const daysInYear = 365.2425;
  * new Date(8640000000000001);
  * //=> Invalid Date
  */
-export const maxTime = Math.pow(10, 8) * 24 * 60 * 60 * 1000;
+export const maxTime: number = Math.pow(10, 8) * 24 * 60 * 60 * 1000;
 
 /**
  * @constant
@@ -67,7 +71,7 @@ export const maxTime = Math.pow(10, 8) * 24 * 60 * 60 * 1000;
  * new Date(-8640000000000001)
  * //=> Invalid Date
  */
-export const minTime = -maxTime;
+export const minTime: number = -maxTime;
 
 /**
  * @constant
@@ -172,32 +176,47 @@ export const secondsInMinute = 60;
  * @name secondsInDay
  * @summary Seconds in 1 day.
  */
-export const secondsInDay = secondsInHour * 24;
+export const secondsInDay: number = secondsInHour * 24;
 
 /**
  * @constant
  * @name secondsInWeek
  * @summary Seconds in 1 week.
  */
-export const secondsInWeek = secondsInDay * 7;
+export const secondsInWeek: number = secondsInDay * 7;
 
 /**
  * @constant
  * @name secondsInYear
  * @summary Seconds in 1 year.
  */
-export const secondsInYear = secondsInDay * daysInYear;
+export const secondsInYear: number = secondsInDay * daysInYear;
 
 /**
  * @constant
  * @name secondsInMonth
  * @summary Seconds in 1 month
  */
-export const secondsInMonth = secondsInYear / 12;
+export const secondsInMonth: number = secondsInYear / 12;
 
 /**
  * @constant
  * @name secondsInQuarter
  * @summary Seconds in 1 quarter.
  */
-export const secondsInQuarter = secondsInMonth * 3;
+export const secondsInQuarter: number = secondsInMonth * 3;
+
+/**
+ * @constant
+ * @name constructFromSymbol
+ * @summary Symbol enabling Date extensions to inherit properties from the reference date.
+ *
+ * The symbol is used to enable the `constructFrom` function to construct a date
+ * using a reference date and a value. It allows to transfer extra properties
+ * from the reference date to the new date. It's useful for extensions like
+ * [`TZDate`](https://github.com/date-fns/tz) that accept a time zone as
+ * a constructor argument.
+ */
+export const constructFromSymbol: unique symbol = Symbol.for('constructDateFrom');
+
+/* eslint-enable */

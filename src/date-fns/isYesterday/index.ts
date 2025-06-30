@@ -1,6 +1,17 @@
-import { constructNow } from '../constructNow/index';
-import { isSameDay } from '../isSameDay/index';
-import { subDays } from '../subDays/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { constructFrom } from '../constructFrom/index.ts';
+import { constructNow } from '../constructNow/index.ts';
+import { isSameDay } from '../isSameDay/index.ts';
+import { subDays } from '../subDays/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+/**
+ * The {@link isYesterday} function options.
+ */
+export interface IsYesterdayOptions extends ContextOptions<Date> {}
 
 /**
  * @name isYesterday
@@ -11,9 +22,8 @@ import { subDays } from '../subDays/index';
  * @description
  * Is the given date yesterday?
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The date to check
+ * @param options - An object with options
  *
  * @returns The date is yesterday
  *
@@ -22,6 +32,8 @@ import { subDays } from '../subDays/index';
  * const result = isYesterday(new Date(2014, 9, 5, 14, 0))
  * //=> true
  */
-export function isYesterday<DateType extends Date>(date: DateType | number | string): boolean {
-  return isSameDay(date, subDays(constructNow(date), 1));
+export function isYesterday(date: DateArg<Date> & {}, options?: IsYesterdayOptions | undefined): boolean {
+  return isSameDay(constructFrom(options?.in || date, date), subDays(constructNow(options?.in || date), 1));
 }
+
+/* eslint-enable */

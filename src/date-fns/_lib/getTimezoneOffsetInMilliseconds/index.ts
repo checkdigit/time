@@ -1,4 +1,9 @@
-import { toDate } from '../../toDate/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { toDate } from '../../toDate/index.ts';
+import type { DateArg } from '../../types.ts';
 
 /**
  * Google Chrome as of 67.0.3396.87 introduced timezones with offset that includes seconds.
@@ -11,7 +16,7 @@ import { toDate } from '../../toDate/index';
  *
  * This function returns the timezone offset in milliseconds that takes seconds in account.
  */
-export function getTimezoneOffsetInMilliseconds(date: Date | number | string): number {
+export function getTimezoneOffsetInMilliseconds(date: DateArg<Date> & {}): number {
   const _date = toDate(date);
   const utcDate = new Date(
     Date.UTC(
@@ -27,3 +32,5 @@ export function getTimezoneOffsetInMilliseconds(date: Date | number | string): n
   utcDate.setUTCFullYear(_date.getFullYear());
   return +date - +utcDate;
 }
+
+/* eslint-enable */

@@ -1,7 +1,15 @@
-import { toDate } from '../toDate/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { toDate } from '../toDate/index.ts';
+import type { DateArg, MaybeArray } from '../types.ts';
 
 /**
  * The locale string (see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument).
+ * @deprecated
+ *
+ * [TODO] Remove in v4
  */
 export type IntlFormatLocale = Intl.ResolvedDateTimeFormatOptions['locale'];
 
@@ -14,8 +22,8 @@ export type IntlFormatFormatOptions = Intl.DateTimeFormatOptions;
  * The locale options.
  */
 export interface IntlFormatLocaleOptions {
-  /** The locale(s) to use (see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument) */
-  locale: IntlFormatLocale | IntlFormatLocale[];
+  /** The locales to use (see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument) */
+  locale: MaybeArray<Intl.ResolvedDateTimeFormatOptions['locale']>;
 }
 
 /**
@@ -30,8 +38,6 @@ export interface IntlFormatLocaleOptions {
  *
  * > ⚠️ Please note that before Node version 13.0.0, only the locale data for en-US is available by default.
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The date to format
  *
  * @returns The formatted date string
@@ -43,11 +49,9 @@ export interface IntlFormatLocaleOptions {
  * const result = intlFormat(new Date(2019, 9, 4, 12, 30, 13, 456))
  * //=> 10/4/2019
  */
-export function intlFormat<DateType extends Date>(date: DateType | number | string): string;
+export function intlFormat(date: DateArg<Date> & {}): string;
 
 /**
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The date to format
  * @param localeOptions - An object with locale
  *
@@ -63,14 +67,9 @@ export function intlFormat<DateType extends Date>(date: DateType | number | stri
  * })
  * //=> 2019. 10. 4.
  */
-export function intlFormat<DateType extends Date>(
-  date: DateType | number | string,
-  localeOptions: IntlFormatLocaleOptions,
-): string;
+export function intlFormat(date: DateArg<Date> & {}, localeOptions: IntlFormatLocaleOptions): string;
 
 /**
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The date to format
  * @param formatOptions - The format options
  *
@@ -89,14 +88,9 @@ export function intlFormat<DateType extends Date>(
  * })
  * //=> 10/4/2019, 12 PM
  */
-export function intlFormat<DateType extends Date>(
-  date: DateType | number | string,
-  formatOptions: IntlFormatFormatOptions,
-): string;
+export function intlFormat(date: DateArg<Date> & {}, formatOptions: IntlFormatFormatOptions): string;
 
 /**
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The date to format
  * @param formatOptions - The format options
  * @param localeOptions - An object with locale
@@ -118,14 +112,14 @@ export function intlFormat<DateType extends Date>(
  * })
  * //=> Freitag, 4. Oktober 2019
  */
-export function intlFormat<DateType extends Date>(
-  date: DateType | number | string,
+export function intlFormat(
+  date: DateArg<Date> & {},
   formatOptions: IntlFormatFormatOptions,
   localeOptions: IntlFormatLocaleOptions,
 ): string;
 
-export function intlFormat<DateType extends Date>(
-  date: DateType | number | string,
+export function intlFormat(
+  date: DateArg<Date> & {},
   formatOrLocale?: IntlFormatFormatOptions | IntlFormatLocaleOptions,
   localeOptions?: IntlFormatLocaleOptions,
 ): string {
@@ -145,3 +139,5 @@ function isFormatOptions(
 ): opts is IntlFormatFormatOptions {
   return opts !== undefined && !('locale' in opts);
 }
+
+/* eslint-enable */

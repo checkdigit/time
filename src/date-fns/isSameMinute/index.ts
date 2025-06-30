@@ -1,4 +1,9 @@
-import { startOfMinute } from '../startOfMinute/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { startOfMinute } from '../startOfMinute/index.ts';
+import type { DateArg } from '../types.ts';
 
 /**
  * @name isSameMinute
@@ -8,10 +13,8 @@ import { startOfMinute } from '../startOfMinute/index';
  * @description
  * Are the given dates in the same minute (and hour and day)?
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param dateLeft - The first date to check
- * @param dateRight - The second date to check
+ * @param laterDate - The first date to check
+ * @param earlierDate - The second date to check
  *
  * @returns The dates are in the same minute (and hour and day)
  *
@@ -31,12 +34,8 @@ import { startOfMinute } from '../startOfMinute/index';
  * )
  * //=> false
  */
-export function isSameMinute<DateType extends Date>(
-  dateLeft: DateType | number | string,
-  dateRight: DateType | number | string,
-): boolean {
-  const dateLeftStartOfMinute = startOfMinute(dateLeft);
-  const dateRightStartOfMinute = startOfMinute(dateRight);
-
-  return +dateLeftStartOfMinute === +dateRightStartOfMinute;
+export function isSameMinute(laterDate: DateArg<Date> & {}, earlierDate: DateArg<Date> & {}): boolean {
+  return +startOfMinute(laterDate) === +startOfMinute(earlierDate);
 }
+
+/* eslint-enable */

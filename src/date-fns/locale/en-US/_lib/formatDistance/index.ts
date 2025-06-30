@@ -1,4 +1,8 @@
-import type { FormatDistanceFn, FormatDistanceLocale } from '../../../types';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { FormatDistanceFn, FormatDistanceLocale } from '../../../types.ts';
 
 type FormatDistanceTokenValue =
   | string
@@ -108,3 +112,5 @@ export const formatDistance: FormatDistanceFn = (token, count, options) => {
 
   return result;
 };
+
+/* eslint-enable */

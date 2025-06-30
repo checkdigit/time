@@ -1,5 +1,9 @@
-import { daysInYear } from '../constants/index';
-import type { Duration } from '../types';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { daysInYear } from '../constants/index.ts';
+import type { Duration } from '../types.ts';
 
 /**
  * @name milliseconds
@@ -12,7 +16,7 @@ import type { Duration } from '../types';
  *
  * One years equals 365.2425 days according to the formula:
  *
- * > Leap year occures every 4 years, except for years that are divisable by 100 and not divisable by 400.
+ * > Leap year occurs every 4 years, except for years that are divisible by 100 and not divisible by 400.
  * > 1 mean year = (365+1/4-1/100+1/400) days = 365.2425 days
  *
  * One month is a year divided by 12.
@@ -46,3 +50,5 @@ export function milliseconds({ years, months, weeks, days, hours, minutes, secon
 
   return Math.trunc(totalSeconds * 1000);
 }
+
+/* eslint-enable */

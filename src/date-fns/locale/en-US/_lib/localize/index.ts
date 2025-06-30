@@ -1,5 +1,9 @@
-import type { Localize, LocalizeFn } from '../../../types';
-import { buildLocalizeFn } from '../../../_lib/buildLocalizeFn/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { Localize, LocalizeFn } from '../../../types.ts';
+import { buildLocalizeFn } from '../../../_lib/buildLocalizeFn/index.ts';
 
 const eraValues = {
   narrow: ['B', 'A'] as const,
@@ -164,3 +168,5 @@ export const localize: Localize = {
     defaultFormattingWidth: 'wide',
   }),
 };
+
+/* eslint-enable */

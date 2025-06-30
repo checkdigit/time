@@ -1,9 +1,13 @@
-import { getDayOfYear } from '../../../getDayOfYear/index';
-import { getISOWeek } from '../../../getISOWeek/index';
-import { getISOWeekYear } from '../../../getISOWeekYear/index';
-import { getWeek } from '../../../getWeek/index';
-import { getWeekYear } from '../../../getWeekYear/index';
-import type { LocaleDayPeriod, Localize } from '../../../locale/types';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { getDayOfYear } from '../../../getDayOfYear/index.ts';
+import { getISOWeek } from '../../../getISOWeek/index.ts';
+import { getISOWeekYear } from '../../../getISOWeekYear/index.ts';
+import { getWeek } from '../../../getWeek/index.ts';
+import { getWeekYear } from '../../../getWeekYear/index.ts';
+import type { LocaleDayPeriod, Localize } from '../../../locale/types.ts';
 import type {
   Day,
   Era,
@@ -12,9 +16,9 @@ import type {
   Month,
   Quarter,
   WeekOptions,
-} from '../../../types';
-import { addLeadingZeros } from '../../addLeadingZeros/index';
-import { lightFormatters } from '../lightFormatters/index';
+} from '../../../types.ts';
+import { addLeadingZeros } from '../../addLeadingZeros/index.ts';
+import { lightFormatters } from '../lightFormatters/index.ts';
 
 const dayPeriodEnum = {
   am: 'am',
@@ -754,14 +758,13 @@ export const formatters: { [token: string]: Formatter } = {
 
   // Seconds timestamp
   t: function (date, token, _localize) {
-    const timestamp = Math.trunc(date.getTime() / 1000);
+    const timestamp = Math.trunc(+date / 1000);
     return addLeadingZeros(timestamp, token.length);
   },
 
   // Milliseconds timestamp
   T: function (date, token, _localize) {
-    const timestamp = date.getTime();
-    return addLeadingZeros(timestamp, token.length);
+    return addLeadingZeros(+date, token.length);
   },
 };
 
@@ -791,3 +794,5 @@ function formatTimezone(offset: number, delimiter: string = ''): string {
   const minutes = addLeadingZeros(absOffset % 60, 2);
   return sign + hours + delimiter + minutes;
 }
+
+/* eslint-enable */

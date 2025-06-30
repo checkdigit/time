@@ -1,7 +1,11 @@
-import type { Match } from '../../../locale/types';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { mapValue, normalizeTwoDigitYear, parseNDigits } from '../utils';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { Match } from '../../../locale/types.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { mapValue, normalizeTwoDigitYear, parseNDigits } from '../utils.ts';
 
 export interface YearParserValue {
   year: number;
@@ -18,7 +22,7 @@ export interface YearParserValue {
 // | AD 12345 | 12345 | 45 | 12345 | 12345 | 12345 |
 export class YearParser extends Parser<YearParserValue> {
   priority = 130;
-  incompatibleTokens = ['Y', 'R', 'u', 'w', 'I', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['Y', 'R', 'u', 'w', 'I', 'i', 'e', 'c', 't', 'T'];
 
   parse(dateString: string, token: string, match: Match): ParseResult<YearParserValue> {
     const valueCallback = (year: number) => ({
@@ -41,7 +45,7 @@ export class YearParser extends Parser<YearParserValue> {
     }
   }
 
-  override validate<DateType extends Date>(_date: DateType, value: YearParserValue): boolean {
+  validate<DateType extends Date>(_date: DateType, value: YearParserValue): boolean {
     return value.isTwoDigitYear || value.year > 0;
   }
 
@@ -61,3 +65,5 @@ export class YearParser extends Parser<YearParserValue> {
     return date;
   }
 }
+
+/* eslint-enable */

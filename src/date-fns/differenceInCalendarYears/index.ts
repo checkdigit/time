@@ -1,4 +1,14 @@
-import { toDate } from '../toDate/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+/**
+ * The {@link differenceInCalendarYears} function options.
+ */
+export interface DifferenceInCalendarYearsOptions extends ContextOptions<Date> {}
 
 /**
  * @name differenceInCalendarYears
@@ -8,10 +18,9 @@ import { toDate } from '../toDate/index';
  * @description
  * Get the number of calendar years between the given dates.
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param dateLeft - The later date
- * @param dateRight - The earlier date
+ * @param laterDate - The later date
+ * @param earlierDate - The earlier date
+ * @param options - An object with options
 
  * @returns The number of calendar years
  *
@@ -20,15 +29,16 @@ import { toDate } from '../toDate/index';
  * const result = differenceInCalendarYears(
  *   new Date(2015, 1, 11),
  *   new Date(2013, 11, 31)
- * )
+ * );
  * //=> 2
  */
-export function differenceInCalendarYears<DateType extends Date>(
-  dateLeft: DateType | number | string,
-  dateRight: DateType | number | string,
+export function differenceInCalendarYears(
+  laterDate: DateArg<Date> & {},
+  earlierDate: DateArg<Date> & {},
+  options?: DifferenceInCalendarYearsOptions | undefined,
 ): number {
-  const _dateLeft = toDate(dateLeft);
-  const _dateRight = toDate(dateRight);
-
-  return _dateLeft.getFullYear() - _dateRight.getFullYear();
+  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
+  return laterDate_.getFullYear() - earlierDate_.getFullYear();
 }
+
+/* eslint-enable */

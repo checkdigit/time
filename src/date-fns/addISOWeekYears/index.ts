@@ -1,5 +1,15 @@
-import { getISOWeekYear } from '../getISOWeekYear/index';
-import { setISOWeekYear } from '../setISOWeekYear/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { getISOWeekYear } from '../getISOWeekYear/index.ts';
+import { setISOWeekYear } from '../setISOWeekYear/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+/**
+ * The {@link addISOWeekYears} function options.
+ */
+export interface AddISOWeekYearsOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name addISOWeekYears
@@ -15,14 +25,21 @@ import { setISOWeekYear } from '../setISOWeekYear/index';
  *
  * @param date - The date to be changed
  * @param amount - The amount of ISO week-numbering years to be added.
+ * @param options - An object with options
  *
  * @returns The new date with the ISO week-numbering years added
  *
  * @example
  * // Add 5 ISO week-numbering years to 2 July 2010:
  * const result = addISOWeekYears(new Date(2010, 6, 2), 5)
- * //=> Fri Jn 26 2015 00:00:00
+ * //=> Fri Jun 26 2015 00:00:00
  */
-export function addISOWeekYears<DateType extends Date>(date: DateType | number | string, amount: number): DateType {
-  return setISOWeekYear(date, getISOWeekYear(date) + amount);
+export function addISOWeekYears<DateType extends Date, ResultDate extends Date = DateType>(
+  date: DateArg<DateType>,
+  amount: number,
+  options?: AddISOWeekYearsOptions<ResultDate> | undefined,
+): ResultDate {
+  return setISOWeekYear(date, getISOWeekYear(date, options) + amount, options);
 }
+
+/* eslint-enable */

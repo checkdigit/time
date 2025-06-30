@@ -1,9 +1,13 @@
-import { formatDistance } from './_lib/formatDistance/index';
-import { formatLong } from './_lib/formatLong/index';
-import { formatRelative } from './_lib/formatRelative/index';
-import { localize } from './_lib/localize/index';
-import { match } from './_lib/match/index';
-import type { Locale } from '../types';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { formatDistance } from './_lib/formatDistance/index.ts';
+import { formatLong } from './_lib/formatLong/index.ts';
+import { formatRelative } from './_lib/formatRelative/index.ts';
+import { localize } from './_lib/localize/index.ts';
+import { match } from './_lib/match/index.ts';
+import type { Locale } from '../types.ts';
 
 /**
  * @category Locales
@@ -25,3 +29,5 @@ export const enUS: Locale = {
     firstWeekContainsDate: 1,
   },
 };
+
+/* eslint-enable */

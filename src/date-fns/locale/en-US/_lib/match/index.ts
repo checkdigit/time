@@ -1,7 +1,11 @@
-import type { Quarter } from '../../../../types';
-import type { Match } from '../../../types';
-import { buildMatchFn } from '../../../_lib/buildMatchFn/index';
-import { buildMatchPatternFn } from '../../../_lib/buildMatchPatternFn/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { Quarter } from '../../../../types.ts';
+import type { Match } from '../../../types.ts';
+import { buildMatchFn } from '../../../_lib/buildMatchFn/index.ts';
+import { buildMatchPatternFn } from '../../../_lib/buildMatchPatternFn/index.ts';
 
 const matchOrdinalNumberPattern = /^(\d+)(th|st|nd|rd)?/i;
 const parseOrdinalNumberPattern = /\d+/i;
@@ -105,3 +109,5 @@ export const match: Match = {
     defaultParseWidth: 'any',
   }),
 };
+
+/* eslint-enable */

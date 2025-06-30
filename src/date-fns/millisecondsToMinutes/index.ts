@@ -1,4 +1,8 @@
-import { millisecondsInMinute } from '../constants/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { millisecondsInMinute } from '../constants/index.ts';
 
 /**
  * @name millisecondsToMinutes
@@ -26,3 +30,5 @@ export function millisecondsToMinutes(milliseconds: number): number {
   const minutes = milliseconds / millisecondsInMinute;
   return Math.trunc(minutes);
 }
+
+/* eslint-enable */

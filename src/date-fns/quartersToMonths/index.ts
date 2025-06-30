@@ -1,4 +1,8 @@
-import { monthsInQuarter } from '../constants/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { monthsInQuarter } from '../constants/index.ts';
 
 /**
  * @name quartersToMonths
@@ -7,8 +11,6 @@ import { monthsInQuarter } from '../constants/index';
  *
  * @description
  * Convert a number of quarters to a full number of months.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
  * @param quarters - The number of quarters to be converted
  *
@@ -22,3 +24,5 @@ import { monthsInQuarter } from '../constants/index';
 export function quartersToMonths(quarters: number): number {
   return Math.trunc(quarters * monthsInQuarter);
 }
+
+/* eslint-enable */

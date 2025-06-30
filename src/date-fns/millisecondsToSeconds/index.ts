@@ -1,4 +1,8 @@
-import { millisecondsInSecond } from '../constants/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { millisecondsInSecond } from '../constants/index.ts';
 
 /**
  * @name millisecondsToSeconds
@@ -13,7 +17,7 @@ import { millisecondsInSecond } from '../constants/index';
  * @returns The number of milliseconds converted in seconds
  *
  * @example
- * // Convert 1000 miliseconds to seconds:
+ * // Convert 1000 milliseconds to seconds:
  * const result = millisecondsToSeconds(1000)
  * //=> 1
  *
@@ -26,3 +30,5 @@ export function millisecondsToSeconds(milliseconds: number): number {
   const seconds = milliseconds / millisecondsInSecond;
   return Math.trunc(seconds);
 }
+
+/* eslint-enable */

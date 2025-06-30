@@ -1,4 +1,14 @@
-import { previousDay } from '../previousDay/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { previousDay } from '../previousDay/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+/**
+ * The {@link previousTuesday} function options.
+ */
+export interface PreviousTuesdayOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name previousTuesday
@@ -9,8 +19,10 @@ import { previousDay } from '../previousDay/index';
  * When is the previous Tuesday?
  *
  * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
  *
  * @param date - The date to start counting from
+ * @param options - An object with options
  *
  * @returns The previous Tuesday
  *
@@ -19,6 +31,11 @@ import { previousDay } from '../previousDay/index';
  * const result = previousTuesday(new Date(2021, 5, 18))
  * //=> Tue June 15 2021 00:00:00
  */
-export function previousTuesday<DateType extends Date>(date: DateType | number | string): DateType {
-  return previousDay(date, 2);
+export function previousTuesday<DateType extends Date, ResultDate extends Date = DateType>(
+  date: DateArg<DateType>,
+  options?: PreviousTuesdayOptions<ResultDate> | undefined,
+): ResultDate {
+  return previousDay(date, 2, options);
 }
+
+/* eslint-enable */

@@ -1,5 +1,9 @@
-import { isDate } from '../isDate/index';
-import { toDate } from '../toDate/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { isDate } from '../isDate/index.ts';
+import { toDate } from '../toDate/index.ts';
 
 /**
  * @name isValid
@@ -13,8 +17,6 @@ import { toDate } from '../toDate/index';
  *
  * Time value of Date: http://es5.github.io/#x15.9.1.1
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The date to check
  *
  * @returns The date is valid
@@ -25,7 +27,7 @@ import { toDate } from '../toDate/index';
  * //=> true
  *
  * @example
- * // For the value, convertable into a date:
+ * // For the value, convertible into a date:
  * const result = isValid(1393804800000)
  * //=> true
  *
@@ -35,9 +37,7 @@ import { toDate } from '../toDate/index';
  * //=> false
  */
 export function isValid(date: unknown): boolean {
-  if (!isDate(date) && typeof date !== 'number') {
-    return false;
-  }
-  const _date = toDate(date);
-  return !isNaN(Number(_date));
+  return !((!isDate(date) && typeof date !== 'number') || isNaN(+toDate(date)));
 }
+
+/* eslint-enable */

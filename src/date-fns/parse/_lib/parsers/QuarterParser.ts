@@ -1,7 +1,11 @@
-import type { Match } from '../../../locale/types';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { parseNDigits } from '../utils';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { Match } from '../../../locale/types.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { parseNDigits } from '../utils.ts';
 
 export class QuarterParser extends Parser<number> {
   priority = 120;
@@ -53,7 +57,7 @@ export class QuarterParser extends Parser<number> {
     }
   }
 
-  override validate<DateType extends Date>(_date: DateType, value: number): boolean {
+  validate<DateType extends Date>(_date: DateType, value: number): boolean {
     return value >= 1 && value <= 4;
   }
 
@@ -63,5 +67,7 @@ export class QuarterParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['Y', 'R', 'q', 'M', 'L', 'w', 'I', 'd', 'D', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['Y', 'R', 'q', 'M', 'L', 'w', 'I', 'd', 'D', 'i', 'e', 'c', 't', 'T'];
 }
+
+/* eslint-enable */

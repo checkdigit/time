@@ -1,4 +1,14 @@
-import { toDate } from '../toDate/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+/**
+ * The {@link getDay} function options.
+ */
+export interface GetDayOptions extends ContextOptions<Date> {}
 
 /**
  * @name getDay
@@ -8,9 +18,8 @@ import { toDate } from '../toDate/index';
  * @description
  * Get the day of the week of the given date.
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The given date
+ * @param options - The options
  *
  * @returns The day of week, 0 represents Sunday
  *
@@ -19,8 +28,8 @@ import { toDate } from '../toDate/index';
  * const result = getDay(new Date(2012, 1, 29))
  * //=> 3
  */
-export function getDay<DateType extends Date>(date: DateType | number | string): number {
-  const _date = toDate(date);
-  const day = _date.getDay();
-  return day;
+export function getDay(date: DateArg<Date> & {}, options?: GetDayOptions | undefined): number {
+  return toDate(date, options?.in).getDay();
 }
+
+/* eslint-enable */

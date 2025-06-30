@@ -1,4 +1,14 @@
-import { toDate } from '../toDate/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+/**
+ * The {@link endOfQuarter} function options.
+ */
+export interface EndOfQuarterOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name endOfQuarter
@@ -10,8 +20,10 @@ import { toDate } from '../toDate/index';
  * The result will be in the local timezone.
  *
  * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
  *
  * @param date - The original date
+ * @param options - An object with options
  *
  * @returns The end of a quarter
  *
@@ -20,11 +32,16 @@ import { toDate } from '../toDate/index';
  * const result = endOfQuarter(new Date(2014, 8, 2, 11, 55, 0))
  * //=> Tue Sep 30 2014 23:59:59.999
  */
-export function endOfQuarter<DateType extends Date>(date: DateType | number | string): DateType {
-  const _date = toDate(date);
+export function endOfQuarter<DateType extends Date, ResultDate extends Date = DateType>(
+  date: DateArg<DateType>,
+  options?: EndOfQuarterOptions<ResultDate> | undefined,
+): ResultDate {
+  const _date = toDate(date, options?.in);
   const currentMonth = _date.getMonth();
   const month = currentMonth - (currentMonth % 3) + 3;
   _date.setMonth(month, 0);
   _date.setHours(23, 59, 59, 999);
   return _date;
 }
+
+/* eslint-enable */

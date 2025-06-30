@@ -1,6 +1,16 @@
-import { constructFrom } from '../constructFrom/index';
-import { startOfISOWeek } from '../startOfISOWeek/index';
-import { toDate } from '../toDate/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { constructFrom } from '../constructFrom/index.ts';
+import { startOfISOWeek } from '../startOfISOWeek/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+/**
+ * The {@link getISOWeekYear} function options.
+ */
+export interface GetISOWeekYearOptions extends ContextOptions<Date> {}
 
 /**
  * @name getISOWeekYear
@@ -13,8 +23,6 @@ import { toDate } from '../toDate/index';
  *
  * ISO week-numbering year: http://en.wikipedia.org/wiki/ISO_week_date
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The given date
  *
  * @returns The ISO week-numbering year
@@ -24,16 +32,16 @@ import { toDate } from '../toDate/index';
  * const result = getISOWeekYear(new Date(2005, 0, 2))
  * //=> 2004
  */
-export function getISOWeekYear<DateType extends Date>(date: DateType | number | string): number {
-  const _date = toDate(date);
+export function getISOWeekYear(date: DateArg<Date> & {}, options?: GetISOWeekYearOptions | undefined): number {
+  const _date = toDate(date, options?.in);
   const year = _date.getFullYear();
 
-  const fourthOfJanuaryOfNextYear = constructFrom(date, 0);
+  const fourthOfJanuaryOfNextYear = constructFrom(_date, 0);
   fourthOfJanuaryOfNextYear.setFullYear(year + 1, 0, 4);
   fourthOfJanuaryOfNextYear.setHours(0, 0, 0, 0);
   const startOfNextYear = startOfISOWeek(fourthOfJanuaryOfNextYear);
 
-  const fourthOfJanuaryOfThisYear = constructFrom(date, 0);
+  const fourthOfJanuaryOfThisYear = constructFrom(_date, 0);
   fourthOfJanuaryOfThisYear.setFullYear(year, 0, 4);
   fourthOfJanuaryOfThisYear.setHours(0, 0, 0, 0);
   const startOfThisYear = startOfISOWeek(fourthOfJanuaryOfThisYear);
@@ -46,3 +54,5 @@ export function getISOWeekYear<DateType extends Date>(date: DateType | number | 
     return year - 1;
   }
 }
+
+/* eslint-enable */

@@ -1,3 +1,85 @@
+### v3.2.0 (27 September 2024)
+
+- [DEPS] `date-fns@4.0.0` supported (#301)
+- [PERFORMANCE] Make testDateFormatted static to avoid re-initialising it on every call (#297) @hurali97
+- [ENHANCEMENT] Compatibility with `date-fns` `setDefaultOptions` (#286) @yangchristina
+- [DOCS] Fixed table of contents links (#284)
+
+### v3.1.3 (17 April 2024)
+
+- [BUGFIX] Make `getTimeZoneOffset`'s 2nd arg optional
+
+### v3.1.2 (16 April 2024)
+
+- [BUGFIX] Fix `formatInTimeZone` use of `timeZone` string (#280)
+
+### v3.1.1 (16 April 2024)
+
+- [BUGFIX] `getTimeZoneOffset`'s 2nd arg should be optional (#281)
+
+### v3.1.0 (15 April 2024)
+
+- [REFACTOR] Full rewrite in TypeScript (#278) Thank you, @brettwillis
+- [BREAKING CHANGE] `OptionsWithTZ` is now either `FormatOptionsWithTZ` or `ToDateOptionsWithTZ`, matching `date-fns`
+
+### v3.0.1 (10 April 2024)
+
+- [BUGFIX] Fix named export typings (#277)
+
+### v3.0.0 (6 April 2024)
+
+- [UPGRADE] Support `date-fns` v3 (#265) Thank you, @christopherklint97
+- [BUGFIX] Correct import of `date-fns@v3` format and use Babel Webpack loader for mjs files (#271)
+- [BREAKING CHANGE] `date-fns` v2 is no longer supported
+- [BREAKING CHANGE] Renamed `utcToZonedTime` to `toZonedTime` to make the name less confusing, just search & replace
+- [BREAKING CHANGE] Renamed `zonedTimeToUtc` to `fromZonedTime` to make the name less confusing, just search & replace
+- [BREAKING CHANGE] All functions are now exported using named exports, this requires changing direct
+  imports from `import formatInTimeZone from 'date-fns-tz/formatInTimeZone'` to
+  `import { formatInTimeZone } from 'date-fns-tz/formatInTimeZone'`
+- [BREAKING CHANGE] Functions now don’t check the number of passed arguments, delegating this task to type checkers
+  (This isn't fully implemented yet, but it should be the assumption moving forward, as it is in `date-fns`)
+- [BREAKING CHANGE] Arguments are not explicitly converted to the target types. Instead, they are passed as is,
+  delegating this task to type checkers (This isn't fully implemented yet, but it should be the assumption
+  moving forward, as it is in `date-fns`)
+- [BREAKING CHANGE] IE is no longer supported since `date-fns` no longer supports it
+- [BREAKING CHANGE] Removed `flow` support since `date-fns` also removed it
+
+### v2.0.1 (9 March 2024)
+
+- [DOCS] Fix incorrect output comment (#270)
+- [DEPS] Limit to date-fns 2.x (#262, #267)
+- [REFACTOR] `tzTokenizeDate`: Remove weird unneeded regex (#254)
+- [BUGFIX] Improving correctness of the `formatInTimeZone` close to the DST threshold (#247)
+- [ENHANCEMENT] Use hourCycle for browsers that support hour cycle formatting (#231)
+- [BUGFIX] Fix tzParseTimezone to parse 00:30 timezones properly (#229)
+
+### v2.0.0 (30 January 2023)
+
+- [BREAKING CHANGE] Optimize configuration for ESM exports (entry points for cjs / esm / typescript) (#212)
+
+**Upgrade guide:** Both CJS and ESM imports now use the default import paths. CJS will continue working unchanged;
+to fix ESM imports:
+
+Before:
+
+```js
+import { format } from 'date-fns-tz/esm';
+import utcToZonedTime from 'date-fns-tz/esm/utcToZonedTime';
+```
+
+After:
+
+```js
+import { format } from 'date-fns-tz';
+import utcToZonedTime from 'date-fns-tz/utcToZonedTime';
+```
+
+### v1.3.8 (30 January 2023)
+
+- [TESTS] Tests documenting `zonedTimeToUtc` daylight saving jumps (#220)
+- [TYPES] Update `format` types to match date-fns (#199)
+- [BUGFIX] Fixed `undefined` timezone error (#214)
+
 ### v1.3.7 (31 August 2022)
 
 - [BUGFIX] Fixed getting the time zone name in `partsTimeZone` out of `formatToParts` (#196)

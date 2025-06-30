@@ -1,4 +1,15 @@
-import { startOfISOWeekYear } from '../startOfISOWeekYear/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { startOfISOWeekYear } from '../startOfISOWeekYear/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+
+/**
+ * The {@link isSameISOWeekYear} function options.
+ */
+export interface IsSameISOWeekYearOptions extends ContextOptions<Date> {}
 
 /**
  * @name isSameISOWeekYear
@@ -10,10 +21,9 @@ import { startOfISOWeekYear } from '../startOfISOWeekYear/index';
  *
  * ISO week-numbering year: http://en.wikipedia.org/wiki/ISO_week_date
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param dateLeft - The first date to check
- * @param dateRight - The second date to check
+ * @param laterDate - The first date to check
+ * @param earlierDate - The second date to check
+ * @param options - An object with options
  *
  * @returns The dates are in the same ISO week-numbering year
  *
@@ -22,12 +32,13 @@ import { startOfISOWeekYear } from '../startOfISOWeekYear/index';
  * const result = isSameISOWeekYear(new Date(2003, 11, 29), new Date(2005, 0, 2))
  * //=> true
  */
-export function isSameISOWeekYear<DateType extends Date>(
-  dateLeft: DateType | number | string,
-  dateRight: DateType | number | string,
+export function isSameISOWeekYear(
+  laterDate: DateArg<Date> & {},
+  earlierDate: DateArg<Date> & {},
+  options?: IsSameISOWeekYearOptions | undefined,
 ): boolean {
-  const dateLeftStartOfYear = startOfISOWeekYear(dateLeft);
-  const dateRightStartOfYear = startOfISOWeekYear(dateRight);
-
-  return +dateLeftStartOfYear === +dateRightStartOfYear;
+  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
+  return +startOfISOWeekYear(laterDate_) === +startOfISOWeekYear(earlierDate_);
 }
+
+/* eslint-enable */

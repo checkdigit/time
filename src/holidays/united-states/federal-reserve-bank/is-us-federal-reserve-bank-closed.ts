@@ -1,8 +1,8 @@
 // holidays/united-states/federal-reserve-bank/is-us-federal-reserve-bank-closed.ts
 
-import { formatUtc } from '../../../index';
+import { formatUtc } from '../../../index.ts';
 
-import { getAllUSFederalReserveBankHolidays, type PlainDate } from './index';
+import { getAllUSFederalReserveBankHolidays, type PlainDate } from './index.ts';
 
 const DAY_OF_THE_WEEK_SUNDAY = 0;
 const DAY_OF_THE_WEEK_SATURDAY = 6;
@@ -20,7 +20,7 @@ const DAY_OF_THE_WEEK_SATURDAY = 6;
  * @returns boolean indicating if the US Federal Reserve Bank is closed on a given date
  */
 export default function (plainDate: PlainDate): boolean {
-  const date = new Date(plainDate.year, plainDate.month, plainDate.date);
+  const date = new Date(Date.UTC(plainDate.year, plainDate.month, plainDate.date));
   const year = date.getUTCFullYear();
   const day = date.getUTCDay();
   const formattedDate = formatUtc(date, 'yyyy-MM-dd');

@@ -1,5 +1,9 @@
-import type { GenericDateConstructor } from '../types';
-import { constructFrom } from '../constructFrom/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { constructFrom } from '../constructFrom/index.ts';
+import type { ContextFn, GenericDateConstructor } from '../types.ts';
 
 /**
  * @name transpose
@@ -11,10 +15,10 @@ import { constructFrom } from '../constructFrom/index';
  * to transpose the date in the system time zone to say `UTCDate` or any other
  * date extension.
  *
- * @typeParam DateInputType - The input `Date` type derived from the passed argument.
- * @typeParam DateOutputType - The output `Date` type derived from the passed constructor.
+ * @typeParam InputDate - The input `Date` type derived from the passed argument.
+ * @typeParam ResultDate - The result `Date` type derived from the passed constructor.
  *
- * @param fromDate - The date to use values from
+ * @param date - The date to use values from
  * @param constructor - The date constructor to use
  *
  * @returns Date transposed to the given constructor
@@ -29,12 +33,18 @@ import { constructFrom } from '../constructFrom/index';
  * transpose(date, UTCDate)
  * //=> 'Sun Jul 10 2022 00:00:00 GMT+0000 (Coordinated Universal Time)'
  */
-export function transpose<DateInputType extends Date, DateOutputType extends Date>(
-  fromDate: DateInputType,
-  constructor: DateOutputType | GenericDateConstructor<DateOutputType>,
-): DateOutputType {
-  const date = constructor instanceof Date ? constructFrom(constructor, 0) : new constructor(0);
-  date.setFullYear(fromDate.getFullYear(), fromDate.getMonth(), fromDate.getDate());
-  date.setHours(fromDate.getHours(), fromDate.getMinutes(), fromDate.getSeconds(), fromDate.getMilliseconds());
-  return date;
+export function transpose<InputDate extends Date, ResultDate extends Date>(
+  date: InputDate,
+  constructor: ResultDate | GenericDateConstructor<ResultDate> | ContextFn<ResultDate>,
+): ResultDate {
+  const date_ = isConstructor(constructor) ? new constructor(0) : constructFrom(constructor, 0);
+  date_.setFullYear(date.getFullYear(), date.getMonth(), date.getDate());
+  date_.setHours(date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds());
+  return date_;
 }
+
+function isConstructor(constructor: unknown): constructor is GenericDateConstructor {
+  return typeof constructor === 'function' && constructor.prototype?.constructor === constructor;
+}
+
+/* eslint-enable */

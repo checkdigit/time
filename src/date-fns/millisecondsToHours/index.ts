@@ -1,4 +1,8 @@
-import { millisecondsInHour } from '../constants/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { millisecondsInHour } from '../constants/index.ts';
 
 /**
  * @name millisecondsToHours
@@ -26,3 +30,5 @@ export function millisecondsToHours(milliseconds: number): number {
   const hours = milliseconds / millisecondsInHour;
   return Math.trunc(hours);
 }
+
+/* eslint-enable */

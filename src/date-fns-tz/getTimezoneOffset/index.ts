@@ -1,4 +1,8 @@
-import tzParseTimezone from '../_lib/tzParseTimezone';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { tzParseTimezone } from '../_lib/tzParseTimezone/index.ts';
 
 /**
  * @name getTimezoneOffset
@@ -13,9 +17,8 @@ import tzParseTimezone from '../_lib/tzParseTimezone';
  * the second parameter to ensure the offset correctly accounts for DST at that time of
  * year. When omitted, the current date is used.
  *
- * @param {String} timeZone - the time zone of this local time, can be an offset or IANA time zone
- * @param {Date|Number} [date] - the date with values representing the local time
- * @returns {Number} the time zone offset in milliseconds
+ * @param timeZone the time zone of this local time, can be an offset or IANA time zone
+ * @param date the date with values representing the local time
  *
  * @example
  * const result = getTimezoneOffset('-07:00')
@@ -27,6 +30,8 @@ import tzParseTimezone from '../_lib/tzParseTimezone';
  * const result = getTimezoneOffset('America/New_York', new Date(2016, 6, 1))
  *   //=> -14400000 (-4 * 60 * 60 * 1000)
  */
-export default function getTimezoneOffset(timeZone: string, date: Date | number): number {
-  return -tzParseTimezone(timeZone, date as Date);
+export function getTimezoneOffset(timeZone: string, date?: Date | number): number {
+  return -tzParseTimezone(timeZone, date);
 }
+
+/* eslint-enable */

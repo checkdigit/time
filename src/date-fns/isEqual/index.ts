@@ -1,4 +1,9 @@
-import { toDate } from '../toDate/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { toDate } from '../toDate/index.ts';
+import type { DateArg } from '../types.ts';
 
 /**
  * @name isEqual
@@ -7,8 +12,6 @@ import { toDate } from '../toDate/index';
  *
  * @description
  * Are the given dates equal?
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
  * @param dateLeft - The first date to compare
  * @param dateRight - The second date to compare
@@ -23,11 +26,8 @@ import { toDate } from '../toDate/index';
  * )
  * //=> false
  */
-export function isEqual<DateType extends Date>(
-  leftDate: DateType | number | string,
-  rightDate: DateType | number | string,
-): boolean {
-  const _dateLeft = toDate(leftDate);
-  const _dateRight = toDate(rightDate);
-  return +_dateLeft === +_dateRight;
+export function isEqual(leftDate: DateArg<Date> & {}, rightDate: DateArg<Date> & {}): boolean {
+  return +toDate(leftDate) === +toDate(rightDate);
 }
+
+/* eslint-enable */

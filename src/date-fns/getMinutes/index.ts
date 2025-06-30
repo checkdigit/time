@@ -1,4 +1,14 @@
-import { toDate } from '../toDate/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+/**
+ * The {@link getMinutes} function options.
+ */
+export interface GetMinutesOptions extends ContextOptions<Date> {}
 
 /**
  * @name getMinutes
@@ -8,9 +18,8 @@ import { toDate } from '../toDate/index';
  * @description
  * Get the minutes of the given date.
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The given date
+ * @param options - The options
  *
  * @returns The minutes
  *
@@ -19,8 +28,8 @@ import { toDate } from '../toDate/index';
  * const result = getMinutes(new Date(2012, 1, 29, 11, 45, 5))
  * //=> 45
  */
-export function getMinutes<DateType extends Date>(date: DateType | number | string): number {
-  const _date = toDate(date);
-  const minutes = _date.getMinutes();
-  return minutes;
+export function getMinutes(date: DateArg<Date> & {}, options?: GetMinutesOptions | undefined): number {
+  return toDate(date, options?.in).getMinutes();
 }
+
+/* eslint-enable */

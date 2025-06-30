@@ -1,10 +1,14 @@
-import { getWeekYear } from '../../../getWeekYear/index';
-import type { Match } from '../../../locale/types';
-import { startOfWeek } from '../../../startOfWeek/index';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult, ParserOptions } from '../types';
-import { mapValue, normalizeTwoDigitYear, parseNDigits } from '../utils';
-import type { YearParserValue } from './YearParser';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { getWeekYear } from '../../../getWeekYear/index.ts';
+import type { Match } from '../../../locale/types.ts';
+import { startOfWeek } from '../../../startOfWeek/index.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult, ParserOptions } from '../types.ts';
+import { mapValue, normalizeTwoDigitYear, parseNDigits } from '../utils.ts';
+import type { YearParserValue } from './YearParser.ts';
 
 // Local week-numbering year
 export class LocalWeekYearParser extends Parser<YearParserValue> {
@@ -31,7 +35,7 @@ export class LocalWeekYearParser extends Parser<YearParserValue> {
     }
   }
 
-  override validate<DateType extends Date>(_date: DateType, value: YearParserValue): boolean {
+  validate<DateType extends Date>(_date: DateType, value: YearParserValue): boolean {
     return value.isTwoDigitYear || value.year > 0;
   }
 
@@ -56,5 +60,7 @@ export class LocalWeekYearParser extends Parser<YearParserValue> {
     return startOfWeek(date, options);
   }
 
-  incompatibleTokens = ['y', 'R', 'u', 'Q', 'q', 'M', 'L', 'I', 'd', 'D', 'i', 't', 'T'];
+  incompatibleTokens: string[] = ['y', 'R', 'u', 'Q', 'q', 'M', 'L', 'I', 'd', 'D', 'i', 't', 'T'];
 }
+
+/* eslint-enable */

@@ -1,8 +1,12 @@
-import type { Match } from '../../../locale/types';
-import { setISODay } from '../../../setISODay/index';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { mapValue, parseNDigits } from '../utils';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { Match } from '../../../locale/types.ts';
+import { setISODay } from '../../../setISODay/index.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { mapValue, parseNDigits } from '../utils.ts';
 
 // ISO day of week
 export class ISODayParser extends Parser<number> {
@@ -88,7 +92,7 @@ export class ISODayParser extends Parser<number> {
     }
   }
 
-  override validate<DateType extends Date>(_date: DateType, value: number): boolean {
+  validate<DateType extends Date>(_date: DateType, value: number): boolean {
     return value >= 1 && value <= 7;
   }
 
@@ -98,5 +102,7 @@ export class ISODayParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['y', 'Y', 'u', 'q', 'Q', 'M', 'L', 'w', 'd', 'D', 'E', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['y', 'Y', 'u', 'q', 'Q', 'M', 'L', 'w', 'd', 'D', 'E', 'e', 'c', 't', 'T'];
 }
+
+/* eslint-enable */

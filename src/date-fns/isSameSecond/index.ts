@@ -1,4 +1,9 @@
-import { startOfSecond } from '../startOfSecond/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { startOfSecond } from '../startOfSecond/index.ts';
+import type { DateArg } from '../types.ts';
 
 /**
  * @name isSameSecond
@@ -8,10 +13,8 @@ import { startOfSecond } from '../startOfSecond/index';
  * @description
  * Are the given dates in the same second (and hour and day)?
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param dateLeft - The first date to check
- * @param dateRight - The second date to check
+ * @param laterDate - The first date to check
+ * @param earlierDate - The second date to check
  *
  * @returns The dates are in the same second (and hour and day)
  *
@@ -39,12 +42,8 @@ import { startOfSecond } from '../startOfSecond/index';
  * )
  * //=> false
  */
-export function isSameSecond<DateType extends Date>(
-  dateLeft: DateType | number | string,
-  dateRight: DateType | number | string,
-): boolean {
-  const dateLeftStartOfSecond = startOfSecond(dateLeft);
-  const dateRightStartOfSecond = startOfSecond(dateRight);
-
-  return +dateLeftStartOfSecond === +dateRightStartOfSecond;
+export function isSameSecond(laterDate: DateArg<Date> & {}, earlierDate: DateArg<Date> & {}): boolean {
+  return +startOfSecond(laterDate) === +startOfSecond(earlierDate);
 }
+
+/* eslint-enable */

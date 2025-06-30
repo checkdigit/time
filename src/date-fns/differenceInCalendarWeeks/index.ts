@@ -1,12 +1,20 @@
-import { millisecondsInWeek } from '../constants/index';
-import { startOfWeek } from '../startOfWeek/index';
-import type { LocalizedOptions, WeekOptions } from '../types';
-import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index.ts';
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import { millisecondsInWeek } from '../constants/index.ts';
+import { startOfWeek } from '../startOfWeek/index.ts';
+import type { ContextOptions, DateArg, LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link differenceInCalendarWeeks} function options.
  */
-export interface DifferenceInCalendarWeeksOptions extends LocalizedOptions<'options'>, WeekOptions {}
+export interface DifferenceInCalendarWeeksOptions
+  extends LocalizedOptions<'options'>,
+    WeekOptions,
+    ContextOptions<Date> {}
 
 /**
  * @name differenceInCalendarWeeks
@@ -16,10 +24,8 @@ export interface DifferenceInCalendarWeeksOptions extends LocalizedOptions<'opti
  * @description
  * Get the number of calendar weeks between the given dates.
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param dateLeft - The later date
- * @param dateRight - The earlier date
+ * @param laterDate - The later date
+ * @param earlierDate - The earlier date
  * @param options - An object with options.
  *
  * @returns The number of calendar weeks
@@ -42,19 +48,20 @@ export interface DifferenceInCalendarWeeksOptions extends LocalizedOptions<'opti
  * )
  * //=> 2
  */
-export function differenceInCalendarWeeks<DateType extends Date>(
-  dateLeft: DateType | number | string,
-  dateRight: DateType | number | string,
-  options?: DifferenceInCalendarWeeksOptions,
+export function differenceInCalendarWeeks(
+  laterDate: DateArg<Date> & {},
+  earlierDate: DateArg<Date> & {},
+  options?: DifferenceInCalendarWeeksOptions | undefined,
 ): number {
-  const startOfWeekLeft = startOfWeek(dateLeft, options);
-  const startOfWeekRight = startOfWeek(dateRight, options);
+  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
 
-  const timestampLeft = +startOfWeekLeft - getTimezoneOffsetInMilliseconds(startOfWeekLeft);
-  const timestampRight = +startOfWeekRight - getTimezoneOffsetInMilliseconds(startOfWeekRight);
+  const laterStartOfWeek = startOfWeek(laterDate_, options);
+  const earlierStartOfWeek = startOfWeek(earlierDate_, options);
 
-  // Round the number of days to the nearest integer because the number of
-  // milliseconds in a days is not constant (e.g. it's different in the week of
-  // the daylight saving time clock shift).
-  return Math.round((timestampLeft - timestampRight) / millisecondsInWeek);
+  const laterTimestamp = +laterStartOfWeek - getTimezoneOffsetInMilliseconds(laterStartOfWeek);
+  const earlierTimestamp = +earlierStartOfWeek - getTimezoneOffsetInMilliseconds(earlierStartOfWeek);
+
+  return Math.round((laterTimestamp - earlierTimestamp) / millisecondsInWeek);
 }
+
+/* eslint-enable */

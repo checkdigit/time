@@ -1,4 +1,14 @@
-import { toDate } from '../toDate/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+/**
+ * The {@link getISODay} function options.
+ */
+export interface GetISODayOptions extends ContextOptions<Date> {}
 
 /**
  * @name getISODay
@@ -11,9 +21,8 @@ import { toDate } from '../toDate/index';
  *
  * ISO week-numbering year: http://en.wikipedia.org/wiki/ISO_week_date
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The given date
+ * @param options - An object with options
  *
  * @returns The day of ISO week
  *
@@ -22,13 +31,9 @@ import { toDate } from '../toDate/index';
  * const result = getISODay(new Date(2012, 1, 26))
  * //=> 7
  */
-export function getISODay<DateType extends Date>(date: DateType | number | string): number {
-  const _date = toDate(date);
-  let day = _date.getDay();
-
-  if (day === 0) {
-    day = 7;
-  }
-
-  return day;
+export function getISODay(date: DateArg<Date> & {}, options?: GetISODayOptions): number {
+  const day = toDate(date, options?.in).getDay();
+  return day === 0 ? 7 : day;
 }
+
+/* eslint-enable */

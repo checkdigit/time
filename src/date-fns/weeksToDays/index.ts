@@ -1,4 +1,8 @@
-import { daysInWeek } from '../constants/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { daysInWeek } from '../constants/index.ts';
 
 /**
  * @name weeksToDays
@@ -20,3 +24,5 @@ import { daysInWeek } from '../constants/index';
 export function weeksToDays(weeks: number): number {
   return Math.trunc(weeks * daysInWeek);
 }
+
+/* eslint-enable */

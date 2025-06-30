@@ -1,12 +1,13 @@
 // format-utc.spec.ts
 
 import { strict as assert } from 'node:assert';
+import { describe, it } from 'node:test';
 
-import { describe, it } from '@jest/globals';
-
-import { formatUtc } from './index';
+import { formatUtc } from './index.ts';
 
 describe('format-utc', () => {
+  process.loadEnvFile();
+
   it('works', () => {
     assert.equal(formatUtc(new Date('Tue Sep 13 2022 13:38:00 GMT-0400'), 'yyyy-MM-dd'), '2022-09-13');
     assert.equal(
@@ -16,7 +17,7 @@ describe('format-utc', () => {
   });
 
   it('matches toISOString', () => {
-    // make sure works during EST spring forward
+    // make sure works during EST close to daylight saving timezone threshold
     assert.equal(
       formatUtc(new Date('2038-03-14T02:07:44.594Z'), "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"),
       '2038-03-14T02:07:44.594Z',

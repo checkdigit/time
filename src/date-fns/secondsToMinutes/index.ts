@@ -1,4 +1,8 @@
-import { secondsInMinute } from '../constants/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { secondsInMinute } from '../constants/index.ts';
 
 /**
  * @name secondsToMinutes
@@ -26,3 +30,5 @@ export function secondsToMinutes(seconds: number): number {
   const minutes = seconds / secondsInMinute;
   return Math.trunc(minutes);
 }
+
+/* eslint-enable */

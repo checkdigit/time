@@ -1,4 +1,9 @@
-import type { GenericDateConstructor } from '../types';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { constructFromSymbol } from '../constants/index.ts';
+import type { ConstructableDate, ContextFn, DateArg, GenericDateConstructor } from '../types.ts';
 
 /**
  * @name constructFrom
@@ -12,6 +17,11 @@ import type { GenericDateConstructor } from '../types';
  *
  * It defaults to `Date` if the passed reference date is a number or a string.
  *
+ * Starting from v3.7.0, it allows to construct a date using `[Symbol.for("constructDateFrom")]`
+ * enabling to transfer extra properties from the reference date to the new date.
+ * It's useful for extensions like [`TZDate`](https://github.com/date-fns/tz)
+ * that accept a time zone as a constructor argument.
+ *
  * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
  * @param date - The reference date to take constructor from
@@ -20,23 +30,41 @@ import type { GenericDateConstructor } from '../types';
  * @returns Date initialized using the given date and value
  *
  * @example
- * import { constructFrom } from 'date-fns'
+ * import { constructFrom } from "date-fns";
  *
  * // A function that clones a date preserving the original type
- * function cloneDate<DateType extends Date(date: DateType): DateType {
+ * function cloneDate<DateType extends Date>(date: DateType): DateType {
  *   return constructFrom(
- *     date, // Use contrustor from the given date
+ *     date, // Use constructor from the given date
  *     date.getTime() // Use the date value to create a new date
- *   )
+ *   );
  * }
  */
-export function constructFrom<DateType extends Date>(
-  date: DateType | number | string,
-  value: Date | number | string,
-): DateType {
-  if (date instanceof Date) {
-    return new (date.constructor as GenericDateConstructor<DateType>)(value);
-  } else {
-    return new Date(value) as DateType;
+export function constructFrom<DateType extends Date | ConstructableDate, ResultDate extends Date = DateType>(
+  date: DateArg<DateType> | ContextFn<ResultDate> | undefined,
+  value: DateArg<Date> & {},
+): ResultDate {
+  if (typeof date === 'function') return date(value);
+
+  if (date && typeof date === 'object' && constructFromSymbol in date) {
+    const dateToReturn = date[constructFromSymbol](value);
+    // [PATCH:] this hack is required because setHours doesn't work for hours that are close to daylight saving timezone threshold
+    if ((value as any)[Symbol.for('UTCHours')] !== undefined) {
+      (dateToReturn as any)[Symbol.for('UTCHours')] = (value as any)[Symbol.for('UTCHours')];
+    }
+    return dateToReturn;
   }
+
+  if (date instanceof Date) {
+    const dateToReturn = new (date.constructor as GenericDateConstructor<ResultDate>)(value);
+    // [PATCH:] this hack is required because setHours doesn't work for hours that are close to daylight saving timezone threshold
+    if ((date as any)[Symbol.for('UTCHours')] !== undefined) {
+      (dateToReturn as any)[Symbol.for('UTCHours')] = (date as any)[Symbol.for('UTCHours')];
+    }
+    return dateToReturn;
+  }
+
+  return new Date(value) as ResultDate;
 }
+
+/* eslint-enable */

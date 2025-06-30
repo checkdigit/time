@@ -1,4 +1,15 @@
-import { startOfHour } from '../startOfHour/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import { startOfHour } from '../startOfHour/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+/**
+ * The {@link isSameHour} function options.
+ */
+export interface IsSameHourOptions extends ContextOptions<Date> {}
 
 /**
  * @name isSameHour
@@ -8,10 +19,9 @@ import { startOfHour } from '../startOfHour/index';
  * @description
  * Are the given dates in the same hour (and same day)?
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param dateLeft - The first date to check
  * @param dateRight - The second date to check
+ * @param options - An object with options
  *
  * @returns The dates are in the same hour (and same day)
  *
@@ -25,12 +35,13 @@ import { startOfHour } from '../startOfHour/index';
  * const result = isSameHour(new Date(2014, 8, 4, 6, 0), new Date(2014, 8, 5, 6, 0))
  * //=> false
  */
-export function isSameHour<DateType extends Date>(
-  dateLeft: DateType | number | string,
-  dateRight: DateType | number | string,
+export function isSameHour(
+  dateLeft: DateArg<Date> & {},
+  dateRight: DateArg<Date> & {},
+  options?: IsSameHourOptions | undefined,
 ): boolean {
-  const dateLeftStartOfHour = startOfHour(dateLeft);
-  const dateRightStartOfHour = startOfHour(dateRight);
-
-  return +dateLeftStartOfHour === +dateRightStartOfHour;
+  const [dateLeft_, dateRight_] = normalizeDates(options?.in, dateLeft, dateRight);
+  return +startOfHour(dateLeft_) === +startOfHour(dateRight_);
 }
+
+/* eslint-enable */

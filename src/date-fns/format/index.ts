@@ -1,21 +1,27 @@
-import { defaultLocale } from '../_lib/defaultLocale/index';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
-import { formatters } from '../_lib/format/formatters/index';
-import { longFormatters } from '../_lib/format/longFormatters/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { defaultLocale } from '../_lib/defaultLocale/index.ts';
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
+import { formatters } from '../_lib/format/formatters/index.ts';
+import { longFormatters } from '../_lib/format/longFormatters/index.ts';
 import {
   isProtectedDayOfYearToken,
   isProtectedWeekYearToken,
   warnOrThrowProtectedError,
-} from '../_lib/protectedTokens/index';
-import { isValid } from '../isValid/index';
-import { toDate } from '../toDate/index';
+} from '../_lib/protectedTokens/index.ts';
+import { isValid } from '../isValid/index.ts';
+import { toDate } from '../toDate/index.ts';
 import type {
   AdditionalTokensOptions,
+  ContextOptions,
+  DateArg,
   FirstWeekContainsDateOptions,
   FormatPart,
   LocalizedOptions,
   WeekOptions,
-} from '../types';
+} from '../types.ts';
 
 // Rexports of internal for libraries to use.
 // See: https://github.com/date-fns/date-fns/issues/3638#issuecomment-1877082874
@@ -52,7 +58,8 @@ export interface FormatOptions
   extends LocalizedOptions<'options' | 'localize' | 'formatLong'>,
     WeekOptions,
     FirstWeekContainsDateOptions,
-    AdditionalTokensOptions {}
+    AdditionalTokensOptions,
+    ContextOptions<Date> {}
 
 /**
  * @name format
@@ -305,8 +312,6 @@ export interface FormatOptions
  * 9. `D` and `DD` tokens represent days of the year but they are often confused with days of the month.
  *    You should enable `options.useAdditionalDayOfYearTokens` to use them. See: https://github.com/date-fns/date-fns/blob/master/docs/unicodeTokens.md
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The original date
  * @param format - The string of tokens
  * @param options - An object with options
@@ -340,11 +345,7 @@ export interface FormatOptions
  * const result = format(new Date(2014, 6, 2, 15), "h 'o''clock'")
  * //=> "3 o'clock"
  */
-export function format<DateType extends Date>(
-  date: DateType | number | string,
-  formatStr: string,
-  options?: FormatOptions,
-): string {
+export function format(date: DateArg<Date> & {}, formatStr: string, options?: FormatOptions): string {
   const defaultOptions = getDefaultOptions();
   const locale = options?.locale ?? defaultOptions.locale ?? defaultLocale;
 
@@ -362,7 +363,7 @@ export function format<DateType extends Date>(
     defaultOptions.locale?.options?.weekStartsOn ??
     0;
 
-  const originalDate = toDate(date);
+  const originalDate = toDate(date, options?.in);
 
   if (!isValid(originalDate)) {
     throw new RangeError('Invalid time value');
@@ -374,7 +375,7 @@ export function format<DateType extends Date>(
       const firstCharacter = substring[0];
       if (firstCharacter === 'p' || firstCharacter === 'P') {
         const longFormatter = longFormatters[firstCharacter];
-        return longFormatter!(substring, locale.formatLong);
+        return longFormatter(substring, locale.formatLong);
       }
       return substring;
     })
@@ -391,11 +392,11 @@ export function format<DateType extends Date>(
         return { isToken: false, value: cleanEscapedString(substring) };
       }
 
-      if (formatters[firstCharacter!]) {
+      if (formatters[firstCharacter]) {
         return { isToken: true, value: substring };
       }
 
-      if (firstCharacter!.match(unescapedLatinCharacterRegExp)) {
+      if (firstCharacter.match(unescapedLatinCharacterRegExp)) {
         throw new RangeError('Format string contains an unescaped latin alphabet character `' + firstCharacter + '`');
       }
 
@@ -426,8 +427,8 @@ export function format<DateType extends Date>(
         warnOrThrowProtectedError(token, formatStr, String(date));
       }
 
-      const formatter = formatters[token[0]!];
-      return formatter!(originalDate, token, locale.localize, formatterOptions);
+      const formatter = formatters[token[0]];
+      return formatter(originalDate, token, locale.localize, formatterOptions);
     })
     .join('');
 }
@@ -439,5 +440,7 @@ function cleanEscapedString(input: string): string {
     return input;
   }
 
-  return matched[1]!.replace(doubleQuoteRegExp, "'");
+  return matched[1].replace(doubleQuoteRegExp, "'");
 }
+
+/* eslint-enable */

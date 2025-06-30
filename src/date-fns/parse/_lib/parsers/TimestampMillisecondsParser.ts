@@ -1,7 +1,11 @@
-import { constructFrom } from '../../../constructFrom/index';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { parseAnyDigitsSigned } from '../utils';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { constructFrom } from '../../../constructFrom/index.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { parseAnyDigitsSigned } from '../utils.ts';
 
 export class TimestampMillisecondsParser extends Parser<number> {
   priority = 20;
@@ -16,3 +20,5 @@ export class TimestampMillisecondsParser extends Parser<number> {
 
   incompatibleTokens = '*' as const;
 }
+
+/* eslint-enable */

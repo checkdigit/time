@@ -1,4 +1,8 @@
-import type { FormatLong } from '../../../locale/types';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { FormatLong } from '../../../locale/types.ts';
 
 type LongFormatter = (pattern: string, formatLong: FormatLong) => string;
 
@@ -58,7 +62,7 @@ const dateTimeLongFormatter: LongFormatter = (pattern: string, formatLong: Forma
   }
 
   return dateTimeFormat
-    .replace('{{date}}', dateLongFormatter(datePattern!, formatLong))
+    .replace('{{date}}', dateLongFormatter(datePattern, formatLong))
     .replace('{{time}}', timeLongFormatter(timePattern, formatLong));
 };
 
@@ -66,3 +70,5 @@ export const longFormatters: Record<string, LongFormatter> = {
   p: timeLongFormatter,
   P: dateTimeLongFormatter,
 };
+
+/* eslint-enable */

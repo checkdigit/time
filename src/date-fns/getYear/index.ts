@@ -1,4 +1,14 @@
-import { toDate } from '../toDate/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+/**
+ * The {@link getYear} function options.
+ */
+export interface GetYearOptions extends ContextOptions<Date> {}
 
 /**
  * @name getYear
@@ -8,9 +18,8 @@ import { toDate } from '../toDate/index';
  * @description
  * Get the year of the given date.
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The given date
+ * @param options - An object with options
  *
  * @returns The year
  *
@@ -19,6 +28,8 @@ import { toDate } from '../toDate/index';
  * const result = getYear(new Date(2014, 6, 2))
  * //=> 2014
  */
-export function getYear<DateType extends Date>(date: DateType | number | string): number {
-  return toDate(date).getFullYear();
+export function getYear(date: DateArg<Date> & {}, options?: GetYearOptions | undefined): number {
+  return toDate(date, options?.in).getFullYear();
 }
+
+/* eslint-enable */

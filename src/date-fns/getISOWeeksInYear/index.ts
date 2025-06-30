@@ -1,6 +1,16 @@
-import { addWeeks } from '../addWeeks/index';
-import { millisecondsInWeek } from '../constants/index';
-import { startOfISOWeekYear } from '../startOfISOWeekYear/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { addWeeks } from '../addWeeks/index.ts';
+import { millisecondsInWeek } from '../constants/index.ts';
+import { startOfISOWeekYear } from '../startOfISOWeekYear/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+/**
+ * The {@link getISOWeeksInYear} function options.
+ */
+export interface GetISOWeeksInYearOptions extends ContextOptions<Date> {}
 
 /**
  * @name getISOWeeksInYear
@@ -12,9 +22,8 @@ import { startOfISOWeekYear } from '../startOfISOWeekYear/index';
  *
  * ISO week-numbering year: http://en.wikipedia.org/wiki/ISO_week_date
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The given date
+ * @param options - An object with options
  *
  * @returns The number of ISO weeks in a year
  *
@@ -23,8 +32,8 @@ import { startOfISOWeekYear } from '../startOfISOWeekYear/index';
  * const result = getISOWeeksInYear(new Date(2015, 1, 11))
  * //=> 53
  */
-export function getISOWeeksInYear<DateType extends Date>(date: DateType | number | string): number {
-  const thisYear = startOfISOWeekYear(date);
+export function getISOWeeksInYear(date: DateArg<Date> & {}, options?: GetISOWeeksInYearOptions | undefined): number {
+  const thisYear = startOfISOWeekYear(date, options);
   const nextYear = startOfISOWeekYear(addWeeks(thisYear, 60));
   const diff = +nextYear - +thisYear;
 
@@ -33,3 +42,5 @@ export function getISOWeeksInYear<DateType extends Date>(date: DateType | number
   // the daylight saving time clock shift).
   return Math.round(diff / millisecondsInWeek);
 }
+
+/* eslint-enable */

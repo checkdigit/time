@@ -1,7 +1,11 @@
-import type { LocaleDayPeriod, Match } from '../../../locale/types';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { dayPeriodEnumToHours } from '../utils';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { LocaleDayPeriod, Match } from '../../../locale/types.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { dayPeriodEnumToHours } from '../utils.ts';
 
 // in the morning, in the afternoon, in the evening, at night
 export class DayPeriodParser extends Parser<LocaleDayPeriod> {
@@ -51,5 +55,7 @@ export class DayPeriodParser extends Parser<LocaleDayPeriod> {
     return date;
   }
 
-  incompatibleTokens = ['a', 'b', 't', 'T'];
+  incompatibleTokens: string[] = ['a', 'b', 't', 'T'];
 }
+
+/* eslint-enable */

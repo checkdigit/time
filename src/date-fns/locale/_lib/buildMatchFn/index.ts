@@ -1,5 +1,9 @@
-import type { Quarter, Era, Day, Month } from '../../../types';
-import type { LocaleUnitValue, LocaleWidth, LocaleDayPeriod, MatchFn, MatchValueCallback } from '../../types';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { Quarter, Era, Day, Month } from '../../../types.ts';
+import type { LocaleUnitValue, LocaleWidth, LocaleDayPeriod, MatchFn, MatchValueCallback } from '../../types.ts';
 
 export interface BuildMatchFnArgs<
   Result extends LocaleUnitValue,
@@ -58,7 +62,7 @@ export function buildMatchFn<
     const key = (
       Array.isArray(parsePatterns)
         ? findIndex(parsePatterns, (pattern) => pattern.test(matchedString))
-        : // eslint-disable-next-line @typescript-eslint/no-explicit-any -- I challange you to fix the type
+        : // [TODO] -- I challenge you to fix the type
           findKey(parsePatterns, (pattern: any) => pattern.test(matchedString))
     ) as Value extends LocaleDayPeriod ? string : number;
 
@@ -66,7 +70,7 @@ export function buildMatchFn<
 
     value = (args.valueCallback ? args.valueCallback(key) : key) as Value;
     value = options.valueCallback
-      ? // eslint-disable-next-line @typescript-eslint/no-explicit-any -- I challange you to fix the type
+      ? // [TODO] -- I challenge you to fix the type
         options.valueCallback(value as any)
       : value;
 
@@ -81,7 +85,7 @@ function findKey<Value, Obj extends { [key in string | number]: Value }>(
   predicate: (value: Value) => boolean,
 ): keyof Obj | undefined {
   for (const key in object) {
-    if (Object.prototype.hasOwnProperty.call(object, key) && predicate(object[key]!)) {
+    if (Object.prototype.hasOwnProperty.call(object, key) && predicate(object[key])) {
       return key;
     }
   }
@@ -90,9 +94,11 @@ function findKey<Value, Obj extends { [key in string | number]: Value }>(
 
 function findIndex<Item>(array: Item[], predicate: (item: Item) => boolean): number | undefined {
   for (let key = 0; key < array.length; key++) {
-    if (predicate(array[key]!)) {
+    if (predicate(array[key])) {
       return key;
     }
   }
   return undefined;
 }
+
+/* eslint-enable */

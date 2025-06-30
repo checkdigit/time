@@ -1,10 +1,14 @@
-import type { Match } from '../../../locale/types';
-import { setISOWeek } from '../../../setISOWeek/index';
-import { startOfISOWeek } from '../../../startOfISOWeek/index';
-import { numericPatterns } from '../constants';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { parseNDigits, parseNumericPattern } from '../utils';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { Match } from '../../../locale/types.ts';
+import { setISOWeek } from '../../../setISOWeek/index.ts';
+import { startOfISOWeek } from '../../../startOfISOWeek/index.ts';
+import { numericPatterns } from '../constants.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { parseNDigits, parseNumericPattern } from '../utils.ts';
 
 // ISO week of year
 export class ISOWeekParser extends Parser<number> {
@@ -21,7 +25,7 @@ export class ISOWeekParser extends Parser<number> {
     }
   }
 
-  override validate<DateType extends Date>(_date: DateType, value: number): boolean {
+  validate<DateType extends Date>(_date: DateType, value: number): boolean {
     return value >= 1 && value <= 53;
   }
 
@@ -29,5 +33,7 @@ export class ISOWeekParser extends Parser<number> {
     return startOfISOWeek(setISOWeek(date, value));
   }
 
-  incompatibleTokens = ['y', 'Y', 'u', 'q', 'Q', 'M', 'L', 'w', 'd', 'D', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['y', 'Y', 'u', 'q', 'Q', 'M', 'L', 'w', 'd', 'D', 'e', 'c', 't', 'T'];
 }
+
+/* eslint-enable */

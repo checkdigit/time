@@ -1,10 +1,16 @@
-import { startOfWeek } from '../startOfWeek/index';
-import type { LocalizedOptions, WeekOptions } from '../types';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import { startOfWeek } from '../startOfWeek/index.ts';
+import type { LocalizedOptions, WeekOptions } from '../types.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link isSameWeek} function options.
  */
-export interface IsSameWeekOptions extends WeekOptions, LocalizedOptions<'options'> {}
+export interface IsSameWeekOptions extends WeekOptions, LocalizedOptions<'options'>, ContextOptions<Date> {}
 
 /**
  * @name isSameWeek
@@ -14,10 +20,8 @@ export interface IsSameWeekOptions extends WeekOptions, LocalizedOptions<'option
  * @description
  * Are the given dates in the same week (and month and year)?
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
- * @param dateLeft - The first date to check
- * @param dateRight - The second date to check
+ * @param laterDate - The first date to check
+ * @param earlierDate - The second date to check
  * @param options - An object with options
  *
  * @returns The dates are in the same week (and month and year)
@@ -40,13 +44,13 @@ export interface IsSameWeekOptions extends WeekOptions, LocalizedOptions<'option
  * const result = isSameWeek(new Date(2014, 0, 1), new Date(2015, 0, 1))
  * //=> false
  */
-export function isSameWeek<DateType extends Date>(
-  dateLeft: DateType | number | string,
-  dateRight: DateType | number | string,
+export function isSameWeek(
+  laterDate: DateArg<Date> & {},
+  earlierDate: DateArg<Date> & {},
   options?: IsSameWeekOptions,
 ): boolean {
-  const dateLeftStartOfWeek = startOfWeek(dateLeft, options);
-  const dateRightStartOfWeek = startOfWeek(dateRight, options);
-
-  return +dateLeftStartOfWeek === +dateRightStartOfWeek;
+  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
+  return +startOfWeek(laterDate_, options) === +startOfWeek(earlierDate_, options);
 }
+
+/* eslint-enable */

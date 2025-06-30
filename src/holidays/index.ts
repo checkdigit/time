@@ -1,3 +1,3 @@
 // holidays/index.ts
 
-export * from './united-states/federal-reserve-bank';
+export * from './united-states/federal-reserve-bank/index.ts';

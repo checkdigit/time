@@ -1,12 +1,13 @@
 // holidays/united-states/federal-reserve-bank/add-us-federal-reserve-bank-business-days.spec.ts
 
 import { strict as assert } from 'node:assert';
+import { describe, it } from 'node:test';
 
-import { describe, it } from '@jest/globals';
-
-import { addUSFederalReserveBankBusinessDays } from './index';
+import { addUSFederalReserveBankBusinessDays } from './index.ts';
 
 describe('add-federal-reserve-bank-business-days', () => {
+  process.loadEnvFile();
+
   it('throws error when amount is NaN', () => {
     assert.throws(
       () => addUSFederalReserveBankBusinessDays({ year: 2022, month: 10, date: 13 }, Number.NaN),

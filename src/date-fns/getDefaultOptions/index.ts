@@ -1,5 +1,9 @@
-import type { DefaultOptions } from '../_lib/defaultOptions/index';
-import { getDefaultOptions as getInternalDefaultOptions } from '../_lib/defaultOptions/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { DefaultOptions } from '../_lib/defaultOptions/index.ts';
+import { getDefaultOptions as getInternalDefaultOptions } from '../_lib/defaultOptions/index.ts';
 
 /**
  * @name getDefaultOptions
@@ -28,3 +32,5 @@ import { getDefaultOptions as getInternalDefaultOptions } from '../_lib/defaultO
 export function getDefaultOptions(): DefaultOptions {
   return Object.assign({}, getInternalDefaultOptions());
 }
+
+/* eslint-enable */

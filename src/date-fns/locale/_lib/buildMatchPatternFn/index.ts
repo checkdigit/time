@@ -1,4 +1,8 @@
-import type { MatchFn, MatchValueCallback } from '../../types';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { MatchFn, MatchValueCallback } from '../../types.ts';
 
 export interface BuildMatchPatternFnArgs<Result> {
   matchPattern: RegExp;
@@ -15,7 +19,7 @@ export function buildMatchPatternFn<Result>(args: BuildMatchPatternFnArgs<Result
     const parseResult = string.match(args.parsePattern);
     if (!parseResult) return null;
     let value = (args.valueCallback ? args.valueCallback(parseResult[0]) : parseResult[0]) as Result;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- I challange you to fix the type
+    // [TODO] I challenge you to fix the type
     value = options.valueCallback ? options.valueCallback(value as any) : value;
 
     const rest = string.slice(matchedString.length);
@@ -23,3 +27,5 @@ export function buildMatchPatternFn<Result>(args: BuildMatchPatternFnArgs<Result
     return { value, rest };
   };
 }
+
+/* eslint-enable */

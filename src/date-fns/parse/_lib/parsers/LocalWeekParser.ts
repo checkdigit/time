@@ -1,10 +1,14 @@
-import type { Match } from '../../../locale/types';
-import { setWeek } from '../../../setWeek/index';
-import { startOfWeek } from '../../../startOfWeek/index';
-import { numericPatterns } from '../constants';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult, ParserOptions } from '../types';
-import { parseNDigits, parseNumericPattern } from '../utils';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { Match } from '../../../locale/types.ts';
+import { setWeek } from '../../../setWeek/index.ts';
+import { startOfWeek } from '../../../startOfWeek/index.ts';
+import { numericPatterns } from '../constants.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult, ParserOptions } from '../types.ts';
+import { parseNDigits, parseNumericPattern } from '../utils.ts';
 
 // Local week of year
 export class LocalWeekParser extends Parser<number> {
@@ -21,7 +25,7 @@ export class LocalWeekParser extends Parser<number> {
     }
   }
 
-  override validate<DateType extends Date>(_date: DateType, value: number): boolean {
+  validate<DateType extends Date>(_date: DateType, value: number): boolean {
     return value >= 1 && value <= 53;
   }
 
@@ -29,5 +33,7 @@ export class LocalWeekParser extends Parser<number> {
     return startOfWeek(setWeek(date, value, options), options);
   }
 
-  incompatibleTokens = ['y', 'R', 'u', 'q', 'Q', 'M', 'L', 'I', 'd', 'D', 'i', 't', 'T'];
+  incompatibleTokens: string[] = ['y', 'R', 'u', 'q', 'Q', 'M', 'L', 'I', 'd', 'D', 'i', 't', 'T'];
 }
+
+/* eslint-enable */

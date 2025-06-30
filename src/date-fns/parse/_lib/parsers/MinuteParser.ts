@@ -1,8 +1,12 @@
-import type { Match } from '../../../locale/types';
-import { numericPatterns } from '../constants';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { parseNDigits, parseNumericPattern } from '../utils';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { Match } from '../../../locale/types.ts';
+import { numericPatterns } from '../constants.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { parseNDigits, parseNumericPattern } from '../utils.ts';
 
 export class MinuteParser extends Parser<number> {
   priority = 60;
@@ -18,7 +22,7 @@ export class MinuteParser extends Parser<number> {
     }
   }
 
-  override validate<DateType extends Date>(_date: DateType, value: number): boolean {
+  validate<DateType extends Date>(_date: DateType, value: number): boolean {
     return value >= 0 && value <= 59;
   }
 
@@ -27,5 +31,7 @@ export class MinuteParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['t', 'T'];
+  incompatibleTokens: string[] = ['t', 'T'];
 }
+
+/* eslint-enable */

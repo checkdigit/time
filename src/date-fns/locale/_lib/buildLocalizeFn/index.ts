@@ -1,7 +1,9 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
 
-import type { Day, Era, Month, Quarter } from '../../../types';
-import type { LocaleDayPeriod, LocaleUnitValue, LocaleWidth, LocalizeFn } from '../../types';
+import type { Day, Era, Month, Quarter } from '../../../types.ts';
+import type { LocaleDayPeriod, LocaleUnitValue, LocaleWidth, LocalizeFn } from '../../types.ts';
 
 export type BuildLocalizeFnArgs<
   Value extends LocaleUnitValue,
@@ -111,3 +113,5 @@ export function buildLocalizeFn<
     return valuesArray[index];
   };
 }
+
+/* eslint-enable */

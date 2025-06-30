@@ -1,11 +1,15 @@
-import type { Match } from '../../../locale/types';
-import { numericPatterns } from '../constants';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { mapValue, parseNDigits, parseNumericPattern } from '../utils';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { Match } from '../../../locale/types.ts';
+import { numericPatterns } from '../constants.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { mapValue, parseNDigits, parseNumericPattern } from '../utils.ts';
 
 export class MonthParser extends Parser<number> {
-  incompatibleTokens = ['Y', 'R', 'q', 'Q', 'L', 'w', 'I', 'D', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['Y', 'R', 'q', 'Q', 'L', 'w', 'I', 'D', 'i', 'e', 'c', 't', 'T'];
   priority = 110;
 
   parse(dateString: string, token: string, match: Match): ParseResult<number> {
@@ -54,7 +58,7 @@ export class MonthParser extends Parser<number> {
     }
   }
 
-  override validate<DateType extends Date>(_date: DateType, value: number): boolean {
+  validate<DateType extends Date>(_date: DateType, value: number): boolean {
     return value >= 0 && value <= 11;
   }
 
@@ -64,3 +68,5 @@ export class MonthParser extends Parser<number> {
     return date;
   }
 }
+
+/* eslint-enable */

@@ -1,6 +1,10 @@
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { mapValue, parseNDigits } from '../utils';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { mapValue, parseNDigits } from '../utils.ts';
 
 export class FractionOfSecondParser extends Parser<number> {
   priority = 30;
@@ -15,5 +19,7 @@ export class FractionOfSecondParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['t', 'T'];
+  incompatibleTokens: string[] = ['t', 'T'];
 }
+
+/* eslint-enable */

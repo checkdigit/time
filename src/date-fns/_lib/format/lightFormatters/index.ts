@@ -1,4 +1,8 @@
-import { addLeadingZeros } from '../../addLeadingZeros/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { addLeadingZeros } from '../../addLeadingZeros/index.ts';
 
 /*
  * |     | Unit                           |     | Unit                           |
@@ -44,7 +48,7 @@ export const lightFormatters = {
 
   // AM or PM
   a(date: Date, token: string): string {
-    // [PATCH:] this hack is required because setHours doesn't work for hours that are spring-forward
+    // [PATCH:] this hack is required because setHours doesn't work for hours that are close to daylight saving timezone threshold
     const dayPeriodEnumValue = ((date as any)[Symbol.for('UTCHours')] ?? date.getHours()) / 12 >= 1 ? 'pm' : 'am';
     // original:
     // const dayPeriodEnumValue = date.getHours() / 12 >= 1 ? "pm" : "am";
@@ -56,7 +60,7 @@ export const lightFormatters = {
       case 'aaa':
         return dayPeriodEnumValue;
       case 'aaaaa':
-        return dayPeriodEnumValue[0]!;
+        return dayPeriodEnumValue[0];
       case 'aaaa':
       default:
         return dayPeriodEnumValue === 'am' ? 'a.m.' : 'p.m.';
@@ -65,7 +69,7 @@ export const lightFormatters = {
 
   // Hour [1-12]
   h(date: Date, token: string): string {
-    // [PATCH:] this hack is required because setHours doesn't work for hours that are spring-forward
+    // [PATCH:] this hack is required because setHours doesn't work for hours that are close to daylight saving timezone threshold
     return addLeadingZeros(((date as any)[Symbol.for('UTCHours')] ?? date.getHours()) % 12 || 12, token.length);
     // original:
     // return addLeadingZeros(date.getHours() % 12 || 12, token.length);
@@ -73,7 +77,7 @@ export const lightFormatters = {
 
   // Hour [0-23]
   H(date: Date, token: string): string {
-    // [PATCH:] this hack is required because setHours doesn't work for hours that are spring-forward
+    // [PATCH:] this hack is required because setHours doesn't work for hours that are close to daylight saving timezone threshold
     return addLeadingZeros((date as any)[Symbol.for('UTCHours')] ?? date.getHours(), token.length);
     // original:
     // return addLeadingZeros(date.getHours(), token.length);
@@ -97,3 +101,5 @@ export const lightFormatters = {
     return addLeadingZeros(fractionalSeconds, token.length);
   },
 };
+
+/* eslint-enable */

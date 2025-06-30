@@ -1,13 +1,21 @@
-import { constructFrom } from '../constructFrom/index';
-import { startOfWeek } from '../startOfWeek/index';
-import { toDate } from '../toDate/index';
-import type { FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
+import { constructFrom } from '../constructFrom/index.ts';
+import { startOfWeek } from '../startOfWeek/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg, FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link getWeekYear} function options.
  */
-export interface GetWeekYearOptions extends LocalizedOptions<'options'>, WeekOptions, FirstWeekContainsDateOptions {}
+export interface GetWeekYearOptions
+  extends LocalizedOptions<'options'>,
+    WeekOptions,
+    FirstWeekContainsDateOptions,
+    ContextOptions<Date> {}
 
 /**
  * @name getWeekYear
@@ -22,8 +30,6 @@ export interface GetWeekYearOptions extends LocalizedOptions<'options'>, WeekOpt
  * the first week of the week-numbering year)
  *
  * Week numbering: https://en.wikipedia.org/wiki/Week#The_ISO_week_date_system
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
  * @param date - The given date
  * @param options - An object with options.
@@ -45,11 +51,8 @@ export interface GetWeekYearOptions extends LocalizedOptions<'options'>, WeekOpt
  * const result = getWeekYear(new Date(2004, 11, 26), { firstWeekContainsDate: 4 })
  * //=> 2004
  */
-export function getWeekYear<DateType extends Date>(
-  date: DateType | number | string,
-  options?: GetWeekYearOptions,
-): number {
-  const _date = toDate(date);
+export function getWeekYear(date: DateArg<Date> & {}, options?: GetWeekYearOptions): number {
+  const _date = toDate(date, options?.in);
   const year = _date.getFullYear();
 
   const defaultOptions = getDefaultOptions();
@@ -60,21 +63,23 @@ export function getWeekYear<DateType extends Date>(
     defaultOptions.locale?.options?.firstWeekContainsDate ??
     1;
 
-  const firstWeekOfNextYear = constructFrom(date, 0);
+  const firstWeekOfNextYear = constructFrom(options?.in || date, 0);
   firstWeekOfNextYear.setFullYear(year + 1, 0, firstWeekContainsDate);
   firstWeekOfNextYear.setHours(0, 0, 0, 0);
   const startOfNextYear = startOfWeek(firstWeekOfNextYear, options);
 
-  const firstWeekOfThisYear = constructFrom(date, 0);
+  const firstWeekOfThisYear = constructFrom(options?.in || date, 0);
   firstWeekOfThisYear.setFullYear(year, 0, firstWeekContainsDate);
   firstWeekOfThisYear.setHours(0, 0, 0, 0);
   const startOfThisYear = startOfWeek(firstWeekOfThisYear, options);
 
-  if (_date.getTime() >= startOfNextYear.getTime()) {
+  if (+_date >= +startOfNextYear) {
     return year + 1;
-  } else if (_date.getTime() >= startOfThisYear.getTime()) {
+  } else if (+_date >= +startOfThisYear) {
     return year;
   } else {
     return year - 1;
   }
 }
+
+/* eslint-enable */

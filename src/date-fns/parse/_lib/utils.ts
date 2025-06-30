@@ -1,7 +1,11 @@
-import type { LocaleDayPeriod } from '../../locale/types';
-import { millisecondsInHour, millisecondsInMinute, millisecondsInSecond } from '../../constants/index';
-import type { ParseResult } from './types';
-import { numericPatterns } from './constants';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { LocaleDayPeriod } from '../../locale/types.ts';
+import { millisecondsInHour, millisecondsInMinute, millisecondsInSecond } from '../../constants/index.ts';
+import type { ParseResult } from './types.ts';
+import { numericPatterns } from './constants.ts';
 
 export function mapValue<TInput, TResult>(
   parseFnResult: ParseResult<TInput>,
@@ -132,3 +136,5 @@ export function normalizeTwoDigitYear(twoDigitYear: number, currentYear: number)
 export function isLeapYearIndex(year: number): boolean {
   return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
 }
+
+/* eslint-enable */

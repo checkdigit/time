@@ -1,5 +1,16 @@
-import { constructNow } from '../constructNow/index';
-import { isSameMonth } from '../isSameMonth/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { constructFrom } from '../constructFrom/index.ts';
+import { constructNow } from '../constructNow/index.ts';
+import { isSameMonth } from '../isSameMonth/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+/**
+ * The {@link isThisMonth} function options.
+ */
+export interface IsThisMonthOptions extends ContextOptions<Date> {}
 
 /**
  * @name isThisMonth
@@ -10,9 +21,8 @@ import { isSameMonth } from '../isSameMonth/index';
  * @description
  * Is the given date in the same month as the current date?
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The date to check
+ * @param options - An object with options
  *
  * @returns The date is in this month
  *
@@ -21,7 +31,8 @@ import { isSameMonth } from '../isSameMonth/index';
  * const result = isThisMonth(new Date(2014, 8, 15))
  * //=> true
  */
-
-export function isThisMonth<DateType extends Date>(date: DateType | number | string): boolean {
-  return isSameMonth(date, constructNow(date));
+export function isThisMonth(date: DateArg<Date> & {}, options?: IsThisMonthOptions | undefined): boolean {
+  return isSameMonth(constructFrom(options?.in || date, date), constructNow(options?.in || date));
 }
+
+/* eslint-enable */

@@ -1,7 +1,11 @@
-import type { Match } from '../../../locale/types';
-import type { Era } from '../../../types';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { Match } from '../../../locale/types.ts';
+import type { Era } from '../../../types.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
 
 export class EraParser extends Parser<number> {
   priority = 140;
@@ -34,5 +38,7 @@ export class EraParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['R', 'u', 't', 'T'];
+  incompatibleTokens: string[] = ['R', 'u', 't', 'T'];
 }
+
+/* eslint-enable */

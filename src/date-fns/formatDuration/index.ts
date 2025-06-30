@@ -1,7 +1,11 @@
-import type { FormatDistanceToken } from '../locale/types';
-import type { Duration, DurationUnit, LocalizedOptions } from '../types';
-import { defaultLocale } from '../_lib/defaultLocale/index';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { FormatDistanceToken } from '../locale/types.ts';
+import type { Duration, DurationUnit, LocalizedOptions } from '../types.ts';
+import { defaultLocale } from '../_lib/defaultLocale/index.ts';
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
 
 /**
  * The {@link formatDuration} function options.
@@ -24,8 +28,6 @@ const defaultFormat: DurationUnit[] = ['years', 'months', 'weeks', 'days', 'hour
  *
  * @description
  * Return human-readable duration string i.e. "9 months 2 days"
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
  * @param duration - The duration to format
  * @param options - An object with options.
@@ -101,3 +103,5 @@ export function formatDuration(duration: Duration, options?: FormatDurationOptio
 
   return result;
 }
+
+/* eslint-enable */

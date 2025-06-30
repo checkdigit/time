@@ -1,8 +1,12 @@
-import type { Match } from '../../../locale/types';
-import { numericPatterns } from '../constants';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult } from '../types';
-import { isLeapYearIndex, parseNDigits, parseNumericPattern } from '../utils';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { Match } from '../../../locale/types.ts';
+import { numericPatterns } from '../constants.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult } from '../types.ts';
+import { isLeapYearIndex, parseNDigits, parseNumericPattern } from '../utils.ts';
 
 export class DayOfYearParser extends Parser<number> {
   priority = 90;
@@ -21,7 +25,7 @@ export class DayOfYearParser extends Parser<number> {
     }
   }
 
-  override validate<DateType extends Date>(date: DateType, value: number): boolean {
+  validate<DateType extends Date>(date: DateType, value: number): boolean {
     const year = date.getFullYear();
     const isLeapYear = isLeapYearIndex(year);
     if (isLeapYear) {
@@ -37,5 +41,7 @@ export class DayOfYearParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['Y', 'R', 'q', 'Q', 'M', 'L', 'w', 'I', 'd', 'E', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['Y', 'R', 'q', 'Q', 'M', 'L', 'w', 'I', 'd', 'E', 'i', 'e', 'c', 't', 'T'];
 }
+
+/* eslint-enable */

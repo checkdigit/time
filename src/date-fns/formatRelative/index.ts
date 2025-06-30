@@ -1,17 +1,22 @@
-import { differenceInCalendarDays } from '../differenceInCalendarDays/index';
-import { format } from '../format/index';
-import type { FormatRelativeToken } from '../locale/types';
-import { toDate } from '../toDate/index';
-import type { LocalizedOptions, WeekOptions } from '../types';
-import { defaultLocale } from '../_lib/defaultLocale/index';
-import { getDefaultOptions } from '../_lib/defaultOptions/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { defaultLocale } from '../_lib/defaultLocale/index.ts';
+import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
+import { normalizeDates } from '../_lib/normalizeDates/index.ts';
+import { differenceInCalendarDays } from '../differenceInCalendarDays/index.ts';
+import { format } from '../format/index.ts';
+import type { FormatRelativeToken } from '../locale/types.ts';
+import type { ContextOptions, DateArg, LocalizedOptions, WeekOptions } from '../types.ts';
 
 /**
  * The {@link formatRelative} function options.
  */
 export interface FormatRelativeOptions
   extends LocalizedOptions<'options' | 'localize' | 'formatLong' | 'formatRelative'>,
-    WeekOptions {}
+    WeekOptions,
+    ContextOptions<Date> {}
 
 /**
  * @name formatRelative
@@ -30,8 +35,6 @@ export interface FormatRelativeOptions
  * | Next 6 days               | Sunday at 04:30 AM        |
  * | Other                     | 12/31/2017                |
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The date to format
  * @param baseDate - The date to compare with
  * @param options - An object with options
@@ -49,13 +52,12 @@ export interface FormatRelativeOptions
  * const result = formatRelative(subDays(new Date(), 6), new Date())
  * //=> "last Thursday at 12:45 AM"
  */
-export function formatRelative<DateType extends Date>(
-  date: DateType | number | string,
-  baseDate: DateType | number | string,
+export function formatRelative(
+  date: DateArg<Date> & {},
+  baseDate: DateArg<Date> & {},
   options?: FormatRelativeOptions,
 ): string {
-  const _date = toDate(date);
-  const _baseDate = toDate(baseDate);
+  const [date_, baseDate_] = normalizeDates(options?.in, date, baseDate);
 
   const defaultOptions = getDefaultOptions();
   const locale = options?.locale ?? defaultOptions.locale ?? defaultLocale;
@@ -66,7 +68,7 @@ export function formatRelative<DateType extends Date>(
     defaultOptions.locale?.options?.weekStartsOn ??
     0;
 
-  const diff = differenceInCalendarDays(_date, _baseDate);
+  const diff = differenceInCalendarDays(date_, baseDate_);
 
   if (isNaN(diff)) {
     throw new RangeError('Invalid time value');
@@ -89,9 +91,11 @@ export function formatRelative<DateType extends Date>(
     token = 'other';
   }
 
-  const formatStr = locale.formatRelative(token, _date, _baseDate, {
+  const formatStr = locale.formatRelative(token, date_, baseDate_, {
     locale,
     weekStartsOn,
   });
-  return format(_date, formatStr, { locale, weekStartsOn });
+  return format(date_, formatStr, { locale, weekStartsOn });
 }
+
+/* eslint-enable */

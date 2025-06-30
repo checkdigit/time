@@ -1,4 +1,8 @@
-import { minutesInHour } from '../constants/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { minutesInHour } from '../constants/index.ts';
 
 /**
  * @name hoursToMinutes
@@ -7,8 +11,6 @@ import { minutesInHour } from '../constants/index';
  *
  * @description
  * Convert a number of hours to a full number of minutes.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
  * @param hours - number of hours to be converted
  *
@@ -22,3 +24,5 @@ import { minutesInHour } from '../constants/index';
 export function hoursToMinutes(hours: number): number {
   return Math.trunc(hours * minutesInHour);
 }
+
+/* eslint-enable */

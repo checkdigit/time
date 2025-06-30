@@ -1,5 +1,16 @@
-import { constructNow } from '../constructNow/index';
-import { isSameISOWeek } from '../isSameISOWeek/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { constructFrom } from '../constructFrom/index.ts';
+import { constructNow } from '../constructNow/index.ts';
+import { isSameISOWeek } from '../isSameISOWeek/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+/**
+ * The {@link isThisISOWeek} function options.
+ */
+export interface IsThisISOWeekOptions extends ContextOptions<Date> {}
 
 /**
  * @name isThisISOWeek
@@ -12,9 +23,8 @@ import { isSameISOWeek } from '../isSameISOWeek/index';
  *
  * ISO week-numbering year: http://en.wikipedia.org/wiki/ISO_week_date
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The date to check
+ * @param options - An object with options
  *
  * @returns The date is in this ISO week
  *
@@ -23,7 +33,8 @@ import { isSameISOWeek } from '../isSameISOWeek/index';
  * const result = isThisISOWeek(new Date(2014, 8, 22))
  * //=> true
  */
-
-export function isThisISOWeek<DateType extends Date>(date: DateType | number | string): boolean {
-  return isSameISOWeek(date, constructNow(date));
+export function isThisISOWeek(date: DateArg<Date> & {}, options?: IsThisISOWeekOptions | undefined): boolean {
+  return isSameISOWeek(constructFrom(options?.in || date, date), constructNow(options?.in || date));
 }
+
+/* eslint-enable */

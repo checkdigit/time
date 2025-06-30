@@ -1,6 +1,17 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
 
-import type { Day, Era, FirstWeekContainsDateOptions, LocalizedOptions, Month, Quarter, WeekOptions } from '../types';
+import type {
+  DateArg,
+  Day,
+  Era,
+  FirstWeekContainsDateOptions,
+  LocalizedOptions,
+  Month,
+  Quarter,
+  WeekOptions,
+} from '../types.ts';
 
 /**
  * The locale object with all functions and data needed to parse and format
@@ -139,8 +150,8 @@ export interface FormatRelativeFnOptions extends WeekOptions, LocalizedOptions<'
  * @param options - The object with options
  */
 export type FormatRelativeTokenFn = <DateType extends Date>(
-  date: DateType | number | string,
-  baseDate: DateType | number | string,
+  date: DateArg<DateType>,
+  baseDate: DateArg<DateType>,
   options?: FormatRelativeTokenFnOptions,
 ) => string;
 
@@ -344,7 +355,7 @@ export type LocaleUnitValue = Era | Quarter | Month | Day | LocaleDayPeriod;
 
 /**
  * The format width. Defines how short or long the formatted string might be.
- * The actaul result length depends on the locale.
+ * The actual result length depends on the locale.
  */
 export type LocaleWidth = 'narrow' | 'short' | 'abbreviated' | 'wide' | 'any';
 
@@ -367,3 +378,5 @@ export type LocaleUnit =
   | 'month'
   | 'quarter'
   | 'year';
+
+/* eslint-enable */

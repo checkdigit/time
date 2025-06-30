@@ -1,6 +1,11 @@
-import { transpose } from '../../transpose/index';
-import { constructFrom } from '../../constructFrom/index';
-import type { ParseFlags, ParserOptions } from './types';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { constructFrom } from '../../constructFrom/index.ts';
+import { transpose } from '../../transpose/index.ts';
+import type { ContextFn, DateArg } from '../../types.ts';
+import type { ParseFlags, ParserOptions } from './types.ts';
 
 const TIMEZONE_UNIT_PRIORITY = 10;
 
@@ -13,34 +18,49 @@ export abstract class Setter {
   }
 
   public abstract set<DateType extends Date>(
-    utcDate: DateType,
+    date: DateType,
     flags: ParseFlags,
     options: ParserOptions,
   ): DateType | [DateType, ParseFlags];
 }
 
 export class ValueSetter<Value> extends Setter {
+  private value: Value;
+
+  private validateValue: <DateType extends Date>(date: DateType, value: Value, options: ParserOptions) => boolean;
+
+  private setValue: <DateType extends Date>(
+    date: DateType,
+    flags: ParseFlags,
+    value: Value,
+    options: ParserOptions,
+  ) => DateType | [DateType, ParseFlags];
+
+  public priority: number;
+
   constructor(
-    private value: Value,
-
-    private validateValue: <DateType extends Date>(utcDate: DateType, value: Value, options: ParserOptions) => boolean,
-
-    private setValue: <DateType extends Date>(
-      utcDate: DateType,
+    value: Value,
+    validateValue: <DateType extends Date>(date: DateType, value: Value, options: ParserOptions) => boolean,
+    setValue: <DateType extends Date>(
+      date: DateType,
       flags: ParseFlags,
       value: Value,
       options: ParserOptions,
     ) => DateType | [DateType, ParseFlags],
-    public priority: number,
+    priority: number,
     subPriority?: number,
   ) {
     super();
+    this.value = value;
+    this.validateValue = validateValue;
+    this.setValue = setValue;
+    this.priority = priority;
     if (subPriority) {
       this.subPriority = subPriority;
     }
   }
 
-  override validate<DateType extends Date>(date: DateType, options: ParserOptions): boolean {
+  validate<DateType extends Date>(date: DateType, options: ParserOptions): boolean {
     return this.validateValue(date, this.value, options);
   }
 
@@ -53,11 +73,20 @@ export class ValueSetter<Value> extends Setter {
   }
 }
 
-export class DateToSystemTimezoneSetter extends Setter {
-  priority = TIMEZONE_UNIT_PRIORITY;
-  override subPriority = -1;
+export class DateTimezoneSetter extends Setter {
+  priority: number = TIMEZONE_UNIT_PRIORITY;
+  subPriority = -1;
+  context: ContextFn<Date>;
+
+  constructor(context: ContextFn<Date> | undefined, reference: DateArg<Date> & {}) {
+    super();
+    this.context = context || ((date) => constructFrom(reference, date));
+  }
+
   set<DateType extends Date>(date: DateType, flags: ParseFlags): DateType {
     if (flags.timestampIsSet) return date;
-    return constructFrom(date, transpose(date, Date));
+    return constructFrom(date, transpose(date, this.context));
   }
 }
+
+/* eslint-enable */

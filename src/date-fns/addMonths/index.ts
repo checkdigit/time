@@ -1,5 +1,15 @@
-import { toDate } from '../toDate/index';
-import { constructFrom } from '../constructFrom/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { constructFrom } from '../constructFrom/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+/**
+ * The {@link addMonths} function options.
+ */
+export interface AddMonthsOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
 
 /**
  * @name addMonths
@@ -10,9 +20,11 @@ import { constructFrom } from '../constructFrom/index';
  * Add the specified number of months to the given date.
  *
  * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
  *
  * @param date - The date to be changed
  * @param amount - The amount of months to be added.
+ * @param options - The options object
  *
  * @returns The new date with the months added
  *
@@ -25,9 +37,13 @@ import { constructFrom } from '../constructFrom/index';
  * const result = addMonths(new Date(2023, 0, 30), 1)
  * //=> Tue Feb 28 2023 00:00:00
  */
-export function addMonths<DateType extends Date>(date: DateType | number | string, amount: number): DateType {
-  const _date = toDate(date);
-  if (isNaN(amount)) return constructFrom(date, NaN);
+export function addMonths<DateType extends Date, ResultDate extends Date = DateType>(
+  date: DateArg<DateType>,
+  amount: number,
+  options?: AddMonthsOptions<ResultDate> | undefined,
+): ResultDate {
+  const _date = toDate(date, options?.in);
+  if (isNaN(amount)) return constructFrom(options?.in || date, NaN);
   if (!amount) {
     // If 0 months, no-op to avoid changing times in the hour before end of DST
     return _date;
@@ -42,7 +58,7 @@ export function addMonths<DateType extends Date>(date: DateType | number | strin
   // we'll default to the end of the desired month by adding 1 to the desired
   // month and using a date of 0 to back up one day to the end of the desired
   // month.
-  const endOfDesiredMonth = constructFrom(date, _date.getTime());
+  const endOfDesiredMonth = constructFrom(options?.in || date, _date.getTime());
   endOfDesiredMonth.setMonth(_date.getMonth() + amount + 1, 0);
   const daysInMonth = endOfDesiredMonth.getDate();
   if (dayOfMonth >= daysInMonth) {
@@ -61,3 +77,5 @@ export function addMonths<DateType extends Date>(date: DateType | number | strin
     return _date;
   }
 }
+
+/* eslint-enable */

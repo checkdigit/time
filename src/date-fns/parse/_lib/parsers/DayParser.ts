@@ -1,7 +1,11 @@
-import type { Match } from '../../../locale/types';
-import { setDay } from '../../../setDay/index';
-import { Parser } from '../Parser';
-import type { ParseFlags, ParseResult, ParserOptions } from '../types';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { Match } from '../../../locale/types.ts';
+import { setDay } from '../../../setDay/index.ts';
+import { Parser } from '../Parser.ts';
+import type { ParseFlags, ParseResult, ParserOptions } from '../types.ts';
 
 // Day of week
 export class DayParser extends Parser<number> {
@@ -48,7 +52,7 @@ export class DayParser extends Parser<number> {
     }
   }
 
-  override validate<DateType extends Date>(_date: DateType, value: number): boolean {
+  validate<DateType extends Date>(_date: DateType, value: number): boolean {
     return value >= 0 && value <= 6;
   }
 
@@ -58,5 +62,7 @@ export class DayParser extends Parser<number> {
     return date;
   }
 
-  incompatibleTokens = ['D', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = ['D', 'i', 'e', 'c', 't', 'T'];
 }
+
+/* eslint-enable */

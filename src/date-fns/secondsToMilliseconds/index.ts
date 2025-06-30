@@ -1,4 +1,8 @@
-import { millisecondsInSecond } from '../constants/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { millisecondsInSecond } from '../constants/index.ts';
 
 /**
  * @name secondsToMilliseconds
@@ -20,3 +24,5 @@ import { millisecondsInSecond } from '../constants/index';
 export function secondsToMilliseconds(seconds: number): number {
   return seconds * millisecondsInSecond;
 }
+
+/* eslint-enable */

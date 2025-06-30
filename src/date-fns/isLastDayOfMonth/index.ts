@@ -1,6 +1,13 @@
-import { endOfDay } from '../endOfDay/index';
-import { endOfMonth } from '../endOfMonth/index';
-import { toDate } from '../toDate/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { endOfDay } from '../endOfDay/index.ts';
+import { endOfMonth } from '../endOfMonth/index.ts';
+import { toDate } from '../toDate/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
+
+export interface IsLastDayOfMonthOptions extends ContextOptions<Date> {}
 
 /**
  * @name isLastDayOfMonth
@@ -10,10 +17,9 @@ import { toDate } from '../toDate/index';
  * @description
  * Is the given date the last day of a month?
  *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- *
  * @param date - The date to check
-
+ * @param options - An object with options
+ *
  * @returns The date is the last day of a month
  *
  * @example
@@ -21,7 +27,9 @@ import { toDate } from '../toDate/index';
  * const result = isLastDayOfMonth(new Date(2014, 1, 28))
  * //=> true
  */
-export function isLastDayOfMonth<DateType extends Date>(date: DateType | number | string): boolean {
-  const _date = toDate(date);
-  return +endOfDay(_date) === +endOfMonth(_date);
+export function isLastDayOfMonth(date: DateArg<Date> & {}, options?: IsLastDayOfMonthOptions | undefined): boolean {
+  const _date = toDate(date, options?.in);
+  return +endOfDay(_date, options) === +endOfMonth(_date, options);
 }
+
+/* eslint-enable */

@@ -1,4 +1,8 @@
-import type { FormatLongFn, FormatLongWidth } from '../../types';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import type { FormatLongFn, FormatLongWidth } from '../../types.ts';
 
 export interface BuildFormatLongFnArgs<DefaultMatchWidth extends FormatLongWidth> {
   formats: Partial<{ [format in FormatLongWidth]: string }> & {
@@ -17,3 +21,5 @@ export function buildFormatLongFn<DefaultMatchWidth extends FormatLongWidth>(
     return format;
   };
 }
+
+/* eslint-enable */

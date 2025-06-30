@@ -1,4 +1,9 @@
-import { toDate } from '../toDate/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { toDate } from '../toDate/index.ts';
+import type { DateArg } from '../types.ts';
 
 /**
  * @name getSeconds
@@ -7,8 +12,6 @@ import { toDate } from '../toDate/index';
  *
  * @description
  * Get the seconds of the given date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
  * @param date - The given date
  *
@@ -19,8 +22,8 @@ import { toDate } from '../toDate/index';
  * const result = getSeconds(new Date(2012, 1, 29, 11, 45, 5, 123))
  * //=> 5
  */
-export function getSeconds<DateType extends Date>(date: DateType | number | string): number {
-  const _date = toDate(date);
-  const seconds = _date.getSeconds();
-  return seconds;
+export function getSeconds(date: DateArg<Date> & {}): number {
+  return toDate(date).getSeconds();
 }
+
+/* eslint-enable */

@@ -1,11 +1,16 @@
-import type { FormatDistanceStrictOptions } from '../formatDistanceStrict/index';
-import { formatDistanceStrict } from '../formatDistanceStrict/index';
-import { constructNow } from '../constructNow/index';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { constructNow } from '../constructNow/index.ts';
+import type { FormatDistanceStrictOptions } from '../formatDistanceStrict/index.ts';
+import { formatDistanceStrict } from '../formatDistanceStrict/index.ts';
+import type { ContextOptions, DateArg } from '../types.ts';
 
 /**
  * The {@link formatDistanceToNowStrict} function options.
  */
-export interface FormatDistanceToNowStrictOptions extends FormatDistanceStrictOptions {}
+export interface FormatDistanceToNowStrictOptions extends FormatDistanceStrictOptions, ContextOptions<Date> {}
 
 /**
  * @name formatDistanceToNowStrict
@@ -26,8 +31,6 @@ export interface FormatDistanceToNowStrictOptions extends FormatDistanceStrictOp
  * | 1 ... 29 days          | [1..29] days        |
  * | 1 ... 11 months        | [1..11] months      |
  * | 1 ... N years          | [1..N]  years       |
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
  *
  * @param date - The given date
  * @param options - An object with options.
@@ -80,9 +83,11 @@ export interface FormatDistanceToNowStrictOptions extends FormatDistanceStrictOp
  * )
  * //=> '1 jaro'
  */
-export function formatDistanceToNowStrict<DateType extends Date>(
-  date: DateType | number | string,
+export function formatDistanceToNowStrict(
+  date: DateArg<Date> & {},
   options?: FormatDistanceToNowStrictOptions,
 ): string {
   return formatDistanceStrict(date, constructNow(date), options);
 }
+
+/* eslint-enable */

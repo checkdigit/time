@@ -1,5 +1,9 @@
-import { buildFormatLongFn } from '../../../_lib/buildFormatLongFn/index';
-import type { FormatLong } from '../../../types';
+/* eslint-disable eslint-comments/no-unlimited-disable */
+/* eslint-disable */
+// @ts-nocheck
+
+import { buildFormatLongFn } from '../../../_lib/buildFormatLongFn/index.ts';
+import type { FormatLong } from '../../../types.ts';
 
 const dateFormats = {
   full: 'EEEE, MMMM do, y',
@@ -38,3 +42,5 @@ export const formatLong: FormatLong = {
     defaultWidth: 'full',
   }),
 };
+
+/* eslint-enable */
