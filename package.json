@@ -40,7 +40,7 @@
     "ci:coverage": "node -e \"const fs = require('node:fs'); fs.rmSync('coverage', { recursive: true, force: true }); fs.mkdirSync('coverage')\" && node --test-timeout 600000 --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=coverage/lcov.info --test \"src/**/*.spec.ts\"",
     "ci:lint": "npm run lint",
     "ci:style": "npm run prettier",
-    "ci:test": "node --test-timeout 600000 --test \"src/**/*.spec.ts\"",
+    "ci:test": "node --pending-deprecation --throw-deprecation --test-timeout 600000 --test \"src/**/*.spec.ts\"",
     "clean": "npm cache verify && node -e \"const fs = require('node:fs'); for (const path of ['coverage', 'node_modules']) fs.rmSync(path, { recursive: true, force: true })\"",
     "coverage": "node --test-timeout 600000 --experimental-test-coverage --test \"src/**/*.spec.ts\"",
     "lint": "eslint --max-warnings 0 .",
