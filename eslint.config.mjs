@@ -19,7 +19,6 @@ export default [
     rules: {
       '@eslint-community/eslint-comments/no-unlimited-disable': 'off',
       '@checkdigit/file-path-comment': 'off',
-      'eslint-comments/no-unlimited-disable': 'error',
       'markdown/no-missing-label-refs': 'off',
       'markdown/no-space-in-emphasis': 'off',
       'markdown/no-unused-definitions': 'off',

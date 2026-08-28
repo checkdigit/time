@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 
 import type { LocaleDayPeriod, Match } from '../../../locale/types.ts';
