@@ -31,7 +31,10 @@ export interface GetISODayOptions extends ContextOptions<Date> {}
  * const result = getISODay(new Date(2012, 1, 26))
  * //=> 7
  */
-export function getISODay(date: DateArg<Date> & {}, options?: GetISODayOptions): number {
+export function getISODay(
+  date: DateArg<Date> & {},
+  options?: GetISODayOptions,
+): number {
   const day = toDate(date, options?.in).getDay();
   return day === 0 ? 7 : day;
 }

@@ -40,7 +40,11 @@ export function isSameQuarter(
   earlierDate: DateArg<Date> & {},
   options?: IsSameQuarterOptions | undefined,
 ): boolean {
-  const [dateLeft_, dateRight_] = normalizeDates(options?.in, laterDate, earlierDate);
+  const [dateLeft_, dateRight_] = normalizeDates(
+    options?.in,
+    laterDate,
+    earlierDate,
+  );
   return +startOfQuarter(dateLeft_) === +startOfQuarter(dateRight_);
 }
 

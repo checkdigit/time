@@ -42,7 +42,10 @@ export interface FormatRFC3339Options extends ContextOptions<Date> {
  * })
  * //=> '2019-09-18T19:00:52.234Z'
  */
-export function formatRFC3339(date: DateArg<Date> & {}, options?: FormatRFC3339Options): string {
+export function formatRFC3339(
+  date: DateArg<Date> & {},
+  options?: FormatRFC3339Options,
+): string {
   const date_ = toDate(date, options?.in);
 
   if (!isValid(date_)) {
@@ -62,7 +65,9 @@ export function formatRFC3339(date: DateArg<Date> & {}, options?: FormatRFC3339O
   let fractionalSecond = '';
   if (fractionDigits > 0) {
     const milliseconds = date_.getMilliseconds();
-    const fractionalSeconds = Math.trunc(milliseconds * Math.pow(10, fractionDigits - 3));
+    const fractionalSeconds = Math.trunc(
+      milliseconds * Math.pow(10, fractionDigits - 3),
+    );
     fractionalSecond = '.' + addLeadingZeros(fractionalSeconds, fractionDigits);
   }
 

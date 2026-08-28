@@ -13,6 +13,11 @@ const formatRelativeLocale = {
   other: 'P',
 };
 
-export const formatRelative: FormatRelativeFn = (token, _date, _baseDate, _options) => formatRelativeLocale[token];
+export const formatRelative: FormatRelativeFn = (
+  token,
+  _date,
+  _baseDate,
+  _options,
+) => formatRelativeLocale[token];
 
 /* eslint-enable */

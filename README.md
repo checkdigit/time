@@ -1,6 +1,6 @@
 # Check Digit Time Library
 
-Copyright (c) 2022-2025 [Check Digit, LLC](https://checkdigit.com)
+Copyright © 2022-2026 [Check Digit, LLC](https://checkdigit.com)
 
 The Check Digit time library is the officially sanctioned method for Check Digit services to deal with time. It has date manipulation functions provided by date-fns. Features:
 

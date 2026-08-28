@@ -3,7 +3,11 @@
 // @ts-nocheck
 
 import type { LocaleDayPeriod } from '../../locale/types.ts';
-import { millisecondsInHour, millisecondsInMinute, millisecondsInSecond } from '../../constants/index.ts';
+import {
+  millisecondsInHour,
+  millisecondsInMinute,
+  millisecondsInSecond,
+} from '../../constants/index.ts';
 import type { ParseResult } from './types.ts';
 import { numericPatterns } from './constants.ts';
 
@@ -21,7 +25,10 @@ export function mapValue<TInput, TResult>(
   };
 }
 
-export function parseNumericPattern(pattern: RegExp, dateString: string): ParseResult<number> {
+export function parseNumericPattern(
+  pattern: RegExp,
+  dateString: string,
+): ParseResult<number> {
   const matchResult = dateString.match(pattern);
 
   if (!matchResult) {
@@ -34,7 +41,10 @@ export function parseNumericPattern(pattern: RegExp, dateString: string): ParseR
   };
 }
 
-export function parseTimezonePattern(pattern: RegExp, dateString: string): ParseResult<number> {
+export function parseTimezonePattern(
+  pattern: RegExp,
+  dateString: string,
+): ParseResult<number> {
   const matchResult = dateString.match(pattern);
 
   if (!matchResult) {
@@ -55,7 +65,11 @@ export function parseTimezonePattern(pattern: RegExp, dateString: string): Parse
   const seconds = matchResult[5] ? parseInt(matchResult[5], 10) : 0;
 
   return {
-    value: sign * (hours * millisecondsInHour + minutes * millisecondsInMinute + seconds * millisecondsInSecond),
+    value:
+      sign *
+      (hours * millisecondsInHour +
+        minutes * millisecondsInMinute +
+        seconds * millisecondsInSecond),
     rest: dateString.slice(matchResult[0].length),
   };
 }
@@ -64,7 +78,10 @@ export function parseAnyDigitsSigned(dateString: string): ParseResult<number> {
   return parseNumericPattern(numericPatterns.anyDigitsSigned, dateString);
 }
 
-export function parseNDigits(n: number, dateString: string): ParseResult<number> {
+export function parseNDigits(
+  n: number,
+  dateString: string,
+): ParseResult<number> {
   switch (n) {
     case 1:
       return parseNumericPattern(numericPatterns.singleDigit, dateString);
@@ -79,7 +96,10 @@ export function parseNDigits(n: number, dateString: string): ParseResult<number>
   }
 }
 
-export function parseNDigitsSigned(n: number, dateString: string): ParseResult<number> {
+export function parseNDigitsSigned(
+  n: number,
+  dateString: string,
+): ParseResult<number> {
   switch (n) {
     case 1:
       return parseNumericPattern(numericPatterns.singleDigitSigned, dateString);
@@ -112,7 +132,10 @@ export function dayPeriodEnumToHours(dayPeriod: LocaleDayPeriod): number {
   }
 }
 
-export function normalizeTwoDigitYear(twoDigitYear: number, currentYear: number): number {
+export function normalizeTwoDigitYear(
+  twoDigitYear: number,
+  currentYear: number,
+): number {
   const isCommonEra = currentYear > 0;
   // Absolute number of the current year:
   // 1 -> 1 AC

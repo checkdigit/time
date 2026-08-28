@@ -9,7 +9,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link addMinutes} function options.
  */
-export interface AddMinutesOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface AddMinutesOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name addMinutes
@@ -33,7 +35,10 @@ export interface AddMinutesOptions<DateType extends Date = Date> extends Context
  * const result = addMinutes(new Date(2014, 6, 10, 12, 0), 30)
  * //=> Thu Jul 10 2014 12:30:00
  */
-export function addMinutes<DateType extends Date, ResultDate extends Date = DateType>(
+export function addMinutes<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   amount: number,
   options?: AddMinutesOptions<ResultDate> | undefined,

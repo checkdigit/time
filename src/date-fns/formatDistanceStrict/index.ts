@@ -8,14 +8,25 @@ import { getRoundingMethod } from '../_lib/getRoundingMethod/index.ts';
 import { getTimezoneOffsetInMilliseconds } from '../_lib/getTimezoneOffsetInMilliseconds/index.ts';
 import { normalizeDates } from '../_lib/normalizeDates/index.ts';
 import { compareAsc } from '../compareAsc/index.ts';
-import { millisecondsInMinute, minutesInDay, minutesInMonth, minutesInYear } from '../constants/index.ts';
-import type { ContextOptions, DateArg, LocalizedOptions, RoundingOptions } from '../types.ts';
+import {
+  millisecondsInMinute,
+  minutesInDay,
+  minutesInMonth,
+  minutesInYear,
+} from '../constants/index.ts';
+import type {
+  ContextOptions,
+  DateArg,
+  LocalizedOptions,
+  RoundingOptions,
+} from '../types.ts';
 
 /**
  * The {@link formatDistanceStrict} function options.
  */
 export interface FormatDistanceStrictOptions
-  extends LocalizedOptions<'formatDistance'>,
+  extends
+    LocalizedOptions<'formatDistance'>,
     RoundingOptions,
     ContextOptions<Date> {
   /** Add "X ago"/"in X" in the locale language */
@@ -27,7 +38,8 @@ export interface FormatDistanceStrictOptions
 /**
  * The unit used to format the distance in {@link formatDistanceStrict}.
  */
-export type FormatDistanceStrictUnit = 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year';
+export type FormatDistanceStrictUnit =
+  'second' | 'minute' | 'hour' | 'day' | 'month' | 'year';
 
 /**
  * @name formatDistanceStrict
@@ -136,11 +148,14 @@ export function formatDistanceStrict(
   const milliseconds = earlierDate_.getTime() - laterDate_.getTime();
   const minutes = milliseconds / millisecondsInMinute;
 
-  const timezoneOffset = getTimezoneOffsetInMilliseconds(earlierDate_) - getTimezoneOffsetInMilliseconds(laterDate_);
+  const timezoneOffset =
+    getTimezoneOffsetInMilliseconds(earlierDate_) -
+    getTimezoneOffsetInMilliseconds(laterDate_);
 
   // Use DST-normalized difference in minutes for years, months and days;
   // use regular difference in minutes for hours, minutes and seconds.
-  const dstNormalizedMinutes = (milliseconds - timezoneOffset) / millisecondsInMinute;
+  const dstNormalizedMinutes =
+    (milliseconds - timezoneOffset) / millisecondsInMinute;
 
   const defaultUnit = options?.unit;
   let unit: FormatDistanceStrictUnit;

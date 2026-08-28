@@ -40,8 +40,14 @@ export function differenceInCalendarISOWeekYears(
   earlierDate: DateArg<Date> & {},
   options?: DifferenceInCalendarISOWeekYearsOptions | undefined,
 ): number {
-  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
-  return getISOWeekYear(laterDate_, options) - getISOWeekYear(earlierDate_, options);
+  const [laterDate_, earlierDate_] = normalizeDates(
+    options?.in,
+    laterDate,
+    earlierDate,
+  );
+  return (
+    getISOWeekYear(laterDate_, options) - getISOWeekYear(earlierDate_, options)
+  );
 }
 
 /* eslint-enable */

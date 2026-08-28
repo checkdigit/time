@@ -9,7 +9,21 @@ import type { ParseFlags, ParseResult } from '../types.ts';
 import { mapValue, parseNDigits, parseNumericPattern } from '../utils.ts';
 
 export class MonthParser extends Parser<number> {
-  incompatibleTokens: string[] = ['Y', 'R', 'q', 'Q', 'L', 'w', 'I', 'D', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = [
+    'Y',
+    'R',
+    'q',
+    'Q',
+    'L',
+    'w',
+    'I',
+    'D',
+    'i',
+    'e',
+    'c',
+    't',
+    'T',
+  ];
   priority = 110;
 
   parse(dateString: string, token: string, match: Match): ParseResult<number> {
@@ -18,7 +32,10 @@ export class MonthParser extends Parser<number> {
     switch (token) {
       // 1, 2, ..., 12
       case 'M':
-        return mapValue(parseNumericPattern(numericPatterns.month, dateString), valueCallback);
+        return mapValue(
+          parseNumericPattern(numericPatterns.month, dateString),
+          valueCallback,
+        );
       // 01, 02, ..., 12
       case 'MM':
         return mapValue(parseNDigits(2, dateString), valueCallback);
@@ -36,7 +53,8 @@ export class MonthParser extends Parser<number> {
           match.month(dateString, {
             width: 'abbreviated',
             context: 'formatting',
-          }) || match.month(dateString, { width: 'narrow', context: 'formatting' })
+          }) ||
+          match.month(dateString, { width: 'narrow', context: 'formatting' })
         );
       // J, F, ..., D
       case 'MMMMM':
@@ -62,7 +80,11 @@ export class MonthParser extends Parser<number> {
     return value >= 0 && value <= 11;
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: number,
+  ): DateType {
     date.setMonth(value, 1);
     date.setHours(0, 0, 0, 0);
     return date;

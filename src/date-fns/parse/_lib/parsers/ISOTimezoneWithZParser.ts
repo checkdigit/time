@@ -16,22 +16,38 @@ export class ISOTimezoneWithZParser extends Parser<number> {
   parse(dateString: string, token: string): ParseResult<number> {
     switch (token) {
       case 'X':
-        return parseTimezonePattern(timezonePatterns.basicOptionalMinutes, dateString);
+        return parseTimezonePattern(
+          timezonePatterns.basicOptionalMinutes,
+          dateString,
+        );
       case 'XX':
         return parseTimezonePattern(timezonePatterns.basic, dateString);
       case 'XXXX':
-        return parseTimezonePattern(timezonePatterns.basicOptionalSeconds, dateString);
+        return parseTimezonePattern(
+          timezonePatterns.basicOptionalSeconds,
+          dateString,
+        );
       case 'XXXXX':
-        return parseTimezonePattern(timezonePatterns.extendedOptionalSeconds, dateString);
+        return parseTimezonePattern(
+          timezonePatterns.extendedOptionalSeconds,
+          dateString,
+        );
       case 'XXX':
       default:
         return parseTimezonePattern(timezonePatterns.extended, dateString);
     }
   }
 
-  set<DateType extends Date>(date: DateType, flags: ParseFlags, value: number): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    flags: ParseFlags,
+    value: number,
+  ): DateType {
     if (flags.timestampIsSet) return date;
-    return constructFrom(date, date.getTime() - getTimezoneOffsetInMilliseconds(date) - value);
+    return constructFrom(
+      date,
+      date.getTime() - getTimezoneOffsetInMilliseconds(date) - value,
+    );
   }
 
   incompatibleTokens: string[] = ['t', 'T', 'x'];

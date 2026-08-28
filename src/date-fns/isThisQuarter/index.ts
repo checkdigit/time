@@ -31,8 +31,14 @@ export interface IsThisQuarterOptions extends ContextOptions<Date> {}
  * const result = isThisQuarter(new Date(2014, 6, 2))
  * //=> true
  */
-export function isThisQuarter(date: DateArg<Date> & {}, options?: IsThisQuarterOptions): boolean {
-  return isSameQuarter(constructFrom(options?.in || date, date), constructNow(options?.in || date));
+export function isThisQuarter(
+  date: DateArg<Date> & {},
+  options?: IsThisQuarterOptions,
+): boolean {
+  return isSameQuarter(
+    constructFrom(options?.in || date, date),
+    constructNow(options?.in || date),
+  );
 }
 
 /* eslint-enable */

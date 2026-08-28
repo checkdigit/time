@@ -8,7 +8,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link startOfDecade} options.
  */
-export interface StartOfDecadeOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface StartOfDecadeOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name startOfDecade
@@ -31,7 +33,10 @@ export interface StartOfDecadeOptions<DateType extends Date = Date> extends Cont
  * const result = startOfDecade(new Date(2015, 9, 21, 00, 00, 00))
  * //=> Jan 01 2010 00:00:00
  */
-export function startOfDecade<DateType extends Date, ResultDate extends Date = DateType>(
+export function startOfDecade<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: StartOfDecadeOptions<ResultDate> | undefined,
 ): ResultDate {

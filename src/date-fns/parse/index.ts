@@ -33,7 +33,8 @@ export { longFormatters, parsers };
  * The {@link parse} function options.
  */
 export interface ParseOptions<DateType extends Date = Date>
-  extends LocalizedOptions<'options' | 'match' | 'formatLong'>,
+  extends
+    LocalizedOptions<'options' | 'match' | 'formatLong'>,
     FirstWeekContainsDateOptions,
     WeekOptions,
     AdditionalTokensOptions,
@@ -50,7 +51,8 @@ export interface ParseOptions<DateType extends Date = Date>
 //   If there is no matching single quote
 //   then the sequence will continue until the end of the string.
 // - . matches any single character unmatched by previous parts of the RegExps
-const formattingTokensRegExp = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
+const formattingTokensRegExp =
+  /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
 
 // This RegExp catches symbols escaped by quotes, and also
 // sequences of symbols P, p, and the combinations like `PPPPPPPppppp`
@@ -360,7 +362,10 @@ const unescapedLatinCharacterRegExp = /[a-zA-Z]/;
  * })
  * //=> Sun Feb 28 2010 00:00:00
  */
-export function parse<DateType extends Date, ResultDate extends Date = DateType>(
+export function parse<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   dateStr: string,
   formatStr: string,
   referenceDate: DateArg<DateType>,
@@ -384,7 +389,8 @@ export function parse<DateType extends Date, ResultDate extends Date = DateType>
     defaultOptions.locale?.options?.weekStartsOn ??
     0;
 
-  if (!formatStr) return dateStr ? invalidDate() : toDate(referenceDate, options?.in);
+  if (!formatStr)
+    return dateStr ? invalidDate() : toDate(referenceDate, options?.in);
 
   const subFnOptions: ParserOptions = {
     firstWeekContainsDate,
@@ -394,7 +400,9 @@ export function parse<DateType extends Date, ResultDate extends Date = DateType>
 
   // If timezone isn't specified, it will try to use the context or
   // the reference date and fallback to the system time zone.
-  const setters: Setter[] = [new DateTimezoneSetter(options?.in, referenceDate)];
+  const setters: Setter[] = [
+    new DateTimezoneSetter(options?.in, referenceDate),
+  ];
 
   const tokens = formatStr
     .match(longFormattingTokensRegExp)!
@@ -412,10 +420,16 @@ export function parse<DateType extends Date, ResultDate extends Date = DateType>
   const usedTokens: Array<{ token: string; fullToken: string }> = [];
 
   for (let token of tokens) {
-    if (!options?.useAdditionalWeekYearTokens && isProtectedWeekYearToken(token)) {
+    if (
+      !options?.useAdditionalWeekYearTokens &&
+      isProtectedWeekYearToken(token)
+    ) {
       warnOrThrowProtectedError(token, formatStr, dateStr);
     }
-    if (!options?.useAdditionalDayOfYearTokens && isProtectedDayOfYearToken(token)) {
+    if (
+      !options?.useAdditionalDayOfYearTokens &&
+      isProtectedDayOfYearToken(token)
+    ) {
       warnOrThrowProtectedError(token, formatStr, dateStr);
     }
 
@@ -425,7 +439,9 @@ export function parse<DateType extends Date, ResultDate extends Date = DateType>
       const { incompatibleTokens } = parser;
       if (Array.isArray(incompatibleTokens)) {
         const incompatibleToken = usedTokens.find(
-          (usedToken) => incompatibleTokens.includes(usedToken.token) || usedToken.token === firstCharacter,
+          (usedToken) =>
+            incompatibleTokens.includes(usedToken.token) ||
+            usedToken.token === firstCharacter,
         );
         if (incompatibleToken) {
           throw new RangeError(
@@ -433,12 +449,19 @@ export function parse<DateType extends Date, ResultDate extends Date = DateType>
           );
         }
       } else if (parser.incompatibleTokens === '*' && usedTokens.length > 0) {
-        throw new RangeError(`The format string mustn't contain \`${token}\` and any other token at the same time`);
+        throw new RangeError(
+          `The format string mustn't contain \`${token}\` and any other token at the same time`,
+        );
       }
 
       usedTokens.push({ token: firstCharacter, fullToken: token });
 
-      const parseResult = parser.run(dateStr, token, locale.match, subFnOptions);
+      const parseResult = parser.run(
+        dateStr,
+        token,
+        locale.match,
+        subFnOptions,
+      );
 
       if (!parseResult) {
         return invalidDate();
@@ -449,7 +472,11 @@ export function parse<DateType extends Date, ResultDate extends Date = DateType>
       dateStr = parseResult.rest;
     } else {
       if (firstCharacter.match(unescapedLatinCharacterRegExp)) {
-        throw new RangeError('Format string contains an unescaped latin alphabet character `' + firstCharacter + '`');
+        throw new RangeError(
+          'Format string contains an unescaped latin alphabet character `' +
+            firstCharacter +
+            '`',
+        );
       }
 
       // Replace two single quote characters with one single quote character
@@ -478,7 +505,9 @@ export function parse<DateType extends Date, ResultDate extends Date = DateType>
     .sort((a, b) => b - a)
     .filter((priority, index, array) => array.indexOf(priority) === index)
     .map((priority) =>
-      setters.filter((setter) => setter.priority === priority).sort((a, b) => b.subPriority - a.subPriority),
+      setters
+        .filter((setter) => setter.priority === priority)
+        .sort((a, b) => b.subPriority - a.subPriority),
     )
     .map((setterArray) => setterArray[0]);
 

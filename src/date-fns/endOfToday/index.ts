@@ -8,7 +8,9 @@ import type { ContextOptions } from '../types.ts';
 /**
  * The {@link endOfToday} function options.
  */
-export interface EndOfTodayOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface EndOfTodayOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name endOfToday
@@ -31,7 +33,9 @@ export interface EndOfTodayOptions<DateType extends Date = Date> extends Context
  * const result = endOfToday()
  * //=> Mon Oct 6 2014 23:59:59.999
  */
-export function endOfToday<ResultDate extends Date = Date>(options?: EndOfTodayOptions<ResultDate>): ResultDate {
+export function endOfToday<ResultDate extends Date = Date>(
+  options?: EndOfTodayOptions<ResultDate>,
+): ResultDate {
   return endOfDay(Date.now(), options);
 }
 

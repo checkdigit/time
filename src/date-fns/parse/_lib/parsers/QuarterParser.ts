@@ -61,13 +61,32 @@ export class QuarterParser extends Parser<number> {
     return value >= 1 && value <= 4;
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: number,
+  ): DateType {
     date.setMonth((value - 1) * 3, 1);
     date.setHours(0, 0, 0, 0);
     return date;
   }
 
-  incompatibleTokens: string[] = ['Y', 'R', 'q', 'M', 'L', 'w', 'I', 'd', 'D', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = [
+    'Y',
+    'R',
+    'q',
+    'M',
+    'L',
+    'w',
+    'I',
+    'd',
+    'D',
+    'i',
+    'e',
+    'c',
+    't',
+    'T',
+  ];
 }
 
 /* eslint-enable */

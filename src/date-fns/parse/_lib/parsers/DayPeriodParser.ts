@@ -11,7 +11,11 @@ import { dayPeriodEnumToHours } from '../utils.ts';
 export class DayPeriodParser extends Parser<LocaleDayPeriod> {
   priority = 80;
 
-  parse(dateString: string, token: string, match: Match): ParseResult<LocaleDayPeriod> {
+  parse(
+    dateString: string,
+    token: string,
+    match: Match,
+  ): ParseResult<LocaleDayPeriod> {
     switch (token) {
       case 'B':
       case 'BB':
@@ -50,7 +54,11 @@ export class DayPeriodParser extends Parser<LocaleDayPeriod> {
     }
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: LocaleDayPeriod): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: LocaleDayPeriod,
+  ): DateType {
     date.setHours(dayPeriodEnumToHours(value), 0, 0, 0);
     return date;
   }

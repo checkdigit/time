@@ -8,7 +8,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link startOfMonth} function options.
  */
-export interface StartOfMonthOptions<ResultDate extends Date> extends ContextOptions<ResultDate> {}
+export interface StartOfMonthOptions<
+  ResultDate extends Date,
+> extends ContextOptions<ResultDate> {}
 
 /**
  * @name startOfMonth
@@ -33,7 +35,10 @@ export interface StartOfMonthOptions<ResultDate extends Date> extends ContextOpt
  * const result = startOfMonth(new Date(2014, 8, 2, 11, 55, 0))
  * //=> Mon Sep 01 2014 00:00:00
  */
-export function startOfMonth<DateType extends Date, ResultDate extends Date = DateType>(
+export function startOfMonth<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: StartOfMonthOptions<ResultDate> | undefined,
 ): ResultDate {

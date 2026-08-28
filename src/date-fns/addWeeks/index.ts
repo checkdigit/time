@@ -8,7 +8,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link addWeeks} function options.
  */
-export interface AddWeeksOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface AddWeeksOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name addWeeks
@@ -32,7 +34,10 @@ export interface AddWeeksOptions<DateType extends Date = Date> extends ContextOp
  * const result = addWeeks(new Date(2014, 8, 1), 4)
  * //=> Mon Sep 29 2014 00:00:00
  */
-export function addWeeks<DateType extends Date, ResultDate extends Date = DateType>(
+export function addWeeks<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   amount: number,
   options?: AddWeeksOptions<ResultDate> | undefined,

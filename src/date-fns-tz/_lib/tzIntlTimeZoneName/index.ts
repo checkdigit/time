@@ -16,11 +16,20 @@ export function tzIntlTimeZoneName(
   options: FormatOptionsWithTZ,
 ): string | undefined {
   const defaultOptions = getDefaultOptions();
-  const dtf = getDTF(length, options.timeZone, options.locale ?? defaultOptions.locale);
-  return 'formatToParts' in dtf ? partsTimeZone(dtf, date) : hackyTimeZone(dtf, date);
+  const dtf = getDTF(
+    length,
+    options.timeZone,
+    options.locale ?? defaultOptions.locale,
+  );
+  return 'formatToParts' in dtf
+    ? partsTimeZone(dtf, date)
+    : hackyTimeZone(dtf, date);
 }
 
-function partsTimeZone(dtf: Intl.DateTimeFormat, date: Date): string | undefined {
+function partsTimeZone(
+  dtf: Intl.DateTimeFormat,
+  date: Date,
+): string | undefined {
   const formatted = dtf.formatToParts(date);
 
   for (let i = formatted.length - 1; i >= 0; --i) {

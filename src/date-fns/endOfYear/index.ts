@@ -8,7 +8,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link endOfYear} function options.
  */
-export interface EndOfYearOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface EndOfYearOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name endOfYear
@@ -32,10 +34,10 @@ export interface EndOfYearOptions<DateType extends Date = Date> extends ContextO
  * const result = endOfYear(new Date(2014, 8, 2, 11, 55, 0))
  * //=> Wed Dec 31 2014 23:59:59.999
  */
-export function endOfYear<DateType extends Date, ResultDate extends Date = DateType>(
-  date: DateArg<DateType>,
-  options?: EndOfYearOptions<ResultDate>,
-): ResultDate {
+export function endOfYear<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(date: DateArg<DateType>, options?: EndOfYearOptions<ResultDate>): ResultDate {
   const _date = toDate(date, options?.in);
   const year = _date.getFullYear();
   _date.setFullYear(year + 1, 0, 0);

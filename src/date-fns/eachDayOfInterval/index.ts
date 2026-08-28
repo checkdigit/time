@@ -9,7 +9,8 @@ import type { ContextOptions, Interval, StepOptions } from '../types.ts';
 /**
  * The {@link eachDayOfInterval} function options.
  */
-export interface EachDayOfIntervalOptions<DateType extends Date = Date> extends StepOptions, ContextOptions<DateType> {}
+export interface EachDayOfIntervalOptions<DateType extends Date = Date>
+  extends StepOptions, ContextOptions<DateType> {}
 
 /**
  * The {@link eachDayOfInterval} function result type. It resolves the proper data type.
@@ -63,7 +64,10 @@ export type EachDayOfIntervalResult<
 export function eachDayOfInterval<
   IntervalType extends Interval,
   Options extends EachDayOfIntervalOptions | undefined = undefined,
->(interval: IntervalType, options?: Options): EachDayOfIntervalResult<IntervalType, Options> {
+>(
+  interval: IntervalType,
+  options?: Options,
+): EachDayOfIntervalResult<IntervalType, Options> {
   const { start, end } = normalizeInterval(options?.in, interval);
 
   let reversed = +start > +end;

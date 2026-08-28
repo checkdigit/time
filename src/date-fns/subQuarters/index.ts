@@ -8,7 +8,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link subQuarters} function options.
  */
-export interface SubQuartersOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface SubQuartersOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name subQuarters
@@ -32,7 +34,10 @@ export interface SubQuartersOptions<DateType extends Date = Date> extends Contex
  * const result = subQuarters(new Date(2014, 8, 1), 3)
  * //=> Sun Dec 01 2013 00:00:00
  */
-export function subQuarters<DateType extends Date, ResultDate extends Date = DateType>(
+export function subQuarters<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   amount: number,
   options?: SubQuartersOptions<ResultDate>,

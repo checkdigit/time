@@ -10,7 +10,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link setISODay} function options.
  */
-export interface SetISODayOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface SetISODayOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name setISODay
@@ -36,7 +38,10 @@ export interface SetISODayOptions<DateType extends Date = Date> extends ContextO
  * const result = setISODay(new Date(2014, 8, 1), 7)
  * //=> Sun Sep 07 2014 00:00:00
  */
-export function setISODay<DateType extends Date, ResultDate extends Date = DateType>(
+export function setISODay<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   day: number,
   options?: SetISODayOptions<ResultDate> | undefined,

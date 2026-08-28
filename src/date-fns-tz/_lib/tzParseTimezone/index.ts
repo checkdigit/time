@@ -57,7 +57,8 @@ export function tzParseTimezone(
       return NaN;
     }
 
-    absoluteOffset = Math.abs(hours) * MILLISECONDS_IN_HOUR + minutes * MILLISECONDS_IN_MINUTE;
+    absoluteOffset =
+      Math.abs(hours) * MILLISECONDS_IN_HOUR + minutes * MILLISECONDS_IN_MINUTE;
     return token[1] === '+' ? -absoluteOffset : absoluteOffset;
   }
 
@@ -68,7 +69,9 @@ export function tzParseTimezone(
 
     const offset = calcOffset(utcDate, timezoneString);
 
-    const fixedOffset = isUtcDate ? offset : fixOffset(date, offset, timezoneString);
+    const fixedOffset = isUtcDate
+      ? offset
+      : fixOffset(date, offset, timezoneString);
 
     return -fixedOffset;
   }
@@ -92,7 +95,15 @@ function calcOffset(date: Date, timezoneString: string) {
   const tokens = tzTokenizeDate(date, timezoneString);
 
   // ms dropped because it's not provided by tzTokenizeDate
-  const asUTC = newDateUTC(tokens[0], tokens[1] - 1, tokens[2], tokens[3] % 24, tokens[4], tokens[5], 0).getTime();
+  const asUTC = newDateUTC(
+    tokens[0],
+    tokens[1] - 1,
+    tokens[2],
+    tokens[3] % 24,
+    tokens[4],
+    tokens[5],
+    0,
+  ).getTime();
 
   let asTS = date.getTime();
   const over = asTS % 1000;
@@ -128,7 +139,11 @@ function fixOffset(date: Date, offset: number, timezoneString: string) {
 }
 
 function validateTimezone(hours: number, minutes?: number | null) {
-  return -23 <= hours && hours <= 23 && (minutes == null || (0 <= minutes && minutes <= 59));
+  return (
+    -23 <= hours &&
+    hours <= 23 &&
+    (minutes == null || (0 <= minutes && minutes <= 59))
+  );
 }
 
 const validIANATimezoneCache: Record<string, boolean> = {};

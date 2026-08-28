@@ -31,8 +31,14 @@ export interface IsThisMonthOptions extends ContextOptions<Date> {}
  * const result = isThisMonth(new Date(2014, 8, 15))
  * //=> true
  */
-export function isThisMonth(date: DateArg<Date> & {}, options?: IsThisMonthOptions | undefined): boolean {
-  return isSameMonth(constructFrom(options?.in || date, date), constructNow(options?.in || date));
+export function isThisMonth(
+  date: DateArg<Date> & {},
+  options?: IsThisMonthOptions | undefined,
+): boolean {
+  return isSameMonth(
+    constructFrom(options?.in || date, date),
+    constructNow(options?.in || date),
+  );
 }
 
 /* eslint-enable */

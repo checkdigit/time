@@ -37,7 +37,11 @@ export function isSameISOWeekYear(
   earlierDate: DateArg<Date> & {},
   options?: IsSameISOWeekYearOptions | undefined,
 ): boolean {
-  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
+  const [laterDate_, earlierDate_] = normalizeDates(
+    options?.in,
+    laterDate,
+    earlierDate,
+  );
   return +startOfISOWeekYear(laterDate_) === +startOfISOWeekYear(earlierDate_);
 }
 

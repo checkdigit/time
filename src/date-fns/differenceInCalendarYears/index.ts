@@ -37,7 +37,11 @@ export function differenceInCalendarYears(
   earlierDate: DateArg<Date> & {},
   options?: DifferenceInCalendarYearsOptions | undefined,
 ): number {
-  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
+  const [laterDate_, earlierDate_] = normalizeDates(
+    options?.in,
+    laterDate,
+    earlierDate,
+  );
   return laterDate_.getFullYear() - earlierDate_.getFullYear();
 }
 

@@ -8,7 +8,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link subISOWeekYears} function options.
  */
-export interface SubISOWeekYearsOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface SubISOWeekYearsOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name subISOWeekYears
@@ -34,7 +36,10 @@ export interface SubISOWeekYearsOptions<DateType extends Date = Date> extends Co
  * const result = subISOWeekYears(new Date(2014, 8, 1), 5)
  * //=> Mon Aug 31 2009 00:00:00
  */
-export function subISOWeekYears<DateType extends Date, ResultDate extends Date = DateType>(
+export function subISOWeekYears<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   amount: number,
   options?: SubISOWeekYearsOptions<ResultDate> | undefined,

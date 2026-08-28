@@ -20,14 +20,34 @@ export class ISOWeekYearParser extends Parser<number> {
     return parseNDigitsSigned(token.length, dateString);
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: number,
+  ): DateType {
     const firstWeekOfYear = constructFrom(date, 0);
     firstWeekOfYear.setFullYear(value, 0, 4);
     firstWeekOfYear.setHours(0, 0, 0, 0);
     return startOfISOWeek(firstWeekOfYear);
   }
 
-  incompatibleTokens: string[] = ['G', 'y', 'Y', 'u', 'Q', 'q', 'M', 'L', 'w', 'd', 'D', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = [
+    'G',
+    'y',
+    'Y',
+    'u',
+    'Q',
+    'q',
+    'M',
+    'L',
+    'w',
+    'd',
+    'D',
+    'e',
+    'c',
+    't',
+    'T',
+  ];
 }
 
 /* eslint-enable */

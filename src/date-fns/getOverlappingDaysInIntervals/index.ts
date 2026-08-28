@@ -43,9 +43,18 @@ import type { Interval } from '../types.ts';
  * //=> 0
  */
 
-export function getOverlappingDaysInIntervals(intervalLeft: Interval, intervalRight: Interval): number {
-  const [leftStart, leftEnd] = [+toDate(intervalLeft.start), +toDate(intervalLeft.end)].sort((a, b) => a - b);
-  const [rightStart, rightEnd] = [+toDate(intervalRight.start), +toDate(intervalRight.end)].sort((a, b) => a - b);
+export function getOverlappingDaysInIntervals(
+  intervalLeft: Interval,
+  intervalRight: Interval,
+): number {
+  const [leftStart, leftEnd] = [
+    +toDate(intervalLeft.start),
+    +toDate(intervalLeft.end),
+  ].sort((a, b) => a - b);
+  const [rightStart, rightEnd] = [
+    +toDate(intervalRight.start),
+    +toDate(intervalRight.end),
+  ].sort((a, b) => a - b);
 
   // Prevent NaN result if intervals don't overlap at all.
   const isOverlapping = leftStart < rightEnd && rightStart < leftEnd;

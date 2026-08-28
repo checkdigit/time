@@ -14,7 +14,11 @@ describe('get-all-federal-reserve-bank-holidays', () => {
       { name: 'Birthday of Martin Luther King, Jr.', date: '2022-01-17' },
       { name: `Washington's Birthday`, date: '2022-02-21' },
       { name: 'Memorial Day', date: '2022-05-30' },
-      { name: 'Juneteenth National Independence Day', date: '2022-06-19', observedOn: '2022-06-20' },
+      {
+        name: 'Juneteenth National Independence Day',
+        date: '2022-06-19',
+        observedOn: '2022-06-20',
+      },
       { name: 'Independence Day', date: '2022-07-04' },
       { name: 'Labor Day', date: '2022-09-05' },
       { name: 'Columbus Day', date: '2022-10-10' },

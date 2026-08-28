@@ -28,7 +28,10 @@ export interface IsFridayOptions extends ContextOptions<Date> {}
  * const result = isFriday(new Date(2014, 8, 26))
  * //=> true
  */
-export function isFriday(date: DateArg<Date> & {}, options?: IsFridayOptions | undefined): boolean {
+export function isFriday(
+  date: DateArg<Date> & {},
+  options?: IsFridayOptions | undefined,
+): boolean {
   return toDate(date, options?.in).getDay() === 5;
 }
 

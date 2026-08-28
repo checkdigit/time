@@ -47,7 +47,8 @@ export function differenceInMinutes(
   dateRight: DateArg<Date> & {},
   options?: DifferenceInMinutesOptions,
 ): number {
-  const diff = differenceInMilliseconds(dateLeft, dateRight) / millisecondsInMinute;
+  const diff =
+    differenceInMilliseconds(dateLeft, dateRight) / millisecondsInMinute;
   return getRoundingMethod(options?.roundingMethod)(diff);
 }
 

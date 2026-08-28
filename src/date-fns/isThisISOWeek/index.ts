@@ -33,8 +33,14 @@ export interface IsThisISOWeekOptions extends ContextOptions<Date> {}
  * const result = isThisISOWeek(new Date(2014, 8, 22))
  * //=> true
  */
-export function isThisISOWeek(date: DateArg<Date> & {}, options?: IsThisISOWeekOptions | undefined): boolean {
-  return isSameISOWeek(constructFrom(options?.in || date, date), constructNow(options?.in || date));
+export function isThisISOWeek(
+  date: DateArg<Date> & {},
+  options?: IsThisISOWeekOptions | undefined,
+): boolean {
+  return isSameISOWeek(
+    constructFrom(options?.in || date, date),
+    constructNow(options?.in || date),
+  );
 }
 
 /* eslint-enable */

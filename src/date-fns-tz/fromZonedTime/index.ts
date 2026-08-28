@@ -31,7 +31,11 @@ import type { ToDateOptionsWithTZ } from '../index.ts';
  * const result = fromZonedTime(new Date(2014, 5, 25, 10, 0, 0), 'America/Los_Angeles')
  * //=> 2014-06-25T17:00:00.000Z
  */
-export function fromZonedTime(date: Date | string | number, timeZone: string, options?: ToDateOptionsWithTZ): Date {
+export function fromZonedTime(
+  date: Date | string | number,
+  timeZone: string,
+  options?: ToDateOptionsWithTZ,
+): Date {
   if (typeof date === 'string' && !date.match(tzPattern)) {
     return toDate(date, { ...options, timeZone });
   }

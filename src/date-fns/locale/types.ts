@@ -37,7 +37,8 @@ export interface Locale {
 /**
  * The locale options.
  */
-export interface LocaleOptions extends WeekOptions, FirstWeekContainsDateOptions {}
+export interface LocaleOptions
+  extends WeekOptions, FirstWeekContainsDateOptions {}
 
 /// Format distance types
 
@@ -51,7 +52,11 @@ export interface LocaleOptions extends WeekOptions, FirstWeekContainsDateOptions
  *
  * @returns The localized distance in words
  */
-export type FormatDistanceFn = (token: FormatDistanceToken, count: number, options?: FormatDistanceFnOptions) => string;
+export type FormatDistanceFn = (
+  token: FormatDistanceToken,
+  count: number,
+  options?: FormatDistanceFnOptions,
+) => string;
 
 /**
  * The {@link FormatDistanceFn} function options.
@@ -137,7 +142,8 @@ export type FormatRelativeFn = <DateType extends Date>(
 /**
  * The {@link FormatRelativeFn} function options.
  */
-export interface FormatRelativeFnOptions extends WeekOptions, LocalizedOptions<'options' | 'formatRelative'> {}
+export interface FormatRelativeFnOptions
+  extends WeekOptions, LocalizedOptions<'options' | 'formatRelative'> {}
 
 /**
  * The locale function used inside the {@link FormatRelativeFn} function
@@ -163,7 +169,8 @@ export interface FormatRelativeTokenFnOptions extends WeekOptions {}
 /**
  * The token used in format relative function. Represents the time unit.
  */
-export type FormatRelativeToken = 'lastWeek' | 'yesterday' | 'today' | 'tomorrow' | 'nextWeek' | 'other';
+export type FormatRelativeToken =
+  'lastWeek' | 'yesterday' | 'today' | 'tomorrow' | 'nextWeek' | 'other';
 
 /**
  * A format part that represents a token or string literal, used by format parser/tokenizer
@@ -196,7 +203,10 @@ export interface Localize {
   dayPeriod: LocalizeFn<LocaleDayPeriod>;
 
   /** The function that can preprocess parts/tokens **/
-  preprocessor?: <DateType extends Date>(date: DateType, parts: FormatPart[]) => FormatPart[];
+  preprocessor?: <DateType extends Date>(
+    date: DateType,
+    parts: FormatPart[],
+  ) => FormatPart[];
 }
 
 /**
@@ -209,7 +219,10 @@ export interface Localize {
  *
  * @returns The localized string
  */
-export type LocalizeFn<Value extends LocaleUnitValue | number> = (value: Value, options?: LocalizeFnOptions) => string;
+export type LocalizeFn<Value extends LocaleUnitValue | number> = (
+  value: Value,
+  options?: LocalizeFnOptions,
+) => string;
 
 /**
  * The {@link LocalizeFn} function options.
@@ -362,7 +375,15 @@ export type LocaleWidth = 'narrow' | 'short' | 'abbreviated' | 'wide' | 'any';
 /**
  * Token representing particular period of the day.
  */
-export type LocaleDayPeriod = 'am' | 'pm' | 'midnight' | 'noon' | 'morning' | 'afternoon' | 'evening' | 'night';
+export type LocaleDayPeriod =
+  | 'am'
+  | 'pm'
+  | 'midnight'
+  | 'noon'
+  | 'morning'
+  | 'afternoon'
+  | 'evening'
+  | 'night';
 
 /**
  * The units commonly used in the date formatting or parsing.

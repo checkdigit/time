@@ -8,7 +8,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link setDayOfYear} function options.
  */
-export interface SetDayOfYearOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface SetDayOfYearOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name setDayOfYear
@@ -32,7 +34,10 @@ export interface SetDayOfYearOptions<DateType extends Date = Date> extends Conte
  * const result = setDayOfYear(new Date(2014, 6, 2), 2)
  * //=> Thu Jan 02 2014 00:00:00
  */
-export function setDayOfYear<DateType extends Date, ResultDate extends Date = DateType>(
+export function setDayOfYear<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   dayOfYear: number,
   options?: SetDayOfYearOptions<ResultDate> | undefined,

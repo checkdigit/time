@@ -38,7 +38,11 @@ export function formatInTimeZone(
     timeZone,
     originalDate: date,
   };
-  return format(toZonedTime(date, timeZone, { timeZone: options.timeZone }), formatStr, options);
+  return format(
+    toZonedTime(date, timeZone, { timeZone: options.timeZone }),
+    formatStr,
+    options,
+  );
 }
 
 /* eslint-enable */

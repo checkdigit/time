@@ -32,8 +32,14 @@ export interface IsThisHourOptions extends ContextOptions<Date> {}
  * const result = isThisHour(new Date(2014, 8, 25, 18))
  * //=> true
  */
-export function isThisHour(date: DateArg<Date> & {}, options?: IsThisHourOptions): boolean {
-  return isSameHour(toDate(date, options?.in), constructNow(options?.in || date));
+export function isThisHour(
+  date: DateArg<Date> & {},
+  options?: IsThisHourOptions,
+): boolean {
+  return isSameHour(
+    toDate(date, options?.in),
+    constructNow(options?.in || date),
+  );
 }
 
 /* eslint-enable */

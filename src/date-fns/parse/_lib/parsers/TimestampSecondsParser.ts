@@ -14,7 +14,11 @@ export class TimestampSecondsParser extends Parser<number> {
     return parseAnyDigitsSigned(dateString);
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): [DateType, ParseFlags] {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: number,
+  ): [DateType, ParseFlags] {
     return [constructFrom(date, value * 1000), { timestampIsSet: true }];
   }
 

@@ -8,7 +8,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The subMonths function options.
  */
-export interface SubMonthsOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface SubMonthsOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name subMonths
@@ -32,7 +34,10 @@ export interface SubMonthsOptions<DateType extends Date = Date> extends ContextO
  * const result = subMonths(new Date(2015, 1, 1), 5)
  * //=> Mon Sep 01 2014 00:00:00
  */
-export function subMonths<DateType extends Date, ResultDate extends Date = DateType>(
+export function subMonths<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   amount: number,
   options?: SubMonthsOptions<ResultDate> | undefined,

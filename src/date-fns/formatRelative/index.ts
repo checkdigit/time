@@ -8,13 +8,19 @@ import { normalizeDates } from '../_lib/normalizeDates/index.ts';
 import { differenceInCalendarDays } from '../differenceInCalendarDays/index.ts';
 import { format } from '../format/index.ts';
 import type { FormatRelativeToken } from '../locale/types.ts';
-import type { ContextOptions, DateArg, LocalizedOptions, WeekOptions } from '../types.ts';
+import type {
+  ContextOptions,
+  DateArg,
+  LocalizedOptions,
+  WeekOptions,
+} from '../types.ts';
 
 /**
  * The {@link formatRelative} function options.
  */
 export interface FormatRelativeOptions
-  extends LocalizedOptions<'options' | 'localize' | 'formatLong' | 'formatRelative'>,
+  extends
+    LocalizedOptions<'options' | 'localize' | 'formatLong' | 'formatRelative'>,
     WeekOptions,
     ContextOptions<Date> {}
 

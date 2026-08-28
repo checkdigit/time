@@ -8,7 +8,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link subDays} function options.
  */
-export interface SubDaysOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface SubDaysOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name subDays
@@ -29,7 +31,10 @@ export interface SubDaysOptions<DateType extends Date = Date> extends ContextOpt
  * const result = subDays(new Date(2014, 8, 1), 10)
  * //=> Fri Aug 22 2014 00:00:00
  */
-export function subDays<DateType extends Date, ResultDate extends Date = DateType>(
+export function subDays<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   amount: number,
   options?: SubDaysOptions<ResultDate> | undefined,

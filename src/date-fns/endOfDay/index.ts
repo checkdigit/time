@@ -8,7 +8,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link endOfDay} function options.
  */
-export interface EndOfDayOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface EndOfDayOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name endOfDay
@@ -32,7 +34,10 @@ export interface EndOfDayOptions<DateType extends Date = Date> extends ContextOp
  * const result = endOfDay(new Date(2014, 8, 2, 11, 55, 0))
  * //=> Tue Sep 02 2014 23:59:59.999
  */
-export function endOfDay<DateType extends Date, ResultDate extends Date = DateType>(
+export function endOfDay<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: EndOfDayOptions<ResultDate> | undefined,
 ): ResultDate {

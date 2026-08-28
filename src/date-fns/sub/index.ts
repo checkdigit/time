@@ -10,7 +10,9 @@ import type { ContextOptions, DateArg, Duration } from '../types.ts';
 /**
  * The {@link sub} function options.
  */
-export interface SubOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface SubOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name sub
@@ -59,7 +61,15 @@ export function sub<DateType extends Date, ResultDate extends Date = DateType>(
   duration: Duration,
   options?: SubOptions<ResultDate>,
 ): ResultDate {
-  const { years = 0, months = 0, weeks = 0, days = 0, hours = 0, minutes = 0, seconds = 0 } = duration;
+  const {
+    years = 0,
+    months = 0,
+    weeks = 0,
+    days = 0,
+    hours = 0,
+    minutes = 0,
+    seconds = 0,
+  } = duration;
 
   const withoutMonths = subMonths(date, months + years * 12, options);
   const withoutDays = subDays(withoutMonths, days + weeks * 7, options);

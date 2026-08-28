@@ -29,11 +29,30 @@ export class LocalWeekParser extends Parser<number> {
     return value >= 1 && value <= 53;
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number, options: ParserOptions): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: number,
+    options: ParserOptions,
+  ): DateType {
     return startOfWeek(setWeek(date, value, options), options);
   }
 
-  incompatibleTokens: string[] = ['y', 'R', 'u', 'q', 'Q', 'M', 'L', 'I', 'd', 'D', 'i', 't', 'T'];
+  incompatibleTokens: string[] = [
+    'y',
+    'R',
+    'u',
+    'q',
+    'Q',
+    'M',
+    'L',
+    'I',
+    'd',
+    'D',
+    'i',
+    't',
+    'T',
+  ];
 }
 
 /* eslint-enable */

@@ -34,7 +34,15 @@ import type { Duration } from '../types.ts';
  * milliseconds({ months: 3 })
  * //=> 7889238000
  */
-export function milliseconds({ years, months, weeks, days, hours, minutes, seconds }: Duration): number {
+export function milliseconds({
+  years,
+  months,
+  weeks,
+  days,
+  hours,
+  minutes,
+  seconds,
+}: Duration): number {
   let totalDays = 0;
 
   if (years) totalDays += years * daysInYear;

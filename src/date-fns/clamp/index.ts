@@ -10,7 +10,9 @@ import type { ContextOptions, DateArg, Interval } from '../types.ts';
 /**
  * The {@link clamp} function options.
  */
-export interface ClampOptions<ContextDate extends Date = Date> extends ContextOptions<ContextDate> {}
+export interface ClampOptions<
+  ContextDate extends Date = Date,
+> extends ContextOptions<ContextDate> {}
 
 /**
  * The {@link clamp} function result type. It resolves the proper data type.
@@ -68,10 +70,23 @@ export function clamp<
   DateType extends DateArg<Date>,
   IntervalType extends Interval,
   Options extends ClampOptions | undefined = undefined,
->(date: DateType, interval: IntervalType, options?: Options): ClampResult<DateType, IntervalType, Options> {
-  const [date_, start, end] = normalizeDates(options?.in, date, interval.start, interval.end);
+>(
+  date: DateType,
+  interval: IntervalType,
+  options?: Options,
+): ClampResult<DateType, IntervalType, Options> {
+  const [date_, start, end] = normalizeDates(
+    options?.in,
+    date,
+    interval.start,
+    interval.end,
+  );
 
-  return min([max([date_, start], options), end], options) as ClampResult<DateType, IntervalType, Options>;
+  return min([max([date_, start], options), end], options) as ClampResult<
+    DateType,
+    IntervalType,
+    Options
+  >;
 }
 
 /* eslint-enable */

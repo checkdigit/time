@@ -35,16 +35,29 @@ import type { ContextFn, GenericDateConstructor } from '../types.ts';
  */
 export function transpose<InputDate extends Date, ResultDate extends Date>(
   date: InputDate,
-  constructor: ResultDate | GenericDateConstructor<ResultDate> | ContextFn<ResultDate>,
+  constructor:
+    ResultDate | GenericDateConstructor<ResultDate> | ContextFn<ResultDate>,
 ): ResultDate {
-  const date_ = isConstructor(constructor) ? new constructor(0) : constructFrom(constructor, 0);
+  const date_ = isConstructor(constructor)
+    ? new constructor(0)
+    : constructFrom(constructor, 0);
   date_.setFullYear(date.getFullYear(), date.getMonth(), date.getDate());
-  date_.setHours(date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds());
+  date_.setHours(
+    date.getHours(),
+    date.getMinutes(),
+    date.getSeconds(),
+    date.getMilliseconds(),
+  );
   return date_;
 }
 
-function isConstructor(constructor: unknown): constructor is GenericDateConstructor {
-  return typeof constructor === 'function' && constructor.prototype?.constructor === constructor;
+function isConstructor(
+  constructor: unknown,
+): constructor is GenericDateConstructor {
+  return (
+    typeof constructor === 'function' &&
+    constructor.prototype?.constructor === constructor
+  );
 }
 
 /* eslint-enable */

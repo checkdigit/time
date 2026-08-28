@@ -10,7 +10,8 @@ import type { ContextOptions, DateArg, RoundingOptions } from '../types.ts';
 /**
  * The {@link differenceInHours} function options.
  */
-export interface DifferenceInHoursOptions extends RoundingOptions, ContextOptions<Date> {}
+export interface DifferenceInHoursOptions
+  extends RoundingOptions, ContextOptions<Date> {}
 
 /**
  * @name differenceInHours
@@ -39,7 +40,11 @@ export function differenceInHours(
   earlierDate: DateArg<Date> & {},
   options?: DifferenceInHoursOptions,
 ): number {
-  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
+  const [laterDate_, earlierDate_] = normalizeDates(
+    options?.in,
+    laterDate,
+    earlierDate,
+  );
   const diff = (+laterDate_ - +earlierDate_) / millisecondsInHour;
   return getRoundingMethod(options?.roundingMethod)(diff);
 }

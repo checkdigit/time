@@ -43,7 +43,10 @@ import type { ConstructableDate, ContextFn, DateArg } from '../types.ts';
  * const result = toDate(1392098430000)
  * //=> Tue Feb 11 2014 11:30:30
  */
-export function toDate<DateType extends Date | ConstructableDate, ResultDate extends Date = DateType>(
+export function toDate<
+  DateType extends Date | ConstructableDate,
+  ResultDate extends Date = DateType,
+>(
   argument: DateArg<DateType>,
   context?: ContextFn<ResultDate> | undefined,
 ): ResultDate {

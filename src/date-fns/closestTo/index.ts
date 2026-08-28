@@ -10,7 +10,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link closestTo} function options.
  */
-export interface ClosestToOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface ClosestToOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * The {@link closestTo} function result type. It resolves the proper data type.
@@ -66,14 +68,23 @@ export function closestTo<
   dates: DatesType,
   options?: Options | undefined,
 ): ClosestToResult<DateToCompare, DatesType, Options> | undefined {
-  const [dateToCompare_, ...dates_] = normalizeDates(options?.in, dateToCompare, ...dates);
+  const [dateToCompare_, ...dates_] = normalizeDates(
+    options?.in,
+    dateToCompare,
+    ...dates,
+  );
 
   const index = closestIndexTo(dateToCompare_, dates_);
 
   if (typeof index === 'number' && isNaN(index))
-    return constructFrom(dateToCompare_, NaN) as ClosestToResult<DateToCompare, DatesType, Options>;
+    return constructFrom(dateToCompare_, NaN) as ClosestToResult<
+      DateToCompare,
+      DatesType,
+      Options
+    >;
 
-  if (index !== undefined) return dates_[index] as ClosestToResult<DateToCompare, DatesType, Options>;
+  if (index !== undefined)
+    return dates_[index] as ClosestToResult<DateToCompare, DatesType, Options>;
 }
 
 /* eslint-enable */

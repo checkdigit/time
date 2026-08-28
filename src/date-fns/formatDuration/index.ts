@@ -19,7 +19,15 @@ export interface FormatDurationOptions extends LocalizedOptions<'formatDistance'
   delimiter?: string;
 }
 
-const defaultFormat: DurationUnit[] = ['years', 'months', 'weeks', 'days', 'hours', 'minutes', 'seconds'];
+const defaultFormat: DurationUnit[] = [
+  'years',
+  'months',
+  'weeks',
+  'days',
+  'hours',
+  'minutes',
+  'seconds',
+];
 
 /**
  * @name formatDuration
@@ -79,7 +87,10 @@ const defaultFormat: DurationUnit[] = ['years', 'months', 'weeks', 'days', 'hour
  * formatDuration({ years: 2, months: 9, weeks: 3 }, { delimiter: ', ' })
  * //=> '2 years, 9 months, 3 weeks'
  */
-export function formatDuration(duration: Duration, options?: FormatDurationOptions): string {
+export function formatDuration(
+  duration: Duration,
+  options?: FormatDurationOptions,
+): string {
   const defaultOptions = getDefaultOptions();
   const locale = options?.locale ?? defaultOptions.locale ?? defaultLocale;
   const format = options?.format ?? defaultFormat;
@@ -92,7 +103,8 @@ export function formatDuration(duration: Duration, options?: FormatDurationOptio
 
   const result = format
     .reduce((acc, unit) => {
-      const token = `x${unit.replace(/(^.)/, (m) => m.toUpperCase())}` as FormatDistanceToken;
+      const token =
+        `x${unit.replace(/(^.)/, (m) => m.toUpperCase())}` as FormatDistanceToken;
       const value = duration[unit];
       if (value !== undefined && (zero || duration[unit])) {
         return acc.concat(locale.formatDistance(token, value));

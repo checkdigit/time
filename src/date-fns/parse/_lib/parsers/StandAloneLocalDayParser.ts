@@ -12,7 +12,12 @@ import { mapValue, parseNDigits } from '../utils.ts';
 export class StandAloneLocalDayParser extends Parser<number> {
   priority = 90;
 
-  parse(dateString: string, token: string, match: Match, options: ParserOptions): ParseResult<number> {
+  parse(
+    dateString: string,
+    token: string,
+    match: Match,
+    options: ParserOptions,
+  ): ParseResult<number> {
     const valueCallback = (value: number) => {
       // We want here floor instead of trunc, so we get -7 for value 0 instead of 0
       const wholeWeekDays = Math.floor((value - 1) / 7) * 7;
@@ -73,13 +78,34 @@ export class StandAloneLocalDayParser extends Parser<number> {
     return value >= 0 && value <= 6;
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number, options: ParserOptions): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: number,
+    options: ParserOptions,
+  ): DateType {
     date = setDay(date, value, options);
     date.setHours(0, 0, 0, 0);
     return date;
   }
 
-  incompatibleTokens: string[] = ['y', 'R', 'u', 'q', 'Q', 'M', 'L', 'I', 'd', 'D', 'E', 'i', 'e', 't', 'T'];
+  incompatibleTokens: string[] = [
+    'y',
+    'R',
+    'u',
+    'q',
+    'Q',
+    'M',
+    'L',
+    'I',
+    'd',
+    'D',
+    'E',
+    'i',
+    'e',
+    't',
+    'T',
+  ];
 }
 
 /* eslint-enable */

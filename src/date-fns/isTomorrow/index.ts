@@ -31,8 +31,15 @@ export interface IsTomorrowOptions extends ContextOptions<Date> {}
  * const result = isTomorrow(new Date(2014, 9, 7, 14, 0))
  * //=> true
  */
-export function isTomorrow(date: DateArg<Date> & {}, options?: IsTomorrowOptions | undefined): boolean {
-  return isSameDay(date, addDays(constructNow(options?.in || date), 1), options);
+export function isTomorrow(
+  date: DateArg<Date> & {},
+  options?: IsTomorrowOptions | undefined,
+): boolean {
+  return isSameDay(
+    date,
+    addDays(constructNow(options?.in || date), 1),
+    options,
+  );
 }
 
 /* eslint-enable */

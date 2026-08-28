@@ -9,7 +9,8 @@ import type { ContextOptions, DateArg, ISOFormatOptions } from '../types.ts';
 /**
  * The {@link formatISO} function options.
  */
-export interface FormatISOOptions extends ISOFormatOptions, ContextOptions<Date> {}
+export interface FormatISOOptions
+  extends ISOFormatOptions, ContextOptions<Date> {}
 
 /**
  * @name formatISO
@@ -46,7 +47,10 @@ export interface FormatISOOptions extends ISOFormatOptions, ContextOptions<Date>
  * const result = formatISO(new Date(2019, 8, 18, 19, 0, 52), { representation: 'time' })
  * //=> '19:00:52Z'
  */
-export function formatISO(date: DateArg<Date> & {}, options?: FormatISOOptions): string {
+export function formatISO(
+  date: DateArg<Date> & {},
+  options?: FormatISOOptions,
+): string {
   const date_ = toDate(date, options?.in);
 
   if (isNaN(+date_)) {

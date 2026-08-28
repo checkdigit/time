@@ -26,7 +26,11 @@ export class MinuteParser extends Parser<number> {
     return value >= 0 && value <= 59;
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: number,
+  ): DateType {
     date.setMinutes(value, 0, 0);
     return date;
   }

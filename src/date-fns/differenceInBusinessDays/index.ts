@@ -70,7 +70,11 @@ export function differenceInBusinessDays(
   earlierDate: DateArg<Date> & {},
   options?: DifferenceInBusinessDaysOptions | undefined,
 ): number {
-  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
+  const [laterDate_, earlierDate_] = normalizeDates(
+    options?.in,
+    laterDate,
+    earlierDate,
+  );
 
   if (!isValid(laterDate_) || !isValid(earlierDate_)) return NaN;
 

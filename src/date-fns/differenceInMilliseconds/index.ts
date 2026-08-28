@@ -27,7 +27,10 @@ import type { DateArg } from '../types.ts';
  * )
  * //=> 1100
  */
-export function differenceInMilliseconds(laterDate: DateArg<Date> & {}, earlierDate: DateArg<Date> & {}): number {
+export function differenceInMilliseconds(
+  laterDate: DateArg<Date> & {},
+  earlierDate: DateArg<Date> & {},
+): number {
   return +toDate(laterDate) - +toDate(earlierDate);
 }
 

@@ -38,7 +38,11 @@ export function differenceInCalendarQuarters(
   earlierDate: DateArg<Date> & {},
   options?: DifferenceInCalendarQuartersOptions | undefined,
 ): number {
-  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
+  const [laterDate_, earlierDate_] = normalizeDates(
+    options?.in,
+    laterDate,
+    earlierDate,
+  );
 
   const yearsDiff = laterDate_.getFullYear() - earlierDate_.getFullYear();
   const quartersDiff = getQuarter(laterDate_) - getQuarter(earlierDate_);

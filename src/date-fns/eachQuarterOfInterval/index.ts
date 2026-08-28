@@ -12,8 +12,7 @@ import type { ContextOptions, Interval, StepOptions } from '../types.ts';
  * The {@link eachQuarterOfInterval} function options.
  */
 export interface EachQuarterOfIntervalOptions<DateType extends Date = Date>
-  extends StepOptions,
-    ContextOptions<DateType> {}
+  extends StepOptions, ContextOptions<DateType> {}
 
 /**
  * The {@link eachQuarterOfInterval} function result type. It resolves the proper data type.
@@ -65,7 +64,10 @@ export type EachQuarterOfIntervalResult<
 export function eachQuarterOfInterval<
   IntervalType extends Interval,
   Options extends EachQuarterOfIntervalOptions | undefined = undefined,
->(interval: IntervalType, options?: Options): EachQuarterOfIntervalResult<IntervalType, Options> {
+>(
+  interval: IntervalType,
+  options?: Options,
+): EachQuarterOfIntervalResult<IntervalType, Options> {
   const { start, end } = normalizeInterval(options?.in, interval);
 
   let reversed = +start > +end;

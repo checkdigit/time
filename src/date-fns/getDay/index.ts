@@ -28,7 +28,10 @@ export interface GetDayOptions extends ContextOptions<Date> {}
  * const result = getDay(new Date(2012, 1, 29))
  * //=> 3
  */
-export function getDay(date: DateArg<Date> & {}, options?: GetDayOptions | undefined): number {
+export function getDay(
+  date: DateArg<Date> & {},
+  options?: GetDayOptions | undefined,
+): number {
   return toDate(date, options?.in).getDay();
 }
 

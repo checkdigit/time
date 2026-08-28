@@ -8,7 +8,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link previousThursday} function options.
  */
-export interface PreviousThursdayOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface PreviousThursdayOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name previousThursday
@@ -31,7 +33,10 @@ export interface PreviousThursdayOptions<DateType extends Date = Date> extends C
  * const result = previousThursday(new Date(2021, 5, 18))
  * //=> Thu June 17 2021 00:00:00
  */
-export function previousThursday<DateType extends Date, ResultDate extends Date = DateType>(
+export function previousThursday<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: PreviousThursdayOptions<ResultDate> | undefined,
 ): ResultDate {

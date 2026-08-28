@@ -33,7 +33,10 @@ export interface GetISOWeekOptions extends ContextOptions<Date> {}
  * const result = getISOWeek(new Date(2005, 0, 2))
  * //=> 53
  */
-export function getISOWeek(date: DateArg<Date> & {}, options?: GetISOWeekOptions | undefined): number {
+export function getISOWeek(
+  date: DateArg<Date> & {},
+  options?: GetISOWeekOptions | undefined,
+): number {
   const _date = toDate(date, options?.in);
   const diff = +startOfISOWeek(_date) - +startOfISOWeekYear(_date);
 

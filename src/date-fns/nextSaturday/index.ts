@@ -8,7 +8,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link nextSaturday} function options.
  */
-export interface NextSaturdayOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface NextSaturdayOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name nextSaturday
@@ -31,7 +33,10 @@ export interface NextSaturdayOptions<DateType extends Date = Date> extends Conte
  * const result = nextSaturday(new Date(2020, 2, 22))
  * //=> Sat Mar 28 2020 00:00:00
  */
-export function nextSaturday<DateType extends Date, ResultDate extends Date = DateType>(
+export function nextSaturday<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: NextSaturdayOptions<ResultDate>,
 ): ResultDate {

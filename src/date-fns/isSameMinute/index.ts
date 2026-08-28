@@ -34,7 +34,10 @@ import type { DateArg } from '../types.ts';
  * )
  * //=> false
  */
-export function isSameMinute(laterDate: DateArg<Date> & {}, earlierDate: DateArg<Date> & {}): boolean {
+export function isSameMinute(
+  laterDate: DateArg<Date> & {},
+  earlierDate: DateArg<Date> & {},
+): boolean {
   return +startOfMinute(laterDate) === +startOfMinute(earlierDate);
 }
 

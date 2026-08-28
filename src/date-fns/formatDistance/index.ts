@@ -15,7 +15,8 @@ import type { ContextOptions, DateArg, LocalizedOptions } from '../types.ts';
 /**
  * The {@link formatDistance} function options.
  */
-export interface FormatDistanceOptions extends LocalizedOptions<'formatDistance'>, ContextOptions<Date> {
+export interface FormatDistanceOptions
+  extends LocalizedOptions<'formatDistance'>, ContextOptions<Date> {
   /** Distances less than a minute are more detailed */
   includeSeconds?: boolean;
   /** Add "X ago"/"in X" in the locale language */
@@ -125,7 +126,9 @@ export function formatDistance(
 
   const seconds = differenceInSeconds(earlierDate_, laterDate_);
   const offsetInSeconds =
-    (getTimezoneOffsetInMilliseconds(earlierDate_) - getTimezoneOffsetInMilliseconds(laterDate_)) / 1000;
+    (getTimezoneOffsetInMilliseconds(earlierDate_) -
+      getTimezoneOffsetInMilliseconds(laterDate_)) /
+    1000;
   const minutes = Math.round((seconds - offsetInSeconds) / 60);
   let months;
 

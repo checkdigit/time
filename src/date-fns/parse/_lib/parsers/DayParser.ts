@@ -56,7 +56,12 @@ export class DayParser extends Parser<number> {
     return value >= 0 && value <= 6;
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number, options: ParserOptions): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: number,
+    options: ParserOptions,
+  ): DateType {
     date = setDay(date, value, options);
     date.setHours(0, 0, 0, 0);
     return date;

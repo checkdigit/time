@@ -10,7 +10,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link setMonth} function options.
  */
-export interface SetMonthOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface SetMonthOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name setMonth
@@ -34,7 +36,10 @@ export interface SetMonthOptions<DateType extends Date = Date> extends ContextOp
  * const result = setMonth(new Date(2014, 8, 1), 1)
  * //=> Sat Feb 01 2014 00:00:00
  */
-export function setMonth<DateType extends Date, ResultDate extends Date = DateType>(
+export function setMonth<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   month: number,
   options?: SetMonthOptions<ResultDate> | undefined,

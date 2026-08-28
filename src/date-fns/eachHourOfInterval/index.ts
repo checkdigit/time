@@ -10,8 +10,7 @@ import type { ContextOptions, Interval, StepOptions } from '../types.ts';
  * The {@link eachHourOfInterval} function options.
  */
 export interface EachHourOfIntervalOptions<DateType extends Date = Date>
-  extends StepOptions,
-    ContextOptions<DateType> {}
+  extends StepOptions, ContextOptions<DateType> {}
 
 /**
  * The {@link eachHourOfInterval} function result type.
@@ -62,7 +61,10 @@ export type EachHourOfIntervalResult<
 export function eachHourOfInterval<
   IntervalType extends Interval,
   Options extends EachHourOfIntervalOptions | undefined = undefined,
->(interval: IntervalType, options?: Options): EachHourOfIntervalResult<IntervalType, Options> {
+>(
+  interval: IntervalType,
+  options?: Options,
+): EachHourOfIntervalResult<IntervalType, Options> {
   const { start, end } = normalizeInterval(options?.in, interval);
 
   let reversed = +start > +end;

@@ -34,7 +34,10 @@ const timeLongFormatter: LongFormatter = (pattern, formatLong) => {
   }
 };
 
-const dateTimeLongFormatter: LongFormatter = (pattern: string, formatLong: FormatLong) => {
+const dateTimeLongFormatter: LongFormatter = (
+  pattern: string,
+  formatLong: FormatLong,
+) => {
   const matchResult = pattern.match(/(P+)(p+)?/) || [];
   const datePattern = matchResult[1];
   const timePattern = matchResult[2];

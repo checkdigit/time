@@ -26,7 +26,11 @@ export class SecondParser extends Parser<number> {
     return value >= 0 && value <= 59;
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: number,
+  ): DateType {
     date.setSeconds(value, 0);
     return date;
   }

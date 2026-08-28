@@ -49,13 +49,19 @@ export function differenceInCalendarDays(
   earlierDate: DateArg<Date> & {},
   options?: DifferenceInCalendarDaysOptions | undefined,
 ): number {
-  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
+  const [laterDate_, earlierDate_] = normalizeDates(
+    options?.in,
+    laterDate,
+    earlierDate,
+  );
 
   const laterStartOfDay = startOfDay(laterDate_);
   const earlierStartOfDay = startOfDay(earlierDate_);
 
-  const laterTimestamp = +laterStartOfDay - getTimezoneOffsetInMilliseconds(laterStartOfDay);
-  const earlierTimestamp = +earlierStartOfDay - getTimezoneOffsetInMilliseconds(earlierStartOfDay);
+  const laterTimestamp =
+    +laterStartOfDay - getTimezoneOffsetInMilliseconds(laterStartOfDay);
+  const earlierTimestamp =
+    +earlierStartOfDay - getTimezoneOffsetInMilliseconds(earlierStartOfDay);
 
   // Round the number of days to the nearest integer because the number of
   // milliseconds in a day is not constant (e.g. it's different in the week of

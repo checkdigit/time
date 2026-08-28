@@ -31,8 +31,14 @@ export interface IsThisYearOptions extends ContextOptions<Date> {}
  * const result = isThisYear(new Date(2014, 6, 2))
  * //=> true
  */
-export function isThisYear(date: DateArg<Date> & {}, options?: IsThisYearOptions | undefined): boolean {
-  return isSameYear(constructFrom(options?.in || date, date), constructNow(options?.in || date));
+export function isThisYear(
+  date: DateArg<Date> & {},
+  options?: IsThisYearOptions | undefined,
+): boolean {
+  return isSameYear(
+    constructFrom(options?.in || date, date),
+    constructNow(options?.in || date),
+  );
 }
 
 /* eslint-enable */

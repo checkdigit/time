@@ -87,9 +87,14 @@ const patterns = {
  * const result = toDate('+02014101', {additionalDigits: 1})
  * //=> Fri Apr 11 2014 00:00:00
  */
-export function toDate(argument: Date | string | number, options: ToDateOptionsWithTZ = {}): Date {
+export function toDate(
+  argument: Date | string | number,
+  options: ToDateOptionsWithTZ = {},
+): Date {
   if (arguments.length < 1) {
-    throw new TypeError('1 argument required, but only ' + arguments.length + ' present');
+    throw new TypeError(
+      '1 argument required, but only ' + arguments.length + ' present',
+    );
   }
 
   if (argument === null) {
@@ -97,27 +102,42 @@ export function toDate(argument: Date | string | number, options: ToDateOptionsW
   }
 
   const additionalDigits =
-    options.additionalDigits == null ? DEFAULT_ADDITIONAL_DIGITS : Number(options.additionalDigits);
-  if (additionalDigits !== 2 && additionalDigits !== 1 && additionalDigits !== 0) {
+    options.additionalDigits == null
+      ? DEFAULT_ADDITIONAL_DIGITS
+      : Number(options.additionalDigits);
+  if (
+    additionalDigits !== 2 &&
+    additionalDigits !== 1 &&
+    additionalDigits !== 0
+  ) {
     throw new RangeError('additionalDigits must be 0, 1 or 2');
   }
 
   // Clone the date
   if (
     argument instanceof Date ||
-    (typeof argument === 'object' && Object.prototype.toString.call(argument) === '[object Date]')
+    (typeof argument === 'object' &&
+      Object.prototype.toString.call(argument) === '[object Date]')
   ) {
     // Prevent the date to lose the milliseconds when passed to new Date() in IE10
     return new Date(argument.getTime());
-  } else if (typeof argument === 'number' || Object.prototype.toString.call(argument) === '[object Number]') {
+  } else if (
+    typeof argument === 'number' ||
+    Object.prototype.toString.call(argument) === '[object Number]'
+  ) {
     return new Date(argument);
-  } else if (!(Object.prototype.toString.call(argument) === '[object String]')) {
+  } else if (
+    !(Object.prototype.toString.call(argument) === '[object String]')
+  ) {
     return new Date(NaN);
   }
 
   const dateStrings = splitDateString(argument);
 
-  const { year, restDateString } = parseYear(dateStrings.date, additionalDigits);
+  const { year, restDateString } = parseYear(
+    dateStrings.date,
+    additionalDigits,
+  );
 
   const date = parseDate(restDateString, year);
 
@@ -139,14 +159,19 @@ export function toDate(argument: Date | string | number, options: ToDateOptionsW
     }
 
     if (dateStrings.timeZone || options.timeZone) {
-      offset = tzParseTimezone(dateStrings.timeZone || options.timeZone, new Date(timestamp + time));
+      offset = tzParseTimezone(
+        dateStrings.timeZone || options.timeZone,
+        new Date(timestamp + time),
+      );
       if (isNaN(offset)) {
         return new Date(NaN);
       }
     } else {
       // get offset accurate to hour in time zones that change offset
       offset = getTimezoneOffsetInMilliseconds(new Date(timestamp + time));
-      offset = getTimezoneOffsetInMilliseconds(new Date(timestamp + time + offset));
+      offset = getTimezoneOffsetInMilliseconds(
+        new Date(timestamp + time + offset),
+      );
     }
 
     return new Date(timestamp + time + offset);
@@ -156,7 +181,11 @@ export function toDate(argument: Date | string | number, options: ToDateOptionsW
 }
 
 function splitDateString(dateString: string) {
-  const dateStrings: { date?: string | null; time?: string; timeZone?: string } = {};
+  const dateStrings: {
+    date?: string | null;
+    time?: string;
+    timeZone?: string;
+  } = {};
   let parts = patterns.dateTimePattern.exec(dateString);
   let timeString: string;
 
@@ -187,7 +216,10 @@ function splitDateString(dateString: string) {
   return dateStrings;
 }
 
-function parseYear(dateString: string | null | undefined, additionalDigits: number) {
+function parseYear(
+  dateString: string | null | undefined,
+  additionalDigits: number,
+) {
   if (dateString) {
     const patternYYY = patterns.YYY[additionalDigits];
     const patternYYYYY = patterns.YYYYY[additionalDigits];
@@ -334,7 +366,9 @@ function parseTime(timeString: string) {
       return NaN;
     }
 
-    return (hours % 24) * MILLISECONDS_IN_HOUR + minutes * MILLISECONDS_IN_MINUTE;
+    return (
+      (hours % 24) * MILLISECONDS_IN_HOUR + minutes * MILLISECONDS_IN_MINUTE
+    );
   }
 
   // hh:mm:ss or hhmmss
@@ -348,14 +382,22 @@ function parseTime(timeString: string) {
       return NaN;
     }
 
-    return (hours % 24) * MILLISECONDS_IN_HOUR + minutes * MILLISECONDS_IN_MINUTE + seconds * 1000;
+    return (
+      (hours % 24) * MILLISECONDS_IN_HOUR +
+      minutes * MILLISECONDS_IN_MINUTE +
+      seconds * 1000
+    );
   }
 
   // Invalid ISO-formatted time
   return null;
 }
 
-function dayOfISOWeekYear(isoWeekYear: number, week: number, day?: number | null) {
+function dayOfISOWeekYear(
+  isoWeekYear: number,
+  week: number,
+  day?: number | null,
+) {
   week = week || 0;
   day = day || 0;
   const date = new Date(0);
@@ -369,7 +411,9 @@ function dayOfISOWeekYear(isoWeekYear: number, week: number, day?: number | null
 // Validation functions
 
 const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-const DAYS_IN_MONTH_LEAP_YEAR = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+const DAYS_IN_MONTH_LEAP_YEAR = [
+  31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,
+];
 
 function isLeapYearIndex(year: number) {
   return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
@@ -425,7 +469,11 @@ function validateWeekDate(week: number, day?: number | null) {
   return true;
 }
 
-function validateTime(hours: number, minutes?: number | null, seconds?: number | null) {
+function validateTime(
+  hours: number,
+  minutes?: number | null,
+  seconds?: number | null,
+) {
   if (hours < 0 || hours >= 25) {
     return false;
   }

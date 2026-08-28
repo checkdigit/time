@@ -42,7 +42,10 @@ import type { DateArg } from '../types.ts';
  * )
  * //=> false
  */
-export function isSameSecond(laterDate: DateArg<Date> & {}, earlierDate: DateArg<Date> & {}): boolean {
+export function isSameSecond(
+  laterDate: DateArg<Date> & {},
+  earlierDate: DateArg<Date> & {},
+): boolean {
   return +startOfSecond(laterDate) === +startOfSecond(earlierDate);
 }
 
