@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -38,7 +37,11 @@ export function formatInTimeZone(
     timeZone,
     originalDate: date,
   };
-  return format(toZonedTime(date, timeZone, { timeZone: options.timeZone }), formatStr, options);
+  return format(
+    toZonedTime(date, timeZone, { timeZone: options.timeZone }),
+    formatStr,
+    options,
+  );
 }
 
 /* eslint-enable */

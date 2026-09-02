@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -10,7 +9,9 @@ import type { ContextOptions, DateArg, DateValues } from '../types.ts';
 /**
  * The {@link set} function options.
  */
-export interface SetOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface SetOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name set

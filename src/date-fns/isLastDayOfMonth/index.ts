@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -27,7 +26,10 @@ export interface IsLastDayOfMonthOptions extends ContextOptions<Date> {}
  * const result = isLastDayOfMonth(new Date(2014, 1, 28))
  * //=> true
  */
-export function isLastDayOfMonth(date: DateArg<Date> & {}, options?: IsLastDayOfMonthOptions | undefined): boolean {
+export function isLastDayOfMonth(
+  date: DateArg<Date> & {},
+  options?: IsLastDayOfMonthOptions | undefined,
+): boolean {
   const _date = toDate(date, options?.in);
   return +endOfDay(_date, options) === +endOfMonth(_date, options);
 }

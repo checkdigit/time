@@ -6,8 +6,8 @@ These versions of `@checkdigit/time` are currently being supported with security
 
 | Version | Supported          |
 | ------- | ------------------ |
-| \>= 2.x | :white_check_mark: |
-| < 2.0   | :x:                |
+| \>= 6.0 | :white_check_mark: |
+| \< 6.0  | :x:                |
 
 ## Reporting a Vulnerability
 

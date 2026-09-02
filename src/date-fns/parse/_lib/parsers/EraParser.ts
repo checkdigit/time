@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -16,7 +15,10 @@ export class EraParser extends Parser<number> {
       case 'G':
       case 'GG':
       case 'GGG':
-        return match.era(dateString, { width: 'abbreviated' }) || match.era(dateString, { width: 'narrow' });
+        return (
+          match.era(dateString, { width: 'abbreviated' }) ||
+          match.era(dateString, { width: 'narrow' })
+        );
       // A, B
       case 'GGGGG':
         return match.era(dateString, { width: 'narrow' });
@@ -31,7 +33,11 @@ export class EraParser extends Parser<number> {
     }
   }
 
-  set<DateType extends Date>(date: DateType, flags: ParseFlags, value: number): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    flags: ParseFlags,
+    value: number,
+  ): DateType {
     flags.era = value;
     date.setFullYear(value, 0, 1);
     date.setHours(0, 0, 0, 0);

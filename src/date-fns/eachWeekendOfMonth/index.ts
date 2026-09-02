@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -10,7 +9,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link eachWeekendOfMonth} function options.
  */
-export interface EachWeekendOfMonthOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface EachWeekendOfMonthOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name eachWeekendOfMonth
@@ -42,7 +43,10 @@ export interface EachWeekendOfMonthOptions<DateType extends Date = Date> extends
  * //   Sun Feb 27 2022 00:00:00
  * // ]
  */
-export function eachWeekendOfMonth<DateType extends Date, ResultDate extends Date = DateType>(
+export function eachWeekendOfMonth<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: EachWeekendOfMonthOptions<ResultDate>,
 ): ResultDate[] {

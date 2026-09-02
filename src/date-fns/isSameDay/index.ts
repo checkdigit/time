@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -45,7 +44,11 @@ export function isSameDay(
   earlierDate: DateArg<Date> & {},
   options?: IsSameDayOptions | undefined,
 ): boolean {
-  const [dateLeft_, dateRight_] = normalizeDates(options?.in, laterDate, earlierDate);
+  const [dateLeft_, dateRight_] = normalizeDates(
+    options?.in,
+    laterDate,
+    earlierDate,
+  );
   return +startOfDay(dateLeft_) === +startOfDay(dateRight_);
 }
 

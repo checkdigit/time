@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -35,7 +34,9 @@ type Formatter = (
   date: Date,
   token: string,
   localize: Localize,
-  options: Required<LocalizedOptions<'options'> & WeekOptions & FirstWeekContainsDateOptions>,
+  options: Required<
+    LocalizedOptions<'options'> & WeekOptions & FirstWeekContainsDateOptions
+  >,
 ) => string;
 
 /*
@@ -779,7 +780,10 @@ function formatTimezoneShort(offset: number, delimiter: string = ''): string {
   return sign + String(hours) + delimiter + addLeadingZeros(minutes, 2);
 }
 
-function formatTimezoneWithOptionalMinutes(offset: number, delimiter?: string): string {
+function formatTimezoneWithOptionalMinutes(
+  offset: number,
+  delimiter?: string,
+): string {
   if (offset % 60 === 0) {
     const sign = offset > 0 ? '-' : '+';
     return sign + addLeadingZeros(Math.abs(offset) / 60, 2);

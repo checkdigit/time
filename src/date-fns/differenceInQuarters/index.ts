@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -9,7 +8,8 @@ import type { ContextOptions, DateArg, RoundingOptions } from '../types.ts';
 /**
  * The {@link differenceInQuarters} function options.
  */
-export interface DifferenceInQuartersOptions extends RoundingOptions, ContextOptions<Date> {}
+export interface DifferenceInQuartersOptions
+  extends RoundingOptions, ContextOptions<Date> {}
 
 /**
  * @name differenceInQuarters

@@ -1,15 +1,20 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import type { LocalizedOptions, FirstWeekContainsDateOptions, WeekOptions } from '../../types.ts';
+import type {
+  LocalizedOptions,
+  FirstWeekContainsDateOptions,
+  WeekOptions,
+} from '../../types.ts';
 
 export interface ParseFlags {
   timestampIsSet?: boolean;
   era?: number;
 }
 
-export type ParserOptions = Required<LocalizedOptions<'options'> & FirstWeekContainsDateOptions & WeekOptions>;
+export type ParserOptions = Required<
+  LocalizedOptions<'options'> & FirstWeekContainsDateOptions & WeekOptions
+>;
 
 export type ParseResult<TValue> = { value: TValue; rest: string } | null;
 

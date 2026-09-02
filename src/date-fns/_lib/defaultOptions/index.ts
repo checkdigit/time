@@ -1,10 +1,16 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import type { FirstWeekContainsDateOptions, Locale, LocalizedOptions, WeekOptions } from '../../types.ts';
+import type {
+  FirstWeekContainsDateOptions,
+  Locale,
+  LocalizedOptions,
+  WeekOptions,
+} from '../../types.ts';
 
-export type DefaultOptions = LocalizedOptions<keyof Locale> & WeekOptions & FirstWeekContainsDateOptions;
+export type DefaultOptions = LocalizedOptions<keyof Locale> &
+  WeekOptions &
+  FirstWeekContainsDateOptions;
 
 let defaultOptions: DefaultOptions = {};
 

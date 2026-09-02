@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -30,7 +29,11 @@ import type { ToDateOptionsWithTZ } from '../index.ts';
  * const result = toZonedTime('2014-06-25T10:00:00.000Z', 'America/New_York')
  * //=> Jun 25 2014 06:00:00
  */
-export function toZonedTime(date: Date | string | number, timeZone: string, options?: ToDateOptionsWithTZ): Date {
+export function toZonedTime(
+  date: Date | string | number,
+  timeZone: string,
+  options?: ToDateOptionsWithTZ,
+): Date {
   date = toDate(date, options);
 
   const offsetMilliseconds = tzParseTimezone(timeZone, date, true);
@@ -41,7 +44,12 @@ export function toZonedTime(date: Date | string | number, timeZone: string, opti
 
   resultDate.setFullYear(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
 
-  resultDate.setHours(d.getUTCHours(), d.getUTCMinutes(), d.getUTCSeconds(), d.getUTCMilliseconds());
+  resultDate.setHours(
+    d.getUTCHours(),
+    d.getUTCMinutes(),
+    d.getUTCSeconds(),
+    d.getUTCMilliseconds(),
+  );
 
   // [PATCH:] this hack is required because setHours doesn't work for hours that are close to daylight saving timezone threshold
   (resultDate as any)[Symbol.for('UTCHours')] = d.getUTCHours();

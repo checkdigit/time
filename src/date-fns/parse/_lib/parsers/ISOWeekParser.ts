@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -29,11 +28,30 @@ export class ISOWeekParser extends Parser<number> {
     return value >= 1 && value <= 53;
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: number,
+  ): DateType {
     return startOfISOWeek(setISOWeek(date, value));
   }
 
-  incompatibleTokens: string[] = ['y', 'Y', 'u', 'q', 'Q', 'M', 'L', 'w', 'd', 'D', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = [
+    'y',
+    'Y',
+    'u',
+    'q',
+    'Q',
+    'M',
+    'L',
+    'w',
+    'd',
+    'D',
+    'e',
+    'c',
+    't',
+    'T',
+  ];
 }
 
 /* eslint-enable */

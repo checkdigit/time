@@ -1,8 +1,11 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
-import type { FormatOptions, ParseISOOptions, Locale } from '../date-fns/index.ts';
+import type {
+  FormatOptions,
+  ParseISOOptions,
+  Locale,
+} from '../date-fns/index.ts';
 
 export interface FormatOptionsWithTZ extends Omit<FormatOptions, 'locale'> {
   locale?: FormatOptions['locale'] & Pick<Locale, 'code'>;

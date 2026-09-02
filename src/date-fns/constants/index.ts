@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -217,6 +216,7 @@ export const secondsInQuarter: number = secondsInMonth * 3;
  * [`TZDate`](https://github.com/date-fns/tz) that accept a time zone as
  * a constructor argument.
  */
-export const constructFromSymbol: unique symbol = Symbol.for('constructDateFrom');
+export const constructFromSymbol: unique symbol =
+  Symbol.for('constructDateFrom');
 
 /* eslint-enable */

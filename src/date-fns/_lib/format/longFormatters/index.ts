@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -34,7 +33,10 @@ const timeLongFormatter: LongFormatter = (pattern, formatLong) => {
   }
 };
 
-const dateTimeLongFormatter: LongFormatter = (pattern: string, formatLong: FormatLong) => {
+const dateTimeLongFormatter: LongFormatter = (
+  pattern: string,
+  formatLong: FormatLong,
+) => {
   const matchResult = pattern.match(/(P+)(p+)?/) || [];
   const datePattern = matchResult[1];
   const timePattern = matchResult[2];

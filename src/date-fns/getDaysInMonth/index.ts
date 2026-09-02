@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -29,7 +28,10 @@ export interface GetDaysInMonthOptions extends ContextOptions<Date> {}
  * const result = getDaysInMonth(new Date(2000, 1))
  * //=> 29
  */
-export function getDaysInMonth(date: DateArg<Date> & {}, options?: GetDaysInMonthOptions | undefined): number {
+export function getDaysInMonth(
+  date: DateArg<Date> & {},
+  options?: GetDaysInMonthOptions | undefined,
+): number {
   const _date = toDate(date, options?.in);
   const year = _date.getFullYear();
   const monthIndex = _date.getMonth();

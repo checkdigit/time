@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link setHours} function options.
  */
-export interface SetHoursOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface SetHoursOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name setHours
@@ -32,7 +33,10 @@ export interface SetHoursOptions<DateType extends Date = Date> extends ContextOp
  * const result = setHours(new Date(2014, 8, 1, 11, 30), 4)
  * //=> Mon Sep 01 2014 04:30:00
  */
-export function setHours<DateType extends Date, ResultDate extends Date = DateType>(
+export function setHours<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   hours: number,
   options?: SetHoursOptions<ResultDate> | undefined,

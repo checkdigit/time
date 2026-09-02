@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -31,8 +30,14 @@ export interface IsTodayOptions extends ContextOptions<Date> {}
  * const result = isToday(new Date(2014, 9, 6, 14, 0))
  * //=> true
  */
-export function isToday(date: DateArg<Date> & {}, options?: IsTodayOptions | undefined): boolean {
-  return isSameDay(constructFrom(options?.in || date, date), constructNow(options?.in || date));
+export function isToday(
+  date: DateArg<Date> & {},
+  options?: IsTodayOptions | undefined,
+): boolean {
+  return isSameDay(
+    constructFrom(options?.in || date, date),
+    constructNow(options?.in || date),
+  );
 }
 
 /* eslint-enable */

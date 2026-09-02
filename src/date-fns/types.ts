@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -18,7 +17,9 @@ export type DateArg<DateType extends Date> = DateType | number | string;
  * that accept a time zone as a constructor argument.
  */
 export interface ConstructableDate extends Date {
-  [constructFromSymbol]: <DateType extends Date = Date>(value: DateArg<Date> & {}) => DateType;
+  [constructFromSymbol]: <DateType extends Date = Date>(
+    value: DateArg<Date> & {},
+  ) => DateType;
 }
 
 /**
@@ -115,7 +116,10 @@ export interface Interval<
 /**
  * A version of {@link Interval} that has both start and end resolved to Date.
  */
-export type NormalizedInterval<DateType extends Date = Date> = Interval<DateType, DateType>;
+export type NormalizedInterval<DateType extends Date = Date> = Interval<
+  DateType,
+  DateType
+>;
 
 /**
  * The era. Can be either 0 (AD - Anno Domini) or 1 (BC - Before Christ).
@@ -333,7 +337,9 @@ export interface ContextOptions<DateType extends Date> {
    * The context function type. It's used to normalize the input arguments to
    * a specific date instance, which is useful for extensions like [`TZDate`](https://github.com/date-fns/tz).
    */
-export type ContextFn<DateType extends Date> = (value: DateArg<Date> & {}) => DateType;
+export type ContextFn<DateType extends Date> = (
+  value: DateArg<Date> & {},
+) => DateType;
 
 /**
  * Resolves passed type or array of types.

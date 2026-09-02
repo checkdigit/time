@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -37,7 +36,11 @@ export function differenceInCalendarMonths(
   earlierDate: DateArg<Date> & {},
   options?: DifferenceInCalendarMonthsOptions | undefined,
 ): number {
-  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
+  const [laterDate_, earlierDate_] = normalizeDates(
+    options?.in,
+    laterDate,
+    earlierDate,
+  );
 
   const yearsDiff = laterDate_.getFullYear() - earlierDate_.getFullYear();
   const monthsDiff = laterDate_.getMonth() - earlierDate_.getMonth();

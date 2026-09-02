@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -38,7 +37,10 @@ export interface IntervalToDurationOptions extends ContextOptions<Date> {}
  * });
  * //=> { years: 39, months: 2, days: 20, hours: 7, minutes: 5, seconds: 0 }
  */
-export function intervalToDuration(interval: Interval, options?: IntervalToDurationOptions | undefined): Duration {
+export function intervalToDuration(
+  interval: Interval,
+  options?: IntervalToDurationOptions | undefined,
+): Duration {
   const { start, end } = normalizeInterval(options?.in, interval);
   const duration: Duration = {};
 

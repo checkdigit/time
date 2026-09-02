@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -96,13 +95,33 @@ export class ISODayParser extends Parser<number> {
     return value >= 1 && value <= 7;
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: number,
+  ): DateType {
     date = setISODay(date, value);
     date.setHours(0, 0, 0, 0);
     return date;
   }
 
-  incompatibleTokens: string[] = ['y', 'Y', 'u', 'q', 'Q', 'M', 'L', 'w', 'd', 'D', 'E', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = [
+    'y',
+    'Y',
+    'u',
+    'q',
+    'Q',
+    'M',
+    'L',
+    'w',
+    'd',
+    'D',
+    'E',
+    'e',
+    'c',
+    't',
+    'T',
+  ];
 }
 
 /* eslint-enable */

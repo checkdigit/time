@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -36,7 +35,11 @@ export function differenceInYears(
   earlierDate: DateArg<Date> & {},
   options?: DifferenceInYearsOptions | undefined,
 ): number {
-  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
+  const [laterDate_, earlierDate_] = normalizeDates(
+    options?.in,
+    laterDate,
+    earlierDate,
+  );
 
   // -1 if the left date is earlier than the right date
   // 2023-12-31 - 2024-01-01 = -1

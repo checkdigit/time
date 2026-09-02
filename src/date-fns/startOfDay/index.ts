@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link startOfDay} function options.
  */
-export interface StartOfDayOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface StartOfDayOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name startOfDay
@@ -32,7 +33,10 @@ export interface StartOfDayOptions<DateType extends Date = Date> extends Context
  * const result = startOfDay(new Date(2014, 8, 2, 11, 55, 0))
  * //=> Tue Sep 02 2014 00:00:00
  */
-export function startOfDay<DateType extends Date, ResultDate extends Date = DateType>(
+export function startOfDay<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: StartOfDayOptions<ResultDate> | undefined,
 ): ResultDate {

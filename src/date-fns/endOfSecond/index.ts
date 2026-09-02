@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link endOfSecond} function options.
  */
-export interface EndOfSecondOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface EndOfSecondOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name endOfSecond
@@ -32,7 +33,10 @@ export interface EndOfSecondOptions<DateType extends Date = Date> extends Contex
  * const result = endOfSecond(new Date(2014, 11, 1, 22, 15, 45, 400))
  * //=> Mon Dec 01 2014 22:15:45.999
  */
-export function endOfSecond<DateType extends Date, ResultDate extends Date = DateType>(
+export function endOfSecond<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: EndOfSecondOptions<ResultDate> | undefined,
 ): ResultDate {

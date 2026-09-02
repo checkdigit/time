@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -14,7 +13,11 @@ import type { YearParserValue } from './YearParser.ts';
 export class LocalWeekYearParser extends Parser<YearParserValue> {
   priority = 130;
 
-  parse(dateString: string, token: string, match: Match): ParseResult<YearParserValue> {
+  parse(
+    dateString: string,
+    token: string,
+    match: Match,
+  ): ParseResult<YearParserValue> {
     const valueCallback = (year: number) => ({
       year,
       isTwoDigitYear: token === 'YY',
@@ -35,7 +38,10 @@ export class LocalWeekYearParser extends Parser<YearParserValue> {
     }
   }
 
-  validate<DateType extends Date>(_date: DateType, value: YearParserValue): boolean {
+  validate<DateType extends Date>(
+    _date: DateType,
+    value: YearParserValue,
+  ): boolean {
     return value.isTwoDigitYear || value.year > 0;
   }
 
@@ -48,19 +54,41 @@ export class LocalWeekYearParser extends Parser<YearParserValue> {
     const currentYear = getWeekYear(date, options);
 
     if (value.isTwoDigitYear) {
-      const normalizedTwoDigitYear = normalizeTwoDigitYear(value.year, currentYear);
-      date.setFullYear(normalizedTwoDigitYear, 0, options.firstWeekContainsDate);
+      const normalizedTwoDigitYear = normalizeTwoDigitYear(
+        value.year,
+        currentYear,
+      );
+      date.setFullYear(
+        normalizedTwoDigitYear,
+        0,
+        options.firstWeekContainsDate,
+      );
       date.setHours(0, 0, 0, 0);
       return startOfWeek(date, options);
     }
 
-    const year = !('era' in flags) || flags.era === 1 ? value.year : 1 - value.year;
+    const year =
+      !('era' in flags) || flags.era === 1 ? value.year : 1 - value.year;
     date.setFullYear(year, 0, options.firstWeekContainsDate);
     date.setHours(0, 0, 0, 0);
     return startOfWeek(date, options);
   }
 
-  incompatibleTokens: string[] = ['y', 'R', 'u', 'Q', 'q', 'M', 'L', 'I', 'd', 'D', 'i', 't', 'T'];
+  incompatibleTokens: string[] = [
+    'y',
+    'R',
+    'u',
+    'Q',
+    'q',
+    'M',
+    'L',
+    'I',
+    'd',
+    'D',
+    'i',
+    't',
+    'T',
+  ];
 }
 
 /* eslint-enable */

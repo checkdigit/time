@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -34,7 +33,11 @@ export function isSameYear(
   earlierDate: DateArg<Date> & {},
   options?: IsSameYearOptions | undefined,
 ): boolean {
-  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
+  const [laterDate_, earlierDate_] = normalizeDates(
+    options?.in,
+    laterDate,
+    earlierDate,
+  );
   return laterDate_.getFullYear() === earlierDate_.getFullYear();
 }
 

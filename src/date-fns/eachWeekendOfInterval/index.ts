@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -11,7 +10,9 @@ import type { ContextOptions, Interval } from '../types.ts';
 /**
  * The {@link eachWeekendOfInterval} function options.
  */
-export interface EachWeekendOfIntervalOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface EachWeekendOfIntervalOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * The {@link eachWeekendOfInterval} function result type.
@@ -61,7 +62,10 @@ export type EachWeekendOfIntervalResult<
 export function eachWeekendOfInterval<
   IntervalType extends Interval,
   Options extends EachWeekendOfIntervalOptions | undefined = undefined,
->(interval: IntervalType, options?: Options): EachWeekendOfIntervalResult<IntervalType, Options> {
+>(
+  interval: IntervalType,
+  options?: Options,
+): EachWeekendOfIntervalResult<IntervalType, Options> {
   const { start, end } = normalizeInterval(options?.in, interval);
   const dateInterval = eachDayOfInterval({ start, end }, options);
   const weekends: EachWeekendOfIntervalResult<IntervalType, Options> = [];

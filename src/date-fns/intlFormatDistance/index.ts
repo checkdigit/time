@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -25,7 +24,8 @@ import type { ContextOptions, DateArg, MaybeArray } from '../types.ts';
 /**
  * The {@link intlFormatDistance} function options.
  */
-export interface IntlFormatDistanceOptions extends Intl.RelativeTimeFormatOptions, ContextOptions<Date> {
+export interface IntlFormatDistanceOptions
+  extends Intl.RelativeTimeFormatOptions, ContextOptions<Date> {
   /** Force the distance unit */
   unit?: IntlFormatDistanceUnit;
   /** The locales to use (see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument) */
@@ -35,7 +35,8 @@ export interface IntlFormatDistanceOptions extends Intl.RelativeTimeFormatOption
 /**
  * The unit used to format the distance in {@link intlFormatDistance}.
  */
-export type IntlFormatDistanceUnit = 'year' | 'quarter' | 'month' | 'week' | 'day' | 'hour' | 'minute' | 'second';
+export type IntlFormatDistanceUnit =
+  'year' | 'quarter' | 'month' | 'week' | 'day' | 'hour' | 'minute' | 'second';
 
 /**
  * @name intlFormatDistance
@@ -142,7 +143,11 @@ export function intlFormatDistance(
   let value: number = 0;
   let unit: Intl.RelativeTimeFormatUnit;
 
-  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
+  const [laterDate_, earlierDate_] = normalizeDates(
+    options?.in,
+    laterDate,
+    earlierDate,
+  );
 
   if (!options?.unit) {
     // Get the unit based on diffInSeconds calculations if no unit is specified

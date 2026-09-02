@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -6,13 +5,20 @@ import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
 import { constructFrom } from '../constructFrom/index.ts';
 import { getWeekYear } from '../getWeekYear/index.ts';
 import { startOfWeek } from '../startOfWeek/index.ts';
-import type { ContextOptions, DateArg, FirstWeekContainsDateOptions, LocalizedOptions, WeekOptions } from '../types.ts';
+import type {
+  ContextOptions,
+  DateArg,
+  FirstWeekContainsDateOptions,
+  LocalizedOptions,
+  WeekOptions,
+} from '../types.ts';
 
 /**
  * The {@link startOfWeekYear} function options.
  */
 export interface StartOfWeekYearOptions<DateType extends Date = Date>
-  extends LocalizedOptions<'options'>,
+  extends
+    LocalizedOptions<'options'>,
     FirstWeekContainsDateOptions,
     WeekOptions,
     ContextOptions<DateType> {}
@@ -54,7 +60,10 @@ export interface StartOfWeekYearOptions<DateType extends Date = Date>
  * })
  * //=> Mon Jan 03 2005 00:00:00
  */
-export function startOfWeekYear<DateType extends Date, ResultDate extends Date = DateType>(
+export function startOfWeekYear<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: StartOfWeekYearOptions<ResultDate>,
 ): ResultDate {

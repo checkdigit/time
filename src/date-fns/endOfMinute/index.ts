@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link endOfMinute} function options.
  */
-export interface EndOfMinuteOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface EndOfMinuteOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name endOfMinute
@@ -32,7 +33,10 @@ export interface EndOfMinuteOptions<DateType extends Date = Date> extends Contex
  * const result = endOfMinute(new Date(2014, 11, 1, 22, 15, 45, 400))
  * //=> Mon Dec 01 2014 22:15:59.999
  */
-export function endOfMinute<DateType extends Date, ResultDate extends Date = DateType>(
+export function endOfMinute<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: EndOfMinuteOptions<ResultDate> | undefined,
 ): ResultDate {

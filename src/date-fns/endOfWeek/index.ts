@@ -1,18 +1,20 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
 import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
 import { toDate } from '../toDate/index.ts';
-import type { ContextOptions, DateArg, LocalizedOptions, WeekOptions } from '../types.ts';
+import type {
+  ContextOptions,
+  DateArg,
+  LocalizedOptions,
+  WeekOptions,
+} from '../types.ts';
 
 /**
  * The {@link endOfWeek} function options.
  */
 export interface EndOfWeekOptions<DateType extends Date = Date>
-  extends WeekOptions,
-    LocalizedOptions<'options'>,
-    ContextOptions<DateType> {}
+  extends WeekOptions, LocalizedOptions<'options'>, ContextOptions<DateType> {}
 
 /**
  * @name endOfWeek
@@ -41,10 +43,10 @@ export interface EndOfWeekOptions<DateType extends Date = Date>
  * const result = endOfWeek(new Date(2014, 8, 2, 11, 55, 0), { weekStartsOn: 1 })
  * //=> Sun Sep 07 2014 23:59:59.999
  */
-export function endOfWeek<DateType extends Date, ResultDate extends Date = DateType>(
-  date: DateArg<DateType>,
-  options?: EndOfWeekOptions<ResultDate>,
-): ResultDate {
+export function endOfWeek<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(date: DateArg<DateType>, options?: EndOfWeekOptions<ResultDate>): ResultDate {
   const defaultOptions = getDefaultOptions();
   const weekStartsOn =
     options?.weekStartsOn ??

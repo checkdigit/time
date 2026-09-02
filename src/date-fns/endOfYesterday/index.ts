@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -9,7 +8,9 @@ import type { ContextOptions } from '../types.ts';
 /**
  * The {@link endOfYesterday} function options.
  */
-export interface EndOfYesterdayOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface EndOfYesterdayOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name endOfYesterday
@@ -30,9 +31,10 @@ export interface EndOfYesterdayOptions<DateType extends Date = Date> extends Con
  * const result = endOfYesterday()
  * //=> Sun Oct 5 2014 23:59:59.999
  */
-export function endOfYesterday<DateType extends Date, ResultDate extends Date = DateType>(
-  options?: EndOfYesterdayOptions<ResultDate> | undefined,
-): ResultDate {
+export function endOfYesterday<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(options?: EndOfYesterdayOptions<ResultDate> | undefined): ResultDate {
   const now = constructNow(options?.in);
   const date = constructFrom(options?.in, 0);
   date.setFullYear(now.getFullYear(), now.getMonth(), now.getDate() - 1);

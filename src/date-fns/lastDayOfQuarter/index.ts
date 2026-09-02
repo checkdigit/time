@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link lastDayOfQuarter} function options.
  */
-export interface LastDayOfQuarterOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface LastDayOfQuarterOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name lastDayOfQuarter
@@ -32,7 +33,10 @@ export interface LastDayOfQuarterOptions<DateType extends Date = Date> extends C
  * const result = lastDayOfQuarter(new Date(2014, 8, 2, 11, 55, 0))
  * //=> Tue Sep 30 2014 00:00:00
  */
-export function lastDayOfQuarter<DateType extends Date, ResultDate extends Date = DateType>(
+export function lastDayOfQuarter<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: LastDayOfQuarterOptions<ResultDate> | undefined,
 ): ResultDate {

@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions } from '../types.ts';
 /**
  * The {@link fromUnixTime} function options.
  */
-export interface FromUnixTimeOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface FromUnixTimeOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name fromUnixTime

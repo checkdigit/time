@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -69,16 +68,24 @@ export function differenceInDays(
   earlierDate: DateArg<Date> & {},
   options?: DifferenceInDaysOptions | undefined,
 ): number {
-  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
+  const [laterDate_, earlierDate_] = normalizeDates(
+    options?.in,
+    laterDate,
+    earlierDate,
+  );
 
   const sign = compareLocalAsc(laterDate_, earlierDate_);
-  const difference = Math.abs(differenceInCalendarDays(laterDate_, earlierDate_));
+  const difference = Math.abs(
+    differenceInCalendarDays(laterDate_, earlierDate_),
+  );
 
   laterDate_.setDate(laterDate_.getDate() - sign * difference);
 
   // Math.abs(diff in full days - diff in calendar days) === 1 if last calendar day is not full
   // If so, result must be decreased by 1 in absolute value
-  const isLastDayNotFull = Number(compareLocalAsc(laterDate_, earlierDate_) === -sign);
+  const isLastDayNotFull = Number(
+    compareLocalAsc(laterDate_, earlierDate_) === -sign,
+  );
 
   const result = sign * (difference - isLastDayNotFull);
   // Prevent negative zero

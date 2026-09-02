@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -10,8 +9,7 @@ import type { ContextOptions, Interval, StepOptions } from '../types.ts';
  * The {@link eachYearOfInterval} function options.
  */
 export interface EachYearOfIntervalOptions<DateType extends Date = Date>
-  extends StepOptions,
-    ContextOptions<DateType> {}
+  extends StepOptions, ContextOptions<DateType> {}
 
 /**
  * The {@link eachYearOfInterval} function result type. It resolves the proper data type.
@@ -64,7 +62,10 @@ export type EachYearOfIntervalResult<
 export function eachYearOfInterval<
   IntervalType extends Interval,
   Options extends EachYearOfIntervalOptions | undefined = undefined,
->(interval: IntervalType, options?: Options): EachYearOfIntervalResult<IntervalType, Options> {
+>(
+  interval: IntervalType,
+  options?: Options,
+): EachYearOfIntervalResult<IntervalType, Options> {
   const { start, end } = normalizeInterval(options?.in, interval);
 
   let reversed = +start > +end;

@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -6,7 +5,11 @@ import type { Match } from '../../../locale/types.ts';
 import { numericPatterns } from '../constants.ts';
 import { Parser } from '../Parser.ts';
 import type { ParseFlags, ParseResult } from '../types.ts';
-import { isLeapYearIndex, parseNDigits, parseNumericPattern } from '../utils.ts';
+import {
+  isLeapYearIndex,
+  parseNDigits,
+  parseNumericPattern,
+} from '../utils.ts';
 
 export class DayOfYearParser extends Parser<number> {
   priority = 90;
@@ -35,13 +38,33 @@ export class DayOfYearParser extends Parser<number> {
     }
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: number,
+  ): DateType {
     date.setMonth(0, value);
     date.setHours(0, 0, 0, 0);
     return date;
   }
 
-  incompatibleTokens: string[] = ['Y', 'R', 'q', 'Q', 'M', 'L', 'w', 'I', 'd', 'E', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = [
+    'Y',
+    'R',
+    'q',
+    'Q',
+    'M',
+    'L',
+    'w',
+    'I',
+    'd',
+    'E',
+    'i',
+    'e',
+    'c',
+    't',
+    'T',
+  ];
 }
 
 /* eslint-enable */

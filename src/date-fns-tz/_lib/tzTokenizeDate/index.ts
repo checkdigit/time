@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,10 +7,14 @@
  */
 export function tzTokenizeDate(date: Date, timeZone: string): number[] {
   const dtf = getDateTimeFormat(timeZone);
-  return 'formatToParts' in dtf ? partsOffset(dtf, date) : hackyOffset(dtf, date);
+  return 'formatToParts' in dtf
+    ? partsOffset(dtf, date)
+    : hackyOffset(dtf, date);
 }
 
-const typeToPos: { [type in keyof Intl.DateTimeFormatPartTypesRegistry]?: number } = {
+const typeToPos: {
+  [type in keyof Intl.DateTimeFormatPartTypesRegistry]?: number;
+} = {
   year: 0,
   month: 1,
   day: 2,
@@ -72,7 +75,8 @@ const testDateFormatted = new Intl.DateTimeFormat('en-US', {
   second: '2-digit',
 }).format(new Date('2014-06-25T04:00:00.123Z'));
 const hourCycleSupported =
-  testDateFormatted === '06/25/2014, 00:00:00' || testDateFormatted === '‎06‎/‎25‎/‎2014‎ ‎00‎:‎00‎:‎00';
+  testDateFormatted === '06/25/2014, 00:00:00' ||
+  testDateFormatted === '‎06‎/‎25‎/‎2014‎ ‎00‎:‎00‎:‎00';
 
 function getDateTimeFormat(timeZone: string) {
   if (!dtfCache[timeZone]) {

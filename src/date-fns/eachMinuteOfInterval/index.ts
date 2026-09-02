@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -11,8 +10,7 @@ import type { ContextOptions, Interval, StepOptions } from '../types.ts';
  * The {@link eachMinuteOfInterval} function options.
  */
 export interface EachMinuteOfIntervalOptions<DateType extends Date = Date>
-  extends StepOptions,
-    ContextOptions<DateType> {}
+  extends StepOptions, ContextOptions<DateType> {}
 
 /**
  * The {@link eachMinuteOfInterval} function result type. It resolves the proper data type.
@@ -65,7 +63,10 @@ export type EachMinuteOfIntervalResult<
 export function eachMinuteOfInterval<
   IntervalType extends Interval,
   Options extends EachMinuteOfIntervalOptions | undefined = undefined,
->(interval: IntervalType, options?: Options): EachMinuteOfIntervalResult<IntervalType, Options> {
+>(
+  interval: IntervalType,
+  options?: Options,
+): EachMinuteOfIntervalResult<IntervalType, Options> {
   const { start, end } = normalizeInterval(options?.in, interval);
   // Set to the start of the minute
   start.setSeconds(0, 0);

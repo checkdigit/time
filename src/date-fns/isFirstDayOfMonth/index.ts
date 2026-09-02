@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -28,7 +27,10 @@ export interface IsFirstDayOfMonthOptions extends ContextOptions<Date> {}
  * const result = isFirstDayOfMonth(new Date(2014, 8, 1))
  * //=> true
  */
-export function isFirstDayOfMonth(date: DateArg<Date> & {}, options?: IsFirstDayOfMonthOptions | undefined): boolean {
+export function isFirstDayOfMonth(
+  date: DateArg<Date> & {},
+  options?: IsFirstDayOfMonthOptions | undefined,
+): boolean {
   return toDate(date, options?.in).getDate() === 1;
 }
 

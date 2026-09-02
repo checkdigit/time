@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -13,7 +12,10 @@ export abstract class Setter {
   public abstract priority: number;
   public subPriority = 0;
 
-  public validate<DateType extends Date>(_utcDate: DateType, _options?: ParserOptions): boolean {
+  public validate<DateType extends Date>(
+    _utcDate: DateType,
+    _options?: ParserOptions,
+  ): boolean {
     return true;
   }
 
@@ -27,7 +29,11 @@ export abstract class Setter {
 export class ValueSetter<Value> extends Setter {
   private value: Value;
 
-  private validateValue: <DateType extends Date>(date: DateType, value: Value, options: ParserOptions) => boolean;
+  private validateValue: <DateType extends Date>(
+    date: DateType,
+    value: Value,
+    options: ParserOptions,
+  ) => boolean;
 
   private setValue: <DateType extends Date>(
     date: DateType,
@@ -40,7 +46,11 @@ export class ValueSetter<Value> extends Setter {
 
   constructor(
     value: Value,
-    validateValue: <DateType extends Date>(date: DateType, value: Value, options: ParserOptions) => boolean,
+    validateValue: <DateType extends Date>(
+      date: DateType,
+      value: Value,
+      options: ParserOptions,
+    ) => boolean,
     setValue: <DateType extends Date>(
       date: DateType,
       flags: ParseFlags,
@@ -60,7 +70,10 @@ export class ValueSetter<Value> extends Setter {
     }
   }
 
-  validate<DateType extends Date>(date: DateType, options: ParserOptions): boolean {
+  validate<DateType extends Date>(
+    date: DateType,
+    options: ParserOptions,
+  ): boolean {
     return this.validateValue(date, this.value, options);
   }
 
@@ -78,7 +91,10 @@ export class DateTimezoneSetter extends Setter {
   subPriority = -1;
   context: ContextFn<Date>;
 
-  constructor(context: ContextFn<Date> | undefined, reference: DateArg<Date> & {}) {
+  constructor(
+    context: ContextFn<Date> | undefined,
+    reference: DateArg<Date> & {},
+  ) {
     super();
     this.context = context || ((date) => constructFrom(reference, date));
   }

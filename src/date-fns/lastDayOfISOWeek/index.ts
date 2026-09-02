@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link lastDayOfISOWeek} function options.
  */
-export interface LastDayOfISOWeekOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface LastDayOfISOWeekOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name lastDayOfISOWeek
@@ -34,7 +35,10 @@ export interface LastDayOfISOWeekOptions<DateType extends Date = Date> extends C
  * const result = lastDayOfISOWeek(new Date(2014, 8, 2, 11, 55, 0))
  * //=> Sun Sep 07 2014 00:00:00
  */
-export function lastDayOfISOWeek<DateType extends Date, ResultDate extends Date = DateType>(
+export function lastDayOfISOWeek<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: LastDayOfISOWeekOptions<ResultDate> | undefined,
 ): ResultDate {

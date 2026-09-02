@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -16,7 +15,9 @@ import type { DateArg } from '../../types.ts';
  *
  * This function returns the timezone offset in milliseconds that takes seconds in account.
  */
-export function getTimezoneOffsetInMilliseconds(date: DateArg<Date> & {}): number {
+export function getTimezoneOffsetInMilliseconds(
+  date: DateArg<Date> & {},
+): number {
   const _date = toDate(date);
   const utcDate = new Date(
     Date.UTC(

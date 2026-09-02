@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -30,7 +29,10 @@ import { tzParseTimezone } from '../_lib/tzParseTimezone/index.ts';
  * const result = getTimezoneOffset('America/New_York', new Date(2016, 6, 1))
  *   //=> -14400000 (-4 * 60 * 60 * 1000)
  */
-export function getTimezoneOffset(timeZone: string, date?: Date | number): number {
+export function getTimezoneOffset(
+  timeZone: string,
+  date?: Date | number,
+): number {
   return -tzParseTimezone(timeZone, date);
 }
 

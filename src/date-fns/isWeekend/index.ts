@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -28,7 +27,10 @@ export interface IsWeekendOptions extends ContextOptions<Date> {}
  * const result = isWeekend(new Date(2014, 9, 5))
  * //=> true
  */
-export function isWeekend(date: DateArg<Date> & {}, options?: IsWeekendOptions | undefined): boolean {
+export function isWeekend(
+  date: DateArg<Date> & {},
+  options?: IsWeekendOptions | undefined,
+): boolean {
   const day = toDate(date, options?.in).getDay();
   return day === 0 || day === 6;
 }

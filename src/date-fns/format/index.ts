@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -38,7 +37,8 @@ export { formatters, longFormatters };
 //   If there is no matching single quote
 //   then the sequence will continue until the end of the string.
 // - . matches any single character unmatched by previous parts of the RegExps
-const formattingTokensRegExp = /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
+const formattingTokensRegExp =
+  /[yYQqMLwIdDecihHKkms]o|(\w)\1*|''|'(''|[^'])+('|$)|./g;
 
 // This RegExp catches symbols escaped by quotes, and also
 // sequences of symbols P, p, and the combinations like `PPPPPPPppppp`
@@ -55,7 +55,8 @@ export type { FormatOptions as FormatDateOptions };
  * The {@link format} function options.
  */
 export interface FormatOptions
-  extends LocalizedOptions<'options' | 'localize' | 'formatLong'>,
+  extends
+    LocalizedOptions<'options' | 'localize' | 'formatLong'>,
     WeekOptions,
     FirstWeekContainsDateOptions,
     AdditionalTokensOptions,
@@ -345,7 +346,11 @@ export interface FormatOptions
  * const result = format(new Date(2014, 6, 2, 15), "h 'o''clock'")
  * //=> "3 o'clock"
  */
-export function format(date: DateArg<Date> & {}, formatStr: string, options?: FormatOptions): string {
+export function format(
+  date: DateArg<Date> & {},
+  formatStr: string,
+  options?: FormatOptions,
+): string {
   const defaultOptions = getDefaultOptions();
   const locale = options?.locale ?? defaultOptions.locale ?? defaultLocale;
 
@@ -397,7 +402,11 @@ export function format(date: DateArg<Date> & {}, formatStr: string, options?: Fo
       }
 
       if (firstCharacter.match(unescapedLatinCharacterRegExp)) {
-        throw new RangeError('Format string contains an unescaped latin alphabet character `' + firstCharacter + '`');
+        throw new RangeError(
+          'Format string contains an unescaped latin alphabet character `' +
+            firstCharacter +
+            '`',
+        );
       }
 
       return { isToken: false, value: substring };
@@ -421,8 +430,10 @@ export function format(date: DateArg<Date> & {}, formatStr: string, options?: Fo
       const token = part.value;
 
       if (
-        (!options?.useAdditionalWeekYearTokens && isProtectedWeekYearToken(token)) ||
-        (!options?.useAdditionalDayOfYearTokens && isProtectedDayOfYearToken(token))
+        (!options?.useAdditionalWeekYearTokens &&
+          isProtectedWeekYearToken(token)) ||
+        (!options?.useAdditionalDayOfYearTokens &&
+          isProtectedDayOfYearToken(token))
       ) {
         warnOrThrowProtectedError(token, formatStr, String(date));
       }

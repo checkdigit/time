@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -28,7 +27,10 @@ export interface GetDateOptions extends ContextOptions<Date> {}
  * const result = getDate(new Date(2012, 1, 29))
  * //=> 29
  */
-export function getDate(date: DateArg<Date> & {}, options?: GetDateOptions | undefined): number {
+export function getDate(
+  date: DateArg<Date> & {},
+  options?: GetDateOptions | undefined,
+): number {
   return toDate(date, options?.in).getDate();
 }
 

@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -26,7 +25,11 @@ export class Hour1To24Parser extends Parser<number> {
     return value >= 1 && value <= 24;
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: number,
+  ): DateType {
     const hours = value <= 24 ? value % 24 : value;
     date.setHours(hours, 0, 0, 0);
     return date;

@@ -1,9 +1,13 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
 import type { Day, Era, Month, Quarter } from '../../../types.ts';
-import type { LocaleDayPeriod, LocaleUnitValue, LocaleWidth, LocalizeFn } from '../../types.ts';
+import type {
+  LocaleDayPeriod,
+  LocaleUnitValue,
+  LocaleWidth,
+  LocalizeFn,
+} from '../../types.ts';
 
 export type BuildLocalizeFnArgs<
   Value extends LocaleUnitValue,
@@ -25,7 +29,9 @@ export type BuildLocalizeFnArgs<
  *
  * @returns The converted value
  */
-export type LocalizeFnArgCallback<Value extends LocaleUnitValue | number> = (value: Value) => LocalizeUnitIndex<Value>;
+export type LocalizeFnArgCallback<Value extends LocaleUnitValue | number> = (
+  value: Value,
+) => LocalizeUnitIndex<Value>;
 
 /**
  * The map of localized values for each width.
@@ -38,24 +44,24 @@ export type LocalizePeriodValuesMap<Value extends LocaleUnitValue> = {
  * The index type of the locale unit value. It types conversion of units of
  * values that don't start at 0 (i.e. quarters).
  */
-export type LocalizeUnitIndex<Value extends LocaleUnitValue | number> = Value extends LocaleUnitValue
-  ? keyof LocalizeValues<Value>
-  : number;
+export type LocalizeUnitIndex<Value extends LocaleUnitValue | number> =
+  Value extends LocaleUnitValue ? keyof LocalizeValues<Value> : number;
 
 /**
  * Converts the unit value to the tuple of values.
  */
-export type LocalizeValues<Value extends LocaleUnitValue> = Value extends LocaleDayPeriod
-  ? Record<LocaleDayPeriod, string>
-  : Value extends Era
-    ? LocalizeEraValues
-    : Value extends Quarter
-      ? LocalizeQuarterValues
-      : Value extends Day
-        ? LocalizeDayValues
-        : Value extends Month
-          ? LocalizeMonthValues
-          : never;
+export type LocalizeValues<Value extends LocaleUnitValue> =
+  Value extends LocaleDayPeriod
+    ? Record<LocaleDayPeriod, string>
+    : Value extends Era
+      ? LocalizeEraValues
+      : Value extends Quarter
+        ? LocalizeQuarterValues
+        : Value extends Day
+          ? LocalizeDayValues
+          : Value extends Month
+            ? LocalizeMonthValues
+            : never;
 
 /**
  * The tuple of localized era values. The first element represents BC,
@@ -71,7 +77,15 @@ export type LocalizeQuarterValues = readonly [string, string, string, string];
 /**
  * The tuple of localized day values. The first element represents Sunday.
  */
-export type LocalizeDayValues = readonly [string, string, string, string, string, string, string];
+export type LocalizeDayValues = readonly [
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+  string,
+];
 
 /**
  * The tuple of localized month values. The first element represents January.
@@ -101,14 +115,22 @@ export function buildLocalizeFn<
     let valuesArray: LocalizeValues<Value>;
     if (context === 'formatting' && args.formattingValues) {
       const defaultWidth = args.defaultFormattingWidth || args.defaultWidth;
-      const width = (options?.width ? String(options.width) : defaultWidth) as LocaleWidth;
-      valuesArray = (args.formattingValues[width] || args.formattingValues[defaultWidth]) as LocalizeValues<Value>;
+      const width = (
+        options?.width ? String(options.width) : defaultWidth
+      ) as LocaleWidth;
+      valuesArray = (args.formattingValues[width] ||
+        args.formattingValues[defaultWidth]) as LocalizeValues<Value>;
     } else {
       const defaultWidth = args.defaultWidth;
-      const width = (options?.width ? String(options.width) : args.defaultWidth) as LocaleWidth;
-      valuesArray = (args.values[width] || args.values[defaultWidth]) as LocalizeValues<Value>;
+      const width = (
+        options?.width ? String(options.width) : args.defaultWidth
+      ) as LocaleWidth;
+      valuesArray = (args.values[width] ||
+        args.values[defaultWidth]) as LocalizeValues<Value>;
     }
-    const index = (args.argumentCallback ? args.argumentCallback(value as Value) : value) as LocalizeUnitIndex<Value>;
+    const index = (
+      args.argumentCallback ? args.argumentCallback(value as Value) : value
+    ) as LocalizeUnitIndex<Value>;
     // @ts-expect-error - For some reason TypeScript just don't want to match it, no matter how hard we try. I challenge you to try to remove it!
     return valuesArray[index];
   };

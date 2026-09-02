@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -28,7 +27,10 @@ export interface GetMonthOptions extends ContextOptions<Date> {}
  * const result = getMonth(new Date(2012, 1, 29))
  * //=> 1
  */
-export function getMonth(date: DateArg<Date> & {}, options?: GetMonthOptions | undefined): number {
+export function getMonth(
+  date: DateArg<Date> & {},
+  options?: GetMonthOptions | undefined,
+): number {
   return toDate(date, options?.in).getMonth();
 }
 

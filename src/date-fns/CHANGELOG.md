@@ -1266,7 +1266,10 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   var maxDate = max(date1, date2);
 
   // v2.0.0 onward:
-  var dates = [new Date(1989, 6 /* Jul */, 10), new Date(1987, 1 /* Feb */, 11)];
+  var dates = [
+    new Date(1989, 6 /* Jul */, 10),
+    new Date(1987, 1 /* Feb */, 11),
+  ];
 
   var minDate = min(dates);
   var maxDate = max(dates);
@@ -1322,7 +1325,12 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   ```javascript
   // Before v2.0.0
 
-  areRangesOverlapping(new Date(2014, 0, 10), new Date(2014, 0, 20), new Date(2014, 0, 17), new Date(2014, 0, 21));
+  areRangesOverlapping(
+    new Date(2014, 0, 10),
+    new Date(2014, 0, 20),
+    new Date(2014, 0, 17),
+    new Date(2014, 0, 21),
+  );
 
   eachDay(new Date(2014, 0, 10), new Date(2014, 0, 20));
 
@@ -1333,7 +1341,11 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
     new Date(2014, 0, 21),
   );
 
-  isWithinRange(new Date(2014, 0, 3), new Date(2014, 0, 1), new Date(2014, 0, 7));
+  isWithinRange(
+    new Date(2014, 0, 3),
+    new Date(2014, 0, 1),
+    new Date(2014, 0, 7),
+  );
 
   // v2.0.0 onward
 
@@ -1372,11 +1384,19 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   ```javascript
   // Before v2.0.0
 
-  distanceInWords(new Date(1986, 3, 4, 10, 32, 0), new Date(1986, 3, 4, 11, 32, 0), { addSuffix: true }); //=> 'in about 1 hour'
+  distanceInWords(
+    new Date(1986, 3, 4, 10, 32, 0),
+    new Date(1986, 3, 4, 11, 32, 0),
+    { addSuffix: true },
+  ); //=> 'in about 1 hour'
 
   // v2.0.0 onward
 
-  formatDistance(new Date(1986, 3, 4, 11, 32, 0), new Date(1986, 3, 4, 10, 32, 0), { addSuffix: true }); //=> 'in about 1 hour'
+  formatDistance(
+    new Date(1986, 3, 4, 11, 32, 0),
+    new Date(1986, 3, 4, 10, 32, 0),
+    { addSuffix: true },
+  ); //=> 'in about 1 hour'
   ```
 
 - **BREAKING**: `partialMethod` option in `formatDistanceStrict` is renamed to `roundingMethod`.
@@ -1384,11 +1404,19 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   ```javascript
   // Before v2.0.0
 
-  distanceInWordsStrict(new Date(1986, 3, 4, 10, 32, 0), new Date(1986, 3, 4, 10, 33, 1), { partialMethod: 'ceil' }); //=> '2 minutes'
+  distanceInWordsStrict(
+    new Date(1986, 3, 4, 10, 32, 0),
+    new Date(1986, 3, 4, 10, 33, 1),
+    { partialMethod: 'ceil' },
+  ); //=> '2 minutes'
 
   // v2.0.0 onward
 
-  formatDistanceStrict(new Date(1986, 3, 4, 10, 33, 1), new Date(1986, 3, 4, 10, 32, 0), { roundingMethod: 'ceil' }); //=> '2 minutes'
+  formatDistanceStrict(
+    new Date(1986, 3, 4, 10, 33, 1),
+    new Date(1986, 3, 4, 10, 32, 0),
+    { roundingMethod: 'ceil' },
+  ); //=> '2 minutes'
   ```
 
 - **BREAKING**: in `formatDistanceStrict`, if `roundingMethod` is not specified,
@@ -1400,11 +1428,19 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   ```javascript
   // Before v2.0.0
 
-  distanceInWordsStrict(new Date(1986, 3, 4, 10, 32, 0), new Date(1986, 3, 4, 10, 33, 1), { unit: 'm' });
+  distanceInWordsStrict(
+    new Date(1986, 3, 4, 10, 32, 0),
+    new Date(1986, 3, 4, 10, 33, 1),
+    { unit: 'm' },
+  );
 
   // v2.0.0 onward
 
-  formatDistanceStrict(new Date(1986, 3, 4, 10, 33, 1), new Date(1986, 3, 4, 10, 32, 0), { unit: 'minute' });
+  formatDistanceStrict(
+    new Date(1986, 3, 4, 10, 33, 1),
+    new Date(1986, 3, 4, 10, 32, 0),
+    { unit: 'minute' },
+  );
   ```
 
 - **BREAKING**: `parse` that previously used to convert strings and
@@ -1559,7 +1595,11 @@ If you're upgrading from v2 alpha or beta, [see the pre-release changelog](https
   // Several arguments can be curried at once
   const dateToString = formatWithOptions({ locale: eo }, 'd MMMM yyyy');
 
-  const dates = [new Date(2017, 0 /* Jan */, 1), new Date(2017, 1 /* Feb */, 11), new Date(2017, 6 /* Jul */, 2)];
+  const dates = [
+    new Date(2017, 0 /* Jan */, 1),
+    new Date(2017, 1 /* Feb */, 11),
+    new Date(2017, 6 /* Jul */, 2),
+  ];
 
   const formattedDates = dates.map((date) => dateToString(addFiveYears(date)));
   //=> ['1 januaro 2022', '11 februaro 2022', '2 julio 2022']

@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 
 import type { LocaleDayPeriod, Match } from '../../../locale/types.ts';
@@ -9,7 +8,11 @@ import { dayPeriodEnumToHours } from '../utils.ts';
 export class AMPMMidnightParser extends Parser<LocaleDayPeriod> {
   priority = 80;
 
-  parse(dateString: string, token: string, match: Match): ParseResult<LocaleDayPeriod> {
+  parse(
+    dateString: string,
+    token: string,
+    match: Match,
+  ): ParseResult<LocaleDayPeriod> {
     switch (token) {
       case 'b':
       case 'bb':
@@ -48,7 +51,11 @@ export class AMPMMidnightParser extends Parser<LocaleDayPeriod> {
     }
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: LocaleDayPeriod): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: LocaleDayPeriod,
+  ): DateType {
     date.setHours(dayPeriodEnumToHours(value), 0, 0, 0);
     return date;
   }

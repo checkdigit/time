@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link endOfQuarter} function options.
  */
-export interface EndOfQuarterOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface EndOfQuarterOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name endOfQuarter
@@ -32,7 +33,10 @@ export interface EndOfQuarterOptions<DateType extends Date = Date> extends Conte
  * const result = endOfQuarter(new Date(2014, 8, 2, 11, 55, 0))
  * //=> Tue Sep 30 2014 23:59:59.999
  */
-export function endOfQuarter<DateType extends Date, ResultDate extends Date = DateType>(
+export function endOfQuarter<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: EndOfQuarterOptions<ResultDate> | undefined,
 ): ResultDate {

@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions } from '../types.ts';
 /**
  * The {@link startOfToday} function options.
  */
-export interface StartOfTodayOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface StartOfTodayOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name startOfToday

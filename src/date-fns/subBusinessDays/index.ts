@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link subBusinessDays} function options.
  */
-export interface SubBusinessDaysOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface SubBusinessDaysOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name subBusinessDays
@@ -32,7 +33,10 @@ export interface SubBusinessDaysOptions<DateType extends Date = Date> extends Co
  * const result = subBusinessDays(new Date(2014, 8, 1), 10)
  * //=> Mon Aug 18 2014 00:00:00 (skipped weekend days)
  */
-export function subBusinessDays<DateType extends Date, ResultDate extends Date = DateType>(
+export function subBusinessDays<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   amount: number,
   options?: SubBusinessDaysOptions<ResultDate> | undefined,

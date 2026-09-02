@@ -20,17 +20,21 @@ const DAY_OF_THE_WEEK_SATURDAY = 6;
  * @returns boolean indicating if the US Federal Reserve Bank is closed on a given date
  */
 export default function (plainDate: PlainDate): boolean {
-  const date = new Date(Date.UTC(plainDate.year, plainDate.month, plainDate.date));
+  const date = new Date(
+    Date.UTC(plainDate.year, plainDate.month, plainDate.date),
+  );
   const year = date.getUTCFullYear();
   const day = date.getUTCDay();
   const formattedDate = formatUtc(date, 'yyyy-MM-dd');
-  const allUSFederalReserveBankHolidays = getAllUSFederalReserveBankHolidays(year);
+  const allUSFederalReserveBankHolidays =
+    getAllUSFederalReserveBankHolidays(year);
 
   return (
     day === DAY_OF_THE_WEEK_SATURDAY ||
     day === DAY_OF_THE_WEEK_SUNDAY ||
     allUSFederalReserveBankHolidays.some(
-      (holiday) => holiday.date === formattedDate || holiday.observedOn === formattedDate,
+      (holiday) =>
+        holiday.date === formattedDate || holiday.observedOn === formattedDate,
     )
   );
 }

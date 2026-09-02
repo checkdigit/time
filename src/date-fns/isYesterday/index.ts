@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -32,8 +31,14 @@ export interface IsYesterdayOptions extends ContextOptions<Date> {}
  * const result = isYesterday(new Date(2014, 9, 5, 14, 0))
  * //=> true
  */
-export function isYesterday(date: DateArg<Date> & {}, options?: IsYesterdayOptions | undefined): boolean {
-  return isSameDay(constructFrom(options?.in || date, date), subDays(constructNow(options?.in || date), 1));
+export function isYesterday(
+  date: DateArg<Date> & {},
+  options?: IsYesterdayOptions | undefined,
+): boolean {
+  return isSameDay(
+    constructFrom(options?.in || date, date),
+    subDays(constructNow(options?.in || date), 1),
+  );
 }
 
 /* eslint-enable */

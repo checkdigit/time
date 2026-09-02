@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions, DateArg, NormalizedInterval } from '../types.ts';
 /**
  * The {@link interval} function options.
  */
-export interface IntervalOptions<ContextDate extends Date = Date> extends ContextOptions<ContextDate> {
+export interface IntervalOptions<
+  ContextDate extends Date = Date,
+> extends ContextOptions<ContextDate> {
   /** Asserts that the interval is positive (start is after the end). */
   assertPositive?: boolean;
 }
@@ -59,15 +60,24 @@ export function interval<
   StartDate extends DateArg<Date>,
   EndDate extends DateArg<Date>,
   Options extends IntervalOptions | undefined = undefined,
->(start: StartDate, end: EndDate, options?: Options): IntervalResult<StartDate, EndDate, Options> {
+>(
+  start: StartDate,
+  end: EndDate,
+  options?: Options,
+): IntervalResult<StartDate, EndDate, Options> {
   const [_start, _end] = normalizeDates(options?.in, start, end);
 
   if (isNaN(+_start)) throw new TypeError('Start date is invalid');
   if (isNaN(+_end)) throw new TypeError('End date is invalid');
 
-  if (options?.assertPositive && +_start > +_end) throw new TypeError('End date must be after start date');
+  if (options?.assertPositive && +_start > +_end)
+    throw new TypeError('End date must be after start date');
 
-  return { start: _start, end: _end } as IntervalResult<StartDate, EndDate, Options>;
+  return { start: _start, end: _end } as IntervalResult<
+    StartDate,
+    EndDate,
+    Options
+  >;
 }
 
 /* eslint-enable */

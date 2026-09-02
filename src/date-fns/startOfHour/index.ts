@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link startOfHour} function options.
  */
-export interface StartOfHourOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface StartOfHourOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name startOfHour
@@ -32,7 +33,10 @@ export interface StartOfHourOptions<DateType extends Date = Date> extends Contex
  * const result = startOfHour(new Date(2014, 8, 2, 11, 55))
  * //=> Tue Sep 02 2014 11:00:00
  */
-export function startOfHour<DateType extends Date, ResultDate extends Date = DateType>(
+export function startOfHour<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: StartOfHourOptions<ResultDate> | undefined,
 ): ResultDate {

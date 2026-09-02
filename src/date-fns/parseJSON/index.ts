@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions } from '../types.ts';
 /**
  * The {@link parseJSON} function options.
  */
-export interface ParseJSONOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface ParseJSONOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * Converts a complete ISO date string in UTC time, the typical format for transmitting

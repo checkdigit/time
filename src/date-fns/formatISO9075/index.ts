@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -10,7 +9,8 @@ import type { ContextOptions, DateArg, ISOFormatOptions } from '../types.ts';
 /**
  * The {@link formatISO9075} function options.
  */
-export interface FormatISO9075Options extends ISOFormatOptions, ContextOptions<Date> {}
+export interface FormatISO9075Options
+  extends ISOFormatOptions, ContextOptions<Date> {}
 
 /**
  * @name formatISO9075
@@ -47,7 +47,10 @@ export interface FormatISO9075Options extends ISOFormatOptions, ContextOptions<D
  * const result = formatISO9075(new Date(2019, 8, 18, 19, 0, 52), { representation: 'time' })
  * //=> '19:00:52'
  */
-export function formatISO9075(date: DateArg<Date> & {}, options?: FormatISO9075Options): string {
+export function formatISO9075(
+  date: DateArg<Date> & {},
+  options?: FormatISO9075Options,
+): string {
   const date_ = toDate(date, options?.in);
 
   if (!isValid(date_)) {

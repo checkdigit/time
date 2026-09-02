@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -26,7 +25,10 @@ import type { DateArg } from '../types.ts';
  * )
  * //=> false
  */
-export function isEqual(leftDate: DateArg<Date> & {}, rightDate: DateArg<Date> & {}): boolean {
+export function isEqual(
+  leftDate: DateArg<Date> & {},
+  rightDate: DateArg<Date> & {},
+): boolean {
   return +toDate(leftDate) === +toDate(rightDate);
 }
 

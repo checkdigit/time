@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -10,7 +9,8 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link isSameWeek} function options.
  */
-export interface IsSameWeekOptions extends WeekOptions, LocalizedOptions<'options'>, ContextOptions<Date> {}
+export interface IsSameWeekOptions
+  extends WeekOptions, LocalizedOptions<'options'>, ContextOptions<Date> {}
 
 /**
  * @name isSameWeek
@@ -49,8 +49,14 @@ export function isSameWeek(
   earlierDate: DateArg<Date> & {},
   options?: IsSameWeekOptions,
 ): boolean {
-  const [laterDate_, earlierDate_] = normalizeDates(options?.in, laterDate, earlierDate);
-  return +startOfWeek(laterDate_, options) === +startOfWeek(earlierDate_, options);
+  const [laterDate_, earlierDate_] = normalizeDates(
+    options?.in,
+    laterDate,
+    earlierDate,
+  );
+  return (
+    +startOfWeek(laterDate_, options) === +startOfWeek(earlierDate_, options)
+  );
 }
 
 /* eslint-enable */

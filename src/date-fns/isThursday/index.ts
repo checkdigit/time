@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -28,7 +27,10 @@ export interface IsThursdayOptions extends ContextOptions<Date> {}
  * const result = isThursday(new Date(2014, 8, 25))
  * //=> true
  */
-export function isThursday(date: DateArg<Date> & {}, options?: IsThursdayOptions | undefined): boolean {
+export function isThursday(
+  date: DateArg<Date> & {},
+  options?: IsThursdayOptions | undefined,
+): boolean {
   return toDate(date, options?.in).getDay() === 4;
 }
 

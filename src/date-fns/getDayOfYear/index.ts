@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -30,7 +29,10 @@ export interface GetDayOfYearOptions extends ContextOptions<Date> {}
  * const result = getDayOfYear(new Date(2014, 6, 2))
  * //=> 183
  */
-export function getDayOfYear(date: DateArg<Date> & {}, options?: GetDayOfYearOptions | undefined): number {
+export function getDayOfYear(
+  date: DateArg<Date> & {},
+  options?: GetDayOfYearOptions | undefined,
+): number {
   const _date = toDate(date, options?.in);
   const diff = differenceInCalendarDays(_date, startOfYear(_date));
   const dayOfYear = diff + 1;

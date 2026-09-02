@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -56,9 +55,10 @@ export function isWithinInterval(
   options?: IsWithinIntervalOptions | undefined,
 ): boolean {
   const time = +toDate(date, options?.in);
-  const [startTime, endTime] = [+toDate(interval.start, options?.in), +toDate(interval.end, options?.in)].sort(
-    (a, b) => a - b,
-  );
+  const [startTime, endTime] = [
+    +toDate(interval.start, options?.in),
+    +toDate(interval.end, options?.in),
+  ].sort((a, b) => a - b);
 
   return time >= startTime && time <= endTime;
 }

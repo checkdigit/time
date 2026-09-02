@@ -1,9 +1,13 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
 import { constructFromSymbol } from '../constants/index.ts';
-import type { ConstructableDate, ContextFn, DateArg, GenericDateConstructor } from '../types.ts';
+import type {
+  ConstructableDate,
+  ContextFn,
+  DateArg,
+  GenericDateConstructor,
+} from '../types.ts';
 
 /**
  * @name constructFrom
@@ -40,7 +44,10 @@ import type { ConstructableDate, ContextFn, DateArg, GenericDateConstructor } fr
  *   );
  * }
  */
-export function constructFrom<DateType extends Date | ConstructableDate, ResultDate extends Date = DateType>(
+export function constructFrom<
+  DateType extends Date | ConstructableDate,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType> | ContextFn<ResultDate> | undefined,
   value: DateArg<Date> & {},
 ): ResultDate {
@@ -50,16 +57,22 @@ export function constructFrom<DateType extends Date | ConstructableDate, ResultD
     const dateToReturn = date[constructFromSymbol](value);
     // [PATCH:] this hack is required because setHours doesn't work for hours that are close to daylight saving timezone threshold
     if ((value as any)[Symbol.for('UTCHours')] !== undefined) {
-      (dateToReturn as any)[Symbol.for('UTCHours')] = (value as any)[Symbol.for('UTCHours')];
+      (dateToReturn as any)[Symbol.for('UTCHours')] = (value as any)[
+        Symbol.for('UTCHours')
+      ];
     }
     return dateToReturn;
   }
 
   if (date instanceof Date) {
-    const dateToReturn = new (date.constructor as GenericDateConstructor<ResultDate>)(value);
+    const dateToReturn = new (
+      date.constructor as GenericDateConstructor<ResultDate>
+    )(value);
     // [PATCH:] this hack is required because setHours doesn't work for hours that are close to daylight saving timezone threshold
     if ((date as any)[Symbol.for('UTCHours')] !== undefined) {
-      (dateToReturn as any)[Symbol.for('UTCHours')] = (date as any)[Symbol.for('UTCHours')];
+      (dateToReturn as any)[Symbol.for('UTCHours')] = (date as any)[
+        Symbol.for('UTCHours')
+      ];
     }
     return dateToReturn;
   }

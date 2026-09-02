@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -9,7 +8,9 @@ import type { ContextOptions, DateArg, Day } from '../types.ts';
 /**
  * The {@link nextDay} function options.
  */
-export interface NextDayOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface NextDayOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name nextDay
@@ -35,7 +36,10 @@ export interface NextDayOptions<DateType extends Date = Date> extends ContextOpt
  * const result = nextDay(new Date(2020, 2, 21), 2)
  * //=> Tue Mar 24 2020 00:00:00
  */
-export function nextDay<DateType extends Date, ResultDate extends Date = DateType>(
+export function nextDay<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   day: Day,
   options?: NextDayOptions<ResultDate> | undefined,

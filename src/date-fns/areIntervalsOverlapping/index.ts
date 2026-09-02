@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -74,7 +73,8 @@ export function areIntervalsOverlapping(
     +toDate(intervalRight.end, options?.in),
   ].sort((a, b) => a - b);
 
-  if (options?.inclusive) return leftStartTime <= rightEndTime && rightStartTime <= leftEndTime;
+  if (options?.inclusive)
+    return leftStartTime <= rightEndTime && rightStartTime <= leftEndTime;
 
   return leftStartTime < rightEndTime && rightStartTime < leftEndTime;
 }

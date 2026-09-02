@@ -1,17 +1,23 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
 import { getRoundingMethod } from '../_lib/getRoundingMethod/index.ts';
 import { constructFrom } from '../constructFrom/index.ts';
 import { toDate } from '../toDate/index.ts';
-import type { ContextOptions, DateArg, NearestHours, NearestToUnitOptions, RoundingOptions } from '../types.ts';
+import type {
+  ContextOptions,
+  DateArg,
+  NearestHours,
+  NearestToUnitOptions,
+  RoundingOptions,
+} from '../types.ts';
 
 /**
  * The {@link roundToNearestHours} function options.
  */
 export interface RoundToNearestHoursOptions<DateType extends Date = Date>
-  extends NearestToUnitOptions<NearestHours>,
+  extends
+    NearestToUnitOptions<NearestHours>,
     RoundingOptions,
     ContextOptions<DateType> {}
 
@@ -57,19 +63,27 @@ export interface RoundToNearestHoursOptions<DateType extends Date = Date>
  * const result = roundToNearestHours(new Date(2014, 6, 10, 12, 34, 56), { roundingMethod: 'floor', nearestTo: 8 })
  * //=> Thu Jul 10 2014 08:00:00
  */
-export function roundToNearestHours<DateType extends Date, ResultDate extends Date = DateType>(
+export function roundToNearestHours<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: RoundToNearestHoursOptions<ResultDate>,
 ): ResultDate {
   const nearestTo = options?.nearestTo ?? 1;
 
-  if (nearestTo < 1 || nearestTo > 12) return constructFrom(options?.in || date, NaN);
+  if (nearestTo < 1 || nearestTo > 12)
+    return constructFrom(options?.in || date, NaN);
 
   const date_ = toDate(date, options?.in);
   const fractionalMinutes = date_.getMinutes() / 60;
   const fractionalSeconds = date_.getSeconds() / 60 / 60;
   const fractionalMilliseconds = date_.getMilliseconds() / 1000 / 60 / 60;
-  const hours = date_.getHours() + fractionalMinutes + fractionalSeconds + fractionalMilliseconds;
+  const hours =
+    date_.getHours() +
+    fractionalMinutes +
+    fractionalSeconds +
+    fractionalMilliseconds;
 
   const method = options?.roundingMethod ?? 'round';
   const roundingMethod = getRoundingMethod(method);

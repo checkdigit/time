@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -15,10 +14,19 @@ export function normalizeDates(
   ...dates: [DateArg<Date>, DateArg<Date>]
 ): [Date, Date];
 
-export function normalizeDates(context: ContextFn<Date> | undefined, ...dates: Array<DateArg<Date> & {}>): Date[];
+export function normalizeDates(
+  context: ContextFn<Date> | undefined,
+  ...dates: Array<DateArg<Date> & {}>
+): Date[];
 
-export function normalizeDates(context: ContextFn<Date> | undefined, ...dates: Array<DateArg<Date> & {}>) {
-  const normalize = constructFrom.bind(null, context || dates.find((date) => typeof date === 'object'));
+export function normalizeDates(
+  context: ContextFn<Date> | undefined,
+  ...dates: Array<DateArg<Date> & {}>
+) {
+  const normalize = constructFrom.bind(
+    null,
+    context || dates.find((date) => typeof date === 'object'),
+  );
   return dates.map(normalize);
 }
 

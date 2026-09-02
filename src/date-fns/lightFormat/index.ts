@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -88,7 +87,10 @@ type Token = keyof typeof lightFormatters;
  * const result = lightFormat(new Date(2014, 1, 11), 'yyyy-MM-dd')
  * //=> '2014-02-11'
  */
-export function lightFormat(date: DateArg<Date> & {}, formatStr: string): string {
+export function lightFormat(
+  date: DateArg<Date> & {},
+  formatStr: string,
+): string {
   const date_ = toDate(date);
 
   if (!isValid(date_)) {
@@ -118,7 +120,11 @@ export function lightFormat(date: DateArg<Date> & {}, formatStr: string): string
       }
 
       if (firstCharacter.match(unescapedLatinCharacterRegExp)) {
-        throw new RangeError('Format string contains an unescaped latin alphabet character `' + firstCharacter + '`');
+        throw new RangeError(
+          'Format string contains an unescaped latin alphabet character `' +
+            firstCharacter +
+            '`',
+        );
       }
 
       return substring;

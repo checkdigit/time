@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -28,7 +27,10 @@ export interface GetYearOptions extends ContextOptions<Date> {}
  * const result = getYear(new Date(2014, 6, 2))
  * //=> 2014
  */
-export function getYear(date: DateArg<Date> & {}, options?: GetYearOptions | undefined): number {
+export function getYear(
+  date: DateArg<Date> & {},
+  options?: GetYearOptions | undefined,
+): number {
   return toDate(date, options?.in).getFullYear();
 }
 

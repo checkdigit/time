@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -26,7 +25,11 @@ export class Hour0To11Parser extends Parser<number> {
     return value >= 0 && value <= 11;
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: number,
+  ): DateType {
     const isPM = date.getHours() >= 12;
     if (isPM && value < 12) {
       date.setHours(value + 12, 0, 0, 0);

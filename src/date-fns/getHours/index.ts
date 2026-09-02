@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -28,7 +27,10 @@ export interface GetHoursOptions extends ContextOptions<Date> {}
  * const result = getHours(new Date(2012, 1, 29, 11, 45))
  * //=> 11
  */
-export function getHours(date: DateArg<Date> & {}, options?: GetHoursOptions | undefined): number {
+export function getHours(
+  date: DateArg<Date> & {},
+  options?: GetHoursOptions | undefined,
+): number {
   return toDate(date, options?.in).getHours();
 }
 

@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -67,7 +66,10 @@ export function intlFormat(date: DateArg<Date> & {}): string;
  * })
  * //=> 2019. 10. 4.
  */
-export function intlFormat(date: DateArg<Date> & {}, localeOptions: IntlFormatLocaleOptions): string;
+export function intlFormat(
+  date: DateArg<Date> & {},
+  localeOptions: IntlFormatLocaleOptions,
+): string;
 
 /**
  * @param date - The date to format
@@ -88,7 +90,10 @@ export function intlFormat(date: DateArg<Date> & {}, localeOptions: IntlFormatLo
  * })
  * //=> 10/4/2019, 12 PM
  */
-export function intlFormat(date: DateArg<Date> & {}, formatOptions: IntlFormatFormatOptions): string;
+export function intlFormat(
+  date: DateArg<Date> & {},
+  formatOptions: IntlFormatFormatOptions,
+): string;
 
 /**
  * @param date - The date to format
@@ -131,7 +136,9 @@ export function intlFormat(
     localeOptions = formatOrLocale;
   }
 
-  return new Intl.DateTimeFormat(localeOptions?.locale, formatOptions).format(toDate(date));
+  return new Intl.DateTimeFormat(localeOptions?.locale, formatOptions).format(
+    toDate(date),
+  );
 }
 
 function isFormatOptions(

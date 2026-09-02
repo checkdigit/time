@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -49,7 +48,10 @@ export const lightFormatters = {
   // AM or PM
   a(date: Date, token: string): string {
     // [PATCH:] this hack is required because setHours doesn't work for hours that are close to daylight saving timezone threshold
-    const dayPeriodEnumValue = ((date as any)[Symbol.for('UTCHours')] ?? date.getHours()) / 12 >= 1 ? 'pm' : 'am';
+    const dayPeriodEnumValue =
+      ((date as any)[Symbol.for('UTCHours')] ?? date.getHours()) / 12 >= 1
+        ? 'pm'
+        : 'am';
     // original:
     // const dayPeriodEnumValue = date.getHours() / 12 >= 1 ? "pm" : "am";
 
@@ -70,7 +72,10 @@ export const lightFormatters = {
   // Hour [1-12]
   h(date: Date, token: string): string {
     // [PATCH:] this hack is required because setHours doesn't work for hours that are close to daylight saving timezone threshold
-    return addLeadingZeros(((date as any)[Symbol.for('UTCHours')] ?? date.getHours()) % 12 || 12, token.length);
+    return addLeadingZeros(
+      ((date as any)[Symbol.for('UTCHours')] ?? date.getHours()) % 12 || 12,
+      token.length,
+    );
     // original:
     // return addLeadingZeros(date.getHours() % 12 || 12, token.length);
   },
@@ -78,7 +83,10 @@ export const lightFormatters = {
   // Hour [0-23]
   H(date: Date, token: string): string {
     // [PATCH:] this hack is required because setHours doesn't work for hours that are close to daylight saving timezone threshold
-    return addLeadingZeros((date as any)[Symbol.for('UTCHours')] ?? date.getHours(), token.length);
+    return addLeadingZeros(
+      (date as any)[Symbol.for('UTCHours')] ?? date.getHours(),
+      token.length,
+    );
     // original:
     // return addLeadingZeros(date.getHours(), token.length);
   },
@@ -97,7 +105,9 @@ export const lightFormatters = {
   S(date: Date, token: string): string {
     const numberOfDigits = token.length;
     const milliseconds = date.getMilliseconds();
-    const fractionalSeconds = Math.trunc(milliseconds * Math.pow(10, numberOfDigits - 3));
+    const fractionalSeconds = Math.trunc(
+      milliseconds * Math.pow(10, numberOfDigits - 3),
+    );
     return addLeadingZeros(fractionalSeconds, token.length);
   },
 };

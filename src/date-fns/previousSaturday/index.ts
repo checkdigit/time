@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link previousSaturday} function options.
  */
-export interface PreviousSaturdayOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface PreviousSaturdayOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name previousSaturday
@@ -31,7 +32,10 @@ export interface PreviousSaturdayOptions<DateType extends Date = Date> extends C
  * const result = previousSaturday(new Date(2021, 5, 20))
  * //=> Sat June 19 2021 00:00:00
  */
-export function previousSaturday<DateType extends Date, ResultDate extends Date = DateType>(
+export function previousSaturday<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: PreviousSaturdayOptions<ResultDate> | undefined,
 ): ResultDate {

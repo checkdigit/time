@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link subYears} function options.
  */
-export interface SubYearsOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface SubYearsOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name subYears
@@ -32,7 +33,10 @@ export interface SubYearsOptions<DateType extends Date = Date> extends ContextOp
  * const result = subYears(new Date(2014, 8, 1), 5)
  * //=> Tue Sep 01 2009 00:00:00
  */
-export function subYears<DateType extends Date, ResultDate extends Date = DateType>(
+export function subYears<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   amount: number,
   options?: SubYearsOptions<ResultDate>,

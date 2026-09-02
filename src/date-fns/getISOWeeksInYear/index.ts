@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -32,7 +31,10 @@ export interface GetISOWeeksInYearOptions extends ContextOptions<Date> {}
  * const result = getISOWeeksInYear(new Date(2015, 1, 11))
  * //=> 53
  */
-export function getISOWeeksInYear(date: DateArg<Date> & {}, options?: GetISOWeeksInYearOptions | undefined): number {
+export function getISOWeeksInYear(
+  date: DateArg<Date> & {},
+  options?: GetISOWeeksInYearOptions | undefined,
+): number {
   const thisYear = startOfISOWeekYear(date, options);
   const nextYear = startOfISOWeekYear(addWeeks(thisYear, 60));
   const diff = +nextYear - +thisYear;

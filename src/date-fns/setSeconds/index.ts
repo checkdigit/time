@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link setSeconds} function options.
  */
-export interface SetSecondsOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface SetSecondsOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name setSeconds
@@ -32,7 +33,10 @@ export interface SetSecondsOptions<DateType extends Date = Date> extends Context
  * const result = setSeconds(new Date(2014, 8, 1, 11, 30, 40), 45)
  * //=> Mon Sep 01 2014 11:30:45
  */
-export function setSeconds<DateType extends Date, ResultDate extends Date = DateType>(
+export function setSeconds<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   seconds: number,
   options?: SetSecondsOptions<ResultDate>,

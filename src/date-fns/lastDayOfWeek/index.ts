@@ -1,18 +1,20 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
 import { getDefaultOptions } from '../_lib/defaultOptions/index.ts';
 import { toDate } from '../toDate/index.ts';
-import type { ContextOptions, DateArg, LocalizedOptions, WeekOptions } from '../types.ts';
+import type {
+  ContextOptions,
+  DateArg,
+  LocalizedOptions,
+  WeekOptions,
+} from '../types.ts';
 
 /**
  * The {@link lastDayOfWeek} function options.
  */
 export interface LastDayOfWeekOptions<DateType extends Date = Date>
-  extends LocalizedOptions<'options'>,
-    WeekOptions,
-    ContextOptions<DateType> {}
+  extends LocalizedOptions<'options'>, WeekOptions, ContextOptions<DateType> {}
 
 /**
  * @name lastDayOfWeek
@@ -31,7 +33,10 @@ export interface LastDayOfWeekOptions<DateType extends Date = Date>
  *
  * @returns The last day of a week
  */
-export function lastDayOfWeek<DateType extends Date, ResultDate extends Date = DateType>(
+export function lastDayOfWeek<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: LastDayOfWeekOptions<ResultDate>,
 ): ResultDate {

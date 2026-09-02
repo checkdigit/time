@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -40,7 +39,11 @@ export function isSameHour(
   dateRight: DateArg<Date> & {},
   options?: IsSameHourOptions | undefined,
 ): boolean {
-  const [dateLeft_, dateRight_] = normalizeDates(options?.in, dateLeft, dateRight);
+  const [dateLeft_, dateRight_] = normalizeDates(
+    options?.in,
+    dateLeft,
+    dateRight,
+  );
   return +startOfHour(dateLeft_) === +startOfHour(dateRight_);
 }
 

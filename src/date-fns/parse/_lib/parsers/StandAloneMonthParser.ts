@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -17,7 +16,10 @@ export class StandAloneMonthParser extends Parser<number> {
     switch (token) {
       // 1, 2, ..., 12
       case 'L':
-        return mapValue(parseNumericPattern(numericPatterns.month, dateString), valueCallback);
+        return mapValue(
+          parseNumericPattern(numericPatterns.month, dateString),
+          valueCallback,
+        );
       // 01, 02, ..., 12
       case 'LL':
         return mapValue(parseNDigits(2, dateString), valueCallback);
@@ -35,7 +37,8 @@ export class StandAloneMonthParser extends Parser<number> {
           match.month(dateString, {
             width: 'abbreviated',
             context: 'standalone',
-          }) || match.month(dateString, { width: 'narrow', context: 'standalone' })
+          }) ||
+          match.month(dateString, { width: 'narrow', context: 'standalone' })
         );
       // J, F, ..., D
       case 'LLLLL':
@@ -61,13 +64,31 @@ export class StandAloneMonthParser extends Parser<number> {
     return value >= 0 && value <= 11;
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: number,
+  ): DateType {
     date.setMonth(value, 1);
     date.setHours(0, 0, 0, 0);
     return date;
   }
 
-  incompatibleTokens: string[] = ['Y', 'R', 'q', 'Q', 'M', 'w', 'I', 'D', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = [
+    'Y',
+    'R',
+    'q',
+    'Q',
+    'M',
+    'w',
+    'I',
+    'D',
+    'i',
+    'e',
+    'c',
+    't',
+    'T',
+  ];
 }
 
 /* eslint-enable */

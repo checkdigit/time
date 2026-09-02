@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link setMilliseconds} function options.
  */
-export interface SetMillisecondsOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface SetMillisecondsOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name setMilliseconds
@@ -32,7 +33,10 @@ export interface SetMillisecondsOptions<DateType extends Date = Date> extends Co
  * const result = setMilliseconds(new Date(2014, 8, 1, 11, 30, 40, 500), 300)
  * //=> Mon Sep 01 2014 11:30:40.300
  */
-export function setMilliseconds<DateType extends Date, ResultDate extends Date = DateType>(
+export function setMilliseconds<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   milliseconds: number,
   options?: SetMillisecondsOptions<ResultDate> | undefined,

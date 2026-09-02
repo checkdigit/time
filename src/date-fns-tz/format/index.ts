@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -320,7 +319,11 @@ const tzFormattingTokensRegExp = /([xXOz]+)|''|'(''|[^'])+('|$)/g;
  * const result = format(new Date(2014, 6, 2, 15), "h 'o''clock'")
  * //=> "3 o'clock"
  */
-export function format(date: Date | string | number, formatStr: string, options: FormatOptionsWithTZ = {}): string {
+export function format(
+  date: Date | string | number,
+  formatStr: string,
+  options: FormatOptionsWithTZ = {},
+): string {
   formatStr = String(formatStr);
 
   const matches = formatStr.match(tzFormattingTokensRegExp);
@@ -334,10 +337,15 @@ export function format(date: Date | string | number, formatStr: string, options:
       }
       const pos = result.indexOf(token);
       const precededByQuotedSection = result[pos - 1] === "'";
-      const replaced = result.replace(token, "'" + formatters[token[0]](d, token, options) + "'");
+      const replaced = result.replace(
+        token,
+        "'" + formatters[token[0]](d, token, options) + "'",
+      );
       // If the replacement results in two adjoining quoted strings, the back to back quotes
       // are removed, so it doesn't look like an escaped quote.
-      return precededByQuotedSection ? replaced.substring(0, pos - 1) + replaced.substring(pos + 1) : replaced;
+      return precededByQuotedSection
+        ? replaced.substring(0, pos - 1) + replaced.substring(pos + 1)
+        : replaced;
     }, formatStr);
   }
 

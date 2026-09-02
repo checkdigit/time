@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { ContextOptions, DateArg } from '../types.ts';
 /**
  * The {@link startOfYear} function options.
  */
-export interface StartOfYearOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface StartOfYearOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name startOfYear
@@ -32,7 +33,10 @@ export interface StartOfYearOptions<DateType extends Date = Date> extends Contex
  * const result = startOfYear(new Date(2014, 8, 2, 11, 55, 00))
  * //=> Wed Jan 01 2014 00:00:00
  */
-export function startOfYear<DateType extends Date, ResultDate extends Date = DateType>(
+export function startOfYear<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: StartOfYearOptions<ResultDate> | undefined,
 ): ResultDate {

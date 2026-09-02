@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -23,14 +22,29 @@ export abstract class Parser<Value> {
     }
 
     return {
-      setter: new ValueSetter<Value>(result.value, this.validate, this.set, this.priority, this.subPriority),
+      setter: new ValueSetter<Value>(
+        result.value,
+        this.validate,
+        this.set,
+        this.priority,
+        this.subPriority,
+      ),
       rest: result.rest,
     };
   }
 
-  protected abstract parse(dateString: string, token: string, match: Match, options: ParserOptions): ParseResult<Value>;
+  protected abstract parse(
+    dateString: string,
+    token: string,
+    match: Match,
+    options: ParserOptions,
+  ): ParseResult<Value>;
 
-  protected validate<DateType extends Date>(_utcDate: DateType, _value: Value, _options: ParserOptions): boolean {
+  protected validate<DateType extends Date>(
+    _utcDate: DateType,
+    _value: Value,
+    _options: ParserOptions,
+  ): boolean {
     return true;
   }
 

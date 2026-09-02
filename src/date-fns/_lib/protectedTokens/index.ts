@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -15,7 +14,11 @@ export function isProtectedWeekYearToken(token: string): boolean {
   return weekYearTokenRE.test(token);
 }
 
-export function warnOrThrowProtectedError(token: string, format: string, input: string): void {
+export function warnOrThrowProtectedError(
+  token: string,
+  format: string,
+  input: string,
+): void {
   const _message = message(token, format, input);
   console.warn(_message);
   if (throwTokens.includes(token)) throw new RangeError(_message);

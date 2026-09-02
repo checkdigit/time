@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -8,7 +7,9 @@ import type { DateArg, ContextOptions } from '../types.ts';
 /**
  * The {@link startOfSecond} function options.
  */
-export interface StartOfSecondOptions<DateType extends Date = Date> extends ContextOptions<DateType> {}
+export interface StartOfSecondOptions<
+  DateType extends Date = Date,
+> extends ContextOptions<DateType> {}
 
 /**
  * @name startOfSecond
@@ -32,7 +33,10 @@ export interface StartOfSecondOptions<DateType extends Date = Date> extends Cont
  * const result = startOfSecond(new Date(2014, 11, 1, 22, 15, 45, 400))
  * //=> Mon Dec 01 2014 22:15:45.000
  */
-export function startOfSecond<DateType extends Date, ResultDate extends Date = DateType>(
+export function startOfSecond<
+  DateType extends Date,
+  ResultDate extends Date = DateType,
+>(
   date: DateArg<DateType>,
   options?: StartOfSecondOptions<ResultDate> | undefined,
 ): ResultDate {

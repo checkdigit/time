@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -17,13 +16,29 @@ export class ExtendedYearParser extends Parser<number> {
     return parseNDigitsSigned(token.length, dateString);
   }
 
-  set<DateType extends Date>(date: DateType, _flags: ParseFlags, value: number): DateType {
+  set<DateType extends Date>(
+    date: DateType,
+    _flags: ParseFlags,
+    value: number,
+  ): DateType {
     date.setFullYear(value, 0, 1);
     date.setHours(0, 0, 0, 0);
     return date;
   }
 
-  incompatibleTokens: string[] = ['G', 'y', 'Y', 'R', 'w', 'I', 'i', 'e', 'c', 't', 'T'];
+  incompatibleTokens: string[] = [
+    'G',
+    'y',
+    'Y',
+    'R',
+    'w',
+    'I',
+    'i',
+    'e',
+    'c',
+    't',
+    'T',
+  ];
 }
 
 /* eslint-enable */

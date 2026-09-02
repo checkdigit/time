@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -10,7 +9,11 @@ const MILLISECONDS_IN_MINUTE = 60 * 1000;
 
 export const formatters: Record<
   string,
-  (date: Date, token: string, options: FormatOptionsWithTZ) => string | undefined
+  (
+    date: Date,
+    token: string,
+    options: FormatOptionsWithTZ,
+  ) => string | undefined
 > = {
   // Timezone (ISO-8601. If offset is 0, output is always `'Z'`)
   X: function (date, token, options) {

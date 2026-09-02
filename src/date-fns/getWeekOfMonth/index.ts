@@ -1,4 +1,3 @@
-/* eslint-disable eslint-comments/no-unlimited-disable */
 /* eslint-disable */
 // @ts-nocheck
 
@@ -7,12 +6,18 @@ import { getDate } from '../getDate/index.ts';
 import { getDay } from '../getDay/index.ts';
 import { startOfMonth } from '../startOfMonth/index.ts';
 import { toDate } from '../toDate/index.ts';
-import type { ContextOptions, DateArg, LocalizedOptions, WeekOptions } from '../types.ts';
+import type {
+  ContextOptions,
+  DateArg,
+  LocalizedOptions,
+  WeekOptions,
+} from '../types.ts';
 
 /**
  * The {@link getWeekOfMonth} function options.
  */
-export interface GetWeekOfMonthOptions extends LocalizedOptions<'options'>, WeekOptions, ContextOptions<Date> {}
+export interface GetWeekOfMonthOptions
+  extends LocalizedOptions<'options'>, WeekOptions, ContextOptions<Date> {}
 
 /**
  * @name getWeekOfMonth
@@ -32,7 +37,10 @@ export interface GetWeekOfMonthOptions extends LocalizedOptions<'options'>, Week
  * const result = getWeekOfMonth(new Date(2017, 10, 9))
  * //=> 2
  */
-export function getWeekOfMonth(date: DateArg<Date> & {}, options?: GetWeekOfMonthOptions): number {
+export function getWeekOfMonth(
+  date: DateArg<Date> & {},
+  options?: GetWeekOfMonthOptions,
+): number {
   const defaultOptions = getDefaultOptions();
   const weekStartsOn =
     options?.weekStartsOn ??
